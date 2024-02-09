@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "XMLContent.Data/1.0.0": {
+        "runtime": {
+          "XMLContent.Data.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "XMLContent.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

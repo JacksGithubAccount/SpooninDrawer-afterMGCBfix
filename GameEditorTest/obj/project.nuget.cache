@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "bTIy+wuxWeUpsoBwFlYGSgJEk4UPHZ2NkspeJ3J/RJ+4xgtNYlE9h3qbKTJR1fNRSRD3IFkYKxxovU7uj2+Rcw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer\\GameEditorTest\\GameEditorTest.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jckzh\\.nuget\\packages\\monogame.extended\\3.8.0\\monogame.extended.3.8.0.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\monogame.forms.dx\\3.2.0\\monogame.forms.dx.3.2.0.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\monogame.framework.windowsdx.9000\\3.8.9102\\monogame.framework.windowsdx.9000.3.8.9102.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\sharpdx\\4.0.1\\sharpdx.4.0.1.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\sharpdx.direct2d1\\4.0.1\\sharpdx.direct2d1.4.0.1.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\sharpdx.direct3d11\\4.0.1\\sharpdx.direct3d11.4.0.1.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\sharpdx.direct3d9\\4.0.1\\sharpdx.direct3d9.4.0.1.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\sharpdx.dxgi\\4.0.1\\sharpdx.dxgi.4.0.1.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\sharpdx.mathematics\\4.0.1\\sharpdx.mathematics.4.0.1.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\sharpdx.mediafoundation\\4.0.1\\sharpdx.mediafoundation.4.0.1.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\sharpdx.xaudio2\\4.0.1\\sharpdx.xaudio2.4.0.1.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\sharpdx.xinput\\4.0.1\\sharpdx.xinput.4.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

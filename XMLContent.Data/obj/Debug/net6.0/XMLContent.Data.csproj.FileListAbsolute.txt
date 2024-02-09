@@ -1,0 +1,12 @@
+C:\Users\jckzh\source\repos\SpooninDrawer\XMLContent.Data\bin\Debug\net6.0\XMLContent.Data.deps.json
+C:\Users\jckzh\source\repos\SpooninDrawer\XMLContent.Data\bin\Debug\net6.0\XMLContent.Data.dll
+C:\Users\jckzh\source\repos\SpooninDrawer\XMLContent.Data\bin\Debug\net6.0\XMLContent.Data.pdb
+C:\Users\jckzh\source\repos\SpooninDrawer\XMLContent.Data\obj\Debug\net6.0\XMLContent.Data.csproj.AssemblyReference.cache
+C:\Users\jckzh\source\repos\SpooninDrawer\XMLContent.Data\obj\Debug\net6.0\XMLContent.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jckzh\source\repos\SpooninDrawer\XMLContent.Data\obj\Debug\net6.0\XMLContent.Data.AssemblyInfoInputs.cache
+C:\Users\jckzh\source\repos\SpooninDrawer\XMLContent.Data\obj\Debug\net6.0\XMLContent.Data.AssemblyInfo.cs
+C:\Users\jckzh\source\repos\SpooninDrawer\XMLContent.Data\obj\Debug\net6.0\XMLContent.Data.csproj.CoreCompileInputs.cache
+C:\Users\jckzh\source\repos\SpooninDrawer\XMLContent.Data\obj\Debug\net6.0\XMLContent.Data.dll
+C:\Users\jckzh\source\repos\SpooninDrawer\XMLContent.Data\obj\Debug\net6.0\refint\XMLContent.Data.dll
+C:\Users\jckzh\source\repos\SpooninDrawer\XMLContent.Data\obj\Debug\net6.0\XMLContent.Data.pdb
+C:\Users\jckzh\source\repos\SpooninDrawer\XMLContent.Data\obj\Debug\net6.0\ref\XMLContent.Data.dll

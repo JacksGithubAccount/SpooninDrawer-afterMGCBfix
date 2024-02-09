@@ -1,0 +1,48 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "test.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "C:/Users/jckzh/source/repos/SpooninDrawer/SpooninDrawer/Content/TileSets/incrediblybadmspainttileset.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "test.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 230.66666666666669,
+                "y": 368.6666666666667
+            }
+        }
+    },
+    "last.exportedFilePath": "C:/Users/jckzh/source/repos/SpooninDrawer/SpooninDrawer/Content/TiledMaps",
+    "last.imagePath": "C:/Users/jckzh/source/repos/SpooninDrawer/SpooninDrawer/Content/TileSets",
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 48,
+    "map.tileWidth": 48,
+    "openFiles": [
+        "test.tmx",
+        "C:/Users/jckzh/source/repos/SpooninDrawer/SpooninDrawer/Content/TileSets/incrediblybadmspainttileset.tsx"
+    ],
+    "project": "test.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "C:/Users/jckzh/source/repos/SpooninDrawer/SpooninDrawer/Content/TileSets/incrediblybadmspainttileset.tsx",
+        "test.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 48,
+        "width": 48
+    },
+    "tileset.useTransparentColor": true
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:SpooninDrawer="SpooninDrawer">
+  <Asset Type="SpooninDrawer:AnimationData">
+ <AnimationSpeed>3</AnimationSpeed>
+ <IsLooping>false</IsLooping>
+ <Frames>
+ <Item>
+ <X>0</X>
+ <Y>152</Y>
+ <CellWidth>116</CellWidth>
+ <CellHeight>152</CellHeight>
+ </Item>
+ <Item>
+ <X>116</X>
+ <Y>152</Y>
+ <CellWidth>116</CellWidth>
+ <CellHeight>152</CellHeight>
+ </Item>
+ <Item>
+ <X>232</X>
+ <Y>152</Y>
+ <CellWidth>116</CellWidth>
+ <CellHeight>152</CellHeight>
+ </Item>
+ <Item>
+ <X>348</X>
+ <Y>152</Y>
+ <CellWidth>116</CellWidth>
+ <CellHeight>152</CellHeight>
+ </Item>
+ <Item>
+ <X>464</X>
+ <Y>152</Y>
+ <CellWidth>116</CellWidth>
+ <CellHeight>152</CellHeight>
+ </Item>
+ </Frames>
+ </Asset>
+</XnaContent>

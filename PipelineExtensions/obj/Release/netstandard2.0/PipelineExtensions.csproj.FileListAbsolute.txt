@@ -1,0 +1,5 @@
+C:\Users\jckzh\source\repos\SpooninDrawer\PipelineExtensions\obj\Release\netstandard2.0\PipelineExtensions.csproj.AssemblyReference.cache
+C:\Users\jckzh\source\repos\SpooninDrawer\PipelineExtensions\obj\Release\netstandard2.0\PipelineExtensions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jckzh\source\repos\SpooninDrawer\PipelineExtensions\obj\Release\netstandard2.0\PipelineExtensions.AssemblyInfoInputs.cache
+C:\Users\jckzh\source\repos\SpooninDrawer\PipelineExtensions\obj\Release\netstandard2.0\PipelineExtensions.AssemblyInfo.cs
+C:\Users\jckzh\source\repos\SpooninDrawer\PipelineExtensions\obj\Release\netstandard2.0\PipelineExtensions.csproj.CoreCompileInputs.cache
