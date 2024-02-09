@@ -249,11 +249,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer\\Engine2DPipelineExtensions\\Engine2DPipelineExtensions.csproj",
+      "projectUniqueName": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\Engine2DPipelineExtensions\\Engine2DPipelineExtensions.csproj",
       "projectName": "Engine2DPipelineExtensions",
-      "projectPath": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer\\Engine2DPipelineExtensions\\Engine2DPipelineExtensions.csproj",
+      "projectPath": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\Engine2DPipelineExtensions\\Engine2DPipelineExtensions.csproj",
       "packagesPath": "C:\\Users\\jckzh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer\\Engine2DPipelineExtensions\\obj\\",
+      "outputPath": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\Engine2DPipelineExtensions\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

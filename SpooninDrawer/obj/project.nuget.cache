@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hO0s4GzRPQoVAeOzZuxvpBiyHHTqAAZnV9vvog4xAkYGQtg+m9GrlOn76Uv9H73tA0olgbFv+MwhmUAPyVsy5Q==",
+  "dgSpecHash": "0Dgi1MiH+hqxhlxMx4dKRAotltD9CymTZPAD6LByCn+P5eFy3AI1Z2SvCKeg7zmrvUofUv3ug7/4AXun6rIWEA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer\\SpooninDrawer\\SpooninDrawer.csproj",
+  "projectFilePath": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\SpooninDrawer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jckzh\\.nuget\\packages\\autofac\\5.2.0\\autofac.5.2.0.nupkg.sha512",
     "C:\\Users\\jckzh\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",

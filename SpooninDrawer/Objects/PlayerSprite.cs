@@ -141,7 +141,7 @@ namespace SpooninDrawer.Objects
             }
             else
             {
-                makeMoveAgainfromCollision();
+                //makeMoveAgainfromCollision();
             }
 
         }
@@ -160,7 +160,7 @@ namespace SpooninDrawer.Objects
             }
             else
             {
-                makeMoveAgainfromCollision();
+                //makeMoveAgainfromCollision();
             }
         }
 
@@ -177,7 +177,7 @@ namespace SpooninDrawer.Objects
             }
             else
             {
-                makeMoveAgainfromCollision();
+                //makeMoveAgainfromCollision();
             }
         }
 
@@ -194,7 +194,7 @@ namespace SpooninDrawer.Objects
             }
             else
             {
-                makeMoveAgainfromCollision();
+                //makeMoveAgainfromCollision();
             }
         }
         public void HandleMapCollision(MapTileCollider MapTile)
@@ -237,15 +237,19 @@ namespace SpooninDrawer.Objects
                 if (MapTile.IsCollide(LookUpRect))
                 {
                     _stopUp = true;
-                    if (Position.Y < MapTile.BoundingBoxes[0].Rectangle.Bottom)
-                        newPosition.Y = MapTile.BoundingBoxes[0].Rectangle.Bottom;
+                    //if (Position.Y < MapTile.BoundingBoxes[0].Rectangle.Bottom)
+                     //   newPosition.Y = MapTile.BoundingBoxes[0].Rectangle.Bottom;
                 }
             }
             else if (_movingDown)
             {
-                //_stopDown = true;
-                //if (Position.Y + Height > MapTileBoundingBox.Rectangle.Top)
-                //newPosition.Y = MapTileBoundingBox.Rectangle.Top - Height;
+                Rectangle LookDownRect = new Rectangle((int)tempBB.Position.X, (int)tempBB.Position.Y + (int)tempBB.Height, (int)tempBB.Width, 5);
+                if (MapTile.IsCollide(LookDownRect))
+                {
+                    _stopDown = true;
+                    //if (Position.Y + Height > MapTile.BoundingBoxes[0].Rectangle.Top)
+                    //newPosition.Y = MapTile.BoundingBoxes[0].Rectangle.Top - Height;
+                }
             }
             Position = newPosition;
 

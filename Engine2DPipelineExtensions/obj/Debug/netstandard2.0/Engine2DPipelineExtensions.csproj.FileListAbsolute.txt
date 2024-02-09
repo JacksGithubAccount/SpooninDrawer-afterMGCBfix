@@ -28,3 +28,13 @@ C:\Users\jckzh\Documents\SpooninDrawer\Engine2DPipelineExtensions\obj\Debug\nets
 C:\Users\jckzh\Documents\SpooninDrawer\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.csproj.CoreCompileInputs.cache
 C:\Users\jckzh\Documents\SpooninDrawer\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.dll
 C:\Users\jckzh\Documents\SpooninDrawer\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.pdb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\bin\Debug\netstandard2.0\Engine2DPipelineExtensions.deps.json
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\bin\Debug\netstandard2.0\Engine2DPipelineExtensions.dll
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\bin\Debug\netstandard2.0\Engine2DPipelineExtensions.pdb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.csproj.AssemblyReference.cache
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.AssemblyInfoInputs.cache
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.AssemblyInfo.cs
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.csproj.CoreCompileInputs.cache
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.dll
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.pdb

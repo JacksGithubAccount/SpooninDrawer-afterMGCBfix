@@ -140,7 +140,8 @@ namespace SpooninDrawer
          *-Finally fixed it. After much troubleshootin, the fix was there was something wrong with the tiled map that I was using. Created new map works.
          *-added rectangle to look up, down is still missing. However, the collision is still not working correctly
          *2/8/2024
-         *-
+         *-added down box to look ahead. added way to turn off the collide bools. It's not perfect but, it works.
+         *
          *
          */
     }
