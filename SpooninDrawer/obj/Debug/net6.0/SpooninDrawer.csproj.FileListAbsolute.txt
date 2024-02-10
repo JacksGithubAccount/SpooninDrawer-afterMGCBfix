@@ -208,3 +208,4 @@ C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\obj\Debug\n
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\obj\Debug\net6.0\SpooninDrawer.pdb
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\obj\Debug\net6.0\SpooninDrawer.genruntimeconfig.cache
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\obj\Debug\net6.0\ref\SpooninDrawer.dll
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\obj\Debug\net6.0\SpooninDrawer.sourcelink.json

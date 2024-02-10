@@ -69,7 +69,7 @@ namespace SpooninDrawer.Objects
             _turnRightAnimation = new Animation(turnRightAnimation);
             _leftToCenterAnimation = _turnLeftAnimation.ReverseAnimation;
             _rightToCenterAnimation = _turnRightAnimation.ReverseAnimation;
-
+            Position = new Vector2(25, 25);
             PlayerSpeed = 10.0f;
             _MoveDirection = Position;
             //CurrentUpSpeed = _playerNormalUpSpeed;
@@ -139,11 +139,6 @@ namespace SpooninDrawer.Objects
             {
                 _MoveDirection.X -= PlayerSpeed;
             }
-            else
-            {
-                //makeMoveAgainfromCollision();
-            }
-
         }
 
         public void MoveRight()
@@ -158,10 +153,6 @@ namespace SpooninDrawer.Objects
             {
                 _MoveDirection.X += PlayerSpeed;
             }
-            else
-            {
-                //makeMoveAgainfromCollision();
-            }
         }
 
         public void MoveUp()
@@ -175,10 +166,6 @@ namespace SpooninDrawer.Objects
             {
                 _MoveDirection.Y -= PlayerSpeed;
             }
-            else
-            {
-                //makeMoveAgainfromCollision();
-            }
         }
 
         public void MoveDown()
@@ -191,10 +178,6 @@ namespace SpooninDrawer.Objects
             if (!_stopDown)
             {
                 _MoveDirection.Y += PlayerSpeed;
-            }
-            else
-            {
-                //makeMoveAgainfromCollision();
             }
         }
         public void HandleMapCollision(MapTileCollider MapTile)
@@ -213,43 +196,51 @@ namespace SpooninDrawer.Objects
             Vector2 newPosition = new Vector2(Position.X, Position.Y);
             if (_movingLeft)
             {
-                Rectangle LookLeftRect = new Rectangle((int)tempBB.Position.X, (int)tempBB.Position.Y, -5, (int)tempBB.Height);
+                Rectangle LookLeftRect = new Rectangle((int)tempBB.Position.X, (int)tempBB.Position.Y+3, -5, (int)tempBB.Height-5);
                 if (MapTile.IsCollide(LookLeftRect))
                 {
                     _stopLeft = true;
-                    if (tempBB.Position.X < MapTile.BoundingBoxes[0].Rectangle.Right)
-                        newPosition.X = MapTile.BoundingBoxes[0].Rectangle.Right + (Position.X - tempBB.Position.X);
+                    //if (tempBB.Position.X < MapTile.BoundingBoxes[0].Rectangle.Right)
+                    //newPosition.X = MapTile.BoundingBoxes[0].Rectangle.Right + (Position.X - tempBB.Position.X);
                 }
+                else
+                    _stopLeft = false;
             }
             else if (_movingRight)
             {
-                Rectangle LookRightRect = new Rectangle((int)tempBB.Position.X + (int)tempBB.Width, (int)tempBB.Position.Y, 5, (int)tempBB.Height);
+                Rectangle LookRightRect = new Rectangle((int)tempBB.Position.X + (int)tempBB.Width, (int)tempBB.Position.Y+3, 5, (int)tempBB.Height-5);
                 if (MapTile.IsCollide(LookRightRect))
                 {
                     _stopRight = true;
-                    if (tempBB.Position.X + tempBB.Width > MapTile.BoundingBoxes[0].Rectangle.Left)
-                        newPosition.X = MapTile.BoundingBoxes[0].Rectangle.Left - tempBB.Width;
+                    //if (tempBB.Position.X + tempBB.Width > MapTile.BoundingBoxes[0].Rectangle.Left)
+                        //newPosition.X = MapTile.BoundingBoxes[0].Rectangle.Left - tempBB.Width;
                 }
+                else
+                    _stopRight = false;
             }
             if (_movingUp)
             {
-                Rectangle LookUpRect = new Rectangle((int)tempBB.Position.X, (int)tempBB.Position.Y, (int)tempBB.Width, -5);
+                Rectangle LookUpRect = new Rectangle((int)tempBB.Position.X+5, (int)tempBB.Position.Y, (int)tempBB.Width-13, -5);
                 if (MapTile.IsCollide(LookUpRect))
                 {
                     _stopUp = true;
                     //if (Position.Y < MapTile.BoundingBoxes[0].Rectangle.Bottom)
                      //   newPosition.Y = MapTile.BoundingBoxes[0].Rectangle.Bottom;
                 }
+                else
+                    _stopUp = false;
             }
             else if (_movingDown)
             {
-                Rectangle LookDownRect = new Rectangle((int)tempBB.Position.X, (int)tempBB.Position.Y + (int)tempBB.Height, (int)tempBB.Width, 5);
+                Rectangle LookDownRect = new Rectangle((int)tempBB.Position.X+5, (int)tempBB.Position.Y + (int)tempBB.Height, (int)tempBB.Width-13, 5);
                 if (MapTile.IsCollide(LookDownRect))
                 {
                     _stopDown = true;
                     //if (Position.Y + Height > MapTile.BoundingBoxes[0].Rectangle.Top)
                     //newPosition.Y = MapTile.BoundingBoxes[0].Rectangle.Top - Height;
                 }
+                else
+                    _stopDown = false;
             }
             Position = newPosition;
 

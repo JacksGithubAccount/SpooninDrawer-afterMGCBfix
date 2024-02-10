@@ -110,7 +110,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var turnLeftAnimation = LoadAnimation(PlayerAnimationTurnLeft);
             var turnRightAnimation = LoadAnimation(PlayerAnimationTurnRight);
             var idelAnimation = LoadAnimation(PlayerAnimationIdle);
-            _playerSprite = new PlayerSprite(LoadTexture(PlayerFighter), turnLeftAnimation, turnRightAnimation, idelAnimation);
+            _playerSprite = new PlayerSprite(LoadTexture(PlayerFighter), turnLeftAnimation, turnRightAnimation, idelAnimation);            
             // load sound effects and register in the sound manager
             //var bulletSound = LoadSound(BulletSound);
             //var missileSound = LoadSound(MissileSound);

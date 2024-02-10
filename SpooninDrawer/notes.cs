@@ -141,7 +141,10 @@ namespace SpooninDrawer
          *-added rectangle to look up, down is still missing. However, the collision is still not working correctly
          *2/8/2024
          *-added down box to look ahead. added way to turn off the collide bools. It's not perfect but, it works.
-         *
+         *2/9/2024
+         *-shortened look ahead boxes so now the boxes don't intersect with collision. 
+         *-added walls, now you become uncollidable going left or right when colliding up.
+         *-
          *
          */
     }
