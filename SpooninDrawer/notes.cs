@@ -144,7 +144,8 @@ namespace SpooninDrawer
          *2/9/2024
          *-shortened look ahead boxes so now the boxes don't intersect with collision. 
          *-added walls, now you become uncollidable going left or right when colliding up.
-         *-
+         *2/12/2024
+         *-drew the look ahead rects, the up and left don't look right, will need to fix.
          *
          */
     }

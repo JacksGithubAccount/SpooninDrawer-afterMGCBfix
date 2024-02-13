@@ -29,6 +29,11 @@ namespace SpooninDrawer.Objects
         private const int BB2Width = 111;
         private const int BB2Height = 37;
 
+        private Rectangle LookLeftRect;
+        private Rectangle LookRightRect;
+        private Rectangle LookUpRect;
+        private Rectangle LookDownRect;
+
         private Animation _idleAnimation = new Animation(false);
         private Animation _turnLeftAnimation = new Animation(false);
         private Animation _turnRightAnimation = new Animation(false);
@@ -196,7 +201,7 @@ namespace SpooninDrawer.Objects
             Vector2 newPosition = new Vector2(Position.X, Position.Y);
             if (_movingLeft)
             {
-                Rectangle LookLeftRect = new Rectangle((int)tempBB.Position.X, (int)tempBB.Position.Y+3, -5, (int)tempBB.Height-5);
+                LookLeftRect = new Rectangle((int)tempBB.Position.X, (int)tempBB.Position.Y+3, -10, (int)tempBB.Height-5);
                 if (MapTile.IsCollide(LookLeftRect))
                 {
                     _stopLeft = true;
@@ -208,7 +213,7 @@ namespace SpooninDrawer.Objects
             }
             else if (_movingRight)
             {
-                Rectangle LookRightRect = new Rectangle((int)tempBB.Position.X + (int)tempBB.Width, (int)tempBB.Position.Y+3, 5, (int)tempBB.Height-5);
+                LookRightRect = new Rectangle((int)tempBB.Position.X + (int)tempBB.Width, (int)tempBB.Position.Y+3, 5, (int)tempBB.Height-5);
                 if (MapTile.IsCollide(LookRightRect))
                 {
                     _stopRight = true;
@@ -220,7 +225,7 @@ namespace SpooninDrawer.Objects
             }
             if (_movingUp)
             {
-                Rectangle LookUpRect = new Rectangle((int)tempBB.Position.X+5, (int)tempBB.Position.Y, (int)tempBB.Width-13, -5);
+                LookUpRect = new Rectangle((int)tempBB.Position.X+5, (int)tempBB.Position.Y, (int)tempBB.Width-13, -10);
                 if (MapTile.IsCollide(LookUpRect))
                 {
                     _stopUp = true;
@@ -232,7 +237,7 @@ namespace SpooninDrawer.Objects
             }
             else if (_movingDown)
             {
-                Rectangle LookDownRect = new Rectangle((int)tempBB.Position.X+5, (int)tempBB.Position.Y + (int)tempBB.Height, (int)tempBB.Width-13, 5);
+                LookDownRect = new Rectangle((int)tempBB.Position.X+5, (int)tempBB.Position.Y + (int)tempBB.Height, (int)tempBB.Width-13, 5);
                 if (MapTile.IsCollide(LookDownRect))
                 {
                     _stopDown = true;
@@ -278,6 +283,10 @@ namespace SpooninDrawer.Objects
             spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.Draw(_texture, BoundingBoxes[0].Position, BoundingBoxes[0].Rectangle, Color.Red);
             spriteBatch.Draw(_texture, BoundingBoxes[1].Position, BoundingBoxes[1].Rectangle, Color.Red);
+            spriteBatch.Draw(_texture, new Vector2(LookLeftRect.X, LookLeftRect.Y), LookLeftRect, Color.Red);
+            spriteBatch.Draw(_texture, new Vector2(LookRightRect.X, LookRightRect.Y), LookRightRect, Color.Red);
+            spriteBatch.Draw(_texture, new Vector2(LookUpRect.X, LookUpRect.Y), LookUpRect, Color.Red);
+            spriteBatch.Draw(_texture, new Vector2(LookDownRect.X, LookDownRect.Y), LookDownRect, Color.Red);
             //spriteBatch.Draw(_texture, _MoveDirection, new Rectangle((int)Position.X, (int)Position.Y, (int)_MoveDirection.X, (int)_MoveDirection.Y), Color.Red);
         }
     }
