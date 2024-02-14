@@ -59,6 +59,7 @@ namespace SpooninDrawer.Objects
         public bool _MustStop = false;
         public Vector2 _MoveDirection;
 
+        public Texture2D blank;
         public override int Height => AnimationCellHeight;
         public override int Width => AnimationCellWidth;
 
@@ -283,10 +284,10 @@ namespace SpooninDrawer.Objects
             spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
             spriteBatch.Draw(_texture, BoundingBoxes[0].Position, BoundingBoxes[0].Rectangle, Color.Red);
             spriteBatch.Draw(_texture, BoundingBoxes[1].Position, BoundingBoxes[1].Rectangle, Color.Red);
-            spriteBatch.Draw(_texture, new Vector2(LookLeftRect.X, LookLeftRect.Y), LookLeftRect, Color.Red);
-            spriteBatch.Draw(_texture, new Vector2(LookRightRect.X, LookRightRect.Y), LookRightRect, Color.Red);
-            spriteBatch.Draw(_texture, new Vector2(LookUpRect.X, LookUpRect.Y), LookUpRect, Color.Red);
-            spriteBatch.Draw(_texture, new Vector2(LookDownRect.X, LookDownRect.Y), LookDownRect, Color.Red);
+            spriteBatch.Draw(blank,  LookLeftRect, Color.Blue);
+            spriteBatch.Draw(blank,  LookRightRect, Color.Blue);
+            spriteBatch.Draw(blank, LookUpRect, Color.Blue);
+            spriteBatch.Draw(blank, LookDownRect, Color.Blue);
             //spriteBatch.Draw(_texture, _MoveDirection, new Rectangle((int)Position.X, (int)Position.Y, (int)_MoveDirection.X, (int)_MoveDirection.Y), Color.Red);
         }
     }

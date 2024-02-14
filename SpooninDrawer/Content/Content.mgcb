@@ -129,6 +129,18 @@
 /processorParam:Quality=Best
 /build:sounds/empty.wav
 
+#begin Sprites/Animations/blank.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Animations/blank.png
+
 #begin Sprites/Animations/PlayerSpriteSheet - Copy.png
 /importer:TextureImporter
 /processor:TextureProcessor

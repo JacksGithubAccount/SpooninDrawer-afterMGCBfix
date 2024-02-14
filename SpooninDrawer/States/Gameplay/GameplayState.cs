@@ -40,6 +40,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private const string TilesetTest = "TiledMaps/incrediblybadmspainttileset";
         //rivate const string ExplosionTexture = "Sprites/explosion";
 
+        private const string BlankTexture = "Sprites/Animations/Blank";
+
         private const string TextFont = "Fonts/Lives";
         private const string GameOverFont = "Fonts/GameOver";
 
@@ -61,6 +63,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private Texture2D _explosionTexture;
         private Texture2D _chopperTexture;
         private Texture2D _screenBoxTexture;
+
+        private Texture2D blankTexture;
 
         private PlayerSprite _playerSprite;
 
@@ -91,7 +95,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         {
             _debug = true;
             //_explosionTexture = LoadTexture(ExplosionTexture);
-
+            blankTexture = content.Load<Texture2D>(BlankTexture);
             _map = new TmxMap("Content/TiledMaps/testain.tmx");
             _tileSet = content.Load<Texture2D>(TilesetTest + "_0"); // TilesetTest + "_1" + _map.Tilesets[0].Name.ToString() "Content/TileSets/incrediblybadmspainttileset.png"
             int tileWidth = _map.Tilesets[0].TileWidth;
@@ -110,7 +114,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var turnLeftAnimation = LoadAnimation(PlayerAnimationTurnLeft);
             var turnRightAnimation = LoadAnimation(PlayerAnimationTurnRight);
             var idelAnimation = LoadAnimation(PlayerAnimationIdle);
-            _playerSprite = new PlayerSprite(LoadTexture(PlayerFighter), turnLeftAnimation, turnRightAnimation, idelAnimation);            
+            _playerSprite = new PlayerSprite(LoadTexture(PlayerFighter), turnLeftAnimation, turnRightAnimation, idelAnimation);
+            _playerSprite.blank = blankTexture;
             // load sound effects and register in the sound manager
             //var bulletSound = LoadSound(BulletSound);
             //var missileSound = LoadSound(MissileSound);
