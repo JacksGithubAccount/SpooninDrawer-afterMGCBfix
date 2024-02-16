@@ -146,6 +146,10 @@ namespace SpooninDrawer
          *-added walls, now you become uncollidable going left or right when colliding up.
          *2/12/2024
          *-drew the look ahead rects, the up and left don't look right, will need to fix.
+         *2/13/2024
+         *-added texture to box and changed color
+         *2/15/2024
+         *-The problem seems to be that only one instance of the collider exists and that's what gets passed on
          *
          */
     }
