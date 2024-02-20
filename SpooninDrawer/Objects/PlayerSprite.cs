@@ -17,8 +17,7 @@ namespace SpooninDrawer.Objects
         //public Vector2 CurrentUpSpeed { get; private set; }
 
         public float PlayerSpeed { get; set; } //velocity in units per seconds, so 600 units per second (10.0 times 60)
-        public bool mapCollided = false;
-
+        
         private const int BB1PosX = 29;
         private const int BB1PosY = 2;
         private const int BB1Width = 57;
@@ -58,6 +57,8 @@ namespace SpooninDrawer.Objects
 
         public bool _MustStop = false;
         public Vector2 _MoveDirection;
+        
+        public List<MapTileCollider> Collided;
 
         public Texture2D blank;
         public override int Height => AnimationCellHeight;
@@ -66,7 +67,7 @@ namespace SpooninDrawer.Objects
         public PlayerSprite(Texture2D texture, AnimationData turnLeftAnimation, AnimationData turnRightAnimation, AnimationData idleAnimation) : base(texture)
         {
             AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BB1PosX, BB1PosY), BB1Width, BB1Height));
-            AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BB2PosX, BB2PosY), BB2Width, BB2Height));
+            //AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BB2PosX, BB2PosY), BB2Width, BB2Height));
 
             _idleRectangle = new Rectangle(348, 0, AnimationCellWidth, AnimationCellHeight);
 
@@ -78,6 +79,7 @@ namespace SpooninDrawer.Objects
             Position = new Vector2(25, 25);
             PlayerSpeed = 10.0f;
             _MoveDirection = Position;
+            Collided = new List<MapTileCollider>();
             //CurrentUpSpeed = _playerNormalUpSpeed;
         }
         //moved to content file
@@ -188,65 +190,69 @@ namespace SpooninDrawer.Objects
         }
         public void HandleMapCollision(MapTileCollider MapTile)
         {
+            if(!Collided.Contains(MapTile))
+                Collided.Add(MapTile);
             Engine.Objects.BoundingBox tempBB = BoundingBoxes[0];
             //PlayerSpeed = 0;
             mapCollided = true;
-            foreach (var bb in BoundingBoxes)
-            {
-                if (bb.CollidesWith(MapTile.BoundingBoxes[0]))
-                {
-                    tempBB = bb;
-                }
-            }
-
             Vector2 newPosition = new Vector2(Position.X, Position.Y);
-            if (_movingLeft)
-            {
-                LookLeftRect = new Rectangle((int)tempBB.Position.X, (int)tempBB.Position.Y+3, -10, (int)tempBB.Height-5);
-                if (MapTile.IsCollide(LookLeftRect))
+            foreach (var maptilecollided in Collided)
+            {                
+                foreach (var bb in BoundingBoxes)
                 {
-                    _stopLeft = true;
-                    //if (tempBB.Position.X < MapTile.BoundingBoxes[0].Rectangle.Right)
-                    //newPosition.X = MapTile.BoundingBoxes[0].Rectangle.Right + (Position.X - tempBB.Position.X);
+                    if (bb.CollidesWith(maptilecollided.BoundingBoxes[0]))
+                    {
+                        tempBB = bb;
+                    }
+                }                
+                if (_movingLeft)
+                {
+                    LookLeftRect = new Rectangle((int)tempBB.Position.X, (int)tempBB.Position.Y + 3, -10, (int)tempBB.Height - 5);
+                    if (maptilecollided.IsCollide(LookLeftRect))
+                    {
+                        _stopLeft = true;
+                        //if (tempBB.Position.X < MapTile.BoundingBoxes[0].Rectangle.Right)
+                        //newPosition.X = MapTile.BoundingBoxes[0].Rectangle.Right + (Position.X - tempBB.Position.X);
+                    }
+                    else
+                        _stopLeft = false;
                 }
-                else
-                    _stopLeft = false;
-            }
-            else if (_movingRight)
-            {
-                LookRightRect = new Rectangle((int)tempBB.Position.X + (int)tempBB.Width, (int)tempBB.Position.Y+3, 5, (int)tempBB.Height-5);
-                if (MapTile.IsCollide(LookRightRect))
+                else if (_movingRight)
                 {
-                    _stopRight = true;
-                    //if (tempBB.Position.X + tempBB.Width > MapTile.BoundingBoxes[0].Rectangle.Left)
+                    LookRightRect = new Rectangle((int)tempBB.Position.X + (int)tempBB.Width, (int)tempBB.Position.Y + 3, 5, (int)tempBB.Height - 5);
+                    if (maptilecollided.IsCollide(LookRightRect))
+                    {
+                        _stopRight = true;
+                        //if (tempBB.Position.X + tempBB.Width > MapTile.BoundingBoxes[0].Rectangle.Left)
                         //newPosition.X = MapTile.BoundingBoxes[0].Rectangle.Left - tempBB.Width;
+                    }
+                    else
+                        _stopRight = false;
                 }
-                else
-                    _stopRight = false;
-            }
-            if (_movingUp)
-            {
-                LookUpRect = new Rectangle((int)tempBB.Position.X+5, (int)tempBB.Position.Y, (int)tempBB.Width-13, -10);
-                if (MapTile.IsCollide(LookUpRect))
+                if (_movingUp)
                 {
-                    _stopUp = true;
-                    //if (Position.Y < MapTile.BoundingBoxes[0].Rectangle.Bottom)
-                     //   newPosition.Y = MapTile.BoundingBoxes[0].Rectangle.Bottom;
+                    LookUpRect = new Rectangle((int)tempBB.Position.X + 5, (int)tempBB.Position.Y, (int)tempBB.Width - 13, -10);
+                    if (maptilecollided.IsCollide(LookUpRect))
+                    {
+                        _stopUp = true;
+                        //if (Position.Y < MapTile.BoundingBoxes[0].Rectangle.Bottom)
+                        //   newPosition.Y = MapTile.BoundingBoxes[0].Rectangle.Bottom;
+                    }
+                    else
+                        _stopUp = false;
                 }
-                else
-                    _stopUp = false;
-            }
-            else if (_movingDown)
-            {
-                LookDownRect = new Rectangle((int)tempBB.Position.X+5, (int)tempBB.Position.Y + (int)tempBB.Height, (int)tempBB.Width-13, 5);
-                if (MapTile.IsCollide(LookDownRect))
+                else if (_movingDown)
                 {
-                    _stopDown = true;
-                    //if (Position.Y + Height > MapTile.BoundingBoxes[0].Rectangle.Top)
-                    //newPosition.Y = MapTile.BoundingBoxes[0].Rectangle.Top - Height;
+                    LookDownRect = new Rectangle((int)tempBB.Position.X + 5, (int)tempBB.Position.Y + (int)tempBB.Height, (int)tempBB.Width - 13, 5);
+                    if (maptilecollided.IsCollide(LookDownRect))
+                    {
+                        _stopDown = true;
+                        //if (Position.Y + Height > MapTile.BoundingBoxes[0].Rectangle.Top)
+                        //newPosition.Y = MapTile.BoundingBoxes[0].Rectangle.Top - Height;
+                    }
+                    else
+                        _stopDown = false;
                 }
-                else
-                    _stopDown = false;
             }
             Position = newPosition;
 
@@ -257,6 +263,7 @@ namespace SpooninDrawer.Objects
             _stopRight = false;
             _stopDown = false;
             _stopUp = false;
+            Collided.Clear();
         }
 
         public void Update(GameTime gametime)
@@ -282,8 +289,10 @@ namespace SpooninDrawer.Objects
                 }
             }
             spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
-            spriteBatch.Draw(_texture, BoundingBoxes[0].Position, BoundingBoxes[0].Rectangle, Color.Red);
-            spriteBatch.Draw(_texture, BoundingBoxes[1].Position, BoundingBoxes[1].Rectangle, Color.Red);
+            foreach (var box in BoundingBoxes)
+            {                
+                spriteBatch.Draw(_texture, box.Position, box.Rectangle, Color.Red);                
+            }
             spriteBatch.Draw(blank,  LookLeftRect, Color.Blue);
             spriteBatch.Draw(blank,  LookRightRect, Color.Blue);
             spriteBatch.Draw(blank, LookUpRect, Color.Blue);

@@ -22,6 +22,7 @@ namespace SpooninDrawer.Engine.Objects
         public int zIndex;
         public event EventHandler<BaseGameStateEvent> OnObjectChanged;
 
+        public bool mapCollided = false;
         public bool Destroyed { get; private set; }
         public bool Active { get; protected set; }
         public float Angle { get; set; }

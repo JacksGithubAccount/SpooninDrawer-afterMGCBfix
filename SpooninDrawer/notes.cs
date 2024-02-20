@@ -150,6 +150,10 @@ namespace SpooninDrawer
          *-added texture to box and changed color
          *2/15/2024
          *-The problem seems to be that only one instance of the collider exists and that's what gets passed on
+         *2/18/2024
+         *-added a list that adds the maptiles that are collided with, but it doesn't seem to work.
+         *-changed the bools around since return breaks which could be the cause of of the issue. but now collision only works with bottom wall
+         *
          *
          */
     }
