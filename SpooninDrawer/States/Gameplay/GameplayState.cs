@@ -230,7 +230,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 // draw black rectangle at 30% transparency
                 var screenBoxTexture = GetScreenBoxTexture(spriteBatch.GraphicsDevice);
                 var viewportRectangle = new Rectangle(0, 0, _viewportWidth, _viewportHeight);
-                spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.3f);
+                spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.3f);                       
+            }
+            foreach (var box in colliders)
+            {
+                spriteBatch.Draw(_tileSet, box.GetRectangle(), Color.Purple);
             }
 
         }
@@ -252,11 +256,17 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var playerMapCollisionDetector = new AABBCollisionDetector<MapTileCollider, PlayerSprite>(colliders);
             playerMapCollisionDetector.DetectCollisions(_playerSprite, (mapTile, player) =>
             {
-                _playerSprite.HandleMapCollision(mapTile);                
-            });
-            if (!_playerSprite.mapCollided) 
+                _playerSprite.HandleMapCollision(mapTile);
+            }, () =>
             {
                 _playerSprite.makeMoveAgainfromCollision();
+            }
+
+            );
+
+            if (!_playerSprite.mapCollided) 
+            {
+                //_playerSprite.makeMoveAgainfromCollision();
             }
         }
 

@@ -153,6 +153,8 @@ namespace SpooninDrawer
          *2/18/2024
          *-added a list that adds the maptiles that are collided with, but it doesn't seem to work.
          *-changed the bools around since return breaks which could be the cause of of the issue. but now collision only works with bottom wall
+         *2/19/2024
+         *-adjusted the collision detector to accept a second method for when no collision, removing need for bools. But now back at the same issue where can uncolide with different objects if colliding
          *
          *
          */

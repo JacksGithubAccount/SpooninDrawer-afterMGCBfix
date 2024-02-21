@@ -25,6 +25,10 @@ namespace SpooninDrawer.Objects
             BBHeight = rect.Height;
             AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BBPosX, BBPosY), BBWidth, BBHeight));
         }
+        public Rectangle GetRectangle()
+        {
+            return _rectangle;
+        }
         public bool IsPointinTile(float X, float Y)
         {
             if (X > BBPosX && X < BBPosX + BBWidth)

@@ -132,7 +132,7 @@ namespace SpooninDrawer.Objects
                 _isIdle = true;
                 _idleAnimation.Reset();
             }
-            mapCollided = false;
+            //mapCollided = false;
         }
 
         public void MoveLeft()

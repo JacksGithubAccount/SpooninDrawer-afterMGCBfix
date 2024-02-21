@@ -36,16 +36,21 @@ namespace SpooninDrawer.Engine.Objects
         /// </summary>
         /// <param name="activeObject"></param>
         /// <param name="collisionHandler"></param>
-        public void DetectCollisions(A activeObject, Action<P, A> collisionHandler)
+        public void DetectCollisions(A activeObject, Action<P, A> collisionHandler, Action collisionUnhandler)
         {
+            bool collided = false;
             foreach (var passiveObject in _passiveObjects)
             {
-                if (activeObject.mapCollided = DetectCollision(passiveObject, activeObject))
+                if (DetectCollision(passiveObject, activeObject))
                 {
                     collisionHandler(passiveObject, activeObject);
-                }
+                    collided = true;
+                }                
             }
-            //activeObject.mapCollided = false;
+            if (!collided)
+            {
+                collisionUnhandler();
+            }
         }
 
         /// <summary>
