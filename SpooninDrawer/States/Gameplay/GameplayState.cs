@@ -232,6 +232,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 var viewportRectangle = new Rectangle(0, 0, _viewportWidth, _viewportHeight);
                 spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.3f);                       
             }
+            //draws colliders for map
             foreach (var box in colliders)
             {
                 spriteBatch.Draw(_tileSet, box.GetRectangle(), Color.Purple);
@@ -260,14 +261,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             }, () =>
             {
                 _playerSprite.makeMoveAgainfromCollision();
-            }
-
-            );
-
-            if (!_playerSprite.mapCollided) 
-            {
-                //_playerSprite.makeMoveAgainfromCollision();
-            }
+            });
         }
 
         private void ResetGame()

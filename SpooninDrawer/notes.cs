@@ -155,7 +155,9 @@ namespace SpooninDrawer
          *-changed the bools around since return breaks which could be the cause of of the issue. but now collision only works with bottom wall
          *2/19/2024
          *-adjusted the collision detector to accept a second method for when no collision, removing need for bools. But now back at the same issue where can uncolide with different objects if colliding
-         *
+         *2/20/2024
+         *-finally fixed, the issue was the code for collision would turn off collision for other directions if colliding. Fixed by adding check for all colliding rectangles
+         *-next on list is collision going down isn't smooth
          *
          */
     }
