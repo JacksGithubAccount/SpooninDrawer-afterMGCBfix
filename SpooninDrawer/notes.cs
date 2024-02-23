@@ -158,6 +158,8 @@ namespace SpooninDrawer
          *2/20/2024
          *-finally fixed, the issue was the code for collision would turn off collision for other directions if colliding. Fixed by adding check for all colliding rectangles
          *-next on list is collision going down isn't smooth
+         *2/21/2024
+         *-adjusted the look ahead box of left and right, down collision works.
          *
          */
     }

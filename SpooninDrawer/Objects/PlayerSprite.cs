@@ -207,7 +207,7 @@ namespace SpooninDrawer.Objects
                 }                
                 if (_movingLeft)
                 {
-                    LookLeftRect = new Rectangle((int)tempBB.Position.X, (int)tempBB.Position.Y + 3, -10, (int)tempBB.Height - 5);
+                    LookLeftRect = new Rectangle((int)tempBB.Position.X, (int)tempBB.Position.Y + 3, -10, (int)tempBB.Height - 10);
                     if (MapTile.IsCollide(LookLeftRect))
                     {
                         _stopLeft = true;
@@ -219,7 +219,7 @@ namespace SpooninDrawer.Objects
                 }
                 else if (_movingRight)
                 {
-                    LookRightRect = new Rectangle((int)tempBB.Position.X + (int)tempBB.Width, (int)tempBB.Position.Y + 3, 5, (int)tempBB.Height - 5);
+                    LookRightRect = new Rectangle((int)tempBB.Position.X + (int)tempBB.Width, (int)tempBB.Position.Y + 3, 5, (int)tempBB.Height - 10);
                     if (MapTile.IsCollide(LookRightRect))
                     {
                         _stopRight = true;
