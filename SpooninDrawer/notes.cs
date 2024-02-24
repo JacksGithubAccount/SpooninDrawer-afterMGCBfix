@@ -160,7 +160,8 @@ namespace SpooninDrawer
          *-next on list is collision going down isn't smooth
          *2/21/2024
          *-adjusted the look ahead box of left and right, down collision works.
-         *
+         *2/23/2024
+         *-adding menu, the inputs doesn't work. Importing input forgot to add splash state
          */
     }
 }

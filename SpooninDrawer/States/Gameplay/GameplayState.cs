@@ -23,6 +23,7 @@ using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 using TiledSharp;
 using SpooninDrawer.Engine.Map;
+using SpooninDrawer.States.Splash;
 
 
 namespace SpooninDrawer.Engine.States.Gameplay
@@ -155,6 +156,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 if (cmd is GameplayInputCommand.GameExit)
                 {
                     NotifyEvent(new BaseGameStateEvent.GameQuit());
+                }
+                if(cmd is GameplayInputCommand.PlayerOpenMenu)
+                {
+                    SwitchState(new SplashState());
                 }
 
                 if (cmd is GameplayInputCommand.PlayerMoveLeft && !_playerDead)

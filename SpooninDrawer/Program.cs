@@ -31,7 +31,7 @@ namespace SpooninDrawer
         {
             RStrings.Culture = CultureInfo.CurrentCulture;
             //RStrings.Culture = CultureInfo.GetCultureInfo(JAPANESE); //to switch language for RString resource
-            using (var game = new MainGame(WIDTH, HEIGHT, new GameplayState()))
+            using (var game = new MainGame(WIDTH, HEIGHT, new SplashState()))
                 game.Run();
         }
     }

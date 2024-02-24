@@ -13,10 +13,17 @@ namespace SpooninDrawer.States.Splash
     {
         KeyboardState currentKeyboardState;
         KeyboardState previousKeyboardState;
+        InputDetector inputDetector;
         SplashState splashState;
         public SplashInputMapper(SplashState currentSplashState)
         {
             splashState = currentSplashState;
+            inputDetector = new InputDetector();
+        }
+        public SplashInputMapper(SplashState currentSplashState, InputDetector inputDetector)
+        {
+            splashState = currentSplashState;
+            this.inputDetector = inputDetector;
         }
         public override IEnumerable<BaseInputCommand> GetKeyboardState(KeyboardState state)
         {
