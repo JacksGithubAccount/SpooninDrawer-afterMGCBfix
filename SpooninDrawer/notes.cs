@@ -162,6 +162,14 @@ namespace SpooninDrawer
          *-adjusted the look ahead box of left and right, down collision works.
          *2/23/2024
          *-adding menu, the inputs doesn't work. Importing input forgot to add splash state
+         *2/24/2024
+         *-Switched to splashstate, gameplay isn't loading. Turns out dev mode was on. Turning off Fixed. 
+         *-Added inputs for splashstate using imported inputs from earlier.
+         *-Settings page isn't loading, a string is null. Added a null check, that returns an empty string. Looks like it might be a part of a greater thing. May have to look at later.
+         *2/25/2024
+         *-Added a state switch to open menu, but calling back the game state causes the state to restart positions.
+         *
+         *
          */
     }
 }

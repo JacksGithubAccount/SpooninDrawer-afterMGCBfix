@@ -9,6 +9,13 @@ namespace SpooninDrawer.Engine.Input
 {
     public class BaseInputMapper
     {
+        public KeyboardState currentKeyboardState;
+        public KeyboardState previousKeyboardState;
+        public InputDetector inputDetector;
+        public void SetInputDetector(InputDetector inputDetector)
+        {
+            this.inputDetector = inputDetector;
+        }
         public virtual IEnumerable<BaseInputCommand> GetKeyboardState(KeyboardState state)
         {
             return new List<BaseInputCommand>();

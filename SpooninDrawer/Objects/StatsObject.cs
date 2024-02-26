@@ -22,6 +22,7 @@ namespace SpooninDrawer.Objects
         public int NbDrawCalled { get; set; }
         public StatsObject(SpriteFont font) : base(font)
         {
+            Text = "";
             _font = font;
             NbUpdateCalled = 0;
             NbDrawCalled = 0;

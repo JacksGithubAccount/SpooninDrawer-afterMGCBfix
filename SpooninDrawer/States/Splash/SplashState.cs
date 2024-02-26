@@ -15,12 +15,14 @@ using SpooninDrawer.Objects.Screens;
 using SpooninDrawer.Objects.Text;
 using SpooninDrawer.States.Dev;
 using Microsoft.Xna.Framework.Content;
+using MonoGame.Extended.Screens;
+using System.ComponentModel;
 
 namespace SpooninDrawer.States.Splash
 {
     public class SplashState : BaseGameState
     {   
-        private bool devState = true; //true to turn on Dev state, false for gameplay state
+        private bool devState = false; //true to turn on Dev state, false for gameplay state
 
         private string screenTexture;
         private const string titleScreenArrow = "Menu/TitleScreenArroww";
@@ -33,16 +35,26 @@ namespace SpooninDrawer.States.Splash
         private int menuNavigatorYCap;
         BaseScreen currentScreen;
         BaseScreen previousScreen;
+        BaseGameState StoredState;
 
         private const string TestFont = "Fonts/TestText";
         TestText _testText;
 
+        public SplashState() 
+        {
+            currentScreen = new TitleScreen();
+        }
+        public SplashState(BaseScreen Screen, BaseGameState BeforeState)
+        {
+            currentScreen = Screen;
+            StoredState = BeforeState;
+        }
         public override void LoadContent(ContentManager content)
         {
             _testText = new TestText(LoadFont(TestFont));
             _testText.Position = new Vector2(10.0f, 10.0f); 
             _testText.zIndex = 3;
-            ChangeScreen(new TitleScreen());
+            ChangeScreen(currentScreen);
             AddGameObject(_testText);                    
             _menuArrow = new MenuArrowSprite(LoadTexture(titleScreenArrow));
             _menuArrow.zIndex = 2;
@@ -76,7 +88,7 @@ namespace SpooninDrawer.States.Splash
             }        
         }
 
-        public override void HandleInput(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void HandleInput(GameTime gameTime)
         {
 
             _menuArrow.Position = new Vector2(menuLocationArrayX[menuNavigatorX], menuLocationArrayY[menuNavigatorY]);
@@ -122,6 +134,10 @@ namespace SpooninDrawer.States.Splash
                 {
                     NotifyEvent(new BaseGameStateEvent.GameQuit());
                 }
+                if(cmd is SplashInputCommand.ResumeSelect)
+                {
+                    SwitchState(StoredState);
+                }
                 if (cmd is SplashInputCommand.MenuMoveUp)
                 {
                     menuNavigatorY--;
@@ -155,6 +171,7 @@ namespace SpooninDrawer.States.Splash
         public override void UpdateGameState(GameTime gameTime) 
         {
             _menuArrow.Update(gameTime);
+            HandleInput(gameTime);
         }
 
         protected override void SetInputManager()

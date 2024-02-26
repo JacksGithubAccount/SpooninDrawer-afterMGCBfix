@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using SpooninDrawer.Engine.Input;
+using SpooninDrawer.States.Dev;
+using SpooninDrawer.States.Gameplay;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,7 @@ namespace SpooninDrawer.States.Splash
 {
     public class SplashInputMapper : BaseInputMapper
     {
-        KeyboardState currentKeyboardState;
-        KeyboardState previousKeyboardState;
-        InputDetector inputDetector;
+       
         SplashState splashState;
         public SplashInputMapper(SplashState currentSplashState)
         {
@@ -28,10 +28,12 @@ namespace SpooninDrawer.States.Splash
         public override IEnumerable<BaseInputCommand> GetKeyboardState(KeyboardState state)
         {
             previousKeyboardState = currentKeyboardState;
+            inputDetector.update(previousKeyboardState);
             currentKeyboardState = state;
             var commands = new List<SplashInputCommand>();
 
-            if (state.IsKeyDown(Keys.Enter))
+
+            if (inputDetector.IsActioninputtedbyType(Actions.Confirm, InputType.Press))
             {
                 string commandState = splashState.GetCommandState();
                 switch (commandState)
@@ -48,6 +50,9 @@ namespace SpooninDrawer.States.Splash
                     case "ExitSelect":
                         commands.Add(new ExitSelect());
                         break;
+                    case "ResumeSelect":
+                        commands.Add(new ResumeSelect());
+                        break;
                 }
             }
             if (state.IsKeyDown(Keys.T) && HasBeenPressed(Keys.T))
@@ -58,15 +63,15 @@ namespace SpooninDrawer.States.Splash
             {
                 commands.Add(new TestMenuButton2());
             }
-            if (state.IsKeyDown(Keys.Escape) && HasBeenPressed(Keys.Escape))
+            if (inputDetector.IsActioninputtedbyType(Actions.Cancel, InputType.Press))
             {
                 commands.Add(new BackSelect());
             }
-            if (state.IsKeyDown(Keys.Up) && HasBeenPressed(Keys.Up))
+            if (inputDetector.IsActioninputtedbyType(Actions.MoveUp, InputType.Press))
             {
                 commands.Add(new MenuMoveUp());
             }
-            if (state.IsKeyDown(Keys.Down) && HasBeenPressed(Keys.Down))
+            if (inputDetector.IsActioninputtedbyType(Actions.MoveDown, InputType.Press))
             {
                 commands.Add(new MenuMoveDown());
             }

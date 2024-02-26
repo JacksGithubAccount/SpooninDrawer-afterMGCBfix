@@ -45,6 +45,18 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/TestText.spritefont
 
+#begin Menu/Blank.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Menu/Blank.png
+
 #begin Menu/EmptyScreen.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -56,6 +68,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Menu/EmptyScreen.png
+
+#begin Menu/MenuScreen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Menu/MenuScreen.png
 
 #begin Menu/SettingsScreen.png
 /importer:TextureImporter

@@ -12,9 +12,6 @@ namespace SpooninDrawer.States.Gameplay
 {
     public class GameplayInputMapper : BaseInputMapper
     {
-        KeyboardState currentKeyboardState;
-        KeyboardState previousKeyboardState;
-        InputDetector inputDetector;
         public GameplayInputMapper()
         {
             inputDetector = new InputDetector();
@@ -23,10 +20,7 @@ namespace SpooninDrawer.States.Gameplay
         {
             this.inputDetector = inputDetector;
         }
-        public void SetInputDetector(InputDetector inputDetector)
-        {
-            this.inputDetector = inputDetector;
-        }
+        
         public override IEnumerable<BaseInputCommand> GetKeyboardState(KeyboardState keyState)
         {
             previousKeyboardState = currentKeyboardState;
@@ -43,6 +37,10 @@ namespace SpooninDrawer.States.Gameplay
             if (inputDetector.IsActioninputtedbyType(Actions.Confirm, InputType.Press))
             {
                 commands.Add(new GameplayInputCommand.PlayerAction());
+            }
+            if (inputDetector.IsActioninputtedbyType(Actions.OpenMenu, InputType.Press))
+            {
+                commands.Add(new GameplayInputCommand.PlayerOpenMenu());
             }
 
             if (inputDetector.IsActionPressed(Actions.MoveRight))

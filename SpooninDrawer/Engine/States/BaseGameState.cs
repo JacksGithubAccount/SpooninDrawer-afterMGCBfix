@@ -16,6 +16,7 @@ using Engine2D.PipelineExtensions;
 using MonoGame.Extended.Tiled;
 using SpooninDrawer.Engine.Objects.Animations;
 using MonoGame.Extended.Tiled.Renderers;
+using System.Reflection.Metadata;
 
 namespace SpooninDrawer.Engine.States
 {
@@ -32,6 +33,9 @@ namespace SpooninDrawer.Engine.States
         protected int _viewportWidth;
         protected SoundManager _soundManager = new SoundManager();
 
+        private const string BlankTexture = "Menu/Blank";
+        public Texture2D blankTexture;
+
         private readonly List<BaseGameObject> _gameObjects = new List<BaseGameObject>();
 
         protected InputManager InputManager { get; set; }
@@ -44,6 +48,7 @@ namespace SpooninDrawer.Engine.States
             _viewportWidth = graphicsDevice.Viewport.Width;
             _window = window;
             SetInputManager();
+            blankTexture = contentManager.Load<Texture2D>(BlankTexture);
         }
 
         public abstract void LoadContent(ContentManager content);

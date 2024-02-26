@@ -17,6 +17,7 @@ namespace SpooninDrawer.States.Splash
         public class SettingsSelect : SplashInputCommand { }
         public class BackSelect : SplashInputCommand { }
         public class ExitSelect : SplashInputCommand { }
+        public class ResumeSelect : SplashInputCommand { }
         public class MenuMoveLeft : SplashInputCommand { }
         public class MenuMoveRight : SplashInputCommand { }
         public class MenuMoveUp : SplashInputCommand { }

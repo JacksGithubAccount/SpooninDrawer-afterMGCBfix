@@ -46,7 +46,10 @@ namespace SpooninDrawer.Engine.Objects
         }
         public string getTextureName()
         {
-            return _texture.ToString();
+            if (_texture != null)
+                return _texture.ToString();
+            else
+                return "Lmao null error";
         }
 
         public List<BoundingBox> BoundingBoxes

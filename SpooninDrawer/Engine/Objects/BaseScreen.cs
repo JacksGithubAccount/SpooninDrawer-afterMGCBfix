@@ -9,12 +9,14 @@ namespace SpooninDrawer.Engine.Objects
     public interface BaseScreen
     {
         string screenTexture { get; }
+        //location of buttons
         int[] menuLocationArrayX { get; }
         int[] menuLocationArrayY { get; }
+        //how far you can scroll buttons
         int menuNavigatorXCap { get; }
         int menuNavigatorYCap { get; }
 
-        //menuLocationArray = new int[] { {445, 310}, {445,410 },{445, 490},{445, 590} };
+        //used for getting command for SplashInputMapper to know what context the enter button is doing
         string GetMenuCommand(int x, int y) { return "";  }
 
     }
