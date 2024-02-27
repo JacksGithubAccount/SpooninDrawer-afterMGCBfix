@@ -94,6 +94,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         public override void LoadContent(ContentManager content)
         {
+            if (paused) { paused = false; }
             _debug = true;
             //_explosionTexture = LoadTexture(ExplosionTexture);
             
@@ -159,6 +160,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 }
                 if(cmd is GameplayInputCommand.PlayerOpenMenu)
                 {
+                    if(!paused) { paused = true; } else { paused = false; }
                     SwitchState(new SplashState(new MenuScreen(), this));
                 }
 

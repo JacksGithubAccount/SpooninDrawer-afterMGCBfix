@@ -168,7 +168,8 @@ namespace SpooninDrawer
          *-Settings page isn't loading, a string is null. Added a null check, that returns an empty string. Looks like it might be a part of a greater thing. May have to look at later.
          *2/25/2024
          *-Added a state switch to open menu, but calling back the game state causes the state to restart positions.
-         *
+         *2/26/2024
+         *-Added pause, may need to switch to pausing to open menu after game started
          *
          */
     }
