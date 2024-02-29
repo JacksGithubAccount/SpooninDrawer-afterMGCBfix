@@ -58,7 +58,9 @@ namespace SpooninDrawer.Objects
 
         public bool _MustStop = false;
         public Vector2 _MoveDirection;
-        
+        public float startingPositionX = 25.0f;
+        public float startingPositionY = 25.0f;
+
         public List<Rectangle> Collided;
 
         public Texture2D blank;
@@ -77,7 +79,7 @@ namespace SpooninDrawer.Objects
             _turnRightAnimation = new Animation(turnRightAnimation);
             _leftToCenterAnimation = _turnLeftAnimation.ReverseAnimation;
             _rightToCenterAnimation = _turnRightAnimation.ReverseAnimation;
-            Position = new Vector2(25, 25);
+            Position = new Vector2(startingPositionX, startingPositionY);
             PlayerSpeed = 10.0f;
             _MoveDirection = Position;
             Collided = new List<Rectangle>();
@@ -271,6 +273,8 @@ namespace SpooninDrawer.Objects
         {
             PlayerSpeed = (float)(600 * gametime.ElapsedGameTime.TotalSeconds);
             Position = _MoveDirection;
+            startingPositionX = Position.X;
+            startingPositionY = Position.Y;
             if (_currentAnimation != null)
             {
                 _currentAnimation.Update(gametime);

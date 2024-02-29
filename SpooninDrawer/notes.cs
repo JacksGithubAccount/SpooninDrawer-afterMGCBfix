@@ -170,7 +170,8 @@ namespace SpooninDrawer
          *-Added a state switch to open menu, but calling back the game state causes the state to restart positions.
          *2/26/2024
          *-Added pause, may need to switch to pausing to open menu after game started
-         *
+         *2/28/2024
+         *-attempted to store position, but it didn't work, may have to write another switch state method that doesn't reload the entire state
          */
     }
 }

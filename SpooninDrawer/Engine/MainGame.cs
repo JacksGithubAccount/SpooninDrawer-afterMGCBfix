@@ -120,11 +120,12 @@ namespace SpooninDrawer.Engine
             }
 
             _currentGameState = gameState;
-
+            if (_currentGameState.blankTexture == null)
+            {
                 _currentGameState.Initialize(Content, Window, GraphicsDevice);
-
-                _currentGameState.LoadContent(Content);            
-
+            }
+                _currentGameState.LoadContent(Content);
+            
             _currentGameState.OnStateSwitched += CurrentGameState_OnStateSwitched;
             _currentGameState.OnEventNotification += _currentGameState_OnEventNotification;
         }
