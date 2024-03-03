@@ -103,6 +103,7 @@ namespace SpooninDrawer.Engine
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             SwitchGameState(_firstGameState);
+            CallGameState(_firstGameState);
         }
 
         private void CurrentGameState_OnStateSwitched(object sender, BaseGameState e)
