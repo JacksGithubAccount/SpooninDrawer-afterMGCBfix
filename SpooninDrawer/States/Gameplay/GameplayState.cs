@@ -139,17 +139,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             ResetGame();
         }
         //it's handleinput method but specifically for pause so this doesn't pause when you pause the game
-        private void HandlePauseInput()
-        {
-            InputManager.GetCommands(cmd =>
-            {
-                if (cmd is GameplayInputCommand.Pause)
-                {
-                    //paused ^= true;
-                    paused = !paused;
-                }
-            });
-        }
+
         public override void HandleInput(GameTime gameTime)
         {
             InputManager.GetCommands(cmd =>
@@ -160,8 +150,13 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 }
                 if(cmd is GameplayInputCommand.PlayerOpenMenu)
                 {
-                    if(!paused) { paused = true; } else { paused = false; }
-                    SwitchState(new SplashState(new MenuScreen(), this));
+                    paused = !paused;
+                    CallState(new SplashState(new MenuScreen(), this));
+                }
+                if (cmd is GameplayInputCommand.Pause)
+                {
+                    //paused ^= true;
+                    paused = !paused;
                 }
 
                 if (cmd is GameplayInputCommand.PlayerMoveLeft && !_playerDead)
@@ -203,7 +198,6 @@ namespace SpooninDrawer.Engine.States.Gameplay
         public override void UpdateGameState(GameTime gameTime)
         {
 
-            HandlePauseInput();
             if (!paused)
             {
                 HandleInput(gameTime);

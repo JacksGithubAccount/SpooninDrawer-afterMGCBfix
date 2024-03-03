@@ -109,6 +109,10 @@ namespace SpooninDrawer.Engine
         {
             SwitchGameState(e);
         }
+        private void CurrentGameState_OnStateCalled(object sender, BaseGameState e)
+        {
+            CallGameState(e);
+        }
 
         private void SwitchGameState(BaseGameState gameState)
         {
@@ -120,13 +124,29 @@ namespace SpooninDrawer.Engine
             }
 
             _currentGameState = gameState;
-            if (_currentGameState.blankTexture == null)
-            {
+
                 _currentGameState.Initialize(Content, Window, GraphicsDevice);
-            }
+            
                 _currentGameState.LoadContent(Content);
             
             _currentGameState.OnStateSwitched += CurrentGameState_OnStateSwitched;
+            _currentGameState.OnEventNotification += _currentGameState_OnEventNotification;
+        }
+        private void CallGameState(BaseGameState gameState)
+        {
+            if(_currentGameState != null)
+            {
+                _currentGameState.OnStateCalled -= CurrentGameState_OnStateCalled;
+                _currentGameState.OnEventNotification -= _currentGameState_OnEventNotification;
+                _currentGameState.UnloadContent();
+            }
+            _currentGameState = gameState;
+
+            _currentGameState.Initialize(Content, Window, GraphicsDevice);
+
+            _currentGameState.LoadContent(Content);
+
+            _currentGameState.OnStateCalled += CurrentGameState_OnStateCalled;
             _currentGameState.OnEventNotification += _currentGameState_OnEventNotification;
         }
 

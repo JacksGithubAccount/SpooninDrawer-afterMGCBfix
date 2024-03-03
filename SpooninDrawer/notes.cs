@@ -172,6 +172,9 @@ namespace SpooninDrawer
          *-Added pause, may need to switch to pausing to open menu after game started
          *2/28/2024
          *-attempted to store position, but it didn't work, may have to write another switch state method that doesn't reload the entire state
+         *2/29/2024
+         *-messing with events to try and get a gamestate up without switching
+         *
          */
     }
 }
