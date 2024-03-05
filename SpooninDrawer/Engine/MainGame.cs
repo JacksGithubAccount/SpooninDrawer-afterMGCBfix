@@ -5,6 +5,7 @@ using SpooninDrawer.Engine.States;
 using SpooninDrawer.Engine.States.Gameplay;
 using SpooninDrawer.Objects;
 using SpooninDrawer.States;
+using SpooninDrawer.States.Splash;
 using System;
 
 namespace SpooninDrawer.Engine
@@ -103,16 +104,12 @@ namespace SpooninDrawer.Engine
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             SwitchGameState(_firstGameState);
-            CallGameState(_firstGameState);
+            
         }
 
         private void CurrentGameState_OnStateSwitched(object sender, BaseGameState e)
         {
             SwitchGameState(e);
-        }
-        private void CurrentGameState_OnStateCalled(object sender, BaseGameState e)
-        {
-            CallGameState(e);
         }
 
         private void SwitchGameState(BaseGameState gameState)
@@ -131,23 +128,6 @@ namespace SpooninDrawer.Engine
                 _currentGameState.LoadContent(Content);
             
             _currentGameState.OnStateSwitched += CurrentGameState_OnStateSwitched;
-            _currentGameState.OnEventNotification += _currentGameState_OnEventNotification;
-        }
-        private void CallGameState(BaseGameState gameState)
-        {
-            if(_currentGameState != null)
-            {
-                _currentGameState.OnStateCalled -= CurrentGameState_OnStateCalled;
-                _currentGameState.OnEventNotification -= _currentGameState_OnEventNotification;
-                _currentGameState.UnloadContent();
-            }
-            _currentGameState = gameState;
-
-            _currentGameState.Initialize(Content, Window, GraphicsDevice);
-
-            _currentGameState.LoadContent(Content);
-
-            _currentGameState.OnStateCalled += CurrentGameState_OnStateCalled;
             _currentGameState.OnEventNotification += _currentGameState_OnEventNotification;
         }
 

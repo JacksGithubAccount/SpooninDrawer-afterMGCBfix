@@ -174,6 +174,8 @@ namespace SpooninDrawer
          *-attempted to store position, but it didn't work, may have to write another switch state method that doesn't reload the entire state
          *2/29/2024
          *-messing with events to try and get a gamestate up without switching
+         *3/4/2024
+         *-using event isn't working since it needs to be not null and the only way to do that is to call a state which messes things up.
          *
          */
     }
