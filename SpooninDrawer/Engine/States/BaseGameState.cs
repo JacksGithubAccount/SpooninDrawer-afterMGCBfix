@@ -56,6 +56,7 @@ namespace SpooninDrawer.Engine.States
         public abstract void UpdateGameState(GameTime gameTime);
 
         public event EventHandler<BaseGameState> OnStateSwitched;
+        public event EventHandler<BaseGameState> OnStateCalled;
         public event EventHandler<BaseGameStateEvent> OnEventNotification;
         protected abstract void SetInputManager();
 
@@ -114,10 +115,8 @@ namespace SpooninDrawer.Engine.States
         }
         protected void CallState(BaseGameState gameState)
         {
-            gameState.Initialize(_contentManager, _window, _graphicsDevice);
-            gameState.LoadContent(_contentManager);
+            OnStateCalled?.Invoke(this, gameState);
         }
-
         protected void AddGameObject(BaseGameObject gameObject)
         {
             _gameObjects.Add(gameObject);

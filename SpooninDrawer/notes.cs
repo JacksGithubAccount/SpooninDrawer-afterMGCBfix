@@ -176,7 +176,8 @@ namespace SpooninDrawer
          *-messing with events to try and get a gamestate up without switching
          *3/4/2024
          *-using event isn't working since it needs to be not null and the only way to do that is to call a state which messes things up.
-         *
+         *3/5/2024
+         *-somehow made event work, but the reload still happens, trying to add second gamestate to show up only for menu
          */
     }
 }

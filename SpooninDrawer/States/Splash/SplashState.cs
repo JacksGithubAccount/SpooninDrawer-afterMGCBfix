@@ -136,7 +136,7 @@ namespace SpooninDrawer.States.Splash
                 }
                 if(cmd is SplashInputCommand.ResumeSelect)
                 {
-                    SwitchState(StoredState);
+                    CallState(StoredState);
                 }
                 if (cmd is SplashInputCommand.MenuMoveUp)
                 {
