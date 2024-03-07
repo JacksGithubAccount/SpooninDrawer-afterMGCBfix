@@ -14,6 +14,7 @@ namespace SpooninDrawer.Engine
     {
         private BaseGameState _currentGameState;
         private BaseGameState _menuGameState;
+        private bool menuStateBool = false;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -124,23 +125,23 @@ namespace SpooninDrawer.Engine
                 _currentGameState.OnEventNotification -= _currentGameState_OnEventNotification;
                 _currentGameState.UnloadContent();
             }
-
             _currentGameState = gameState;
 
                 _currentGameState.Initialize(Content, Window, GraphicsDevice);
             
                 _currentGameState.LoadContent(Content);
-            
+            menuStateBool = false;
             _currentGameState.OnStateSwitched += CurrentGameState_OnStateCalled;
             _currentGameState.OnEventNotification += _currentGameState_OnEventNotification;
         }
         private void CallGameState(BaseGameState gameState)
         {
-            if (_menuGameState != null)
+            menuStateBool = true;
+            if (_currentGameState != null)
             {
-                _menuGameState.OnStateCalled -= CurrentGameState_OnStateCalled;
-                _menuGameState.OnEventNotification -= _currentGameState_OnEventNotification;
-                _menuGameState.UnloadContent();
+                _currentGameState.OnStateCalled -= CurrentGameState_OnStateCalled;
+                _currentGameState.OnEventNotification -= _currentGameState_OnEventNotification;
+                _currentGameState.UnloadContent();
             }
 
             _menuGameState = gameState;
@@ -149,8 +150,8 @@ namespace SpooninDrawer.Engine
 
             _menuGameState.LoadContent(Content);
 
-            _menuGameState.OnStateCalled += CurrentGameState_OnStateCalled;
-            _menuGameState.OnEventNotification += _currentGameState_OnEventNotification;
+            _currentGameState.OnStateCalled += CurrentGameState_OnStateCalled;
+            _currentGameState.OnEventNotification += _currentGameState_OnEventNotification;
         }
         private void _currentGameState_OnEventNotification(object sender, BaseGameStateEvent e)
         {
@@ -180,6 +181,7 @@ namespace SpooninDrawer.Engine
         {
             //_currentGameState.HandleInput(gameTime);
             _currentGameState.Update(gameTime);
+            if(menuStateBool)
             _menuGameState?.Update(gameTime);
 
             base.Update(gameTime);
@@ -208,7 +210,8 @@ namespace SpooninDrawer.Engine
                 spriteBatch.Begin();
             
             _currentGameState.Render(spriteBatch);
-            _menuGameState?.Render(spriteBatch);
+            if (menuStateBool)
+                _menuGameState?.Render(spriteBatch);
             spriteBatch.End();
 
             // Now render the scaled content
