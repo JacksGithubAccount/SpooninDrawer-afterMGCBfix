@@ -44,6 +44,10 @@ namespace SpooninDrawer.States.Splash
         {
             currentScreen = new TitleScreen();
         }
+        public SplashState(BaseScreen Screen)
+        {
+            currentScreen = Screen;
+        }
         public SplashState(BaseScreen Screen, BaseGameState BeforeState)
         {
             currentScreen = Screen;

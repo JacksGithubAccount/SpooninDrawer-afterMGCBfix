@@ -92,6 +92,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         private OrthographicCamera _camera;
 
+        private BaseGameState menuGameState;
+
         public override void LoadContent(ContentManager content)
         {
             if (paused) { paused = false; }
@@ -131,6 +133,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             {
                 AddGameObject(_statsText);
             }
+            menuGameState = new SplashState(new MenuScreen(),this);
             // load soundtracks into sound manager
             //var track1 = LoadSound(Soundtrack1).CreateInstance();
             //var track2 = LoadSound(Soundtrack2).CreateInstance();
