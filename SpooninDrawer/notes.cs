@@ -180,7 +180,8 @@ namespace SpooninDrawer
          *-somehow made event work, but the reload still happens, trying to add second gamestate to show up only for menu
          *3/7/2024
          *-the hook was using the wrong one causing the previous issue. Can't seem to make menu pop up using second game state in main menu. Will try in current game state.
-         *
+         *3/10/2024
+         *-adding into gamestate works, but the game time stops after resuming and the position is adjusted based on camera
          */
     }
 }

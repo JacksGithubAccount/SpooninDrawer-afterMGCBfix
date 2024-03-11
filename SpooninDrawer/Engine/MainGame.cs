@@ -109,7 +109,7 @@ namespace SpooninDrawer.Engine
 
             
             SwitchGameState(_firstGameState);
-            CallGameState(_menuGameState);
+            //CallGameState(_menuGameState);
             menuStateBool = false;
         }
 

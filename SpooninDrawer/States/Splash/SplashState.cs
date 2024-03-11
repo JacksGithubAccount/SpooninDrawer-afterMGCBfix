@@ -140,7 +140,10 @@ namespace SpooninDrawer.States.Splash
                 }
                 if(cmd is SplashInputCommand.ResumeSelect)
                 {
-                    CallState(StoredState);
+                    //CallState(StoredState);
+                    GameplayState gameState = (GameplayState)StoredState;
+                    gameState.menuActivate = false;
+                    gameState.paused = false;
                 }
                 if (cmd is SplashInputCommand.MenuMoveUp)
                 {

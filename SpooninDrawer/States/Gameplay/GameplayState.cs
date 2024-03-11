@@ -69,7 +69,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         private PlayerSprite _playerSprite;
 
-        private bool paused = false;
+        public bool paused = false;
         private bool _playerDead;
         private bool _gameOver = false;
 
@@ -93,6 +93,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private OrthographicCamera _camera;
 
         private BaseGameState menuGameState;
+        public bool menuActivate = false;
 
         public override void LoadContent(ContentManager content)
         {
@@ -134,6 +135,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 AddGameObject(_statsText);
             }
             menuGameState = new SplashState(new MenuScreen(),this);
+            menuGameState.Initialize(content, _window, _graphicsDevice);
+            menuGameState.LoadContent(content);
             // load soundtracks into sound manager
             //var track1 = LoadSound(Soundtrack1).CreateInstance();
             //var track2 = LoadSound(Soundtrack2).CreateInstance();
@@ -154,7 +157,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 if(cmd is GameplayInputCommand.PlayerOpenMenu)
                 {
                     paused = !paused;
-                    CallState(new SplashState(new MenuScreen(), this));
+                    //CallState(new SplashState(new MenuScreen(), this));
+                    menuActivate = true;
                 }
                 if (cmd is GameplayInputCommand.Pause)
                 {
@@ -214,6 +218,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             {
                 _statsText.Update(gameTime);
             }
+            if(menuActivate) { menuGameState.UpdateGameState(gameTime); }
             // get rid of bullets and missiles that have gone out of view
         }
         public Matrix getCameraViewMatrix()
@@ -241,6 +246,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
             {
                 spriteBatch.Draw(_tileSet, box.GetRectangle(), Color.Purple);
             }
+
+            if (menuActivate) { menuGameState.Render(spriteBatch); }
 
         }
 
