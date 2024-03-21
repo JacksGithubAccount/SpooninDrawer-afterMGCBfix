@@ -113,10 +113,6 @@ namespace SpooninDrawer.Engine.States
         {
             OnStateSwitched?.Invoke(this, gameState);
         }
-        protected void CallState(BaseGameState gameState)
-        {
-            OnStateCalled?.Invoke(this, gameState);
-        }
         protected void AddGameObject(BaseGameObject gameObject)
         {
             _gameObjects.Add(gameObject);

@@ -182,7 +182,12 @@ namespace SpooninDrawer
          *-the hook was using the wrong one causing the previous issue. Can't seem to make menu pop up using second game state in main menu. Will try in current game state.
          *3/10/2024
          *-adding into gamestate works, but the game time stops after resuming and the position is adjusted based on camera
-         *
+         *3/20/2024
+         *-the position is based on the basescreen as that inherits basegameobject
+         *-changing the position doesn't change the basegameobject positions that the base screen uses as those are based on 0,0
+         *-Fixed by starting another spritebatch.begins that doesn't use the transformation matrix sets the screen back to 0,0
+         *-exit button broke on menu in gameplay as the event call is no longer hooked to anything.
+         *-fixed by making it a return to title screen button and doing that
          *
          */
     }

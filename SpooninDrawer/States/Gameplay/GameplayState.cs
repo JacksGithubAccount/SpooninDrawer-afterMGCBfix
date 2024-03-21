@@ -43,7 +43,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private const string TilesetTest = "TiledMaps/incrediblybadmspainttileset";
         //rivate const string ExplosionTexture = "Sprites/explosion";
 
-        
+
 
         private const string TextFont = "Fonts/Lives";
         private const string GameOverFont = "Fonts/GameOver";
@@ -100,7 +100,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             if (paused) { paused = false; }
             _debug = true;
             //_explosionTexture = LoadTexture(ExplosionTexture);
-            
+
             _map = new TmxMap("Content/TiledMaps/testain.tmx");
             _tileSet = content.Load<Texture2D>(TilesetTest + "_0"); // TilesetTest + "_1" + _map.Tilesets[0].Name.ToString() "Content/TileSets/incrediblybadmspainttileset.png"
             int tileWidth = _map.Tilesets[0].TileWidth;
@@ -134,9 +134,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
             {
                 AddGameObject(_statsText);
             }
-            menuGameState = new SplashState(new MenuScreen(),this);
+            menuGameState = new SplashState(new MenuScreen(), this);
             menuGameState.Initialize(content, _window, _graphicsDevice);
             menuGameState.LoadContent(content);
+
             // load soundtracks into sound manager
             //var track1 = LoadSound(Soundtrack1).CreateInstance();
             //var track2 = LoadSound(Soundtrack2).CreateInstance();
@@ -154,7 +155,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 {
                     NotifyEvent(new BaseGameStateEvent.GameQuit());
                 }
-                if(cmd is GameplayInputCommand.PlayerOpenMenu)
+                if (cmd is GameplayInputCommand.PlayerOpenMenu)
                 {
                     paused = !paused;
                     //CallState(new SplashState(new MenuScreen(), this));
@@ -218,7 +219,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             {
                 _statsText.Update(gameTime);
             }
-            if(menuActivate) { menuGameState.UpdateGameState(gameTime); }
+            if (menuActivate) { menuGameState.UpdateGameState(gameTime); }
             // get rid of bullets and missiles that have gone out of view
         }
         public Matrix getCameraViewMatrix()
@@ -230,7 +231,6 @@ namespace SpooninDrawer.Engine.States.Gameplay
         {
             _tilemapManager.Draw(spriteBatch);
             base.Render(spriteBatch);
-            var transformMatrix = getCameraViewMatrix();
 
             _playerSprite.Render(spriteBatch);
 
@@ -239,7 +239,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 // draw black rectangle at 30% transparency
                 var screenBoxTexture = GetScreenBoxTexture(spriteBatch.GraphicsDevice);
                 var viewportRectangle = new Rectangle(0, 0, _viewportWidth, _viewportHeight);
-                spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.3f);                       
+                spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.3f);
             }
             //draws colliders for map
             foreach (var box in colliders)
@@ -247,7 +247,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 spriteBatch.Draw(_tileSet, box.GetRectangle(), Color.Purple);
             }
 
-            if (menuActivate) { menuGameState.Render(spriteBatch); }
+            if (menuActivate)
+            {
+                menuGameState.Render(spriteBatch);
+            }
 
         }
 
@@ -297,6 +300,13 @@ namespace SpooninDrawer.Engine.States.Gameplay
             gameOverText.Position = textPositionOnScreen;
             AddGameObject(gameOverText);
             _gameOver = true;
+        }
+
+        public void returnToTitle()
+        {
+            paused = false;
+            menuActivate = false;
+            SwitchState(new SplashState());
         }
 
         private List<T> CleanObjects<T>(List<T> objectList) where T : BaseGameObject

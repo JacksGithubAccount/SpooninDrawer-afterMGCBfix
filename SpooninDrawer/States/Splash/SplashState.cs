@@ -21,7 +21,7 @@ using System.ComponentModel;
 namespace SpooninDrawer.States.Splash
 {
     public class SplashState : BaseGameState
-    {   
+    {
         private bool devState = false; //true to turn on Dev state, false for gameplay state
 
         private string screenTexture;
@@ -40,7 +40,7 @@ namespace SpooninDrawer.States.Splash
         private const string TestFont = "Fonts/TestText";
         TestText _testText;
 
-        public SplashState() 
+        public SplashState()
         {
             currentScreen = new TitleScreen();
         }
@@ -56,10 +56,10 @@ namespace SpooninDrawer.States.Splash
         public override void LoadContent(ContentManager content)
         {
             _testText = new TestText(LoadFont(TestFont));
-            _testText.Position = new Vector2(10.0f, 10.0f); 
+            _testText.Position = new Vector2(10.0f, 10.0f);
             _testText.zIndex = 3;
             ChangeScreen(currentScreen);
-            AddGameObject(_testText);                    
+            AddGameObject(_testText);
             _menuArrow = new MenuArrowSprite(LoadTexture(titleScreenArrow));
             _menuArrow.zIndex = 2;
             AddGameObject(_menuArrow);
@@ -79,7 +79,7 @@ namespace SpooninDrawer.States.Splash
             SplashImage currentSplash = new SplashImage(LoadTexture(screenTexture));
             BaseGameObject holder = getScreenExist(currentSplash.getTextureName());
             BaseGameObject previousholder = getScreenExist(previousScreen.screenTexture);
-            if (holder != null) 
+            if (holder != null)
             {
                 //draws current screen on top of previous screen
                 holder.zIndex = 1;
@@ -89,7 +89,7 @@ namespace SpooninDrawer.States.Splash
             {
                 AddGameObject(currentSplash);
                 currentSplash.Activate();
-            }        
+            }
         }
 
         public override void HandleInput(GameTime gameTime)
@@ -114,16 +114,17 @@ namespace SpooninDrawer.States.Splash
                     if (!devState)
                     {
                         SwitchState(new GameplayState());
-                    }else
+                    }
+                    else
                     {
                         SwitchState(new DevState());
                     }
                 }
-                if (cmd is SplashInputCommand.SettingsSelect) 
+                if (cmd is SplashInputCommand.SettingsSelect)
                 {
                     ChangeScreen(new SettingsScreen());
                 }
-                if (cmd is SplashInputCommand.BackSelect) 
+                if (cmd is SplashInputCommand.BackSelect)
                 {
                     if (previousScreen != null)
                     {
@@ -137,8 +138,10 @@ namespace SpooninDrawer.States.Splash
                 if (cmd is SplashInputCommand.ExitSelect)
                 {
                     NotifyEvent(new BaseGameStateEvent.GameQuit());
+                    GameplayState gameState = (GameplayState)StoredState;
+                    gameState.returnToTitle();
                 }
-                if(cmd is SplashInputCommand.ResumeSelect)
+                if (cmd is SplashInputCommand.ResumeSelect)
                 {
                     //CallState(StoredState);
                     GameplayState gameState = (GameplayState)StoredState;
@@ -175,7 +178,7 @@ namespace SpooninDrawer.States.Splash
             }
         }
 
-        public override void UpdateGameState(GameTime gameTime) 
+        public override void UpdateGameState(GameTime gameTime)
         {
             _menuArrow.Update(gameTime);
             HandleInput(gameTime);

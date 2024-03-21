@@ -14,7 +14,6 @@ namespace SpooninDrawer.Engine
     public class MainGame : Game
     {
         private BaseGameState _currentGameState;
-        private BaseGameState _menuGameState;
         private bool menuStateBool = false;
 
         GraphicsDeviceManager graphics;
@@ -36,7 +35,6 @@ namespace SpooninDrawer.Engine
             Content.RootDirectory = "Content";
             graphics = new GraphicsDeviceManager(this);
 
-            _menuGameState = new SplashState(new EmptyScreen());
             _firstGameState = firstGameState;
             _DesignedResolutionWidth = width;
             _DesignedResolutionHeight = height;
@@ -107,7 +105,7 @@ namespace SpooninDrawer.Engine
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            
+
             SwitchGameState(_firstGameState);
             //CallGameState(_menuGameState);
             menuStateBool = false;
@@ -117,12 +115,8 @@ namespace SpooninDrawer.Engine
         {
             SwitchGameState(e);
         }
-        private void CurrentGameState_OnStateCalled(object sender, BaseGameState e)
-        {
-            CallGameState(e);
-        }
         private void SwitchGameState(BaseGameState gameState)
-        {            
+        {
             if (_currentGameState != null)
             {
                 _currentGameState.OnStateSwitched -= CurrentGameState_OnStateSwitched;
@@ -130,28 +124,13 @@ namespace SpooninDrawer.Engine
                 _currentGameState.UnloadContent();
             }
             _currentGameState = gameState;
-            _currentGameState.Initialize(Content, Window, GraphicsDevice);            
+            _currentGameState.Initialize(Content, Window, GraphicsDevice);
             _currentGameState.LoadContent(Content);
 
             _currentGameState.OnStateSwitched += CurrentGameState_OnStateSwitched;
             _currentGameState.OnEventNotification += _currentGameState_OnEventNotification;
         }
-        private void CallGameState(BaseGameState gameState)
-        {
-            menuStateBool = true;
-            if (_currentGameState != null)
-            {
-                _currentGameState.OnStateCalled -= CurrentGameState_OnStateCalled;
-                _currentGameState.OnEventNotification -= _currentGameState_OnEventNotification;
-                _currentGameState.UnloadContent();
-            }
-            _menuGameState = gameState;
-            _menuGameState.Initialize(Content, Window, GraphicsDevice);
-            _menuGameState.LoadContent(Content);
 
-            _currentGameState.OnStateCalled += CurrentGameState_OnStateCalled;
-            _currentGameState.OnEventNotification += _currentGameState_OnEventNotification;
-        }
         private void _currentGameState_OnEventNotification(object sender, BaseGameStateEvent e)
         {
             switch (e)
@@ -180,8 +159,6 @@ namespace SpooninDrawer.Engine
         {
             //_currentGameState.HandleInput(gameTime);
             _currentGameState.Update(gameTime);
-            if(menuStateBool)
-            _menuGameState?.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -200,17 +177,21 @@ namespace SpooninDrawer.Engine
             //GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //attaches camera to player
-            if(_currentGameState.GetType() == typeof(GameplayState))
+            if (_currentGameState.GetType() == typeof(GameplayState))
             {
                 GameplayState tempState = _currentGameState as GameplayState;
-                var transformMatrix = tempState.getCameraViewMatrix();
-                spriteBatch.Begin(transformMatrix: transformMatrix);
-            }else
+                if (!tempState.menuActivate)
+                {
+                    var transformMatrix = tempState.getCameraViewMatrix();
+                    spriteBatch.Begin(transformMatrix: transformMatrix);
+                }
+                else //calls begin without matrix when a menu is called after game begins
+                    spriteBatch.Begin();
+            }
+            else
                 spriteBatch.Begin();
-            
+
             _currentGameState.Render(spriteBatch);
-            if (menuStateBool)
-                _menuGameState?.Render(spriteBatch);
             spriteBatch.End();
 
             // Now render the scaled content

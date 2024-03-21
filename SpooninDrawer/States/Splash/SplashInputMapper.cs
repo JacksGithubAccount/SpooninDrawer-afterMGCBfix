@@ -13,7 +13,7 @@ namespace SpooninDrawer.States.Splash
 {
     public class SplashInputMapper : BaseInputMapper
     {
-       
+
         SplashState splashState;
         public SplashInputMapper(SplashState currentSplashState)
         {
@@ -33,7 +33,7 @@ namespace SpooninDrawer.States.Splash
             var commands = new List<SplashInputCommand>();
 
 
-            if (inputDetector.IsActioninputtedbyType(Actions.Confirm, InputType.Press))
+            if (inputDetector.IsActioninputtedbyType(Actions.Confirm, InputType.Release))
             {
                 string commandState = splashState.GetCommandState();
                 switch (commandState)
@@ -76,7 +76,7 @@ namespace SpooninDrawer.States.Splash
                 commands.Add(new MenuMoveDown());
             }
             return commands;
-        }   
+        }
         private bool isKeyPressed(Keys key)
         {
             return currentKeyboardState.IsKeyDown(key);
@@ -86,7 +86,7 @@ namespace SpooninDrawer.States.Splash
             return (currentKeyboardState.IsKeyDown(key)) &&
                 (!previousKeyboardState.IsKeyDown(key));
         }
-        private  bool HasBeenPressed(Keys key)
+        private bool HasBeenPressed(Keys key)
         {
             return currentKeyboardState.IsKeyDown(key) && !previousKeyboardState.IsKeyDown(key);
         }
