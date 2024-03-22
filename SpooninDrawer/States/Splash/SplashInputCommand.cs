@@ -24,5 +24,6 @@ namespace SpooninDrawer.States.Splash
         public class MenuMoveDown : SplashInputCommand { }
         public class TestMenuButton : SplashInputCommand { }
         public class TestMenuButton2 : SplashInputCommand { }
+        public class CheckMenuSelect : SplashInputCommand { }
     }
 }

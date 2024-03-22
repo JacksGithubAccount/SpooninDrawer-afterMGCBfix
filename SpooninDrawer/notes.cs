@@ -188,7 +188,9 @@ namespace SpooninDrawer
          *-Fixed by starting another spritebatch.begins that doesn't use the transformation matrix sets the screen back to 0,0
          *-exit button broke on menu in gameplay as the event call is no longer hooked to anything.
          *-fixed by making it a return to title screen button and doing that
-         *
+         *3/21/2024
+         *-Added asset and loading for a comfirm if want to return to title screen. Need to add to splash state to mae it pop up
+         *-
          */
     }
 }

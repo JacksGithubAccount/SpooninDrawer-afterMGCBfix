@@ -53,6 +53,9 @@ namespace SpooninDrawer.States.Splash
                     case "ResumeSelect":
                         commands.Add(new ResumeSelect());
                         break;
+                    case "CheckMenuSelect":
+                        commands.Add(new CheckMenuSelect());
+                        break;
                 }
             }
             if (state.IsKeyDown(Keys.T) && HasBeenPressed(Keys.T))

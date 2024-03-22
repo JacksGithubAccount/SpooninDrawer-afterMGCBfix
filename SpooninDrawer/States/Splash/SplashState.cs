@@ -148,6 +148,10 @@ namespace SpooninDrawer.States.Splash
                     gameState.menuActivate = false;
                     gameState.paused = false;
                 }
+                if(cmd is SplashInputCommand.CheckMenuSelect)
+                {
+
+                }
                 if (cmd is SplashInputCommand.MenuMoveUp)
                 {
                     menuNavigatorY--;
