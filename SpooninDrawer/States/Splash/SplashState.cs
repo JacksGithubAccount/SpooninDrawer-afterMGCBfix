@@ -36,6 +36,7 @@ namespace SpooninDrawer.States.Splash
         BaseScreen currentScreen;
         BaseScreen previousScreen;
         BaseGameState StoredState;
+        private Stack<BaseScreen> ScreenStack;
 
         private const string TestFont = "Fonts/TestText";
         TestText _testText;
@@ -55,6 +56,7 @@ namespace SpooninDrawer.States.Splash
         }
         public override void LoadContent(ContentManager content)
         {
+            ScreenStack = new Stack<BaseScreen>();
             _testText = new TestText(LoadFont(TestFont));
             _testText.Position = new Vector2(10.0f, 10.0f);
             _testText.zIndex = 3;
@@ -71,6 +73,7 @@ namespace SpooninDrawer.States.Splash
         {
             previousScreen = currentScreen ?? new EmptyScreen();
             currentScreen = screen;
+            ScreenStack.Push(currentScreen);
             this.screenTexture = screen.screenTexture;
             this.menuLocationArrayX = screen.menuLocationArrayX;
             this.menuLocationArrayY = screen.menuLocationArrayY;
@@ -88,7 +91,35 @@ namespace SpooninDrawer.States.Splash
             else
             {
                 AddGameObject(currentSplash);
-                currentSplash.Activate();
+                currentSplash.Activate();                
+            }
+        }
+        public void RemoveScreen()
+        {            
+            if (ScreenStack.Count == 1)
+            {
+                ResumeGameState();
+            }
+            else
+            {
+                BaseScreen screen = ScreenStack.Pop();
+                ScreenStack.TryPeek(out currentScreen);                
+                this.screenTexture = currentScreen.screenTexture;
+                this.menuLocationArrayX = currentScreen.menuLocationArrayX;
+                this.menuLocationArrayY = currentScreen.menuLocationArrayY;
+                this.menuNavigatorXCap = currentScreen.menuNavigatorXCap;
+                this.menuNavigatorYCap = currentScreen.menuNavigatorYCap;
+                BaseGameObject toRemove = getScreenExist(screen.screenTexture);
+                RemoveGameObject(toRemove);
+            }
+        }
+        public void ResumeGameState()
+        {
+            if (StoredState != null)
+            {
+                GameplayState gameState = (GameplayState)StoredState;
+                gameState.menuActivate = false;
+                gameState.paused = false;
             }
         }
 
@@ -128,7 +159,7 @@ namespace SpooninDrawer.States.Splash
                 {
                     if (previousScreen != null)
                     {
-                        ChangeScreen(previousScreen);
+                        RemoveScreen();
                     }
                     else
                     {
@@ -139,18 +170,15 @@ namespace SpooninDrawer.States.Splash
                 {
                     NotifyEvent(new BaseGameStateEvent.GameQuit());
                     GameplayState gameState = (GameplayState)StoredState;
-                    gameState.returnToTitle();
+                    gameState?.returnToTitle();
                 }
                 if (cmd is SplashInputCommand.ResumeSelect)
                 {
-                    //CallState(StoredState);
-                    GameplayState gameState = (GameplayState)StoredState;
-                    gameState.menuActivate = false;
-                    gameState.paused = false;
+                    ResumeGameState();
                 }
-                if(cmd is SplashInputCommand.CheckMenuSelect)
+                if (cmd is SplashInputCommand.CheckMenuSelect)
                 {
-
+                    ChangeScreen(new ReturnToTitleScreen());
                 }
                 if (cmd is SplashInputCommand.MenuMoveUp)
                 {
@@ -159,6 +187,14 @@ namespace SpooninDrawer.States.Splash
                 if (cmd is SplashInputCommand.MenuMoveDown)
                 {
                     menuNavigatorY++;
+                }
+                if (cmd is SplashInputCommand.MenuMoveLeft)
+                {
+                    menuNavigatorX--;
+                }
+                if (cmd is SplashInputCommand.MenuMoveRight)
+                {
+                    menuNavigatorX++;
                 }
                 KeepArrowinBound(ref menuNavigatorX, menuNavigatorXCap);
                 KeepArrowinBound(ref menuNavigatorY, menuNavigatorYCap);
@@ -181,7 +217,6 @@ namespace SpooninDrawer.States.Splash
                 currentArrowPosition = maxArrowPostion;
             }
         }
-
         public override void UpdateGameState(GameTime gameTime)
         {
             _menuArrow.Update(gameTime);

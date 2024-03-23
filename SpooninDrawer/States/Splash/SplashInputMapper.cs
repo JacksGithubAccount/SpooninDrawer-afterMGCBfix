@@ -56,6 +56,9 @@ namespace SpooninDrawer.States.Splash
                     case "CheckMenuSelect":
                         commands.Add(new CheckMenuSelect());
                         break;
+                    case "BackSelect":
+                        commands.Add(new BackSelect());
+                        break;
                 }
             }
             if (state.IsKeyDown(Keys.T) && HasBeenPressed(Keys.T))
@@ -77,6 +80,14 @@ namespace SpooninDrawer.States.Splash
             if (inputDetector.IsActioninputtedbyType(Actions.MoveDown, InputType.Press))
             {
                 commands.Add(new MenuMoveDown());
+            }
+            if (inputDetector.IsActioninputtedbyType(Actions.MoveLeft, InputType.Press))
+            {
+                commands.Add(new MenuMoveLeft());
+            }
+            if (inputDetector.IsActioninputtedbyType(Actions.MoveRight, InputType.Press))
+            {
+                commands.Add(new MenuMoveRight());
             }
             return commands;
         }

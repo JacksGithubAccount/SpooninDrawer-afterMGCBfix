@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Menu/ReturnToTitleScreen.png</SourceFile>
-  <SourceTime>2024-03-21T22:57:01.9059184-04:00</SourceTime>
+  <SourceTime>2024-03-22T20:21:36.2849563-04:00</SourceTime>
   <DestFile>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/bin/DesktopGL/Menu/ReturnToTitleScreen.xnb</DestFile>
-  <DestTime>2024-03-21T22:57:30.8918642-04:00</DestTime>
+  <DestTime>2024-03-22T20:21:44.3606467-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

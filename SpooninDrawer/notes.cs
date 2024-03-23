@@ -189,7 +189,10 @@ namespace SpooninDrawer
          *-exit button broke on menu in gameplay as the event call is no longer hooked to anything.
          *-fixed by making it a return to title screen button and doing that
          *3/21/2024
-         *-Added asset and loading for a comfirm if want to return to title screen. Need to add to splash state to mae it pop up
+         *-Added asset and loading for a comfirm if want to return to title screen. Need to add to splash state to make it pop up
+         *3/22/2024
+         *-Made it pop up, but no button doesn't work, also back button doesn't work as intended. Previous screen needs to work better
+         *-added stack to control the menus, making the back button work. Pop up no is also fixed too. The pop up only appears on upper left corner though
          *-
          */
     }

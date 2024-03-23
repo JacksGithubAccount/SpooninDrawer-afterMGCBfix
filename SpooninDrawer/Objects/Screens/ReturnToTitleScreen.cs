@@ -20,6 +20,7 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
 
+
         public ReturnToTitleScreen()
         {
             screenTexture = "Menu/ReturnToTitleScreen";
@@ -30,7 +31,7 @@ namespace SpooninDrawer.Objects.Screens
         }
         public string GetMenuCommand(int x, int y)
         {
-            var holder = (titleCommands)y;
+            var holder = (titleCommands)x;
             return holder.ToString();
         }
     }

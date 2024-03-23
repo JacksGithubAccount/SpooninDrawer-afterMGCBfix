@@ -1,4 +1,5 @@
-﻿using SpooninDrawer.Engine.Objects;
+﻿using Microsoft.Xna.Framework;
+using SpooninDrawer.Engine.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace SpooninDrawer.Objects.Screens
         {
             ResumeSelect,
             SettingsSelect,
-            ExitSelect
+            CheckMenuSelect
         }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
