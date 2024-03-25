@@ -178,7 +178,7 @@ namespace SpooninDrawer.States.Splash
                 }
                 if (cmd is SplashInputCommand.CheckMenuSelect)
                 {
-                    ChangeScreen(new ReturnToTitleScreen());
+                    ChangeScreen(new ReturnToTitleScreen(_graphicsDevice.Viewport.Width,_graphicsDevice.Viewport.Height));
                 }
                 if (cmd is SplashInputCommand.MenuMoveUp)
                 {

@@ -45,10 +45,10 @@ namespace SpooninDrawer.Engine.Input
             //contains the controls for  player input
             controls = new List<ActionKey>
             {
-                new ActionKey(Keys.Left, Actions.MoveLeft),
-                new ActionKey(Keys.Right, Actions.MoveRight),
-                new ActionKey(Keys.Up, Actions.MoveUp),
-                new ActionKey(Keys.Down, Actions.MoveDown),
+                new ActionKey(Keys.A, Actions.MoveLeft),
+                new ActionKey(Keys.D, Actions.MoveRight),
+                new ActionKey(Keys.W, Actions.MoveUp),
+                new ActionKey(Keys.S, Actions.MoveDown),
                 new ActionKey(Keys.Z, Actions.Confirm),
                 new ActionKey(Keys.Z, Actions.Interact),
                 new ActionKey(Keys.X, Actions.Cancel),

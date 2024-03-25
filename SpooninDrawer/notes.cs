@@ -193,7 +193,8 @@ namespace SpooninDrawer
          *3/22/2024
          *-Made it pop up, but no button doesn't work, also back button doesn't work as intended. Previous screen needs to work better
          *-added stack to control the menus, making the back button work. Pop up no is also fixed too. The pop up only appears on upper left corner though
-         *-
+         *-3/24/2024
+         *-added position to try and make the pop up appear center. Needs to find the render that places it there
          */
     }
 }
