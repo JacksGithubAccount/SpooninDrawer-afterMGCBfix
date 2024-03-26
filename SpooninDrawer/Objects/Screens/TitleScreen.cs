@@ -1,4 +1,5 @@
-﻿using SpooninDrawer.Engine.Input;
+﻿using Microsoft.Xna.Framework;
+using SpooninDrawer.Engine.Input;
 using SpooninDrawer.Engine.Objects;
 using SpooninDrawer.States.Splash;
 using System;
@@ -24,12 +25,14 @@ namespace SpooninDrawer.Objects.Screens
         public int[] menuLocationArrayY { get; }
         public int menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
+        public Vector2 Position { get; }
 
         //menuLocationArray = new int[] { {445, 310}, {445,410 },{445, 490},{445, 590} };
 
 
         public TitleScreen()
         {
+            Position = new Vector2(0, 0);
             screenTexture = "Menu/TitleScreen";
             menuLocationArrayX = new int[4] { 445, 445, 445, 445 };
             menuLocationArrayY = new int[4] { 310, 410, 490, 590 };

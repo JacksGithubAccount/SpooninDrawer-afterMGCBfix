@@ -70,7 +70,7 @@ namespace SpooninDrawer.States.Splash
         }
 
         public void ChangeScreen(BaseScreen screen)
-        {
+        {         
             previousScreen = currentScreen ?? new EmptyScreen();
             currentScreen = screen;
             ScreenStack.Push(currentScreen);
@@ -80,6 +80,7 @@ namespace SpooninDrawer.States.Splash
             this.menuNavigatorXCap = screen.menuNavigatorXCap;
             this.menuNavigatorYCap = screen.menuNavigatorYCap;
             SplashImage currentSplash = new SplashImage(LoadTexture(screenTexture));
+            currentSplash.Position = screen.Position;
             BaseGameObject holder = getScreenExist(currentSplash.getTextureName());
             BaseGameObject previousholder = getScreenExist(previousScreen.screenTexture);
             if (holder != null)

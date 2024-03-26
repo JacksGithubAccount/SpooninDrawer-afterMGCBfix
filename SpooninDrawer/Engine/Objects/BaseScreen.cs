@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace SpooninDrawer.Engine.Objects
         //how far you can scroll buttons
         int menuNavigatorXCap { get; }
         int menuNavigatorYCap { get; }
+        Vector2 Position { get; }
 
         //used for getting command for SplashInputMapper to know what context the enter button is doing
         string GetMenuCommand(int x, int y) { return "";  }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Screens
 {
-    public class EmptyScreen : BaseGameObject, BaseScreen
+    public class EmptyScreen : BaseScreen
     {
         enum titleCommands
         {
@@ -19,9 +19,11 @@ namespace SpooninDrawer.Objects.Screens
         public int[] menuLocationArrayY { get; }
         public int menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
+        public Vector2 Position { get; }
 
         public EmptyScreen()
         {
+            Position = new Vector2(0,0);
             screenTexture = "Menu/EmptyScreen";
             menuLocationArrayX = new int[1] { 0 };
             menuLocationArrayY = new int[1] { 0 };

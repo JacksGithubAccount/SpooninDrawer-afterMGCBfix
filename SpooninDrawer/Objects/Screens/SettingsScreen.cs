@@ -19,8 +19,10 @@ namespace SpooninDrawer.Objects.Screens
         public int[] menuLocationArrayY { get; }
         public int menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
+        public Vector2 Position { get; }
         public SettingsScreen()
         {
+            Position = new Vector2(0, 0);
             screenTexture = "Menu/SettingsScreen";
             menuLocationArrayX = new int[4] { 445, 445, 445, 445 };
             menuLocationArrayY = new int[4] { 310, 410, 490, 590 };
