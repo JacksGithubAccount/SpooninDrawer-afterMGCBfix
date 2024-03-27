@@ -25,9 +25,7 @@ namespace SpooninDrawer.Engine.Objects
 
         public override void Render(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Begin();
             spriteBatch.DrawString(_font, Text, _position, _color);
-            //spriteBatch.End();
         }
     }
 }

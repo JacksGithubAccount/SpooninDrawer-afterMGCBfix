@@ -79,6 +79,24 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full Screen.
+        /// </summary>
+        internal static string SettingsFullScreen {
+            get {
+                return ResourceManager.GetString("SettingsFullScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resolution.
+        /// </summary>
+        internal static string SettingsResolution {
+            get {
+                return ResourceManager.GetString("SettingsResolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Test String.
         /// </summary>
         internal static string String1 {

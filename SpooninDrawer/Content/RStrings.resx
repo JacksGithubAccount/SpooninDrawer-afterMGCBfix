@@ -123,6 +123,12 @@
   <data name="Lives" xml:space="preserve">
     <value>Lives</value>
   </data>
+  <data name="SettingsFullScreen" xml:space="preserve">
+    <value>Full Screen</value>
+  </data>
+  <data name="SettingsResolution" xml:space="preserve">
+    <value>Resolution</value>
+  </data>
   <data name="String1" xml:space="preserve">
     <value>Test String</value>
   </data>
