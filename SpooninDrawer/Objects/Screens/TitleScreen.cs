@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using SpooninDrawer.Engine.Input;
 using SpooninDrawer.Engine.Objects;
+using SpooninDrawer.Objects.Text;
 using SpooninDrawer.States.Splash;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
+        public BaseTextObject[] ScreenText { get; }
 
         //menuLocationArray = new int[] { {445, 310}, {445,410 },{445, 490},{445, 590} };
 
@@ -38,6 +40,8 @@ namespace SpooninDrawer.Objects.Screens
             menuLocationArrayY = new int[4] { 310, 410, 490, 590 };
             menuNavigatorXCap = 0;
             menuNavigatorYCap = 3;
+            ScreenText = new TestText[1];
+            ScreenText[0] = new TestText();
         }
 
         public string GetMenuCommand(int x, int y)

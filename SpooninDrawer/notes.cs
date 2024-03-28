@@ -198,7 +198,10 @@ namespace SpooninDrawer
          *3/25/2024
          *-Fixed by implementing a position variable in  base screen and  have the splash screen provide the position based on viewport size
          *-may be next to make a settings screen?
-         *
+         *3/26/2024
+         *-started preparing to add text to display on settings screen
+         *3/27/2024
+         *-the text classes require a font and passing font from state to screen to text seems like its not the right way. needs more thinking.
          *
          */
     }

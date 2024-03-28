@@ -17,6 +17,7 @@ using SpooninDrawer.States.Dev;
 using Microsoft.Xna.Framework.Content;
 using MonoGame.Extended.Screens;
 using System.ComponentModel;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace SpooninDrawer.States.Splash
 {
@@ -39,6 +40,8 @@ namespace SpooninDrawer.States.Splash
         private Stack<BaseScreen> ScreenStack;
 
         private const string TestFont = "Fonts/TestText";
+        private const string MenuFontString = "Fonts/MenuFont";
+        private SpriteFont MenuFont;
         TestText _testText;
 
         public SplashState()
@@ -56,6 +59,7 @@ namespace SpooninDrawer.States.Splash
         }
         public override void LoadContent(ContentManager content)
         {
+            MenuFont = LoadFont(MenuFontString);
             ScreenStack = new Stack<BaseScreen>();
             _testText = new TestText(LoadFont(TestFont));
             _testText.Position = new Vector2(10.0f, 10.0f);
@@ -72,6 +76,10 @@ namespace SpooninDrawer.States.Splash
         public void ChangeScreen(BaseScreen screen)
         {         
             previousScreen = currentScreen ?? new EmptyScreen();
+            foreach (BaseTextObject text in previousScreen.ScreenText)
+            {
+                RemoveGameObject(text);
+            }
             currentScreen = screen;
             ScreenStack.Push(currentScreen);
             this.screenTexture = screen.screenTexture;
@@ -79,6 +87,10 @@ namespace SpooninDrawer.States.Splash
             this.menuLocationArrayY = screen.menuLocationArrayY;
             this.menuNavigatorXCap = screen.menuNavigatorXCap;
             this.menuNavigatorYCap = screen.menuNavigatorYCap;
+            foreach(BaseTextObject text in screen.ScreenText)
+            {
+                AddGameObject(text);
+            }
             SplashImage currentSplash = new SplashImage(LoadTexture(screenTexture));
             currentSplash.Position = screen.Position;
             BaseGameObject holder = getScreenExist(currentSplash.getTextureName());

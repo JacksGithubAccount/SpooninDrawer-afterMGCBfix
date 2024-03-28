@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SpooninDrawer.Content;
 using SpooninDrawer.Engine.Objects;
 using SpooninDrawer.Objects.Text;
 using System;
@@ -21,7 +22,7 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
-        public SettingsText[] SettingsText { get; }
+        public BaseTextObject[] ScreenText { get; }
         public SettingsScreen()
         {
             Position = new Vector2(0, 0);
@@ -30,8 +31,17 @@ namespace SpooninDrawer.Objects.Screens
             menuLocationArrayY = new int[4] { 250, 275, 300, 325 };
             menuNavigatorXCap = 0;
             menuNavigatorYCap = 3;
-            SettingsText = new SettingsText[2];
-
+            ScreenText = new SettingsText[2];
+            //ScreenText[0] = new SettingsText();
+            ScreenText[0].Text = RStrings.SettingsFullScreen;
+            ScreenText[1].Text = RStrings.SettingsResolution;
+            int i = 0;
+            foreach (SettingsText settingText in ScreenText)
+            {                
+                settingText.Position = new Vector2(menuLocationArrayX[i], menuLocationArrayY[i]);
+                settingText.zIndex = 3;
+                i++;
+            }
         }
         public void GetMenuCommand(int x, int y)
         {
