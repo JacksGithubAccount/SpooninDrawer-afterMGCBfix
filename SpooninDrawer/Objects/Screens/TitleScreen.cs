@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SpooninDrawer.Engine.Input;
 using SpooninDrawer.Engine.Objects;
 using SpooninDrawer.Objects.Text;
@@ -39,9 +40,12 @@ namespace SpooninDrawer.Objects.Screens
             menuLocationArrayX = new int[4] { 445, 445, 445, 445 };
             menuLocationArrayY = new int[4] { 310, 410, 490, 590 };
             menuNavigatorXCap = 0;
-            menuNavigatorYCap = 3;
+            menuNavigatorYCap = 3;            
+        }
+        public TitleScreen(SpriteFont font) : this()
+        {
             ScreenText = new TestText[1];
-            ScreenText[0] = new TestText();
+            ScreenText[0] = new TestText(font);
         }
 
         public string GetMenuCommand(int x, int y)

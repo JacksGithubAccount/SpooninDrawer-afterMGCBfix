@@ -74,11 +74,14 @@ namespace SpooninDrawer.States.Splash
         }
 
         public void ChangeScreen(BaseScreen screen)
-        {         
+        {
             previousScreen = currentScreen ?? new EmptyScreen();
-            foreach (BaseTextObject text in previousScreen.ScreenText)
+            if (previousScreen.ScreenText != null)
             {
-                RemoveGameObject(text);
+                foreach (BaseTextObject text in previousScreen.ScreenText)
+                {
+                    RemoveGameObject(text);
+                }
             }
             currentScreen = screen;
             ScreenStack.Push(currentScreen);
@@ -87,9 +90,12 @@ namespace SpooninDrawer.States.Splash
             this.menuLocationArrayY = screen.menuLocationArrayY;
             this.menuNavigatorXCap = screen.menuNavigatorXCap;
             this.menuNavigatorYCap = screen.menuNavigatorYCap;
-            foreach(BaseTextObject text in screen.ScreenText)
+            if (currentScreen.ScreenText != null)
             {
-                AddGameObject(text);
+                foreach (BaseTextObject text in screen.ScreenText)
+                {
+                    AddGameObject(text);
+                }
             }
             SplashImage currentSplash = new SplashImage(LoadTexture(screenTexture));
             currentSplash.Position = screen.Position;
@@ -104,11 +110,11 @@ namespace SpooninDrawer.States.Splash
             else
             {
                 AddGameObject(currentSplash);
-                currentSplash.Activate();                
+                currentSplash.Activate();
             }
         }
         public void RemoveScreen()
-        {            
+        {
             if (ScreenStack.Count == 1)
             {
                 ResumeGameState();
@@ -116,7 +122,14 @@ namespace SpooninDrawer.States.Splash
             else
             {
                 BaseScreen screen = ScreenStack.Pop();
-                ScreenStack.TryPeek(out currentScreen);                
+                if (screen.ScreenText != null)
+                {
+                    foreach (BaseTextObject text in screen.ScreenText)
+                    {
+                        RemoveGameObject(text);
+                    }
+                }
+                ScreenStack.TryPeek(out currentScreen);
                 this.screenTexture = currentScreen.screenTexture;
                 this.menuLocationArrayX = currentScreen.menuLocationArrayX;
                 this.menuLocationArrayY = currentScreen.menuLocationArrayY;
@@ -166,7 +179,7 @@ namespace SpooninDrawer.States.Splash
                 }
                 if (cmd is SplashInputCommand.SettingsSelect)
                 {
-                    ChangeScreen(new SettingsScreen());
+                    ChangeScreen(new SettingsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3)));
                 }
                 if (cmd is SplashInputCommand.BackSelect)
                 {
@@ -191,7 +204,7 @@ namespace SpooninDrawer.States.Splash
                 }
                 if (cmd is SplashInputCommand.CheckMenuSelect)
                 {
-                    ChangeScreen(new ReturnToTitleScreen(_graphicsDevice.Viewport.Width,_graphicsDevice.Viewport.Height));
+                    ChangeScreen(new ReturnToTitleScreen(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height));
                 }
                 if (cmd is SplashInputCommand.MenuMoveUp)
                 {

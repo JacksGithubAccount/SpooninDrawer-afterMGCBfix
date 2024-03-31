@@ -123,11 +123,20 @@
   <data name="Lives" xml:space="preserve">
     <value>Lives</value>
   </data>
+  <data name="SettingsBack" xml:space="preserve">
+    <value>Back</value>
+  </data>
   <data name="SettingsFullScreen" xml:space="preserve">
     <value>Full Screen</value>
   </data>
+  <data name="SettingsKeybinds" xml:space="preserve">
+    <value>Key Binds</value>
+  </data>
   <data name="SettingsResolution" xml:space="preserve">
     <value>Resolution</value>
+  </data>
+  <data name="SettingsVolume" xml:space="preserve">
+    <value>Volume</value>
   </data>
   <data name="String1" xml:space="preserve">
     <value>Test String</value>

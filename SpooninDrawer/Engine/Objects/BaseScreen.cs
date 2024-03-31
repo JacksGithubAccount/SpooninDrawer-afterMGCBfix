@@ -20,7 +20,7 @@ namespace SpooninDrawer.Engine.Objects
         BaseTextObject[] ScreenText { get; }
 
         //used for getting command for SplashInputMapper to know what context the enter button is doing
-        string GetMenuCommand(int x, int y) { return "";  }
+        string GetMenuCommand(int x, int y) { return ""; }
 
     }
 }

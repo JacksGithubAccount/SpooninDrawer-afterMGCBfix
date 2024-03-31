@@ -24,18 +24,7 @@ namespace SpooninDrawer.Objects.Screens
         //public SplashImage splashImage { get; }
         public BaseTextObject[] ScreenText { get; }
 
-        public ReturnToTitleScreen()
-        {
-            Position = new Vector2(0, 0);
-            screenTexture = "Menu/ReturnToTitleScreen";
-            menuLocationArrayX = new int[2] { 5, 155 };
-            menuLocationArrayY = new int[2] { 130, 130 };
-            menuNavigatorXCap = 1;
-            menuNavigatorYCap = 0;
-            ScreenText = new BaseTextObject[1];
-            ScreenText[0].Text = "";
-
-        }
+        public ReturnToTitleScreen() : this(0, 0) { }
         public ReturnToTitleScreen(int positionx, int positiony)
         {
             Position = new Vector2(positionx/3, positiony/3);
@@ -44,9 +33,6 @@ namespace SpooninDrawer.Objects.Screens
             menuLocationArrayY = new int[2] { 130 + (int)Position.Y, 130 + (int)Position.Y };
             menuNavigatorXCap = 1;
             menuNavigatorYCap = 0;
-            ScreenText = new BaseTextObject[1];
-            ScreenText[0].Text = "";
-
         }
 
         public string GetMenuCommand(int x, int y)

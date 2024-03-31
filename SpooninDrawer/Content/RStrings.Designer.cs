@@ -79,6 +79,15 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        internal static string SettingsBack {
+            get {
+                return ResourceManager.GetString("SettingsBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Screen.
         /// </summary>
         internal static string SettingsFullScreen {
@@ -88,11 +97,29 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Key Binds.
+        /// </summary>
+        internal static string SettingsKeybinds {
+            get {
+                return ResourceManager.GetString("SettingsKeybinds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resolution.
         /// </summary>
         internal static string SettingsResolution {
             get {
                 return ResourceManager.GetString("SettingsResolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volume.
+        /// </summary>
+        internal static string SettingsVolume {
+            get {
+                return ResourceManager.GetString("SettingsVolume", resourceCulture);
             }
         }
         

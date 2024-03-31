@@ -202,6 +202,12 @@ namespace SpooninDrawer
          *-started preparing to add text to display on settings screen
          *3/27/2024
          *-the text classes require a font and passing font from state to screen to text seems like its not the right way. needs more thinking.
+         *3/28/2024
+         *-Added constructors for font and only pass font when text is needed. Text appears, but not in right place.
+         *3/29/2024
+         *-passing half width and third height to position of text made it appear in right place
+         *3/30/2024
+         *-text from settings persisted between screens. Turns out the call was only made when changing screen, not removing screen. Fixed.
          *
          */
     }
