@@ -20,7 +20,7 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
-        public BaseTextObject[] ScreenText { get; }
+        public BaseTextObject[,] ScreenText { get; }
 
         public EmptyScreen()
         {
@@ -30,8 +30,8 @@ namespace SpooninDrawer.Objects.Screens
             menuLocationArrayY = new int[1] { 0 };
             menuNavigatorXCap = 0;
             menuNavigatorYCap = 0;
-            ScreenText = new BaseTextObject[1];
-            ScreenText[0].Text = "";
+            ScreenText = new BaseTextObject[0,1];
+            ScreenText[0,0].Text = "";
         }
         public string GetMenuCommand(int x, int y)
         {

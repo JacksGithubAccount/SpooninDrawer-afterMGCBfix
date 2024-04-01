@@ -135,7 +135,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 AddGameObject(_statsText);
             }
             menuGameState = new SplashState(new MenuScreen(), this);
-            menuGameState.Initialize(content, _window, _graphicsDevice);
+            menuGameState.Initialize(content, _window, _graphicsDevice, _graphics);
             menuGameState.LoadContent(content);
 
             // load soundtracks into sound manager
@@ -158,12 +158,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 if (cmd is GameplayInputCommand.PlayerOpenMenu)
                 {
                     paused = !paused;
-                    //CallState(new SplashState(new MenuScreen(), this));
                     menuActivate = true;
                 }
                 if (cmd is GameplayInputCommand.Pause)
                 {
-                    //paused ^= true;
                     paused = !paused;
                 }
 

@@ -88,6 +88,15 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Borderless.
+        /// </summary>
+        internal static string SettingsBorderlessScreen {
+            get {
+                return ResourceManager.GetString("SettingsBorderlessScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Screen.
         /// </summary>
         internal static string SettingsFullScreen {
@@ -115,11 +124,47 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1920 x 1080.
+        /// </summary>
+        internal static string SettingsResolution1080 {
+            get {
+                return ResourceManager.GetString("SettingsResolution1080", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1280 x 720.
+        /// </summary>
+        internal static string SettingsResolution720 {
+            get {
+                return ResourceManager.GetString("SettingsResolution720", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Screen Settings.
+        /// </summary>
+        internal static string SettingsScreenSettings {
+            get {
+                return ResourceManager.GetString("SettingsScreenSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Volume.
         /// </summary>
         internal static string SettingsVolume {
             get {
                 return ResourceManager.GetString("SettingsVolume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Window.
+        /// </summary>
+        internal static string SettingsWindowScreen {
+            get {
+                return ResourceManager.GetString("SettingsWindowScreen", resourceCulture);
             }
         }
         

@@ -59,6 +59,24 @@ namespace SpooninDrawer.States.Splash
                     case "BackSelect":
                         commands.Add(new BackSelect());
                         break;
+                    case "MoveArrowRight":
+                        commands.Add(new MenuMoveRight());
+                        break;
+                    case "Fullscreen":
+                        commands.Add(new SetFullScreen());
+                        break;
+                    case "Windows":
+                        commands.Add(new SetWindowScreen());
+                        break;
+                    case "Borderless":
+                        commands.Add(new SetBorderlessScreen());
+                        break;
+                    case "Resolution1080":
+                        commands.Add(new SetResolution1080());
+                        break;
+                    case "Resolution720":
+                        commands.Add(new SetResolution720());
+                        break;
                 }
             }
             if (state.IsKeyDown(Keys.T) && HasBeenPressed(Keys.T))

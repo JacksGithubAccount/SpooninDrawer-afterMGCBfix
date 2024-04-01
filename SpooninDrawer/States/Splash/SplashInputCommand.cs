@@ -25,5 +25,10 @@ namespace SpooninDrawer.States.Splash
         public class TestMenuButton : SplashInputCommand { }
         public class TestMenuButton2 : SplashInputCommand { }
         public class CheckMenuSelect : SplashInputCommand { }
+        public class SetFullScreen : SplashInputCommand { }
+        public class SetWindowScreen : SplashInputCommand { }
+        public class SetBorderlessScreen : SplashInputCommand { }
+        public class SetResolution1080 : SplashInputCommand { }
+        public class SetResolution720 : SplashInputCommand { }
     }
 }

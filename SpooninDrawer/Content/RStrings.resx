@@ -126,6 +126,9 @@
   <data name="SettingsBack" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="SettingsBorderlessScreen" xml:space="preserve">
+    <value>Borderless</value>
+  </data>
   <data name="SettingsFullScreen" xml:space="preserve">
     <value>Full Screen</value>
   </data>
@@ -135,8 +138,20 @@
   <data name="SettingsResolution" xml:space="preserve">
     <value>Resolution</value>
   </data>
+  <data name="SettingsResolution1080" xml:space="preserve">
+    <value>1920 x 1080</value>
+  </data>
+  <data name="SettingsResolution720" xml:space="preserve">
+    <value>1280 x 720</value>
+  </data>
+  <data name="SettingsScreenSettings" xml:space="preserve">
+    <value>Screen Settings</value>
+  </data>
   <data name="SettingsVolume" xml:space="preserve">
     <value>Volume</value>
+  </data>
+  <data name="SettingsWindowScreen" xml:space="preserve">
+    <value>Window</value>
   </data>
   <data name="String1" xml:space="preserve">
     <value>Test String</value>

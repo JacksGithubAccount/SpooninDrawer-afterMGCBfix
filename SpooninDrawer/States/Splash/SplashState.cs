@@ -94,7 +94,8 @@ namespace SpooninDrawer.States.Splash
             {
                 foreach (BaseTextObject text in screen.ScreenText)
                 {
-                    AddGameObject(text);
+                    if(text != null )
+                        AddGameObject(text);
                 }
             }
             SplashImage currentSplash = new SplashImage(LoadTexture(screenTexture));
@@ -156,6 +157,35 @@ namespace SpooninDrawer.States.Splash
 
             InputManager.GetCommands(cmd =>
             {
+                if(cmd is SplashInputCommand.SetFullScreen)
+                {
+                    _graphics.IsFullScreen = true;
+                    _graphics.HardwareModeSwitch = true;
+                    _graphics.ApplyChanges();
+                }
+                if(cmd is SplashInputCommand.SetWindowScreen)
+                {
+                    _graphics.IsFullScreen = false;
+                    _graphics.ApplyChanges();
+                }
+                if (cmd is SplashInputCommand.SetBorderlessScreen)
+                {
+                    _graphics.IsFullScreen = true;
+                    _graphics.HardwareModeSwitch = false;
+                    _graphics.ApplyChanges();
+                }
+                if (cmd is SplashInputCommand.SetResolution1080)
+                {
+                    _graphics.PreferredBackBufferWidth = 1920;
+                    _graphics.PreferredBackBufferHeight = 1080;
+                    _graphics.ApplyChanges();
+                }
+                if (cmd is SplashInputCommand.SetResolution720)
+                {
+                    _graphics.PreferredBackBufferWidth = 1280;
+                    _graphics.PreferredBackBufferHeight = 720;
+                    _graphics.ApplyChanges();
+                }
                 if (cmd is SplashInputCommand.TestMenuButton)
                 {
                     BaseGameObject holder = getScreenExist(screenTexture);

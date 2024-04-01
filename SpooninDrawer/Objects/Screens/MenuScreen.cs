@@ -22,7 +22,7 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
-        public BaseTextObject[] ScreenText { get; }
+        public BaseTextObject[,] ScreenText { get; }
         public MenuScreen()
         {
             Position = new Vector2(0, 0);

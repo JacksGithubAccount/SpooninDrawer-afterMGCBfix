@@ -32,6 +32,7 @@ namespace SpooninDrawer.Engine.States
         protected int _viewportHeight;
         protected int _viewportWidth;
         protected SoundManager _soundManager = new SoundManager();
+        protected GraphicsDeviceManager _graphics;
 
         private const string BlankTexture = "Menu/Blank";
         public Texture2D blankTexture;
@@ -49,6 +50,17 @@ namespace SpooninDrawer.Engine.States
             _window = window;
             SetInputManager();
             blankTexture = contentManager.Load<Texture2D>(BlankTexture);
+        }
+        public void Initialize(ContentManager contentManager, GameWindow window, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager)
+        {
+            _contentManager = contentManager;
+            _graphicsDevice = graphicsDevice;
+            _viewportHeight = graphicsDevice.Viewport.Height;
+            _viewportWidth = graphicsDevice.Viewport.Width;
+            _window = window;
+            SetInputManager();
+            blankTexture = contentManager.Load<Texture2D>(BlankTexture);
+            _graphics = graphicsDeviceManager;
         }
 
         public abstract void LoadContent(ContentManager content);
@@ -125,9 +137,8 @@ namespace SpooninDrawer.Engine.States
 
         protected BaseGameObject getScreenExist(string screenName)
         {
-            BaseGameObject holder;
-            holder = _gameObjects.Find(x => x.getTextureName().Contains(screenName));
-
+            BaseGameObject holder = _gameObjects.Find(x => x.getTextureName().Contains(screenName));
+             
             return holder;
         }
 

@@ -28,7 +28,7 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
-        public BaseTextObject[] ScreenText { get; }
+        public BaseTextObject[,] ScreenText { get; }
 
         //menuLocationArray = new int[] { {445, 310}, {445,410 },{445, 490},{445, 590} };
 
@@ -44,8 +44,8 @@ namespace SpooninDrawer.Objects.Screens
         }
         public TitleScreen(SpriteFont font) : this()
         {
-            ScreenText = new TestText[1];
-            ScreenText[0] = new TestText(font);
+            ScreenText = new TestText[0,1];
+            ScreenText[0,0] = new TestText(font);
         }
 
         public string GetMenuCommand(int x, int y)

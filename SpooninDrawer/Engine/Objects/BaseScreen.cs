@@ -17,7 +17,7 @@ namespace SpooninDrawer.Engine.Objects
         int menuNavigatorXCap { get; }
         int menuNavigatorYCap { get; }
         Vector2 Position { get; }
-        BaseTextObject[] ScreenText { get; }
+        BaseTextObject[,] ScreenText { get; }
 
         //used for getting command for SplashInputMapper to know what context the enter button is doing
         string GetMenuCommand(int x, int y) { return ""; }

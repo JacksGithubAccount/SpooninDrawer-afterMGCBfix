@@ -208,6 +208,10 @@ namespace SpooninDrawer
          *-passing half width and third height to position of text made it appear in right place
          *3/30/2024
          *-text from settings persisted between screens. Turns out the call was only made when changing screen, not removing screen. Fixed.
+         *3/31/2024
+         *-added multiple enums to handle text for settings. Also added the settings for fullscreen, windows, and borderless. Borderless doesn't work completely. Need resolution to work
+         *-added resolution for 1080 and 720, but menuscreen doesn't have a 1080version so it looks weird
+         *
          *
          */
     }

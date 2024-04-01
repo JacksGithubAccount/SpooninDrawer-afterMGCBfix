@@ -16,8 +16,8 @@ namespace SpooninDrawer
     /// </summary>
     public static class Program
     {
-        private const int WIDTH = 1280;
-        private const int HEIGHT = 720;
+        private const int WIDTH = 1920;
+        private const int HEIGHT = 1080;
 
         private const string ENGLISH = "en";
         private const string FRENCH = "fr";

@@ -15,13 +15,24 @@ namespace SpooninDrawer.Objects.Screens
     {
         enum titleCommands
         {
-            //does nothing
-            FullScreen,
-            Resolution,
-            Keybind,
-            Volume,
-            //end of does nothing
-            BackSelect
+            MoveArrowRight,
+            BackSelect = 4
+        }
+        enum secondColumnCommands
+        {
+            Fullscreen,
+            Resolution1080,
+            KeyBinds,
+            Volume
+        }
+        enum thirdColumnCommands
+        {
+            Windows,
+            Resolution720
+        }
+        enum fourthColumnCommands
+        {
+            Borderless
         }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
@@ -29,33 +40,75 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
-        public BaseTextObject[] ScreenText { get; }
+        public BaseTextObject[,] ScreenText { get; }
         public SettingsScreen(SpriteFont font, Vector2 positionOffset)
         {
             Position = new Vector2(0, 0);
             screenTexture = "Menu/SettingsScreen";
-            menuLocationArrayX = new int[5] { 100, 200, 100, 100, 100 };
+            menuLocationArrayX = new int[4] { 100, 300, 500, 700};
             menuLocationArrayY = new int[5] { 250, 300, 350, 400, 450 };
-            menuNavigatorXCap = 1;
-            menuNavigatorYCap = 4;
-            ScreenText = new BaseTextObject[5];
-            ScreenText[0] = new SettingsText(font, RStrings.SettingsFullScreen);
-            ScreenText[1] = new SettingsText(font, RStrings.SettingsResolution);
-            ScreenText[2] = new SettingsText(font, RStrings.SettingsKeybinds);
-            ScreenText[3] = new SettingsText(font, RStrings.SettingsVolume);
-            ScreenText[4] = new SettingsText(font, RStrings.SettingsBack);
+            menuNavigatorXCap = menuLocationArrayX.Length - 1;
+            menuNavigatorYCap = menuLocationArrayY.Length - 1;
+            ScreenText = new BaseTextObject[menuLocationArrayX.Length, menuLocationArrayY.Length];
+            ScreenText[0, 0] = new SettingsText(font, RStrings.SettingsScreenSettings);
+            ScreenText[0, 1] = new SettingsText(font, RStrings.SettingsResolution);
+            ScreenText[0, 2] = new SettingsText(font, RStrings.SettingsKeybinds);
+            ScreenText[0, 3] = new SettingsText(font, RStrings.SettingsVolume);
+            ScreenText[0, 4] = new SettingsText(font, RStrings.SettingsBack);
+            ScreenText[1, 0] = new SettingsText(font, RStrings.SettingsFullScreen);
+            ScreenText[1, 1] = new SettingsText(font, RStrings.SettingsResolution1080);
+
+            ScreenText[2, 0] = new SettingsText(font, RStrings.SettingsWindowScreen);
+            ScreenText[2, 1] = new SettingsText(font, RStrings.SettingsResolution720);
+
+            ScreenText[3, 0] = new SettingsText(font, RStrings.SettingsBorderlessScreen);
+
             int i = 0;
             int j = 0;
             foreach (SettingsText settingText in ScreenText)
             {
+                if (settingText == null)
+                {
+                    i++;
+                    continue;
+                    //break;
+                }
+                if (i >= 5)
+                {
+                    j++;
+                    i = 0;
+                }
                 settingText.Position = new Vector2(menuLocationArrayX[j] + positionOffset.X, menuLocationArrayY[i] + positionOffset.Y);
                 settingText.zIndex = 3;
                 i++;
             }
         }
-        public void GetMenuCommand(int x, int y)
+        public string GetMenuCommand(int x, int y)
         {
-
+            if (x == 0)
+            {
+                //sets command to make arrow go right if back isnt select
+                if (y < 4)
+                {
+                    y = 0;
+                }
+                var holder = (titleCommands)y;
+                return holder.ToString();
+            }
+            else if (x == 1 && y!=4)
+            {
+                var holder = (secondColumnCommands)y;
+                return holder.ToString();
+            }else if(x==2 && y!= 4)
+            {
+                var holder = (thirdColumnCommands)y;
+                return holder.ToString();
+            }else if(x == 3 && y != 4)
+            {
+                var holder = (fourthColumnCommands)y;
+                return holder.ToString();
+            }
+            else { return ""; }
         }
 
     }

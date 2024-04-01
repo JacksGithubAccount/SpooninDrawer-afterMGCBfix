@@ -124,7 +124,7 @@ namespace SpooninDrawer.Engine
                 _currentGameState.UnloadContent();
             }
             _currentGameState = gameState;
-            _currentGameState.Initialize(Content, Window, GraphicsDevice);
+            _currentGameState.Initialize(Content, Window, GraphicsDevice, graphics);
             _currentGameState.LoadContent(Content);
 
             _currentGameState.OnStateSwitched += CurrentGameState_OnStateSwitched;
