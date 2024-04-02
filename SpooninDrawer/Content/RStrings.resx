@@ -129,11 +129,11 @@
   <data name="SettingsBorderlessScreen" xml:space="preserve">
     <value>Borderless</value>
   </data>
+  <data name="SettingsControls" xml:space="preserve">
+    <value>Controls</value>
+  </data>
   <data name="SettingsFullScreen" xml:space="preserve">
     <value>Full Screen</value>
-  </data>
-  <data name="SettingsKeybinds" xml:space="preserve">
-    <value>Key Binds</value>
   </data>
   <data name="SettingsResolution" xml:space="preserve">
     <value>Resolution</value>

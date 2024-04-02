@@ -211,7 +211,9 @@ namespace SpooninDrawer
          *3/31/2024
          *-added multiple enums to handle text for settings. Also added the settings for fullscreen, windows, and borderless. Borderless doesn't work completely. Need resolution to work
          *-added resolution for 1080 and 720, but menuscreen doesn't have a 1080version so it looks weird
-         *
+         *4/1/2024
+         *-Added control remap screen, ran into issue where text would not generate for settings when going back leads to settings. Fixed by adding settings in remove screen method
+         *-
          *
          */
     }

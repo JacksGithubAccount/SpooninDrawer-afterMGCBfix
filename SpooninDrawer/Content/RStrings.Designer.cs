@@ -97,20 +97,20 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Controls.
+        /// </summary>
+        internal static string SettingsControls {
+            get {
+                return ResourceManager.GetString("SettingsControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Screen.
         /// </summary>
         internal static string SettingsFullScreen {
             get {
                 return ResourceManager.GetString("SettingsFullScreen", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Key Binds.
-        /// </summary>
-        internal static string SettingsKeybinds {
-            get {
-                return ResourceManager.GetString("SettingsKeybinds", resourceCulture);
             }
         }
         

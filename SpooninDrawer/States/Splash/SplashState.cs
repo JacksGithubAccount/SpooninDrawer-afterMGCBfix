@@ -76,28 +76,11 @@ namespace SpooninDrawer.States.Splash
         public void ChangeScreen(BaseScreen screen)
         {
             previousScreen = currentScreen ?? new EmptyScreen();
-            if (previousScreen.ScreenText != null)
-            {
-                foreach (BaseTextObject text in previousScreen.ScreenText)
-                {
-                    RemoveGameObject(text);
-                }
-            }
+            RemoveScreenText(previousScreen);
             currentScreen = screen;
             ScreenStack.Push(currentScreen);
-            this.screenTexture = screen.screenTexture;
-            this.menuLocationArrayX = screen.menuLocationArrayX;
-            this.menuLocationArrayY = screen.menuLocationArrayY;
-            this.menuNavigatorXCap = screen.menuNavigatorXCap;
-            this.menuNavigatorYCap = screen.menuNavigatorYCap;
-            if (currentScreen.ScreenText != null)
-            {
-                foreach (BaseTextObject text in screen.ScreenText)
-                {
-                    if(text != null )
-                        AddGameObject(text);
-                }
-            }
+            SetScreenPoints(screen);
+            AddScreenText(currentScreen);
             SplashImage currentSplash = new SplashImage(LoadTexture(screenTexture));
             currentSplash.Position = screen.Position;
             BaseGameObject holder = getScreenExist(currentSplash.getTextureName());
@@ -123,21 +106,42 @@ namespace SpooninDrawer.States.Splash
             else
             {
                 BaseScreen screen = ScreenStack.Pop();
-                if (screen.ScreenText != null)
-                {
-                    foreach (BaseTextObject text in screen.ScreenText)
-                    {
-                        RemoveGameObject(text);
-                    }
-                }
+                RemoveScreenText(screen);
                 ScreenStack.TryPeek(out currentScreen);
-                this.screenTexture = currentScreen.screenTexture;
-                this.menuLocationArrayX = currentScreen.menuLocationArrayX;
-                this.menuLocationArrayY = currentScreen.menuLocationArrayY;
-                this.menuNavigatorXCap = currentScreen.menuNavigatorXCap;
-                this.menuNavigatorYCap = currentScreen.menuNavigatorYCap;
+                SetScreenPoints(currentScreen);
+                AddScreenText(currentScreen);
                 BaseGameObject toRemove = getScreenExist(screen.screenTexture);
                 RemoveGameObject(toRemove);
+            }
+        }
+        private void SetScreenPoints(BaseScreen screen)
+        {
+            this.screenTexture = screen.screenTexture;
+            this.menuLocationArrayX = screen.menuLocationArrayX;
+            this.menuLocationArrayY = screen.menuLocationArrayY;
+            this.menuNavigatorXCap = screen.menuNavigatorXCap;
+            this.menuNavigatorYCap = screen.menuNavigatorYCap;
+        }
+        private void RemoveScreenText(BaseScreen screen)
+        {
+            
+            if (screen.ScreenText != null)
+            {
+                foreach (BaseTextObject text in screen.ScreenText)
+                {
+                    RemoveGameObject(text);
+                }
+            }
+        }
+        private void AddScreenText(BaseScreen screen)
+        {
+            if (screen.ScreenText != null)
+            {
+                foreach (BaseTextObject text in screen.ScreenText)
+                {
+                    if (text != null)
+                        AddGameObject(text);
+                }
             }
         }
         public void ResumeGameState()
@@ -185,6 +189,10 @@ namespace SpooninDrawer.States.Splash
                     _graphics.PreferredBackBufferWidth = 1280;
                     _graphics.PreferredBackBufferHeight = 720;
                     _graphics.ApplyChanges();
+                }
+                if(cmd is SplashInputCommand.RemapControlSelect)
+                {
+                    ChangeScreen(new RemapControlsScreen());
                 }
                 if (cmd is SplashInputCommand.TestMenuButton)
                 {

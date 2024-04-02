@@ -77,6 +77,9 @@ namespace SpooninDrawer.States.Splash
                     case "Resolution720":
                         commands.Add(new SetResolution720());
                         break;
+                    case "Controls":
+                        commands.Add(new RemapControlSelect());
+                        break;
                 }
             }
             if (state.IsKeyDown(Keys.T) && HasBeenPressed(Keys.T))

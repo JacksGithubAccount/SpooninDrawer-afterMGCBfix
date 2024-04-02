@@ -30,5 +30,6 @@ namespace SpooninDrawer.States.Splash
         public class SetBorderlessScreen : SplashInputCommand { }
         public class SetResolution1080 : SplashInputCommand { }
         public class SetResolution720 : SplashInputCommand { }
+        public class RemapControlSelect : SplashInputCommand { }
     }
 }

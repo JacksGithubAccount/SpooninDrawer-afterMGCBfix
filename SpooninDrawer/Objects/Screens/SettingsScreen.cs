@@ -16,14 +16,14 @@ namespace SpooninDrawer.Objects.Screens
         enum titleCommands
         {
             MoveArrowRight,
+            Controls = 2,
             BackSelect = 4
         }
         enum secondColumnCommands
         {
             Fullscreen,
-            Resolution1080,
-            KeyBinds,
-            Volume
+            Resolution1080,            
+            Volume = 3
         }
         enum thirdColumnCommands
         {
@@ -52,7 +52,7 @@ namespace SpooninDrawer.Objects.Screens
             ScreenText = new BaseTextObject[menuLocationArrayX.Length, menuLocationArrayY.Length];
             ScreenText[0, 0] = new SettingsText(font, RStrings.SettingsScreenSettings);
             ScreenText[0, 1] = new SettingsText(font, RStrings.SettingsResolution);
-            ScreenText[0, 2] = new SettingsText(font, RStrings.SettingsKeybinds);
+            ScreenText[0, 2] = new SettingsText(font, RStrings.SettingsControls);
             ScreenText[0, 3] = new SettingsText(font, RStrings.SettingsVolume);
             ScreenText[0, 4] = new SettingsText(font, RStrings.SettingsBack);
             ScreenText[1, 0] = new SettingsText(font, RStrings.SettingsFullScreen);
@@ -87,8 +87,8 @@ namespace SpooninDrawer.Objects.Screens
         {
             if (x == 0)
             {
-                //sets command to make arrow go right if back isnt select
-                if (y < 4)
+                //sets command to make arrow go right if back/control isnt select
+                if (y < 4 && y != 2)
                 {
                     y = 0;
                 }
