@@ -73,7 +73,7 @@ namespace SpooninDrawer.Objects.Screens
                     continue;
                     //break;
                 }
-                if (i >= 5)
+                if (i >= menuLocationArrayY.Length)
                 {
                     j++;
                     i = 0;

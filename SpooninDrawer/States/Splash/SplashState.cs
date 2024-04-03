@@ -192,7 +192,7 @@ namespace SpooninDrawer.States.Splash
                 }
                 if(cmd is SplashInputCommand.RemapControlSelect)
                 {
-                    ChangeScreen(new RemapControlsScreen());
+                    ChangeScreen(new RemapControlsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3)));
                 }
                 if (cmd is SplashInputCommand.TestMenuButton)
                 {

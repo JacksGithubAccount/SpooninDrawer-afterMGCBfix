@@ -61,6 +61,78 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string ControlCancel {
+            get {
+                return ResourceManager.GetString("ControlCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        internal static string ControlConfirm {
+            get {
+                return ResourceManager.GetString("ControlConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Down.
+        /// </summary>
+        internal static string ControlDown {
+            get {
+                return ResourceManager.GetString("ControlDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        internal static string ControlLeft {
+            get {
+                return ResourceManager.GetString("ControlLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Menu.
+        /// </summary>
+        internal static string ControlOpenMenu {
+            get {
+                return ResourceManager.GetString("ControlOpenMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pause.
+        /// </summary>
+        internal static string ControlPause {
+            get {
+                return ResourceManager.GetString("ControlPause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        internal static string ControlRight {
+            get {
+                return ResourceManager.GetString("ControlRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Up.
+        /// </summary>
+        internal static string ControlUp {
+            get {
+                return ResourceManager.GetString("ControlUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Good Luck, Player 1!.
         /// </summary>
         internal static string GoodLuckPlayer1 {

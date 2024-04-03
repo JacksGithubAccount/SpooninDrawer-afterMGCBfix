@@ -213,7 +213,10 @@ namespace SpooninDrawer
          *-added resolution for 1080 and 720, but menuscreen doesn't have a 1080version so it looks weird
          *4/1/2024
          *-Added control remap screen, ran into issue where text would not generate for settings when going back leads to settings. Fixed by adding settings in remove screen method
-         *-
+         *4/2/2024
+         *-added text to remap screen
+         *
+         *
          *
          */
     }
