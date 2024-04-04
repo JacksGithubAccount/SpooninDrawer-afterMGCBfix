@@ -15,7 +15,11 @@ namespace SpooninDrawer.Engine.Input
 
         public InputManager(BaseInputMapper inputMapper)
         {
-            _inputMapper = inputMapper;            
+            _inputMapper = inputMapper;
+        }
+        public InputDetector GetInputDetector()
+        {
+            return _inputMapper.inputDetector;
         }
         public void GetCommands(Action<BaseInputCommand> actOnState)
         {

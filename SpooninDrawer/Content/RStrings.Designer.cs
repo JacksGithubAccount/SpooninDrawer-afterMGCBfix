@@ -187,6 +187,15 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Enter Key for .
+        /// </summary>
+        internal static string SettingsRemapConfirm {
+            get {
+                return ResourceManager.GetString("SettingsRemapConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resolution.
         /// </summary>
         internal static string SettingsResolution {

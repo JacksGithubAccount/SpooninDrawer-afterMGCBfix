@@ -159,6 +159,9 @@
   <data name="SettingsFullScreen" xml:space="preserve">
     <value>Full Screen</value>
   </data>
+  <data name="SettingsRemapConfirm" xml:space="preserve">
+    <value>Please Enter Key for </value>
+  </data>
   <data name="SettingsResolution" xml:space="preserve">
     <value>Resolution</value>
   </data>

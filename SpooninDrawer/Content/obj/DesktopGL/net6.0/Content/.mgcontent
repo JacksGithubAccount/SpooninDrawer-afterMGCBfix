@@ -13,6 +13,7 @@
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Menu/Blank.png</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Menu/EmptyScreen.png</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Menu/MenuScreen.png</File>
+    <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Menu/RemapControlConfirm.png</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Menu/RemapControlsScreen.png</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Menu/ReturnToTitleScreen.png</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Menu/SettingsScreen.png</File>
@@ -34,6 +35,7 @@
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/TileSets/incrediblybadmspainttileset.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

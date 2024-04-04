@@ -215,3 +215,4 @@ C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\n
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Menu\ReturnToTitleScreen.xnb
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Fonts\MenuFont.xnb
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Menu\RemapControlsScreen.xnb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Menu\RemapControlConfirm.xnb

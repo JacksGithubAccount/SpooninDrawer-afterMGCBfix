@@ -35,24 +35,27 @@ namespace SpooninDrawer.Objects
         {
             if (_currentAnimation != null)
             {
-                _currentAnimation.Update(gametime);
+                if(Active)
+                    _currentAnimation.Update(gametime);
             }
         }
 
         public override void Render(SpriteBatch spriteBatch)
         {
-            var destinationRectangle = new Rectangle((int)_position.X, (int)_position.Y, AnimationCellWidth, AnimationCellHeight);
-            var sourceRectangle = _idleRectangle;
-            if (_currentAnimation != null)
+            if (Active)
             {
-                var currentFrame = _currentAnimation.CurrentFrame;
-                if (currentFrame != null)
+                var destinationRectangle = new Rectangle((int)_position.X, (int)_position.Y, AnimationCellWidth, AnimationCellHeight);
+                var sourceRectangle = _idleRectangle;
+                if (_currentAnimation != null)
                 {
-                    sourceRectangle = currentFrame.SourceRectangle;
+                    var currentFrame = _currentAnimation.CurrentFrame;
+                    if (currentFrame != null)
+                    {
+                        sourceRectangle = currentFrame.SourceRectangle;
+                    }
                 }
+                spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
             }
-
-            spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
         }
     }
 }

@@ -18,6 +18,7 @@ using Microsoft.Xna.Framework.Content;
 using MonoGame.Extended.Screens;
 using System.ComponentModel;
 using Microsoft.Xna.Framework.Graphics;
+using static SpooninDrawer.States.Splash.SplashInputCommand;
 
 namespace SpooninDrawer.States.Splash
 {
@@ -124,11 +125,11 @@ namespace SpooninDrawer.States.Splash
         }
         private void RemoveScreenText(BaseScreen screen)
         {
-            
+
             if (screen.ScreenText != null)
             {
                 foreach (BaseTextObject text in screen.ScreenText)
-                {
+                {                    
                     RemoveGameObject(text);
                 }
             }
@@ -156,18 +157,25 @@ namespace SpooninDrawer.States.Splash
 
         public override void HandleInput(GameTime gameTime)
         {
-
-            _menuArrow.Position = new Vector2(menuLocationArrayX[menuNavigatorX], menuLocationArrayY[menuNavigatorY]);
+            try
+            {
+                _menuArrow.Activate();
+                _menuArrow.Position = new Vector2(menuLocationArrayX[menuNavigatorX], menuLocationArrayY[menuNavigatorY]);
+            }
+            catch
+            {
+                _menuArrow.Deactivate();
+            }
 
             InputManager.GetCommands(cmd =>
             {
-                if(cmd is SplashInputCommand.SetFullScreen)
+                if (cmd is SplashInputCommand.SetFullScreen)
                 {
                     _graphics.IsFullScreen = true;
                     _graphics.HardwareModeSwitch = true;
                     _graphics.ApplyChanges();
                 }
-                if(cmd is SplashInputCommand.SetWindowScreen)
+                if (cmd is SplashInputCommand.SetWindowScreen)
                 {
                     _graphics.IsFullScreen = false;
                     _graphics.ApplyChanges();
@@ -190,9 +198,14 @@ namespace SpooninDrawer.States.Splash
                     _graphics.PreferredBackBufferHeight = 720;
                     _graphics.ApplyChanges();
                 }
-                if(cmd is SplashInputCommand.RemapControlSelect)
+                if (cmd is SplashInputCommand.RemapControlSelect)
                 {
-                    ChangeScreen(new RemapControlsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3)));
+                    ChangeScreen(new RemapControlsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), InputManager.GetInputDetector()));
+                }
+                if (cmd is SplashInputCommand.RemapControlConfirm)
+                {
+                    ChangeScreen(new RemapControlConfirmScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
+
                 }
                 if (cmd is SplashInputCommand.TestMenuButton)
                 {

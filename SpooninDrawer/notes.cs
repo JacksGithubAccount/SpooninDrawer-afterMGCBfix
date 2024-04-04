@@ -214,7 +214,9 @@ namespace SpooninDrawer
          *4/1/2024
          *-Added control remap screen, ran into issue where text would not generate for settings when going back leads to settings. Fixed by adding settings in remove screen method
          *4/2/2024
-         *-added text to remap screen
+         *-added text to remap screen for the different actions, but not keys
+         *4/3/2024
+         *-added text for keys to remap screen, added confirm remap screen. Removed arrow when at confirm screen. Need to figure out way to pass action and key to remap
          *
          *
          *

@@ -31,5 +31,6 @@ namespace SpooninDrawer.States.Splash
         public class SetResolution1080 : SplashInputCommand { }
         public class SetResolution720 : SplashInputCommand { }
         public class RemapControlSelect : SplashInputCommand { }
+        public class RemapControlConfirm : SplashInputCommand { }
     }
 }

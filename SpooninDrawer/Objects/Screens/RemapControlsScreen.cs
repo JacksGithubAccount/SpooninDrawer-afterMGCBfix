@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SpooninDrawer.Content;
+using SpooninDrawer.Engine.Input;
 using SpooninDrawer.Engine.Objects;
 using SpooninDrawer.Objects.Text;
 using System;
@@ -15,8 +16,8 @@ namespace SpooninDrawer.Objects.Screens
     {
         enum titleCommands
         {
-            ExitSelect,
-            BackSelect
+            RemapSelectConfirm,
+            BackSelect = 8
         }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
@@ -26,12 +27,15 @@ namespace SpooninDrawer.Objects.Screens
         public Vector2 Position { get; set; }
         public BaseTextObject[,] ScreenText { get; }
 
-        public RemapControlsScreen(SpriteFont font, Vector2 positionOffset)
+        private InputDetector inputDetector;
+
+        public RemapControlsScreen(SpriteFont font, Vector2 positionOffset, InputDetector inputDetector)
         {
+            this.inputDetector = inputDetector;
             Position = new Vector2(0, 0);
             screenTexture = "Menu/RemapControlsScreen";
-            menuLocationArrayX = new int[1] { 15 };
-            menuLocationArrayY = new int[8] { 50, 100,150, 200,250,300,350,400 };
+            menuLocationArrayX = new int[2] { 15, 125 };
+            menuLocationArrayY = new int[9] { 50, 100, 150, 200, 250, 300, 350, 400, 450 };
             menuNavigatorXCap = menuLocationArrayX.Length - 1;
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
             ScreenText = new BaseTextObject[menuLocationArrayX.Length, menuLocationArrayY.Length];
@@ -43,7 +47,16 @@ namespace SpooninDrawer.Objects.Screens
             ScreenText[0, 5] = new SettingsText(font, RStrings.ControlRight);
             ScreenText[0, 6] = new SettingsText(font, RStrings.ControlOpenMenu);
             ScreenText[0, 7] = new SettingsText(font, RStrings.ControlPause);
+            ScreenText[0, 8] = new SettingsText(font, RStrings.SettingsBack);
 
+            ScreenText[1, 0] = new SettingsText(font, inputDetector.getKeyforAction(Actions.Confirm).ToString());
+            ScreenText[1, 1] = new SettingsText(font, inputDetector.getKeyforAction(Actions.Cancel).ToString());
+            ScreenText[1, 2] = new SettingsText(font, inputDetector.getKeyforAction(Actions.MoveUp).ToString());
+            ScreenText[1, 3] = new SettingsText(font, inputDetector.getKeyforAction(Actions.MoveDown).ToString());
+            ScreenText[1, 4] = new SettingsText(font, inputDetector.getKeyforAction(Actions.MoveLeft).ToString());
+            ScreenText[1, 5] = new SettingsText(font, inputDetector.getKeyforAction(Actions.MoveRight).ToString());
+            ScreenText[1, 6] = new SettingsText(font, inputDetector.getKeyforAction(Actions.OpenMenu).ToString());
+            ScreenText[1, 7] = new SettingsText(font, inputDetector.getKeyforAction(Actions.Pause).ToString());
             int i = 0;
             int j = 0;
             foreach (SettingsText settingText in ScreenText)
@@ -63,9 +76,13 @@ namespace SpooninDrawer.Objects.Screens
                 i++;
             }
         }
-            public string GetMenuCommand(int x, int y)
+        public string GetMenuCommand(int x, int y)
         {
-            var holder = (titleCommands)x;
+            if (y < menuLocationArrayY.Length - 1)
+            {
+                y = 0;
+            }
+            var holder = (titleCommands)y;
             return holder.ToString();
         }
     }

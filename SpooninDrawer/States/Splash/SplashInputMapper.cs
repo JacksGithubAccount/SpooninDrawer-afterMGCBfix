@@ -80,6 +80,9 @@ namespace SpooninDrawer.States.Splash
                     case "Controls":
                         commands.Add(new RemapControlSelect());
                         break;
+                    case "RemapSelectConfirm":
+                        commands.Add(new RemapControlConfirm());
+                        break;
                 }
             }
             if (state.IsKeyDown(Keys.T) && HasBeenPressed(Keys.T))
