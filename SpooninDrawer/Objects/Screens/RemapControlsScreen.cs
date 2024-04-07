@@ -17,7 +17,14 @@ namespace SpooninDrawer.Objects.Screens
         enum titleCommands
         {
             RemapSelectConfirm,
-            BackSelect = 8
+            RemapSelectCancel,
+            RemapSelectUp,
+            RemapSelectDown,
+            RemapSelectLeft,
+            RemapSelectRight,
+            RemapSelectOpenMenu,
+            RemapSelectPause,
+            BackSelect
         }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }

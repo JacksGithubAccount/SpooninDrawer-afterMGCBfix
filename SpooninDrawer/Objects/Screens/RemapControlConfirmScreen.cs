@@ -16,7 +16,7 @@ namespace SpooninDrawer.Objects.Screens
     {
         enum titleCommands
         {
-
+            RemapControlButtonPressed
         }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }

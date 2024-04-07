@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static SpooninDrawer.States.Splash.SplashInputCommand;
+using static System.Collections.Specialized.BitVector32;
 
 namespace SpooninDrawer.States.Splash
 {
@@ -15,22 +16,21 @@ namespace SpooninDrawer.States.Splash
     {
 
         SplashState splashState;
-        public SplashInputMapper(SplashState currentSplashState)
-        {
-            splashState = currentSplashState;
-            inputDetector = new InputDetector();
-        }
+        private bool RemapChecker;
+        private Actions RemapActionHolder;
+        public SplashInputMapper(SplashState currentSplashState) : this(currentSplashState, new InputDetector()) { }
         public SplashInputMapper(SplashState currentSplashState, InputDetector inputDetector)
         {
             splashState = currentSplashState;
             this.inputDetector = inputDetector;
+            RemapChecker = false;
         }
         public override IEnumerable<BaseInputCommand> GetKeyboardState(KeyboardState state)
         {
             previousKeyboardState = currentKeyboardState;
             inputDetector.update(previousKeyboardState);
             currentKeyboardState = state;
-            var commands = new List<SplashInputCommand>();
+            var commands = new List<SplashInputCommand>();            
 
 
             if (inputDetector.IsActioninputtedbyType(Actions.Confirm, InputType.Release))
@@ -80,10 +80,55 @@ namespace SpooninDrawer.States.Splash
                     case "Controls":
                         commands.Add(new RemapControlSelect());
                         break;
+                    //cases to handle remapping controls
                     case "RemapSelectConfirm":
                         commands.Add(new RemapControlConfirm());
+                        RemapChecker = true;
+                        RemapActionHolder = Actions.Confirm;
+                        break;
+                    case "RemapSelectCancel":
+                        commands.Add(new RemapControlConfirm());
+                        RemapChecker = true;
+                        RemapActionHolder = Actions.Cancel;
+                        break;
+                    case "RemapSelectUp":
+                        commands.Add(new RemapControlConfirm());
+                        RemapChecker = true;
+                        RemapActionHolder = Actions.MoveUp;
+                        break;
+                    case "RemapSelectDown":
+                        commands.Add(new RemapControlConfirm());
+                        RemapChecker = true;
+                        RemapActionHolder = Actions.MoveDown;
+                        break;
+                    case "RemapSelectLeft":
+                        commands.Add(new RemapControlConfirm());
+                        RemapChecker = true;
+                        RemapActionHolder = Actions.MoveLeft;
+                        break;
+                    case "RemapSelectRight":
+                        commands.Add(new RemapControlConfirm());
+                        RemapChecker = true;
+                        RemapActionHolder = Actions.MoveRight;
+                        break;
+                    case "RemapSelectOpenMenu":
+                        commands.Add(new RemapControlConfirm());
+                        RemapChecker = true;
+                        RemapActionHolder = Actions.OpenMenu;
+                        break;
+                    case "RemapSelectPause":
+                        commands.Add(new RemapControlConfirm());
+                        RemapChecker = true;
+                        RemapActionHolder = Actions.Pause;
                         break;
                 }
+            }
+            if (RemapChecker && currentKeyboardState.GetPressedKeyCount() != 0)
+            {
+                Keys inputKey = currentKeyboardState.GetPressedKeys()[0];
+                inputDetector.Remap(inputKey, RemapActionHolder);
+                commands.Add(new BackSelect());
+                RemapChecker = false;                
             }
             if (state.IsKeyDown(Keys.T) && HasBeenPressed(Keys.T))
             {
@@ -127,6 +172,10 @@ namespace SpooninDrawer.States.Splash
         private bool HasBeenPressed(Keys key)
         {
             return currentKeyboardState.IsKeyDown(key) && !previousKeyboardState.IsKeyDown(key);
+        }
+        public void ResetRemaps()
+        {
+            inputDetector.resetKeystoDefault();
         }
     }
 }

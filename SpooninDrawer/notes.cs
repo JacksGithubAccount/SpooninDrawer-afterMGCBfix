@@ -217,7 +217,8 @@ namespace SpooninDrawer
          *-added text to remap screen for the different actions, but not keys
          *4/3/2024
          *-added text for keys to remap screen, added confirm remap screen. Removed arrow when at confirm screen. Need to figure out way to pass action and key to remap
-         *
+         *4/6/2024
+         *-added code to handle remapping, but running into issue where remapping happens on press, but once you release, it'll restart the cycle.
          *
          *
          */
