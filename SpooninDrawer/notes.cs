@@ -219,6 +219,12 @@ namespace SpooninDrawer
          *-added text for keys to remap screen, added confirm remap screen. Removed arrow when at confirm screen. Need to figure out way to pass action and key to remap
          *4/6/2024
          *-added code to handle remapping, but running into issue where remapping happens on press, but once you release, it'll restart the cycle.
+         *4/7/2024
+         *-added a done screen, it disappears on release, but it stops the loop. The string doesn't update though. Fixed by reloading the remap screen
+         *-remap only changes confirm action. Fixed issue by removing some old code that wasn't cleaned up. The loop fix isn't going to fly though since remapping for other buttons doesn't have this issue
+         *-Fixed loop issue by using a bool to control confirm button presses with screen changes. Next is 1080p screens?
+         *-
+         *4/8/2024
          *
          *
          */

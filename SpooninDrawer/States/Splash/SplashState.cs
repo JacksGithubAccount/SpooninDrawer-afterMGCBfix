@@ -169,43 +169,47 @@ namespace SpooninDrawer.States.Splash
 
             InputManager.GetCommands(cmd =>
             {
-                if (cmd is SplashInputCommand.SetFullScreen)
-                {
-                    _graphics.IsFullScreen = true;
-                    _graphics.HardwareModeSwitch = true;
-                    _graphics.ApplyChanges();
-                }
-                if (cmd is SplashInputCommand.SetWindowScreen)
-                {
-                    _graphics.IsFullScreen = false;
-                    _graphics.ApplyChanges();
-                }
-                if (cmd is SplashInputCommand.SetBorderlessScreen)
-                {
-                    _graphics.IsFullScreen = true;
-                    _graphics.HardwareModeSwitch = false;
-                    _graphics.ApplyChanges();
-                }
-                if (cmd is SplashInputCommand.SetResolution1080)
-                {
-                    _graphics.PreferredBackBufferWidth = 1920;
-                    _graphics.PreferredBackBufferHeight = 1080;
-                    _graphics.ApplyChanges();
-                }
-                if (cmd is SplashInputCommand.SetResolution720)
-                {
-                    _graphics.PreferredBackBufferWidth = 1280;
-                    _graphics.PreferredBackBufferHeight = 720;
-                    _graphics.ApplyChanges();
-                }
-                if (cmd is SplashInputCommand.RemapControlSelect)
-                {
-                    ChangeScreen(new RemapControlsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), InputManager.GetInputDetector()));
-                }
-                if (cmd is SplashInputCommand.RemapControlConfirm)
-                {
-                    ChangeScreen(new RemapControlConfirmScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
+            if (cmd is SplashInputCommand.SetFullScreen)
+            {
+                _graphics.IsFullScreen = true;
+                _graphics.HardwareModeSwitch = true;
+                _graphics.ApplyChanges();
+            }
+            if (cmd is SplashInputCommand.SetWindowScreen)
+            {
+                _graphics.IsFullScreen = false;
+                _graphics.ApplyChanges();
+            }
+            if (cmd is SplashInputCommand.SetBorderlessScreen)
+            {
+                _graphics.IsFullScreen = true;
+                _graphics.HardwareModeSwitch = false;
+                _graphics.ApplyChanges();
+            }
+            if (cmd is SplashInputCommand.SetResolution1080)
+            {
+                _graphics.PreferredBackBufferWidth = 1920;
+                _graphics.PreferredBackBufferHeight = 1080;
+                _graphics.ApplyChanges();
+            }
+            if (cmd is SplashInputCommand.SetResolution720)
+            {
+                _graphics.PreferredBackBufferWidth = 1280;
+                _graphics.PreferredBackBufferHeight = 720;
+                _graphics.ApplyChanges();
+            }
+            if (cmd is SplashInputCommand.RemapControlSelect)
+            {
+                ChangeScreen(new RemapControlsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), InputManager.GetInputDetector()));
+            }
+            if (cmd is SplashInputCommand.RemapControlConfirm)
+            {
+                ChangeScreen(new RemapControlConfirmScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
 
+            }
+            if (cmd is SplashInputCommand.RemapControlDone)
+            {
+                ChangeScreen(new RemapControlDoneScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
                 }
                 if (cmd is SplashInputCommand.TestMenuButton)
                 {

@@ -196,6 +196,15 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remap change confirmed.
+        /// </summary>
+        internal static string SettingsRemapDone {
+            get {
+                return ResourceManager.GetString("SettingsRemapDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Resolution.
         /// </summary>
         internal static string SettingsResolution {

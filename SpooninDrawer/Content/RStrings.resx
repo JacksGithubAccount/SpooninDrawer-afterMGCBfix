@@ -162,6 +162,9 @@
   <data name="SettingsRemapConfirm" xml:space="preserve">
     <value>Please Enter Key for </value>
   </data>
+  <data name="SettingsRemapDone" xml:space="preserve">
+    <value>Remap change confirmed</value>
+  </data>
   <data name="SettingsResolution" xml:space="preserve">
     <value>Resolution</value>
   </data>

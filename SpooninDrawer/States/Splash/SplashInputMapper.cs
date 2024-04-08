@@ -18,6 +18,8 @@ namespace SpooninDrawer.States.Splash
         SplashState splashState;
         private bool RemapChecker;
         private Actions RemapActionHolder;
+        //used to stop the screen from activating the selected option when Z/enter is pressed and changing screens
+        private bool screenTransition = false;
         public SplashInputMapper(SplashState currentSplashState) : this(currentSplashState, new InputDetector()) { }
         public SplashInputMapper(SplashState currentSplashState, InputDetector inputDetector)
         {
@@ -33,9 +35,10 @@ namespace SpooninDrawer.States.Splash
             var commands = new List<SplashInputCommand>();            
 
 
-            if (inputDetector.IsActioninputtedbyType(Actions.Confirm, InputType.Release))
+            if (inputDetector.IsActioninputtedbyType(Actions.Confirm, InputType.Release) && !screenTransition)
             {
                 string commandState = splashState.GetCommandState();
+                screenTransition = true;
                 switch (commandState)
                 {
                     case "GameSelect":
@@ -123,12 +126,18 @@ namespace SpooninDrawer.States.Splash
                         break;
                 }
             }
-            if (RemapChecker && currentKeyboardState.GetPressedKeyCount() != 0)
+            if (RemapChecker && currentKeyboardState.GetPressedKeyCount() == 0 && previousKeyboardState.GetPressedKeyCount() !=0 && !screenTransition)
             {
-                Keys inputKey = currentKeyboardState.GetPressedKeys()[0];
+                screenTransition = true;
+                Keys inputKey = previousKeyboardState.GetPressedKeys()[0];
                 inputDetector.Remap(inputKey, RemapActionHolder);
+                //reloads remap controls screen to update the new keybinds
                 commands.Add(new BackSelect());
-                RemapChecker = false;                
+                commands.Add(new BackSelect());
+                commands.Add(new RemapControlSelect());
+                commands.Add(new RemapControlDone());
+                RemapChecker = false;
+                
             }
             if (state.IsKeyDown(Keys.T) && HasBeenPressed(Keys.T))
             {
@@ -157,6 +166,10 @@ namespace SpooninDrawer.States.Splash
             if (inputDetector.IsActioninputtedbyType(Actions.MoveRight, InputType.Press))
             {
                 commands.Add(new MenuMoveRight());
+            }
+            if(currentKeyboardState.GetPressedKeyCount() == 0 && previousKeyboardState.GetPressedKeyCount() ==0)
+            {
+                screenTransition = false;
             }
             return commands;
         }

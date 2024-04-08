@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Screens
 {
-    public class RemapControlConfirmScreen : BaseScreen
+    public class RemapControlDoneScreen : BaseScreen
     {
         enum titleCommands
         {
-            RemapControlButtonPressed
+            BackSelect
         }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
@@ -29,18 +29,18 @@ namespace SpooninDrawer.Objects.Screens
         private InputDetector inputDetector;
         private Vector2 textLocation;
 
-        public RemapControlConfirmScreen(SpriteFont font, Vector2 position, InputDetector inputDetector)
+        public RemapControlDoneScreen(SpriteFont font, Vector2 position, InputDetector inputDetector)
         {
             this.inputDetector = inputDetector;
             Position = new Vector2(position.X / 3, position.Y / 3);
             screenTexture = "Menu/RemapControlConfirm";
             menuLocationArrayX = new int[0] { };
             menuLocationArrayY = new int[0] { };
-            textLocation = new Vector2(position.X /3, position.Y/3);
+            textLocation = new Vector2(position.X / 3, position.Y / 3);
             menuNavigatorXCap = menuLocationArrayX.Length - 1;
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
             ScreenText = new BaseTextObject[1, 1];
-            ScreenText[0, 0] = new SettingsText(font, RStrings.SettingsRemapConfirm);
+            ScreenText[0, 0] = new SettingsText(font, RStrings.SettingsRemapDone);
             ScreenText[0, 0].Position = position;
 
 
