@@ -21,17 +21,16 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
-
         public EmptyScreen()
         {
-            Position = new Vector2(0,0);
+            Position = new Vector2(0, 0);
             screenTexture = "Menu/EmptyScreen";
             menuLocationArrayX = new int[1] { 0 };
             menuLocationArrayY = new int[1] { 0 };
             menuNavigatorXCap = 0;
             menuNavigatorYCap = 0;
-            ScreenText = new BaseTextObject[0,1];
-            ScreenText[0,0].Text = "";
+            ScreenText = new BaseTextObject[0, 1];
+            ScreenText[0, 0].Text = "";
         }
         public string GetMenuCommand(int x, int y)
         {

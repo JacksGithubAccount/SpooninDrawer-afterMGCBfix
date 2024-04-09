@@ -41,12 +41,23 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
-        public SettingsScreen(SpriteFont font, Vector2 positionOffset)
+        public Resolution DisplayResolution;
+        public SettingsScreen(SpriteFont font, Vector2 positionOffset, Resolution resolution)
         {
+            DisplayResolution = resolution;
             Position = new Vector2(0, 0);
-            screenTexture = "Menu/SettingsScreen";
-            menuLocationArrayX = new int[4] { 100, 300, 500, 700};
-            menuLocationArrayY = new int[5] { 250, 300, 350, 400, 450 };
+            if (DisplayResolution == Resolution.x1080)
+            {
+                screenTexture = "Menu/SettingsScreen1080";
+                menuLocationArrayX = new int[4] { 100, 300, 500, 700 };
+                menuLocationArrayY = new int[5] { 250, 300, 350, 400, 450 };
+            }
+            else if (DisplayResolution == Resolution.x720)
+            {
+                screenTexture = "Menu/SettingsScreen720";
+                menuLocationArrayX = new int[4] { 100, 300, 500, 700 };
+                menuLocationArrayY = new int[5] { 250, 300, 350, 400, 450 };
+            }
             menuNavigatorXCap = menuLocationArrayX.Length - 1;
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
             ScreenText = new BaseTextObject[menuLocationArrayX.Length, menuLocationArrayY.Length];

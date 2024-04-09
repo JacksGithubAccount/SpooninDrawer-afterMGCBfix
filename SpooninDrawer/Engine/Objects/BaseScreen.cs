@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Engine.Objects
 {
+    public enum Resolution
+    {
+        x1080,
+        x720
+    }
     public interface BaseScreen
     {
         string screenTexture { get; }

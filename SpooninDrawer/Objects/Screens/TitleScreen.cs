@@ -29,20 +29,30 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
+        public Resolution DisplayResolution { get; }
 
-        //menuLocationArray = new int[] { {445, 310}, {445,410 },{445, 490},{445, 590} };
 
-
-        public TitleScreen()
+        public TitleScreen(Resolution resolution)
         {
+            DisplayResolution = resolution;
             Position = new Vector2(0, 0);
-            screenTexture = "Menu/TitleScreen";
-            menuLocationArrayX = new int[4] { 445, 445, 445, 445 };
-            menuLocationArrayY = new int[4] { 310, 410, 490, 590 };
-            menuNavigatorXCap = 0;
-            menuNavigatorYCap = 3;            
+            
+            if (DisplayResolution == Resolution.x1080)
+            {
+                screenTexture = "Menu/TitleScreen1080";
+                menuLocationArrayX = new int[1] { 750 };
+                menuLocationArrayY = new int[4] { 480, 580, 660, 760 };
+            }
+            else if(DisplayResolution == Resolution.x720)
+            {
+                screenTexture = "Menu/TitleScreen720";
+                menuLocationArrayX = new int[1] { 445 };
+                menuLocationArrayY = new int[4] { 310, 410, 490, 590 };
+            }
+            menuNavigatorXCap = menuLocationArrayX.Length - 1;
+            menuNavigatorYCap = menuLocationArrayY.Length - 1; ;            
         }
-        public TitleScreen(SpriteFont font) : this()
+        public TitleScreen(SpriteFont font, Resolution resolution) : this(resolution)
         {
             ScreenText = new TestText[0,1];
             ScreenText[0,0] = new TestText(font);

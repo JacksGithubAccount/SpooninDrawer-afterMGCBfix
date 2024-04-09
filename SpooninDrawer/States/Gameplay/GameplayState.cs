@@ -94,7 +94,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         private BaseGameState menuGameState;
         public bool menuActivate = false;
-
+        
+        public GameplayState(Resolution resolution)
+        {
+            _displayResolution = resolution;
+        }
         public override void LoadContent(ContentManager content)
         {
             if (paused) { paused = false; }
@@ -134,7 +138,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             {
                 AddGameObject(_statsText);
             }
-            menuGameState = new SplashState(new MenuScreen(), this);
+            menuGameState = new SplashState(new MenuScreen(_displayResolution), this, _displayResolution);
             menuGameState.Initialize(content, _window, _graphicsDevice, _graphics);
             menuGameState.LoadContent(content);
 
@@ -304,7 +308,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         {
             paused = false;
             menuActivate = false;
-            SwitchState(new SplashState());
+            SwitchState(new SplashState(_displayResolution));
         }
 
         private List<T> CleanObjects<T>(List<T> objectList) where T : BaseGameObject

@@ -17,6 +17,7 @@ using MonoGame.Extended.Tiled;
 using SpooninDrawer.Engine.Objects.Animations;
 using MonoGame.Extended.Tiled.Renderers;
 using System.Reflection.Metadata;
+using System.IO.Pipes;
 
 namespace SpooninDrawer.Engine.States
 {
@@ -33,6 +34,7 @@ namespace SpooninDrawer.Engine.States
         protected int _viewportWidth;
         protected SoundManager _soundManager = new SoundManager();
         protected GraphicsDeviceManager _graphics;
+        protected Resolution _displayResolution;
 
         private const string BlankTexture = "Menu/Blank";
         public Texture2D blankTexture;
@@ -75,6 +77,10 @@ namespace SpooninDrawer.Engine.States
         public void UnloadContent()
         {
             _contentManager.Unload();
+        }
+        public void SetResolution(Resolution resolution)
+        {
+            _displayResolution = resolution;
         }
         protected TiledMap LoadTiledMap(string tiledMapName)
         {
