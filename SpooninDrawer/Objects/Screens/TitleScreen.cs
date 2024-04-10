@@ -29,8 +29,7 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
-        public Resolution DisplayResolution { get; }
-
+        private Resolution DisplayResolution;
 
         public TitleScreen(Resolution resolution)
         {
@@ -56,6 +55,11 @@ namespace SpooninDrawer.Objects.Screens
         {
             ScreenText = new TestText[0,1];
             ScreenText[0,0] = new TestText(font);
+        }
+        public BaseScreen Initialize(Resolution resolution)
+        {
+            DisplayResolution = resolution;
+            return new TitleScreen(resolution);
         }
 
         public string GetMenuCommand(int x, int y)

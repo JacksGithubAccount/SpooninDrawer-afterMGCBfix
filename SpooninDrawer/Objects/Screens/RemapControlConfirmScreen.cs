@@ -28,11 +28,13 @@ namespace SpooninDrawer.Objects.Screens
 
         private InputDetector inputDetector;
         private Vector2 textLocation;
+        private SpriteFont spriteFont;
 
         public RemapControlConfirmScreen(SpriteFont font, Vector2 position, InputDetector inputDetector)
         {
+            spriteFont = font;
             this.inputDetector = inputDetector;
-            Position = new Vector2(position.X / 3, position.Y / 3);
+            Position = position;
             screenTexture = "Menu/RemapControlConfirm";
             menuLocationArrayX = new int[0] { };
             menuLocationArrayY = new int[0] { };
@@ -47,6 +49,14 @@ namespace SpooninDrawer.Objects.Screens
             ScreenText[0, 0].Position = textLocation;
             ScreenText[0, 0].zIndex = 3;
 
+        }
+        public BaseScreen Initialize()
+        {
+            return new RemapControlConfirmScreen(spriteFont, Position, inputDetector);
+        }
+        public BaseScreen Initialize(Resolution resolution)
+        {
+            return new RemapControlConfirmScreen(spriteFont, Position, inputDetector);
         }
         public string GetMenuCommand(int x, int y)
         {

@@ -21,6 +21,7 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
+        public Resolution DisplayTexture;
         public EmptyScreen()
         {
             Position = new Vector2(0, 0);
@@ -31,6 +32,14 @@ namespace SpooninDrawer.Objects.Screens
             menuNavigatorYCap = 0;
             ScreenText = new BaseTextObject[0, 1];
             ScreenText[0, 0].Text = "";
+        }
+        public BaseScreen Initialize()
+        {
+            return new EmptyScreen();
+        }
+        public BaseScreen Initialize(Resolution resolution)
+        {
+            return new EmptyScreen();
         }
         public string GetMenuCommand(int x, int y)
         {

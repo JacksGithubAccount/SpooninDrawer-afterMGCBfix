@@ -129,7 +129,7 @@ namespace SpooninDrawer.States.Splash
             }
             for (int i = 0; i <= LoadStack.Count; i++)
             {
-                ChangeScreen(LoadStack.Pop());
+                ChangeScreen(LoadStack.Pop().Initialize(_displayResolution));
             }
         }
         private void SetScreenPoints(BaseScreen screen)
@@ -221,7 +221,7 @@ namespace SpooninDrawer.States.Splash
                 }
                 if (cmd is SplashInputCommand.RemapControlSelect)
                 {
-                    ChangeScreen(new RemapControlsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), InputManager.GetInputDetector()));
+                    ChangeScreen(new RemapControlsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), InputManager.GetInputDetector(), _displayResolution));
                 }
                 if (cmd is SplashInputCommand.RemapControlConfirm)
                 {

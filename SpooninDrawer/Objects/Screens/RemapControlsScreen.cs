@@ -35,14 +35,25 @@ namespace SpooninDrawer.Objects.Screens
         public BaseTextObject[,] ScreenText { get; }
 
         private InputDetector inputDetector;
-
-        public RemapControlsScreen(SpriteFont font, Vector2 positionOffset, InputDetector inputDetector)
+        private Resolution displayResolution;
+        private Vector2 positionOffset;
+        private SpriteFont spriteFont;
+        public RemapControlsScreen(SpriteFont font, Vector2 positionOffset, InputDetector inputDetector, Resolution resolution)
         {
+            displayResolution = resolution;
             this.inputDetector = inputDetector;
             Position = new Vector2(0, 0);
-            screenTexture = "Menu/RemapControlsScreen";
+            if(displayResolution == Resolution.x1080)
+            {
+                screenTexture = "Menu/RemapControlsScreen1080";
+            }
+            else if(displayResolution==Resolution.x720) 
+            {
+                screenTexture = "Menu/RemapControlsScreen720";
+            }
+            
             menuLocationArrayX = new int[2] { 15, 125 };
-            menuLocationArrayY = new int[9] { 50, 100, 150, 200, 250, 300, 350, 400, 450 };
+            menuLocationArrayY = new int[9] { 150, 200, 250, 300, 350, 400, 450, 500, 550 };
             menuNavigatorXCap = menuLocationArrayX.Length - 1;
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
             ScreenText = new BaseTextObject[menuLocationArrayX.Length, menuLocationArrayY.Length];
@@ -82,6 +93,11 @@ namespace SpooninDrawer.Objects.Screens
                 settingText.zIndex = 3;
                 i++;
             }
+        }
+        public BaseScreen Initialize(Resolution resolution)
+        {
+            displayResolution = resolution;
+            return new RemapControlsScreen(spriteFont, positionOffset, inputDetector, resolution);
         }
         public string GetMenuCommand(int x, int y)
         {

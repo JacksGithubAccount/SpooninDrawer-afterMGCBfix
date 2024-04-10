@@ -112,7 +112,7 @@
 /processorParam:TextureFormat=Color
 /build:Menu/RemapControlConfirm.png
 
-#begin Menu/RemapControlsScreen.png
+#begin Menu/RemapControlsScreen1080.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -122,7 +122,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Menu/RemapControlsScreen.png
+/build:Menu/RemapControlsScreen1080.png
+
+#begin Menu/RemapControlsScreen720.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Menu/RemapControlsScreen720.png
 
 #begin Menu/ReturnToTitleScreen.png
 /importer:TextureImporter

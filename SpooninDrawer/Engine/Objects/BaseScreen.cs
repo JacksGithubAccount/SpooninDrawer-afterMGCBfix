@@ -24,6 +24,7 @@ namespace SpooninDrawer.Engine.Objects
         Vector2 Position { get; }
         BaseTextObject[,] ScreenText { get; }
 
+        BaseScreen Initialize(Resolution resolution) { return this; }
         //used for getting command for SplashInputMapper to know what context the enter button is doing
         string GetMenuCommand(int x, int y) { return ""; }
 

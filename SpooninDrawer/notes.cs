@@ -226,6 +226,10 @@ namespace SpooninDrawer
          *4/8/2024
          *-Added screens for menu, title, and settings for 1080. Ran into issue where changing resolution doesn't change resolution until splash screen exits.
          *-turns out, the resolution is done at constructor of the screen. Need to figure out around that.
+         *4/9/2024
+         *-solved by adding a, initialize method for each screen that returns a new screen based on the screen the initialize method is in
+         *-
+         *
          */
     }
 }

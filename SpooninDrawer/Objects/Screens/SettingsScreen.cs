@@ -41,9 +41,13 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
-        public Resolution DisplayResolution;
+        private Resolution DisplayResolution;
+        private Vector2 positionOffset;
+        private SpriteFont spriteFont;
         public SettingsScreen(SpriteFont font, Vector2 positionOffset, Resolution resolution)
         {
+            spriteFont = font;
+            this.positionOffset = positionOffset;
             DisplayResolution = resolution;
             Position = new Vector2(0, 0);
             if (DisplayResolution == Resolution.x1080)
@@ -93,6 +97,11 @@ namespace SpooninDrawer.Objects.Screens
                 settingText.zIndex = 3;
                 i++;
             }
+        }
+        public BaseScreen Initialize(Resolution resolution)
+        {
+            DisplayResolution = resolution;
+            return new SettingsScreen(spriteFont, positionOffset, resolution);
         }
         public string GetMenuCommand(int x, int y)
         {

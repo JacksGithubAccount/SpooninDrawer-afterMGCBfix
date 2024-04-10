@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SpooninDrawer.Engine.Objects;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
-        public Resolution DisplayResolution { get; }
+        private Resolution DisplayResolution;
         public MenuScreen(Resolution resolution)
         {
             DisplayResolution = resolution;
@@ -42,6 +43,11 @@ namespace SpooninDrawer.Objects.Screens
             }
             menuNavigatorXCap = menuLocationArrayX.Length - 1;
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
+        }
+        public BaseScreen Initialize(Resolution resolution)
+        {
+            DisplayResolution = resolution;
+            return new MenuScreen(resolution);
         }
         public string GetMenuCommand(int x, int y)
         {
