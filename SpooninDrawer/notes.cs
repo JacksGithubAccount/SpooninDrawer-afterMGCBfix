@@ -228,6 +228,9 @@ namespace SpooninDrawer
          *-turns out, the resolution is done at constructor of the screen. Need to figure out around that.
          *4/9/2024
          *-solved by adding a, initialize method for each screen that returns a new screen based on the screen the initialize method is in
+         *4/10/2024
+         *-switching to 720 in title, then changing to 1080 in game, then going back to title causes to stay in 720 screens
+         *-Fixed by passing resolution to method that returns to title screen
          *-
          *
          */

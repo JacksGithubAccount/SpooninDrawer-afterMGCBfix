@@ -304,8 +304,9 @@ namespace SpooninDrawer.Engine.States.Gameplay
             _gameOver = true;
         }
 
-        public void returnToTitle()
+        public void returnToTitle(Resolution resolution)
         {
+            _displayResolution = resolution;
             paused = false;
             menuActivate = false;
             SwitchState(new SplashState(_displayResolution));

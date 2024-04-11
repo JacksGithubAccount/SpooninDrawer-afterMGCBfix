@@ -272,7 +272,7 @@ namespace SpooninDrawer.States.Splash
                 {
                     NotifyEvent(new BaseGameStateEvent.GameQuit());
                     GameplayState gameState = (GameplayState)StoredState;
-                    gameState?.returnToTitle();
+                    gameState?.returnToTitle(_displayResolution);
                 }
                 if (cmd is SplashInputCommand.ResumeSelect)
                 {
