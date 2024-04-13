@@ -231,7 +231,8 @@ namespace SpooninDrawer
          *4/10/2024
          *-switching to 720 in title, then changing to 1080 in game, then going back to title causes to stay in 720 screens
          *-Fixed by passing resolution to method that returns to title screen
-         *-
+         *-4/12/2024
+         *-issue with borderless, it needs to strech to fit screen size
          *
          */
     }
