@@ -233,6 +233,9 @@ namespace SpooninDrawer
          *-Fixed by passing resolution to method that returns to title screen
          *-4/12/2024
          *-issue with borderless, it needs to strech to fit screen size
+         *4/13/2024
+         *-_renderTarget in main game handles this, but passing this might not be right call.
+         *-maybe better to set resolution on fullscreen/borderless to screen resolution that fits the screen
          *
          */
     }
