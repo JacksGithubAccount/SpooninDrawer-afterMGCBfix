@@ -48,11 +48,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private const string TextFont = "Fonts/Lives";
         private const string GameOverFont = "Fonts/GameOver";
 
-        //private const string BulletSound = "Sounds/bulletSound";
+        private const string BulletSound = "Sounds/bullet";
         //private const string MissileSound = "Sounds/missileSound";
 
-        //private const string Soundtrack1 = "Music/FutureAmbient_1";
-        //private const string Soundtrack2 = "Music/FutureAmbient_2";
+        private const string Soundtrack1 = "Music/FutureAmbient_1";
+        private const string Soundtrack2 = "Music/FutureAmbient_2";
 
         private const int StartingPlayerLives = 3;
         private int _playerLives = StartingPlayerLives;
@@ -124,10 +124,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var turnRightAnimation = LoadAnimation(PlayerAnimationTurnRight);
             var idelAnimation = LoadAnimation(PlayerAnimationIdle);
             _playerSprite = new PlayerSprite(LoadTexture(PlayerFighter), turnLeftAnimation, turnRightAnimation, idelAnimation);
-            _playerSprite.blank = blankTexture;
-            // load sound effects and register in the sound manager
-            //var bulletSound = LoadSound(BulletSound);
-            //var missileSound = LoadSound(MissileSound);
+            _playerSprite.blank = blankTexture;            
 
             var viewportAdapter = new DefaultViewportAdapter(_graphicsDevice);
             _camera = new OrthographicCamera(viewportAdapter);
@@ -142,10 +139,15 @@ namespace SpooninDrawer.Engine.States.Gameplay
             menuGameState.Initialize(content, _window, _graphicsDevice, _graphics);
             menuGameState.LoadContent(content);
 
+            // load sound effects and register in the sound manager
+            var bulletSound = LoadSound(BulletSound);
+            //var missileSound = LoadSound(MissileSound);
+            _soundManager.RegisterSound(new GameplayEvents.PlayerTest(), bulletSound);
+
             // load soundtracks into sound manager
-            //var track1 = LoadSound(Soundtrack1).CreateInstance();
-            //var track2 = LoadSound(Soundtrack2).CreateInstance();
-            //_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
+            var track1 = LoadSound(Soundtrack1).CreateInstance();
+            var track2 = LoadSound(Soundtrack2).CreateInstance();
+            _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
 
             ResetGame();
         }
@@ -201,6 +203,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 if (cmd is GameplayInputCommand.PlayerAction && !_playerDead)
                 {
                     //mc action
+                    NotifyEvent(new GameplayEvents.PlayerTest());
+                    _soundManager.ChangeBGMVolume(0.2f);
                 }
             });
         }

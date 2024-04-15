@@ -236,6 +236,9 @@ namespace SpooninDrawer
          *4/13/2024
          *-_renderTarget in main game handles this, but passing this might not be right call.
          *-maybe better to set resolution on fullscreen/borderless to screen resolution that fits the screen
+         *4/14/2024
+         *-added check for resolution that applies on borderless. Is hardcheck, but it'll do for the scope of this project
+         *-added SE and BGM, added asset for volume bar
          *
          */
     }

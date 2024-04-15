@@ -13,13 +13,18 @@ namespace SpooninDrawer.Engine.Sound
         private int _soundtrackIndex = -1;
         private List<SoundEffectInstance> _soundtracks = new List<SoundEffectInstance>();
         private Dictionary<Type, SoundBankItem> _soundBank = new Dictionary<Type, SoundBankItem>();
+        private float VolumeBGM;
+        private float VolumeSE;
 
         public void SetSoundtrack(List<SoundEffectInstance> tracks)
         {
             _soundtracks = tracks;
             _soundtrackIndex = _soundtracks.Count - 1;
         }
-
+        public void ChangeBGMVolume(float volume)
+        {
+            SoundEffect.MasterVolume = volume;
+        }
         public void OnNotify(BaseGameStateEvent gameEvent)
         {
             if (_soundBank.ContainsKey(gameEvent.GetType()))

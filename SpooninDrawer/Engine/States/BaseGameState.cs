@@ -34,6 +34,7 @@ namespace SpooninDrawer.Engine.States
         protected int _viewportWidth;
         protected SoundManager _soundManager = new SoundManager();
         protected GraphicsDeviceManager _graphics;
+        protected GraphicsAdapter _graphicsAdapter;
         protected Resolution _displayResolution;
 
         private const string BlankTexture = "Menu/Blank";
@@ -49,6 +50,7 @@ namespace SpooninDrawer.Engine.States
             _graphicsDevice = graphicsDevice;
             _viewportHeight = graphicsDevice.Viewport.Height;
             _viewportWidth = graphicsDevice.Viewport.Width;
+            
             _window = window;
             SetInputManager();
             blankTexture = contentManager.Load<Texture2D>(BlankTexture);

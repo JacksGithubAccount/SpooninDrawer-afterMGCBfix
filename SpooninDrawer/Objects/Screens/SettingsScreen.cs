@@ -44,12 +44,19 @@ namespace SpooninDrawer.Objects.Screens
         private Resolution DisplayResolution;
         private Vector2 positionOffset;
         private SpriteFont spriteFont;
+        public string volumeBar { get; }
+        public string volumeBarArrow { get; }
+        public string volumeBarFill { get; }
+        public float volume;
         public SettingsScreen(SpriteFont font, Vector2 positionOffset, Resolution resolution)
         {
             spriteFont = font;
             this.positionOffset = positionOffset;
             DisplayResolution = resolution;
             Position = new Vector2(0, 0);
+            volumeBar = "Menu/VolumeBar";
+            volumeBarArrow = "Menu/VolumeBarArrow";
+            volumeBarFill = "Menu/VolumeBarFill";
             if (DisplayResolution == Resolution.x1080)
             {
                 screenTexture = "Menu/SettingsScreen1080";
@@ -72,6 +79,7 @@ namespace SpooninDrawer.Objects.Screens
             ScreenText[0, 4] = new SettingsText(font, RStrings.SettingsBack);
             ScreenText[1, 0] = new SettingsText(font, RStrings.SettingsFullScreen);
             ScreenText[1, 1] = new SettingsText(font, RStrings.SettingsResolution1080);
+            ScreenText[1, 3] = new SettingsText(font, volume.ToString());
 
             ScreenText[2, 0] = new SettingsText(font, RStrings.SettingsWindowScreen);
             ScreenText[2, 1] = new SettingsText(font, RStrings.SettingsResolution720);

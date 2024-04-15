@@ -10,5 +10,6 @@ namespace SpooninDrawer.States.Gameplay
     public class GameplayEvents : BaseGameStateEvent
     {
         public class PlayerDies : GameplayEvents { }
+        public class PlayerTest : GameplayEvents { }
     }
 }

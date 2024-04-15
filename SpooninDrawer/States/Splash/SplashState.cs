@@ -200,14 +200,29 @@ namespace SpooninDrawer.States.Splash
                 if (cmd is SplashInputCommand.SetBorderlessScreen)
                 {
                     _graphics.IsFullScreen = true;
+                    if (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width == 1920 || GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height == 1080)
+                    {
+                        _displayResolution = Resolution.x1080;
+                        _graphics.PreferredBackBufferWidth = 1920;
+                        _graphics.PreferredBackBufferHeight = 1080;
+                    }
+                    else if (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width == 1280 || GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height == 720)
+                    {
+                        _displayResolution = Resolution.x720;
+                        _graphics.PreferredBackBufferWidth = 1280;
+                        _graphics.PreferredBackBufferHeight = 720;
+                    }
+                    //_graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                    //_graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
                     _graphics.HardwareModeSwitch = false;
+                    
                     _graphics.ApplyChanges();
                 }
                 if (cmd is SplashInputCommand.SetResolution1080)
                 {
                     _displayResolution = Resolution.x1080;
                     _graphics.PreferredBackBufferWidth = 1920;
-                    _graphics.PreferredBackBufferHeight = 1080;
+                    _graphics.PreferredBackBufferHeight = 1080;                    
                     _graphics.ApplyChanges();
                     ReloadAllScreens();
                 }
