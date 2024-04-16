@@ -19,6 +19,7 @@ using MonoGame.Extended.Screens;
 using System.ComponentModel;
 using Microsoft.Xna.Framework.Graphics;
 using static SpooninDrawer.States.Splash.SplashInputCommand;
+using System.Data;
 
 namespace SpooninDrawer.States.Splash
 {
@@ -88,6 +89,30 @@ namespace SpooninDrawer.States.Splash
             currentSplash.Position = screen.Position;
             BaseGameObject holder = getScreenExist(currentSplash.getTextureName());
             BaseGameObject previousholder = getScreenExist(previousScreen.screenTexture);
+
+            if(screen.GetType() == typeof(SettingsScreen)) 
+            {
+                SettingsScreen setScreen = (SettingsScreen)screen;
+                SplashImage volumeBar1 = new SplashImage(LoadTexture(setScreen.volumeBar));
+                SplashImage volumeBar2 = new SplashImage(LoadTexture(setScreen.volumeBarArrow));
+                SplashImage volumeBar3 = new SplashImage(LoadTexture(setScreen.volumeBarFill));
+                volumeBar1.Position = setScreen.volumeBarPosition;
+                volumeBar2.Position = setScreen.volumeBarArrowPosition;
+                volumeBar3.Position = setScreen.volumeBarFillPosition;
+                volumeBar1.zIndex = 2;
+                volumeBar2.zIndex = 4;
+                volumeBar3.zIndex = 3;
+                volumeBar1.Activate();
+                volumeBar2.Activate();
+                volumeBar3.Activate();
+                AddGameObject(volumeBar1);
+                AddGameObject(volumeBar2);
+                AddGameObject(volumeBar3);                
+            }
+            if(previousScreen.GetType() == typeof(SettingsScreen))
+            {
+                RemoveSettingScreenAdditions((SettingsScreen)screen);
+            }
             if (holder != null)
             {
                 //draws current screen on top of previous screen
@@ -115,6 +140,11 @@ namespace SpooninDrawer.States.Splash
                 AddScreenText(currentScreen);
                 BaseGameObject toRemove = getScreenExist(screen.screenTexture);
                 RemoveGameObject(toRemove);
+
+                if (screen.GetType() == typeof(SettingsScreen))
+                {
+                    RemoveSettingScreenAdditions((SettingsScreen)screen);
+                }
             }
         }
         public void ReloadAllScreens()
@@ -160,6 +190,27 @@ namespace SpooninDrawer.States.Splash
                     if (text != null)
                         AddGameObject(text);
                 }
+            }
+        }
+        private void RemoveSettingScreenAdditions(SettingsScreen screen)
+        {
+            BaseGameObject volumeBar1 = getScreenExist(screen.volumeBar);
+            BaseGameObject volumeBar2 = getScreenExist(screen.volumeBarArrow);
+            BaseGameObject volumeBar3 = getScreenExist(screen.volumeBarFill);
+            volumeBar1.Deactivate();
+            volumeBar2.Deactivate();
+            volumeBar3.Deactivate();
+            RemoveGameObject(volumeBar1);
+            RemoveGameObject(volumeBar2);
+            RemoveGameObject(volumeBar3);
+        }
+        private void ChangeVolume(float volume)
+        {
+            if(currentScreen.GetType() == typeof(SettingsScreen))
+            {
+                SettingsScreen settingsScreen = (SettingsScreen)currentScreen;
+                settingsScreen.volume = volume;
+                _soundManager.ChangeBGMVolume(volume);
             }
         }
         public void ResumeGameState()

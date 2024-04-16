@@ -142,6 +142,14 @@ namespace SpooninDrawer.Engine.States
         {
             return _gameObjects.Contains(gameObject);
         }
+        protected BaseGameObject GetGameObject(BaseGameObject gameObject) 
+        {
+            if (_gameObjects.Contains(gameObject))
+            { 
+                return _gameObjects.Find(x => x == gameObject);
+            }
+            return null;
+        }
 
         protected BaseGameObject getScreenExist(string screenName)
         {

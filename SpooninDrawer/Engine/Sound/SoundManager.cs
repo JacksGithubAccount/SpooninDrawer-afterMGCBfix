@@ -48,7 +48,7 @@ namespace SpooninDrawer.Engine.Sound
 
             if (currentTrack.State == SoundState.Stopped)
             {
-                nextTrack.Play();
+                nextTrack?.Play();
                 _soundtrackIndex++;
 
                 if (_soundtrackIndex >= _soundtracks.Count)

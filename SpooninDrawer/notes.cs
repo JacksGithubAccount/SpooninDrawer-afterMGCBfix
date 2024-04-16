@@ -239,6 +239,9 @@ namespace SpooninDrawer
          *4/14/2024
          *-added check for resolution that applies on borderless. Is hardcheck, but it'll do for the scope of this project
          *-added SE and BGM, added asset for volume bar
+         *4/15/2024
+         *-Made sound bar display, and remove soundbar on leaving setting screen, partial add to changing volume
+         *
          *
          */
     }

@@ -47,7 +47,10 @@ namespace SpooninDrawer.Objects.Screens
         public string volumeBar { get; }
         public string volumeBarArrow { get; }
         public string volumeBarFill { get; }
-        public float volume;
+        public Vector2 volumeBarPosition { get; }
+        public Vector2 volumeBarArrowPosition { get; }
+        public Vector2 volumeBarFillPosition { get; }
+        public float volume = 1.0f;
         public SettingsScreen(SpriteFont font, Vector2 positionOffset, Resolution resolution)
         {
             spriteFont = font;
@@ -79,12 +82,16 @@ namespace SpooninDrawer.Objects.Screens
             ScreenText[0, 4] = new SettingsText(font, RStrings.SettingsBack);
             ScreenText[1, 0] = new SettingsText(font, RStrings.SettingsFullScreen);
             ScreenText[1, 1] = new SettingsText(font, RStrings.SettingsResolution1080);
-            ScreenText[1, 3] = new SettingsText(font, volume.ToString());
+            ScreenText[1, 3] = new SettingsText(font, (volume * 100).ToString());
 
             ScreenText[2, 0] = new SettingsText(font, RStrings.SettingsWindowScreen);
             ScreenText[2, 1] = new SettingsText(font, RStrings.SettingsResolution720);
 
             ScreenText[3, 0] = new SettingsText(font, RStrings.SettingsBorderlessScreen);
+
+            volumeBarPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]);
+            volumeBarArrowPosition = new Vector2(menuLocationArrayX[3], menuLocationArrayY[3]);
+            volumeBarFillPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]);
 
             int i = 0;
             int j = 0;
