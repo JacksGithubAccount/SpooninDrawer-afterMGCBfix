@@ -124,6 +124,10 @@ namespace SpooninDrawer.States.Splash
                         RemapChecker = true;
                         RemapActionHolder = Actions.Pause;
                         break;
+                    //remap end
+                    case "Volume":
+                        commands.Add(new SettingVolumeSelect());
+                        break;
                 }
             }
             if (RemapChecker && currentKeyboardState.GetPressedKeyCount() == 0 && previousKeyboardState.GetPressedKeyCount() !=0 && !screenTransition)

@@ -47,6 +47,7 @@ namespace SpooninDrawer.States.Splash
         private SpriteFont MenuFont;
         TestText _testText;
 
+        private bool VolumeControl = false;
         public SplashState(Resolution resolution)
         {
             _displayResolution = resolution;
@@ -107,7 +108,11 @@ namespace SpooninDrawer.States.Splash
                 volumeBar3.Activate();
                 AddGameObject(volumeBar1);
                 AddGameObject(volumeBar2);
-                AddGameObject(volumeBar3);                
+                AddGameObject(volumeBar3);
+                setScreen.volumeText.zIndex = 2;
+                setScreen.volumeText.Activate();
+                AddGameObject(setScreen.volumeText);
+                
             }
             if(previousScreen.GetType() == typeof(SettingsScreen))
             {
@@ -203,14 +208,19 @@ namespace SpooninDrawer.States.Splash
             RemoveGameObject(volumeBar1);
             RemoveGameObject(volumeBar2);
             RemoveGameObject(volumeBar3);
+            screen.volumeText.Deactivate();
+            RemoveGameObject(screen.volumeText);
         }
         private void ChangeVolume(float volume)
         {
             if(currentScreen.GetType() == typeof(SettingsScreen))
             {
-                SettingsScreen settingsScreen = (SettingsScreen)currentScreen;
-                settingsScreen.volume = volume;
-                _soundManager.ChangeBGMVolume(volume);
+                SettingsScreen settingsScreen = (SettingsScreen)currentScreen;               
+                settingsScreen.VolumeChange(volume);
+                _soundManager.ChangeBGMVolume(settingsScreen.GetVolume());
+                //AddGameObject(settingsScreen.volumeText);
+                //RemoveGameObject(settingsScreen.volumeText);
+                
             }
         }
         public void ResumeGameState()
@@ -237,136 +247,161 @@ namespace SpooninDrawer.States.Splash
 
             InputManager.GetCommands(cmd =>
             {
-                if (cmd is SplashInputCommand.SetFullScreen)
+                if (!VolumeControl)
                 {
-                    _graphics.IsFullScreen = true;
-                    _graphics.HardwareModeSwitch = true;
-                    _graphics.ApplyChanges();
-                }
-                if (cmd is SplashInputCommand.SetWindowScreen)
-                {
-                    _graphics.IsFullScreen = false;
-                    _graphics.ApplyChanges();
-                }
-                if (cmd is SplashInputCommand.SetBorderlessScreen)
-                {
-                    _graphics.IsFullScreen = true;
-                    if (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width == 1920 || GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height == 1080)
+                    if (cmd is SplashInputCommand.SetFullScreen)
+                    {
+                        _graphics.IsFullScreen = true;
+                        _graphics.HardwareModeSwitch = true;
+                        _graphics.ApplyChanges();
+                    }
+                    if (cmd is SplashInputCommand.SetWindowScreen)
+                    {
+                        _graphics.IsFullScreen = false;
+                        _graphics.ApplyChanges();
+                    }
+                    if (cmd is SplashInputCommand.SetBorderlessScreen)
+                    {
+                        _graphics.IsFullScreen = true;
+                        if (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width == 1920 || GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height == 1080)
+                        {
+                            _displayResolution = Resolution.x1080;
+                            _graphics.PreferredBackBufferWidth = 1920;
+                            _graphics.PreferredBackBufferHeight = 1080;
+                        }
+                        else if (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width == 1280 || GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height == 720)
+                        {
+                            _displayResolution = Resolution.x720;
+                            _graphics.PreferredBackBufferWidth = 1280;
+                            _graphics.PreferredBackBufferHeight = 720;
+                        }
+                        //_graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+                        //_graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+                        _graphics.HardwareModeSwitch = false;
+
+                        _graphics.ApplyChanges();
+                    }
+                    if (cmd is SplashInputCommand.SetResolution1080)
                     {
                         _displayResolution = Resolution.x1080;
                         _graphics.PreferredBackBufferWidth = 1920;
                         _graphics.PreferredBackBufferHeight = 1080;
+                        _graphics.ApplyChanges();
+                        ReloadAllScreens();
                     }
-                    else if (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width == 1280 || GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height == 720)
+                    if (cmd is SplashInputCommand.SetResolution720)
                     {
                         _displayResolution = Resolution.x720;
                         _graphics.PreferredBackBufferWidth = 1280;
                         _graphics.PreferredBackBufferHeight = 720;
+                        _graphics.ApplyChanges();
+                        ReloadAllScreens();
                     }
-                    //_graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-                    //_graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-                    _graphics.HardwareModeSwitch = false;
-                    
-                    _graphics.ApplyChanges();
-                }
-                if (cmd is SplashInputCommand.SetResolution1080)
-                {
-                    _displayResolution = Resolution.x1080;
-                    _graphics.PreferredBackBufferWidth = 1920;
-                    _graphics.PreferredBackBufferHeight = 1080;                    
-                    _graphics.ApplyChanges();
-                    ReloadAllScreens();
-                }
-                if (cmd is SplashInputCommand.SetResolution720)
-                {
-                    _displayResolution = Resolution.x720;
-                    _graphics.PreferredBackBufferWidth = 1280;
-                    _graphics.PreferredBackBufferHeight = 720;
-                    _graphics.ApplyChanges();
-                    ReloadAllScreens();
-                }
-                if (cmd is SplashInputCommand.RemapControlSelect)
-                {
-                    ChangeScreen(new RemapControlsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), InputManager.GetInputDetector(), _displayResolution));
-                }
-                if (cmd is SplashInputCommand.RemapControlConfirm)
-                {
-                    ChangeScreen(new RemapControlConfirmScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
+                    if (cmd is SplashInputCommand.RemapControlSelect)
+                    {
+                        ChangeScreen(new RemapControlsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), InputManager.GetInputDetector(), _displayResolution));
+                    }
+                    if (cmd is SplashInputCommand.RemapControlConfirm)
+                    {
+                        ChangeScreen(new RemapControlConfirmScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
 
-                }
-                if (cmd is SplashInputCommand.RemapControlDone)
-                {
-                    ChangeScreen(new RemapControlDoneScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
-                }
-                if (cmd is SplashInputCommand.TestMenuButton)
-                {
-                    BaseGameObject holder = getScreenExist(screenTexture);
-                    holder.Activate();
-                }
-                if (cmd is SplashInputCommand.TestMenuButton2)
-                {
-                    BaseGameObject holder = getScreenExist(screenTexture);
-                    holder.Deactivate();
-                }
-                if (cmd is SplashInputCommand.GameSelect)
-                {
-                    if (!devState)
-                    {
-                        SwitchState(new GameplayState(_displayResolution));
                     }
-                    else
+                    if (cmd is SplashInputCommand.RemapControlDone)
                     {
-                        SwitchState(new DevState());
+                        ChangeScreen(new RemapControlDoneScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
+                    }
+                    if (cmd is SplashInputCommand.TestMenuButton)
+                    {
+                        BaseGameObject holder = getScreenExist(screenTexture);
+                        holder.Activate();
+                    }
+                    if (cmd is SplashInputCommand.TestMenuButton2)
+                    {
+                        BaseGameObject holder = getScreenExist(screenTexture);
+                        holder.Deactivate();
+                    }
+                    if (cmd is SplashInputCommand.GameSelect)
+                    {
+                        if (!devState)
+                        {
+                            SwitchState(new GameplayState(_displayResolution));
+                        }
+                        else
+                        {
+                            SwitchState(new DevState());
+                        }
+                    }
+                    if (cmd is SplashInputCommand.SettingsSelect)
+                    {
+                        ChangeScreen(new SettingsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), _displayResolution));
+                    }
+                    if (cmd is SplashInputCommand.BackSelect)
+                    {
+                        if (previousScreen != null)
+                        {
+                            RemoveScreen();
+                        }
+                        else
+                        {
+                            menuNavigatorY = 4;
+                        }
+                    }
+                    if (cmd is SplashInputCommand.ExitSelect)
+                    {
+                        NotifyEvent(new BaseGameStateEvent.GameQuit());
+                        GameplayState gameState = (GameplayState)StoredState;
+                        gameState?.returnToTitle(_displayResolution);
+                    }
+                    if (cmd is SplashInputCommand.ResumeSelect)
+                    {
+                        ResumeGameState();
+                    }
+                    if (cmd is SplashInputCommand.CheckMenuSelect)
+                    {
+                        ChangeScreen(new ReturnToTitleScreen(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height));
+                    }
+                    if (cmd is SplashInputCommand.SettingVolumeSelect)
+                    {
+                        VolumeControl = true;
+                    }
+                    if (cmd is SplashInputCommand.MenuMoveUp)
+                    {
+                        menuNavigatorY--;
+                    }
+                    if (cmd is SplashInputCommand.MenuMoveDown)
+                    {
+                        menuNavigatorY++;
+                    }
+                    if (cmd is SplashInputCommand.MenuMoveLeft)
+                    {
+                        menuNavigatorX--;
+                    }
+                    if (cmd is SplashInputCommand.MenuMoveRight)
+                    {
+                        menuNavigatorX++;
+                    }
+                    KeepArrowinBound(ref menuNavigatorX, menuNavigatorXCap);
+                    KeepArrowinBound(ref menuNavigatorY, menuNavigatorYCap);
+                }
+                else
+                {
+                    if (cmd is SplashInputCommand.MenuMoveLeft)
+                    {
+                        ChangeVolume(-0.01f);
+                    }
+                    if (cmd is SplashInputCommand.MenuMoveRight)
+                    {
+                        ChangeVolume(0.01f);
+                    }
+                    if (cmd is SplashInputCommand.BackSelect)
+                    {
+                        VolumeControl = false;
+                    }
+                    if (cmd is SplashInputCommand.SettingVolumeSelect)
+                    {
+                        VolumeControl = false;
                     }
                 }
-                if (cmd is SplashInputCommand.SettingsSelect)
-                {
-                    ChangeScreen(new SettingsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), _displayResolution));
-                }
-                if (cmd is SplashInputCommand.BackSelect)
-                {
-                    if (previousScreen != null)
-                    {
-                        RemoveScreen();
-                    }
-                    else
-                    {
-                        menuNavigatorY = 4;
-                    }
-                }
-                if (cmd is SplashInputCommand.ExitSelect)
-                {
-                    NotifyEvent(new BaseGameStateEvent.GameQuit());
-                    GameplayState gameState = (GameplayState)StoredState;
-                    gameState?.returnToTitle(_displayResolution);
-                }
-                if (cmd is SplashInputCommand.ResumeSelect)
-                {
-                    ResumeGameState();
-                }
-                if (cmd is SplashInputCommand.CheckMenuSelect)
-                {
-                    ChangeScreen(new ReturnToTitleScreen(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height));
-                }
-                if (cmd is SplashInputCommand.MenuMoveUp)
-                {
-                    menuNavigatorY--;
-                }
-                if (cmd is SplashInputCommand.MenuMoveDown)
-                {
-                    menuNavigatorY++;
-                }
-                if (cmd is SplashInputCommand.MenuMoveLeft)
-                {
-                    menuNavigatorX--;
-                }
-                if (cmd is SplashInputCommand.MenuMoveRight)
-                {
-                    menuNavigatorX++;
-                }
-                KeepArrowinBound(ref menuNavigatorX, menuNavigatorXCap);
-                KeepArrowinBound(ref menuNavigatorY, menuNavigatorYCap);
-
             });
         }
         public string GetCommandState()

@@ -50,9 +50,11 @@ namespace SpooninDrawer.Objects.Screens
         public Vector2 volumeBarPosition { get; }
         public Vector2 volumeBarArrowPosition { get; }
         public Vector2 volumeBarFillPosition { get; }
-        public float volume = 1.0f;
+        private float volume = 1.0f;
+        public SettingsText volumeText;
         public SettingsScreen(SpriteFont font, Vector2 positionOffset, Resolution resolution)
         {
+            volume = 1.0f;
             spriteFont = font;
             this.positionOffset = positionOffset;
             DisplayResolution = resolution;
@@ -82,7 +84,7 @@ namespace SpooninDrawer.Objects.Screens
             ScreenText[0, 4] = new SettingsText(font, RStrings.SettingsBack);
             ScreenText[1, 0] = new SettingsText(font, RStrings.SettingsFullScreen);
             ScreenText[1, 1] = new SettingsText(font, RStrings.SettingsResolution1080);
-            ScreenText[1, 3] = new SettingsText(font, (volume * 100).ToString());
+            //ScreenText[1, 3] = new SettingsText(font, (volume * 100).ToString());
 
             ScreenText[2, 0] = new SettingsText(font, RStrings.SettingsWindowScreen);
             ScreenText[2, 1] = new SettingsText(font, RStrings.SettingsResolution720);
@@ -92,6 +94,8 @@ namespace SpooninDrawer.Objects.Screens
             volumeBarPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]);
             volumeBarArrowPosition = new Vector2(menuLocationArrayX[3], menuLocationArrayY[3]);
             volumeBarFillPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]);
+            volumeText = new SettingsText(font, (volume*100).ToString());
+            volumeText.Position = new Vector2(menuLocationArrayX[1], menuLocationArrayY[3]); ;
 
             int i = 0;
             int j = 0;
@@ -117,6 +121,26 @@ namespace SpooninDrawer.Objects.Screens
         {
             DisplayResolution = resolution;
             return new SettingsScreen(spriteFont, positionOffset, resolution);
+        }
+        public void VolumeChange(float volume)
+        {
+            if (this.volume <= 1.0f && this.volume >= 0.0f)
+            {
+                this.volume += volume;
+                if (this.volume > 1.0f)
+                {
+                    this.volume = 1.0f;
+                }
+                if(this.volume < 0.0f)
+                {
+                    this.volume = 0.0f;
+                }
+                volumeText.Text = (Math.Round(this.volume * 100)).ToString();
+            }
+        }
+        public float GetVolume()
+        {
+            return volume;
         }
         public string GetMenuCommand(int x, int y)
         {
