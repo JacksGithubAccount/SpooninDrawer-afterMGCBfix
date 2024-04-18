@@ -23,7 +23,7 @@ using System.Data;
 
 namespace SpooninDrawer.States.Splash
 {
-    
+
     public class SplashState : BaseGameState
     {
         private bool devState = false; //true to turn on Dev state, false for gameplay state
@@ -91,30 +91,30 @@ namespace SpooninDrawer.States.Splash
             BaseGameObject holder = getScreenExist(currentSplash.getTextureName());
             BaseGameObject previousholder = getScreenExist(previousScreen.screenTexture);
 
-            if(screen.GetType() == typeof(SettingsScreen)) 
+            if (screen.GetType() == typeof(SettingsScreen))
             {
                 SettingsScreen setScreen = (SettingsScreen)screen;
                 SplashImage volumeBar1 = new SplashImage(LoadTexture(setScreen.volumeBar));
-                SplashImage volumeBar2 = new SplashImage(LoadTexture(setScreen.volumeBarArrow));
-                SplashImage volumeBar3 = new SplashImage(LoadTexture(setScreen.volumeBarFill));
+                SplashImage volumeBarArrow = new SplashImage(LoadTexture(setScreen.volumeBarArrow));
+                SplashImageLoadingBar volumeBarFill = new SplashImageLoadingBar(LoadTexture(setScreen.volumeBarFill), setScreen.GetVolume());
                 volumeBar1.Position = setScreen.volumeBarPosition;
-                volumeBar2.Position = setScreen.volumeBarArrowPosition;
-                volumeBar3.Position = setScreen.volumeBarFillPosition;
+                volumeBarFill.Position = setScreen.volumeBarFillPosition;
+                volumeBarArrow.Position = volumeBarFill.GetEndofBarPosition() - new Vector2(volumeBarArrow.Width/2, volumeBarArrow.Height/2);                
                 volumeBar1.zIndex = 2;
-                volumeBar2.zIndex = 4;
-                volumeBar3.zIndex = 3;
+                volumeBarArrow.zIndex = 4;
+                volumeBarFill.zIndex = 3;
                 volumeBar1.Activate();
-                volumeBar2.Activate();
-                volumeBar3.Activate();
+                volumeBarArrow.Activate();
+                volumeBarFill.Activate();
                 AddGameObject(volumeBar1);
-                AddGameObject(volumeBar2);
-                AddGameObject(volumeBar3);
+                AddGameObject(volumeBarArrow);
+                AddGameObject(volumeBarFill);
                 setScreen.volumeText.zIndex = 2;
                 setScreen.volumeText.Activate();
                 AddGameObject(setScreen.volumeText);
-                
+
             }
-            if(previousScreen.GetType() == typeof(SettingsScreen))
+            if (previousScreen.GetType() == typeof(SettingsScreen))
             {
                 RemoveSettingScreenAdditions((SettingsScreen)screen);
             }
@@ -181,7 +181,7 @@ namespace SpooninDrawer.States.Splash
             if (screen.ScreenText != null)
             {
                 foreach (BaseTextObject text in screen.ScreenText)
-                {                    
+                {
                     RemoveGameObject(text);
                 }
             }
@@ -213,14 +213,21 @@ namespace SpooninDrawer.States.Splash
         }
         private void ChangeVolume(float volume)
         {
-            if(currentScreen.GetType() == typeof(SettingsScreen))
+            if (currentScreen.GetType() == typeof(SettingsScreen))
             {
-                SettingsScreen settingsScreen = (SettingsScreen)currentScreen;               
+                SettingsScreen settingsScreen = (SettingsScreen)currentScreen;
                 settingsScreen.VolumeChange(volume);
                 _soundManager.ChangeBGMVolume(settingsScreen.GetVolume());
-                //AddGameObject(settingsScreen.volumeText);
-                //RemoveGameObject(settingsScreen.volumeText);
-                
+                try 
+                { 
+                    SplashImageLoadingBar volumeBarFill = (SplashImageLoadingBar)getScreenExist(settingsScreen.volumeBarFill);
+                    volumeBarFill.UpdateLoadingBar(settingsScreen.GetVolume());
+                    BaseGameObject volumeBarArrow = getScreenExist(settingsScreen.volumeBarArrow);
+                    volumeBarArrow.Position = volumeBarFill.GetEndofBarPosition() - new Vector2(volumeBarArrow.Width / 2, volumeBarArrow.Height / 2);
+                }
+                catch { }
+
+
             }
         }
         public void ResumeGameState()

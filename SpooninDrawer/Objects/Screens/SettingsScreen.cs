@@ -22,7 +22,7 @@ namespace SpooninDrawer.Objects.Screens
         enum secondColumnCommands
         {
             Fullscreen,
-            Resolution1080,            
+            Resolution1080,
             Volume = 3
         }
         enum thirdColumnCommands
@@ -51,10 +51,11 @@ namespace SpooninDrawer.Objects.Screens
         public Vector2 volumeBarArrowPosition { get; }
         public Vector2 volumeBarFillPosition { get; }
         private float volume = 1.0f;
+        private float maxVolume = 1.0f;
         public SettingsText volumeText;
         public SettingsScreen(SpriteFont font, Vector2 positionOffset, Resolution resolution)
         {
-            volume = 1.0f;
+            volume = 0.5f;
             spriteFont = font;
             this.positionOffset = positionOffset;
             DisplayResolution = resolution;
@@ -94,7 +95,7 @@ namespace SpooninDrawer.Objects.Screens
             volumeBarPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]);
             volumeBarArrowPosition = new Vector2(menuLocationArrayX[3], menuLocationArrayY[3]);
             volumeBarFillPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]);
-            volumeText = new SettingsText(font, (volume*100).ToString());
+            volumeText = new SettingsText(font, (volume * 100).ToString());
             volumeText.Position = new Vector2(menuLocationArrayX[1], menuLocationArrayY[3]); ;
 
             int i = 0;
@@ -124,14 +125,14 @@ namespace SpooninDrawer.Objects.Screens
         }
         public void VolumeChange(float volume)
         {
-            if (this.volume <= 1.0f && this.volume >= 0.0f)
+            if (this.volume <= maxVolume && this.volume >= 0.0f)
             {
                 this.volume += volume;
-                if (this.volume > 1.0f)
+                if (this.volume > maxVolume)
                 {
-                    this.volume = 1.0f;
+                    this.volume = maxVolume;
                 }
-                if(this.volume < 0.0f)
+                if (this.volume < 0.0f)
                 {
                     this.volume = 0.0f;
                 }
@@ -142,6 +143,7 @@ namespace SpooninDrawer.Objects.Screens
         {
             return volume;
         }
+
         public string GetMenuCommand(int x, int y)
         {
             if (x == 0)
@@ -154,15 +156,17 @@ namespace SpooninDrawer.Objects.Screens
                 var holder = (titleCommands)y;
                 return holder.ToString();
             }
-            else if (x == 1 && y!=4)
+            else if (x == 1 && y != 4)
             {
                 var holder = (secondColumnCommands)y;
                 return holder.ToString();
-            }else if(x==2 && y!= 4)
+            }
+            else if (x == 2 && y != 4)
             {
                 var holder = (thirdColumnCommands)y;
                 return holder.ToString();
-            }else if(x == 3 && y != 4)
+            }
+            else if (x == 3 && y != 4)
             {
                 var holder = (fourthColumnCommands)y;
                 return holder.ToString();

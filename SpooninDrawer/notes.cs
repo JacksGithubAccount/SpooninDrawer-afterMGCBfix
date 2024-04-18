@@ -243,6 +243,9 @@ namespace SpooninDrawer
          *-Made sound bar display, and remove soundbar on leaving setting screen, partial add to changing volume
          *4/16/2024
          *-Added changing volume number. However, it stops working once you go out of range.Fixed by setting max and min values for volume.
+         *4/17/2024
+         *-Added moving effect for both bar and arrow for volume when changing volume. Maybe add volume that changes on game boot as well for future use as well
+         *
          *
          */
     }
