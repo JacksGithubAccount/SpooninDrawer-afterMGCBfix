@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SpooninDrawer.Content;
 using SpooninDrawer.Engine.Objects;
+using SpooninDrawer.Engine.Sound;
 using SpooninDrawer.Objects.Text;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,8 @@ namespace SpooninDrawer.Objects.Screens
         {
             Fullscreen,
             Resolution1080,
-            Volume = 3
+            VolumeBGM = 3,
+            VolumeSE = 4
         }
         enum thirdColumnCommands
         {
@@ -47,15 +49,22 @@ namespace SpooninDrawer.Objects.Screens
         public string volumeBar { get; }
         public string volumeBarArrow { get; }
         public string volumeBarFill { get; }
-        public Vector2 volumeBarPosition { get; }
-        public Vector2 volumeBarArrowPosition { get; }
-        public Vector2 volumeBarFillPosition { get; }
-        private float volume = 1.0f;
+        public Vector2 volumeBGMBarPosition { get; }
+        public Vector2 volumeBGMBarArrowPosition { get; }
+        public Vector2 volumeBGMBarFillPosition { get; }
+        public Vector2 volumeSEBarPosition { get; }
+        public Vector2 volumeSEBarArrowPosition { get; }
+        public Vector2 volumeSEBarFillPosition { get; }
+        private float volumeBGM = 1.0f;
+        private float volumeSE = 1.0f;
         private float maxVolume = 1.0f;
-        public SettingsText volumeText;
-        public SettingsScreen(SpriteFont font, Vector2 positionOffset, Resolution resolution)
+        public SettingsText volumeBGMText;
+        public SettingsText volumeSEText;
+
+        public SettingsScreen(SpriteFont font, Vector2 positionOffset, Resolution resolution, float volumeBGM, float volumeSE)
         {
-            volume = 0.5f;
+            this.volumeBGM = volumeBGM;
+            this.volumeSE = volumeSE;
             spriteFont = font;
             this.positionOffset = positionOffset;
             DisplayResolution = resolution;
@@ -85,18 +94,22 @@ namespace SpooninDrawer.Objects.Screens
             ScreenText[0, 4] = new SettingsText(font, RStrings.SettingsBack);
             ScreenText[1, 0] = new SettingsText(font, RStrings.SettingsFullScreen);
             ScreenText[1, 1] = new SettingsText(font, RStrings.SettingsResolution1080);
-            //ScreenText[1, 3] = new SettingsText(font, (volume * 100).ToString());
 
             ScreenText[2, 0] = new SettingsText(font, RStrings.SettingsWindowScreen);
             ScreenText[2, 1] = new SettingsText(font, RStrings.SettingsResolution720);
 
             ScreenText[3, 0] = new SettingsText(font, RStrings.SettingsBorderlessScreen);
 
-            volumeBarPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]);
-            volumeBarArrowPosition = new Vector2(menuLocationArrayX[3], menuLocationArrayY[3]);
-            volumeBarFillPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]);
-            volumeText = new SettingsText(font, (volume * 100).ToString());
-            volumeText.Position = new Vector2(menuLocationArrayX[1], menuLocationArrayY[3]); ;
+            volumeBGMBarPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]);
+            volumeBGMBarArrowPosition = new Vector2(menuLocationArrayX[3], menuLocationArrayY[3]);
+            volumeBGMBarFillPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]);
+            volumeSEBarPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[4]);
+            volumeSEBarArrowPosition = new Vector2(menuLocationArrayX[3], menuLocationArrayY[4]);
+            volumeSEBarFillPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[4]);
+            volumeBGMText = new SettingsText(font, "BGM "+Math.Round(volumeBGM * 100).ToString());
+            volumeBGMText.Position = new Vector2(menuLocationArrayX[1], menuLocationArrayY[3]); ;
+            volumeSEText = new SettingsText(font, "SE "+Math.Round(volumeSE * 100).ToString());
+            volumeSEText.Position = new Vector2(menuLocationArrayX[1], menuLocationArrayY[4]); ;
 
             int i = 0;
             int j = 0;
@@ -121,27 +134,51 @@ namespace SpooninDrawer.Objects.Screens
         public BaseScreen Initialize(Resolution resolution)
         {
             DisplayResolution = resolution;
-            return new SettingsScreen(spriteFont, positionOffset, resolution);
+            return new SettingsScreen(spriteFont, positionOffset, resolution, volumeBGM, volumeSE);
         }
-        public void VolumeChange(float volume)
+        public void VolumeChange(float volume, VolumeType volumeType)
         {
-            if (this.volume <= maxVolume && this.volume >= 0.0f)
+            if (volumeType == VolumeType.BGM)
             {
-                this.volume += volume;
-                if (this.volume > maxVolume)
+                if (volumeBGM <= maxVolume && volumeBGM >= 0.0f)
                 {
-                    this.volume = maxVolume;
+                    volumeBGM += volume;
+                    if (volumeBGM > maxVolume)
+                    {
+                        volumeBGM = maxVolume;
+                    }
+                    if (volumeBGM < 0.0f)
+                    {
+                        volumeBGM = 0.0f;
+                    }
+                    volumeBGMText.Text = (Math.Round(volumeBGM * 100)).ToString();
                 }
-                if (this.volume < 0.0f)
+            }
+            else if(volumeType == VolumeType.SE)
+            {
+                if (volumeSE <= maxVolume && volumeSE >= 0.0f)
                 {
-                    this.volume = 0.0f;
+                    volumeSE += volume;
+                    if (volumeSE > maxVolume)
+                    {
+                        volumeSE = maxVolume;
+                    }
+                    if (volumeSE < 0.0f)
+                    {
+                        volumeSE = 0.0f;
+                    }
+                    volumeSEText.Text = (Math.Round(volumeSE * 100)).ToString();
                 }
-                volumeText.Text = (Math.Round(this.volume * 100)).ToString();
             }
         }
-        public float GetVolume()
+        public float GetVolume(VolumeType volumeType)
         {
-            return volume;
+            if(volumeType == VolumeType.BGM)
+                return volumeBGM;
+            else if(volumeType == VolumeType.SE)
+                return volumeSE;
+            else
+                return 0.0f;
         }
 
         public string GetMenuCommand(int x, int y)
@@ -156,7 +193,7 @@ namespace SpooninDrawer.Objects.Screens
                 var holder = (titleCommands)y;
                 return holder.ToString();
             }
-            else if (x == 1 && y != 4)
+            else if (x == 1 && y <= 4)
             {
                 var holder = (secondColumnCommands)y;
                 return holder.ToString();

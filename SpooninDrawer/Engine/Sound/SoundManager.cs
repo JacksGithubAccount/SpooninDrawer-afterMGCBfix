@@ -5,25 +5,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SpooninDrawer.Engine.States;
+using Microsoft.Xna.Framework.Media;
 
 namespace SpooninDrawer.Engine.Sound
 {
+    public enum VolumeType
+    {
+        SE,
+        BGM
+    }
     public class SoundManager
     {
         private int _soundtrackIndex = -1;
         private List<SoundEffectInstance> _soundtracks = new List<SoundEffectInstance>();
         private Dictionary<Type, SoundBankItem> _soundBank = new Dictionary<Type, SoundBankItem>();
-        private float VolumeBGM;
-        private float VolumeSE;
+        private float volume;
 
         public void SetSoundtrack(List<SoundEffectInstance> tracks)
         {
             _soundtracks = tracks;
             _soundtrackIndex = _soundtracks.Count - 1;
+            ChangeVolume(volume);
         }
-        public void ChangeBGMVolume(float volume)
+        public void ChangeVolume(float volume)
         {
-            SoundEffect.MasterVolume = volume;
+            this.volume = volume;
+            foreach(SoundEffectInstance soundtrack in _soundtracks)
+            {
+                soundtrack.Volume = volume;
+            }
+        }
+        public float GetVolume()
+        {            
+            return volume;
         }
         public void OnNotify(BaseGameStateEvent gameEvent)
         {
@@ -48,7 +62,7 @@ namespace SpooninDrawer.Engine.Sound
 
             if (currentTrack.State == SoundState.Stopped)
             {
-                nextTrack?.Play();
+                nextTrack.Play();
                 _soundtrackIndex++;
 
                 if (_soundtrackIndex >= _soundtracks.Count)

@@ -33,6 +33,7 @@ namespace SpooninDrawer.States.Splash
         public class RemapControlSelect : SplashInputCommand { }
         public class RemapControlConfirm : SplashInputCommand { }
         public class RemapControlDone : SplashInputCommand { }
-        public class SettingVolumeSelect : SplashInputCommand { }
+        public class SettingVolumeBGMSelect : SplashInputCommand { }
+        public class SettingVolumeSESelect : SplashInputCommand { }
     }
 }

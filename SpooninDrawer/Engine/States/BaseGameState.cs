@@ -32,7 +32,8 @@ namespace SpooninDrawer.Engine.States
         protected GameWindow _window;
         protected int _viewportHeight;
         protected int _viewportWidth;
-        protected SoundManager _soundManager = new SoundManager();
+        protected SoundManager _soundManagerBGM = new SoundManager();
+        protected SoundManager _soundManagerSE = new SoundManager();
         protected GraphicsDeviceManager _graphics;
         protected GraphicsAdapter _graphicsAdapter;
         protected Resolution _displayResolution;
@@ -50,7 +51,7 @@ namespace SpooninDrawer.Engine.States
             _graphicsDevice = graphicsDevice;
             _viewportHeight = graphicsDevice.Viewport.Height;
             _viewportWidth = graphicsDevice.Viewport.Width;
-            
+
             _window = window;
             SetInputManager();
             blankTexture = contentManager.Load<Texture2D>(BlankTexture);
@@ -100,7 +101,8 @@ namespace SpooninDrawer.Engine.States
         public void Update(GameTime gameTime)
         {
             UpdateGameState(gameTime);
-            _soundManager.PlaySoundtrack();
+            _soundManagerBGM.PlaySoundtrack();
+            _soundManagerSE.PlaySoundtrack();
         }
         protected Texture2D LoadTexture(string textureName)
         {
@@ -126,7 +128,8 @@ namespace SpooninDrawer.Engine.States
                 gameObject.OnNotify(gameEvent);
             }
 
-            _soundManager.OnNotify(gameEvent);
+            _soundManagerBGM.OnNotify(gameEvent);
+            _soundManagerSE.OnNotify(gameEvent);
         }
 
         protected void SwitchState(BaseGameState gameState)
@@ -142,10 +145,10 @@ namespace SpooninDrawer.Engine.States
         {
             return _gameObjects.Contains(gameObject);
         }
-        protected BaseGameObject GetGameObject(BaseGameObject gameObject) 
+        protected BaseGameObject GetGameObject(BaseGameObject gameObject)
         {
             if (_gameObjects.Contains(gameObject))
-            { 
+            {
                 return _gameObjects.Find(x => x == gameObject);
             }
             return null;
@@ -154,10 +157,15 @@ namespace SpooninDrawer.Engine.States
         protected BaseGameObject getScreenExist(string screenName)
         {
             BaseGameObject holder = _gameObjects.Find(x => x.getTextureName().Contains(screenName));
-             
+
             return holder;
         }
+        protected List<BaseGameObject> getAllScreenExist(string screenName)
+        {
+            List<BaseGameObject> holder = _gameObjects.FindAll(x => x.getTextureName().Contains(screenName));
 
+            return holder;
+        }
         protected void RemoveGameObject(BaseGameObject gameObject)
         {
             _gameObjects.Remove(gameObject);

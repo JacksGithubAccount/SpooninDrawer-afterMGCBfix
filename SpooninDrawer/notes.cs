@@ -245,6 +245,12 @@ namespace SpooninDrawer
          *-Added changing volume number. However, it stops working once you go out of range.Fixed by setting max and min values for volume.
          *4/17/2024
          *-Added moving effect for both bar and arrow for volume when changing volume. Maybe add volume that changes on game boot as well for future use as well
+         *4/18/2024
+         *-Added volume for Sound Effects(SE). Volume isn't carrying between states. Also changing volume for one changes colume for both.
+         *-Turns out mastervolume is by ref. Needed to use soundeffectinstance to separate the two.
+         *-For the volume not carrying, loading a track set it to it's original volume. Fixed by adjusting volume on load.
+         *
+         *
          *
          *
          */

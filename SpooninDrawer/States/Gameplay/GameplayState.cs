@@ -26,6 +26,7 @@ using SpooninDrawer.Engine.Map;
 using SpooninDrawer.States.Splash;
 using MonoGame.Extended.Screens;
 using SpooninDrawer.Objects.Screens;
+using SpooninDrawer.Engine.Sound;
 
 
 namespace SpooninDrawer.Engine.States.Gameplay
@@ -94,10 +95,12 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         private BaseGameState menuGameState;
         public bool menuActivate = false;
-        
-        public GameplayState(Resolution resolution)
+
+        public GameplayState(Resolution resolution, SoundManager BGM, SoundManager SE)
         {
             _displayResolution = resolution;
+            _soundManagerBGM = BGM;
+            _soundManagerSE = SE;
         }
         public override void LoadContent(ContentManager content)
         {
@@ -124,7 +127,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var turnRightAnimation = LoadAnimation(PlayerAnimationTurnRight);
             var idelAnimation = LoadAnimation(PlayerAnimationIdle);
             _playerSprite = new PlayerSprite(LoadTexture(PlayerFighter), turnLeftAnimation, turnRightAnimation, idelAnimation);
-            _playerSprite.blank = blankTexture;            
+            _playerSprite.blank = blankTexture;
 
             var viewportAdapter = new DefaultViewportAdapter(_graphicsDevice);
             _camera = new OrthographicCamera(viewportAdapter);
@@ -135,19 +138,19 @@ namespace SpooninDrawer.Engine.States.Gameplay
             {
                 AddGameObject(_statsText);
             }
-            menuGameState = new SplashState(new MenuScreen(_displayResolution), this, _displayResolution);
+            menuGameState = new SplashState(new MenuScreen(_displayResolution), this, _displayResolution, _soundManagerBGM, _soundManagerSE);
             menuGameState.Initialize(content, _window, _graphicsDevice, _graphics);
             menuGameState.LoadContent(content);
 
             // load sound effects and register in the sound manager
             var bulletSound = LoadSound(BulletSound);
             //var missileSound = LoadSound(MissileSound);
-            _soundManager.RegisterSound(new GameplayEvents.PlayerTest(), bulletSound);
+            _soundManagerSE.RegisterSound(new GameplayEvents.PlayerTest(), bulletSound);
 
             // load soundtracks into sound manager
             var track1 = LoadSound(Soundtrack1).CreateInstance();
             var track2 = LoadSound(Soundtrack2).CreateInstance();
-            _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
+            _soundManagerBGM.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
 
             ResetGame();
         }
@@ -204,7 +207,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 {
                     //mc action
                     NotifyEvent(new GameplayEvents.PlayerTest());
-                    _soundManager.ChangeBGMVolume(0.2f);
+                    _soundManagerBGM.ChangeVolume(0.2f);
                 }
             });
         }

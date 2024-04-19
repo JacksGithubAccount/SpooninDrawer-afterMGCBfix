@@ -125,8 +125,11 @@ namespace SpooninDrawer.States.Splash
                         RemapActionHolder = Actions.Pause;
                         break;
                     //remap end
-                    case "Volume":
-                        commands.Add(new SettingVolumeSelect());
+                    case "VolumeBGM":
+                        commands.Add(new SettingVolumeBGMSelect());
+                        break;
+                    case "VolumeSE":
+                        commands.Add(new SettingVolumeSESelect());
                         break;
                 }
             }

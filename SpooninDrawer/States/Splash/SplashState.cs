@@ -20,6 +20,7 @@ using System.ComponentModel;
 using Microsoft.Xna.Framework.Graphics;
 using static SpooninDrawer.States.Splash.SplashInputCommand;
 using System.Data;
+using SpooninDrawer.Engine.Sound;
 
 namespace SpooninDrawer.States.Splash
 {
@@ -47,7 +48,8 @@ namespace SpooninDrawer.States.Splash
         private SpriteFont MenuFont;
         TestText _testText;
 
-        private bool VolumeControl = false;
+        private bool VolumeBGMControl = false;
+        private bool VolumeSEControl = false;
         public SplashState(Resolution resolution)
         {
             _displayResolution = resolution;
@@ -58,12 +60,16 @@ namespace SpooninDrawer.States.Splash
             _displayResolution = resolution;
             currentScreen = Screen;
         }
-        public SplashState(BaseScreen Screen, BaseGameState BeforeState, Resolution resolution) : this(Screen, resolution)
+        public SplashState(BaseScreen Screen, BaseGameState BeforeState, Resolution resolution, SoundManager BGM, SoundManager SE) : this(Screen, resolution)
         {
             StoredState = BeforeState;
+            _soundManagerBGM = BGM;
+            _soundManagerSE = SE;
         }
         public override void LoadContent(ContentManager content)
         {
+            _soundManagerBGM.ChangeVolume(0.3f);
+            _soundManagerSE.ChangeVolume(0.4f);
             MenuFont = LoadFont(MenuFontString);
             ScreenStack = new Stack<BaseScreen>();
             _testText = new TestText(LoadFont(TestFont));
@@ -94,24 +100,42 @@ namespace SpooninDrawer.States.Splash
             if (screen.GetType() == typeof(SettingsScreen))
             {
                 SettingsScreen setScreen = (SettingsScreen)screen;
-                SplashImage volumeBar1 = new SplashImage(LoadTexture(setScreen.volumeBar));
-                SplashImage volumeBarArrow = new SplashImage(LoadTexture(setScreen.volumeBarArrow));
-                SplashImageLoadingBar volumeBarFill = new SplashImageLoadingBar(LoadTexture(setScreen.volumeBarFill), setScreen.GetVolume());
-                volumeBar1.Position = setScreen.volumeBarPosition;
-                volumeBarFill.Position = setScreen.volumeBarFillPosition;
-                volumeBarArrow.Position = volumeBarFill.GetEndofBarPosition() - new Vector2(volumeBarArrow.Width/2, volumeBarArrow.Height/2);                
-                volumeBar1.zIndex = 2;
-                volumeBarArrow.zIndex = 4;
-                volumeBarFill.zIndex = 3;
-                volumeBar1.Activate();
-                volumeBarArrow.Activate();
-                volumeBarFill.Activate();
-                AddGameObject(volumeBar1);
-                AddGameObject(volumeBarArrow);
-                AddGameObject(volumeBarFill);
-                setScreen.volumeText.zIndex = 2;
-                setScreen.volumeText.Activate();
-                AddGameObject(setScreen.volumeText);
+                SplashImage volumeBGMBar1 = new SplashImage(LoadTexture(setScreen.volumeBar));
+                SplashImage volumeBGMBarArrow = new SplashImage(LoadTexture(setScreen.volumeBarArrow));
+                SplashImageLoadingBar volumeBGMBarFill = new SplashImageLoadingBar(LoadTexture(setScreen.volumeBarFill), setScreen.GetVolume(VolumeType.BGM));
+                SplashImage volumeSEBar1 = new SplashImage(LoadTexture(setScreen.volumeBar));
+                SplashImage volumeSEBarArrow = new SplashImage(LoadTexture(setScreen.volumeBarArrow));
+                SplashImageLoadingBar volumeSEBarFill = new SplashImageLoadingBar(LoadTexture(setScreen.volumeBarFill), setScreen.GetVolume(VolumeType.SE));
+                volumeBGMBar1.Position = setScreen.volumeBGMBarPosition;
+                volumeBGMBarFill.Position = setScreen.volumeBGMBarFillPosition;
+                volumeBGMBarArrow.Position = volumeBGMBarFill.GetEndofBarPosition() - new Vector2(volumeBGMBarArrow.Width / 2, volumeBGMBarArrow.Height / 2);
+                volumeSEBar1.Position = setScreen.volumeSEBarPosition;
+                volumeSEBarFill.Position = setScreen.volumeSEBarFillPosition;
+                volumeSEBarArrow.Position = volumeSEBarFill.GetEndofBarPosition() - new Vector2(volumeSEBarArrow.Width / 2, volumeSEBarArrow.Height / 2);
+                volumeBGMBar1.zIndex = 2;
+                volumeBGMBarArrow.zIndex = 4;
+                volumeBGMBarFill.zIndex = 3;
+                volumeSEBar1.zIndex = 2;
+                volumeSEBarArrow.zIndex = 4;
+                volumeSEBarFill.zIndex = 3;
+                volumeBGMBar1.Activate();
+                volumeBGMBarArrow.Activate();
+                volumeBGMBarFill.Activate();
+                volumeSEBar1.Activate();
+                volumeSEBarArrow.Activate();
+                volumeSEBarFill.Activate();
+                AddGameObject(volumeBGMBar1);
+                AddGameObject(volumeBGMBarArrow);
+                AddGameObject(volumeBGMBarFill);
+                AddGameObject(volumeSEBar1);
+                AddGameObject(volumeSEBarArrow);
+                AddGameObject(volumeSEBarFill);
+                setScreen.volumeBGMText.zIndex = 2;
+                setScreen.volumeBGMText.Activate();
+                AddGameObject(setScreen.volumeBGMText);
+                setScreen.volumeSEText.zIndex = 2;
+                setScreen.volumeSEText.Activate();
+                AddGameObject(setScreen.volumeSEText);
 
             }
             if (previousScreen.GetType() == typeof(SettingsScreen))
@@ -199,33 +223,59 @@ namespace SpooninDrawer.States.Splash
         }
         private void RemoveSettingScreenAdditions(SettingsScreen screen)
         {
-            BaseGameObject volumeBar1 = getScreenExist(screen.volumeBar);
-            BaseGameObject volumeBar2 = getScreenExist(screen.volumeBarArrow);
-            BaseGameObject volumeBar3 = getScreenExist(screen.volumeBarFill);
-            volumeBar1.Deactivate();
-            volumeBar2.Deactivate();
-            volumeBar3.Deactivate();
-            RemoveGameObject(volumeBar1);
-            RemoveGameObject(volumeBar2);
-            RemoveGameObject(volumeBar3);
-            screen.volumeText.Deactivate();
-            RemoveGameObject(screen.volumeText);
+            List<BaseGameObject> volumeBar1 = getAllScreenExist(screen.volumeBar);
+            List<BaseGameObject> volumeBar2 = getAllScreenExist(screen.volumeBarArrow);
+            List<BaseGameObject> volumeBar3 = getAllScreenExist(screen.volumeBarFill);
+            foreach (BaseGameObject volumeBar in volumeBar1)
+            {
+                volumeBar.Deactivate();
+                RemoveGameObject(volumeBar);
+            }
+            foreach (BaseGameObject volumeBar in volumeBar2)
+            {
+                volumeBar.Deactivate();
+                RemoveGameObject(volumeBar);
+            }
+            foreach (BaseGameObject volumeBar in volumeBar3)
+            {
+                volumeBar.Deactivate();
+                RemoveGameObject(volumeBar);
+            }
+            screen.volumeBGMText.Deactivate();
+            RemoveGameObject(screen.volumeBGMText);
+            screen.volumeSEText.Deactivate();
+            RemoveGameObject(screen.volumeSEText);
         }
-        private void ChangeVolume(float volume)
+        private void ChangeVolume(float volume, VolumeType volumeType)
         {
             if (currentScreen.GetType() == typeof(SettingsScreen))
             {
                 SettingsScreen settingsScreen = (SettingsScreen)currentScreen;
-                settingsScreen.VolumeChange(volume);
-                _soundManager.ChangeBGMVolume(settingsScreen.GetVolume());
-                try 
-                { 
-                    SplashImageLoadingBar volumeBarFill = (SplashImageLoadingBar)getScreenExist(settingsScreen.volumeBarFill);
-                    volumeBarFill.UpdateLoadingBar(settingsScreen.GetVolume());
-                    BaseGameObject volumeBarArrow = getScreenExist(settingsScreen.volumeBarArrow);
-                    volumeBarArrow.Position = volumeBarFill.GetEndofBarPosition() - new Vector2(volumeBarArrow.Width / 2, volumeBarArrow.Height / 2);
+                settingsScreen.VolumeChange(volume, volumeType);
+                if (volumeType == VolumeType.BGM)
+                {
+                    _soundManagerBGM.ChangeVolume(settingsScreen.GetVolume(volumeType));
+                    try
+                    {
+                        SplashImageLoadingBar volumeBarFill = (SplashImageLoadingBar)getScreenExist(settingsScreen.volumeBarFill);
+                        volumeBarFill.UpdateLoadingBar(settingsScreen.GetVolume(volumeType));
+                        BaseGameObject volumeBarArrow = getScreenExist(settingsScreen.volumeBarArrow);
+                        volumeBarArrow.Position = volumeBarFill.GetEndofBarPosition() - new Vector2(volumeBarArrow.Width / 2, volumeBarArrow.Height / 2);
+                    }
+                    catch { }
                 }
-                catch { }
+                else if (volumeType == VolumeType.SE)
+                {
+                    _soundManagerSE.ChangeVolume(settingsScreen.GetVolume(volumeType));
+                    try
+                    {
+                        SplashImageLoadingBar volumeBarFill = (SplashImageLoadingBar)getAllScreenExist(settingsScreen.volumeBarFill)[1];
+                        volumeBarFill.UpdateLoadingBar(settingsScreen.GetVolume(volumeType));
+                        BaseGameObject volumeBarArrow = getAllScreenExist(settingsScreen.volumeBarArrow)[1];
+                        volumeBarArrow.Position = volumeBarFill.GetEndofBarPosition() - new Vector2(volumeBarArrow.Width / 2, volumeBarArrow.Height / 2);
+                    }
+                    catch { }
+                }
 
 
             }
@@ -254,7 +304,7 @@ namespace SpooninDrawer.States.Splash
 
             InputManager.GetCommands(cmd =>
             {
-                if (!VolumeControl)
+                if (!VolumeBGMControl && !VolumeSEControl)
                 {
                     if (cmd is SplashInputCommand.SetFullScreen)
                     {
@@ -331,7 +381,7 @@ namespace SpooninDrawer.States.Splash
                     {
                         if (!devState)
                         {
-                            SwitchState(new GameplayState(_displayResolution));
+                            SwitchState(new GameplayState(_displayResolution, _soundManagerBGM, _soundManagerSE));
                         }
                         else
                         {
@@ -340,7 +390,7 @@ namespace SpooninDrawer.States.Splash
                     }
                     if (cmd is SplashInputCommand.SettingsSelect)
                     {
-                        ChangeScreen(new SettingsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), _displayResolution));
+                        ChangeScreen(new SettingsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), _displayResolution, _soundManagerBGM.GetVolume(), _soundManagerSE.GetVolume()));
                     }
                     if (cmd is SplashInputCommand.BackSelect)
                     {
@@ -367,9 +417,13 @@ namespace SpooninDrawer.States.Splash
                     {
                         ChangeScreen(new ReturnToTitleScreen(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height));
                     }
-                    if (cmd is SplashInputCommand.SettingVolumeSelect)
+                    if (cmd is SplashInputCommand.SettingVolumeBGMSelect)
                     {
-                        VolumeControl = true;
+                        VolumeBGMControl = true;
+                    }
+                    if(cmd is SplashInputCommand.SettingVolumeSESelect)
+                    {
+                        VolumeSEControl = true;
                     }
                     if (cmd is SplashInputCommand.MenuMoveUp)
                     {
@@ -392,21 +446,42 @@ namespace SpooninDrawer.States.Splash
                 }
                 else
                 {
-                    if (cmd is SplashInputCommand.MenuMoveLeft)
+                    if (VolumeBGMControl)
                     {
-                        ChangeVolume(-0.01f);
-                    }
-                    if (cmd is SplashInputCommand.MenuMoveRight)
+                        if (cmd is SplashInputCommand.MenuMoveLeft)
+                        {
+                            ChangeVolume(-0.01f, VolumeType.BGM);
+                        }
+                        if (cmd is SplashInputCommand.MenuMoveRight)
+                        {
+                            ChangeVolume(0.01f, VolumeType.BGM);
+                        }
+                        if (cmd is SplashInputCommand.BackSelect)
+                        {
+                            VolumeBGMControl = false;
+                        }
+                        if (cmd is SplashInputCommand.SettingVolumeBGMSelect)
+                        {
+                            VolumeBGMControl = false;
+                        }
+                    }else if (VolumeSEControl)
                     {
-                        ChangeVolume(0.01f);
-                    }
-                    if (cmd is SplashInputCommand.BackSelect)
-                    {
-                        VolumeControl = false;
-                    }
-                    if (cmd is SplashInputCommand.SettingVolumeSelect)
-                    {
-                        VolumeControl = false;
+                        if (cmd is SplashInputCommand.MenuMoveLeft)
+                        {
+                            ChangeVolume(-0.01f, VolumeType.SE);
+                        }
+                        if (cmd is SplashInputCommand.MenuMoveRight)
+                        {
+                            ChangeVolume(0.01f, VolumeType.SE);
+                        }
+                        if (cmd is SplashInputCommand.BackSelect)
+                        {
+                            VolumeSEControl = false;
+                        }
+                        if (cmd is SplashInputCommand.SettingVolumeSESelect)
+                        {
+                            VolumeSEControl = false;
+                        }
                     }
                 }
             });
