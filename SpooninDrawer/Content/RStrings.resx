@@ -180,6 +180,12 @@
   <data name="SettingsVolume" xml:space="preserve">
     <value>Volume</value>
   </data>
+  <data name="SettingsVolumeBGM" xml:space="preserve">
+    <value>BGM</value>
+  </data>
+  <data name="SettingsVolumeSE" xml:space="preserve">
+    <value>SE</value>
+  </data>
   <data name="SettingsWindowScreen" xml:space="preserve">
     <value>Window</value>
   </data>

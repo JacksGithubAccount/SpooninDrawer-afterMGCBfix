@@ -250,6 +250,24 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BGM.
+        /// </summary>
+        internal static string SettingsVolumeBGM {
+            get {
+                return ResourceManager.GetString("SettingsVolumeBGM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SE.
+        /// </summary>
+        internal static string SettingsVolumeSE {
+            get {
+                return ResourceManager.GetString("SettingsVolumeSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Window.
         /// </summary>
         internal static string SettingsWindowScreen {

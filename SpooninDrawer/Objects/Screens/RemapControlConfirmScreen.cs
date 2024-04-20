@@ -21,7 +21,7 @@ namespace SpooninDrawer.Objects.Screens
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
         public int[] menuLocationArrayY { get; }
-        public int menuNavigatorXCap { get; }
+        public int[] menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; set; }
         public BaseTextObject[,] ScreenText { get; }
@@ -39,7 +39,7 @@ namespace SpooninDrawer.Objects.Screens
             menuLocationArrayX = new int[0] { };
             menuLocationArrayY = new int[0] { };
             textLocation = new Vector2(position.X /3, position.Y/3);
-            menuNavigatorXCap = menuLocationArrayX.Length - 1;
+            menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
             ScreenText = new BaseTextObject[1, 1];
             ScreenText[0, 0] = new SettingsText(font, RStrings.SettingsRemapConfirm);

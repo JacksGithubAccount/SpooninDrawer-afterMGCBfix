@@ -39,7 +39,7 @@ namespace SpooninDrawer.Objects.Screens
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
         public int[] menuLocationArrayY { get; }
-        public int menuNavigatorXCap { get; }
+        public int[] menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
@@ -84,7 +84,7 @@ namespace SpooninDrawer.Objects.Screens
                 menuLocationArrayX = new int[4] { 100, 300, 500, 700 };
                 menuLocationArrayY = new int[5] { 250, 300, 350, 400, 450 };
             }
-            menuNavigatorXCap = menuLocationArrayX.Length - 1;
+            menuNavigatorXCap = new int[5] {3,2,0,1,1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
             ScreenText = new BaseTextObject[menuLocationArrayX.Length, menuLocationArrayY.Length];
             ScreenText[0, 0] = new SettingsText(font, RStrings.SettingsScreenSettings);
@@ -94,22 +94,24 @@ namespace SpooninDrawer.Objects.Screens
             ScreenText[0, 4] = new SettingsText(font, RStrings.SettingsBack);
             ScreenText[1, 0] = new SettingsText(font, RStrings.SettingsFullScreen);
             ScreenText[1, 1] = new SettingsText(font, RStrings.SettingsResolution1080);
+            ScreenText[1, 3] = new SettingsText(font, RStrings.SettingsVolumeBGM);
+            ScreenText[1, 4] = new SettingsText(font, RStrings.SettingsVolumeSE);
 
             ScreenText[2, 0] = new SettingsText(font, RStrings.SettingsWindowScreen);
             ScreenText[2, 1] = new SettingsText(font, RStrings.SettingsResolution720);
 
             ScreenText[3, 0] = new SettingsText(font, RStrings.SettingsBorderlessScreen);
 
-            volumeBGMBarPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]);
-            volumeBGMBarArrowPosition = new Vector2(menuLocationArrayX[3], menuLocationArrayY[3]);
-            volumeBGMBarFillPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]);
-            volumeSEBarPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[4]);
-            volumeSEBarArrowPosition = new Vector2(menuLocationArrayX[3], menuLocationArrayY[4]);
-            volumeSEBarFillPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[4]);
-            volumeBGMText = new SettingsText(font, "BGM "+Math.Round(volumeBGM * 100).ToString());
-            volumeBGMText.Position = new Vector2(menuLocationArrayX[1], menuLocationArrayY[3]); ;
-            volumeSEText = new SettingsText(font, "SE "+Math.Round(volumeSE * 100).ToString());
-            volumeSEText.Position = new Vector2(menuLocationArrayX[1], menuLocationArrayY[4]); ;
+            volumeBGMBarPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]) + positionOffset;
+            volumeBGMBarArrowPosition = new Vector2(menuLocationArrayX[3], menuLocationArrayY[3]) + positionOffset;
+            volumeBGMBarFillPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]) + positionOffset;
+            volumeSEBarPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[4]) + positionOffset;
+            volumeSEBarArrowPosition = new Vector2(menuLocationArrayX[3], menuLocationArrayY[4]) + positionOffset;
+            volumeSEBarFillPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[4]) + positionOffset;
+            volumeBGMText = new SettingsText(font, Math.Round(volumeBGM * 100).ToString());
+            volumeBGMText.Position = new Vector2(menuLocationArrayX[1]+50, menuLocationArrayY[3]) + positionOffset; ;
+            volumeSEText = new SettingsText(font, Math.Round(volumeSE * 100).ToString());
+            volumeSEText.Position = new Vector2(menuLocationArrayX[1]+50, menuLocationArrayY[4]) + positionOffset; ;
 
             int i = 0;
             int j = 0;

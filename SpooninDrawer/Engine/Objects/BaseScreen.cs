@@ -19,7 +19,7 @@ namespace SpooninDrawer.Engine.Objects
         int[] menuLocationArrayX { get; }
         int[] menuLocationArrayY { get; }
         //how far you can scroll buttons
-        int menuNavigatorXCap { get; }
+        int[] menuNavigatorXCap { get; }
         int menuNavigatorYCap { get; }
         Vector2 Position { get; }
         BaseTextObject[,] ScreenText { get; }

@@ -36,7 +36,7 @@ namespace SpooninDrawer.States.Splash
         private int[] menuLocationArrayY;
         private int menuNavigatorX = 0;
         private int menuNavigatorY = 0;
-        private int menuNavigatorXCap;
+        private int[] menuNavigatorXCap;
         private int menuNavigatorYCap;
         BaseScreen currentScreen;
         BaseScreen previousScreen;
@@ -441,8 +441,9 @@ namespace SpooninDrawer.States.Splash
                     {
                         menuNavigatorX++;
                     }
-                    KeepArrowinBound(ref menuNavigatorX, menuNavigatorXCap);
-                    KeepArrowinBound(ref menuNavigatorY, menuNavigatorYCap);
+                    //KeepArrowinBound(ref menuNavigatorX, menuNavigatorXCap);
+                    //KeepArrowinBound(ref menuNavigatorY, menuNavigatorYCap);
+                    KeepArrowinBound(ref menuNavigatorX, menuNavigatorXCap, ref menuNavigatorY, menuNavigatorYCap);
                 }
                 else
                 {
@@ -491,16 +492,35 @@ namespace SpooninDrawer.States.Splash
             string holder = currentScreen.GetMenuCommand(menuNavigatorX, menuNavigatorY);
             return holder;
         }
-        private void KeepArrowinBound(ref int currentArrowPosition, int maxArrowPostion)
+        private void KeepArrowinBound(ref int currentArrowPosition, int maxArrowPosition)
         {
-            if (currentArrowPosition > maxArrowPostion)
+            if (currentArrowPosition > maxArrowPosition)
             {
                 currentArrowPosition = 0;
             }
             else if (currentArrowPosition < 0)
             {
-                currentArrowPosition = maxArrowPostion;
+                currentArrowPosition = maxArrowPosition;
             }
+        }
+        private void KeepArrowinBound(ref int currentArrowPositionX, int[] maxArrowPositionX, ref int currentArrowPositionY, int maxArrowPositionY)
+        {
+            KeepArrowinBound(ref currentArrowPositionY, maxArrowPositionY);
+            if (maxArrowPositionX.Length == maxArrowPositionY + 1)
+            {
+                if (currentArrowPositionX > maxArrowPositionX[currentArrowPositionY])
+                {
+                    currentArrowPositionX = 0;
+                }
+                else if (currentArrowPositionX < 0)
+                {
+                    currentArrowPositionX = maxArrowPositionX[currentArrowPositionY];
+                }                
+            }
+            else
+            {
+                KeepArrowinBound(ref currentArrowPositionX, maxArrowPositionX[0]);
+            }            
         }
         public override void UpdateGameState(GameTime gameTime)
         {

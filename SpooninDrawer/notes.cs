@@ -249,7 +249,8 @@ namespace SpooninDrawer
          *-Added volume for Sound Effects(SE). Volume isn't carrying between states. Also changing volume for one changes colume for both.
          *-Turns out mastervolume is by ref. Needed to use soundeffectinstance to separate the two.
          *-For the volume not carrying, loading a track set it to it's original volume. Fixed by adjusting volume on load.
-         *
+         *4/19/2024
+         *-aligned volume bars and texts. Added BGM and SE text. Added jagged arraylike to arrow cap allowing limited selection in menu
          *
          *
          *

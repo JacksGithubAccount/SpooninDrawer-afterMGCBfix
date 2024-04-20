@@ -25,7 +25,7 @@ namespace SpooninDrawer.Objects.Screens
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
         public int[] menuLocationArrayY { get; }
-        public int menuNavigatorXCap { get; }
+        public int[] menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
@@ -48,7 +48,7 @@ namespace SpooninDrawer.Objects.Screens
                 menuLocationArrayX = new int[1] { 445 };
                 menuLocationArrayY = new int[4] { 310, 410, 490, 590 };
             }
-            menuNavigatorXCap = menuLocationArrayX.Length - 1;
+            menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1; ;            
         }
         public TitleScreen(SpriteFont font, Resolution resolution) : this(resolution)

@@ -18,7 +18,7 @@ namespace SpooninDrawer.Objects.Screens
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
         public int[] menuLocationArrayY { get; }
-        public int menuNavigatorXCap { get; }
+        public int[] menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; set; }
         //public SplashImage splashImage { get; }
@@ -31,7 +31,7 @@ namespace SpooninDrawer.Objects.Screens
             screenTexture = "Menu/ReturnToTitleScreen";
             menuLocationArrayX = new int[2] { 5 + (int)Position.X, 155 + (int)Position.X };
             menuLocationArrayY = new int[2] { 130 + (int)Position.Y, 130 + (int)Position.Y };
-            menuNavigatorXCap = 1;
+            menuNavigatorXCap = new int[1] { 1 };
             menuNavigatorYCap = 0;
         }
 
