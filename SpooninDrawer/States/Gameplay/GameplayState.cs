@@ -96,14 +96,14 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private BaseGameState menuGameState;
         public bool menuActivate = false;
 
-        public GameplayState(Resolution resolution, SoundManager BGM, SoundManager SE)
+        public GameplayState(Resolution resolution, SoundManager soundManager)
         {
             _displayResolution = resolution;
-            _soundManagerBGM = BGM;
-            _soundManagerSE = SE;
+            _soundManager = soundManager;
         }
         public override void LoadContent(ContentManager content)
         {
+            _soundManager.UnloadAllSound();
             if (paused) { paused = false; }
             _debug = true;
             //_explosionTexture = LoadTexture(ExplosionTexture);
@@ -138,19 +138,19 @@ namespace SpooninDrawer.Engine.States.Gameplay
             {
                 AddGameObject(_statsText);
             }
-            menuGameState = new SplashState(new MenuScreen(_displayResolution), this, _displayResolution, _soundManagerBGM, _soundManagerSE);
+            menuGameState = new SplashState(new MenuScreen(_displayResolution), this, _displayResolution, _soundManager);
             menuGameState.Initialize(content, _window, _graphicsDevice, _graphics);
             menuGameState.LoadContent(content);
 
             // load sound effects and register in the sound manager
             var bulletSound = LoadSound(BulletSound);
             //var missileSound = LoadSound(MissileSound);
-            _soundManagerSE.RegisterSound(new GameplayEvents.PlayerTest(), bulletSound);
+            _soundManager.RegisterSound(new GameplayEvents.PlayerTest(), bulletSound);
 
             // load soundtracks into sound manager
             var track1 = LoadSound(Soundtrack1).CreateInstance();
             var track2 = LoadSound(Soundtrack2).CreateInstance();
-            _soundManagerBGM.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
+            _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
 
             ResetGame();
         }
@@ -207,7 +207,6 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 {
                     //mc action
                     NotifyEvent(new GameplayEvents.PlayerTest());
-                    _soundManagerBGM.ChangeVolume(0.2f);
                 }
             });
         }
@@ -316,6 +315,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             _displayResolution = resolution;
             paused = false;
             menuActivate = false;
+            _soundManager.UnloadAllSound();
             SwitchState(new SplashState(_displayResolution));
         }
 

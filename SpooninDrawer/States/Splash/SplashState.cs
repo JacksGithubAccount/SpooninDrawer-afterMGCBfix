@@ -21,6 +21,8 @@ using Microsoft.Xna.Framework.Graphics;
 using static SpooninDrawer.States.Splash.SplashInputCommand;
 using System.Data;
 using SpooninDrawer.Engine.Sound;
+using Microsoft.Xna.Framework.Audio;
+using SpooninDrawer.States.Gameplay;
 
 namespace SpooninDrawer.States.Splash
 {
@@ -45,6 +47,13 @@ namespace SpooninDrawer.States.Splash
 
         private const string TestFont = "Fonts/TestText";
         private const string MenuFontString = "Fonts/MenuFont";
+
+        private const string BeepSound = "Sounds/beep";
+
+        private const string Soundtrack1 = "Music/FutureAmbient_3";
+        private const string Soundtrack2 = "Music/FutureAmbient_4";
+
+
         private SpriteFont MenuFont;
         TestText _testText;
 
@@ -60,16 +69,14 @@ namespace SpooninDrawer.States.Splash
             _displayResolution = resolution;
             currentScreen = Screen;
         }
-        public SplashState(BaseScreen Screen, BaseGameState BeforeState, Resolution resolution, SoundManager BGM, SoundManager SE) : this(Screen, resolution)
+        public SplashState(BaseScreen Screen, BaseGameState BeforeState, Resolution resolution, SoundManager soundManager) : this(Screen, resolution)
         {
             StoredState = BeforeState;
-            _soundManagerBGM = BGM;
-            _soundManagerSE = SE;
+            _soundManager = soundManager;
         }
         public override void LoadContent(ContentManager content)
         {
-            _soundManagerBGM.ChangeVolume(0.3f);
-            _soundManagerSE.ChangeVolume(0.4f);
+            _soundManager.UnloadAllSound();
             MenuFont = LoadFont(MenuFontString);
             ScreenStack = new Stack<BaseScreen>();
             _testText = new TestText(LoadFont(TestFont));
@@ -82,6 +89,14 @@ namespace SpooninDrawer.States.Splash
             AddGameObject(_menuArrow);
 
             _menuArrow.Position = new Vector2(menuLocationArrayX[0], menuLocationArrayY[0]);
+
+            var beepSound = LoadSound(BeepSound);
+            //var missileSound = LoadSound(MissileSound);
+            _soundManager.RegisterSound(new SplashEvents.SplashMoveArrow(), beepSound);
+
+            var track1 = LoadSound(Soundtrack1).CreateInstance();
+            var track2 = LoadSound(Soundtrack2).CreateInstance();
+            _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
         }
 
         public void ChangeScreen(BaseScreen screen)
@@ -254,7 +269,7 @@ namespace SpooninDrawer.States.Splash
                 settingsScreen.VolumeChange(volume, volumeType);
                 if (volumeType == VolumeType.BGM)
                 {
-                    _soundManagerBGM.ChangeVolume(settingsScreen.GetVolume(volumeType));
+                    _soundManager.ChangeVolumeBGM(settingsScreen.GetVolume(volumeType));
                     try
                     {
                         SplashImageLoadingBar volumeBarFill = (SplashImageLoadingBar)getScreenExist(settingsScreen.volumeBarFill);
@@ -266,7 +281,7 @@ namespace SpooninDrawer.States.Splash
                 }
                 else if (volumeType == VolumeType.SE)
                 {
-                    _soundManagerSE.ChangeVolume(settingsScreen.GetVolume(volumeType));
+                    _soundManager.ChangeVolumeSE(settingsScreen.GetVolume(volumeType));
                     try
                     {
                         SplashImageLoadingBar volumeBarFill = (SplashImageLoadingBar)getAllScreenExist(settingsScreen.volumeBarFill)[1];
@@ -381,7 +396,7 @@ namespace SpooninDrawer.States.Splash
                     {
                         if (!devState)
                         {
-                            SwitchState(new GameplayState(_displayResolution, _soundManagerBGM, _soundManagerSE));
+                            SwitchState(new GameplayState(_displayResolution, _soundManager));
                         }
                         else
                         {
@@ -390,7 +405,7 @@ namespace SpooninDrawer.States.Splash
                     }
                     if (cmd is SplashInputCommand.SettingsSelect)
                     {
-                        ChangeScreen(new SettingsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), _displayResolution, _soundManagerBGM.GetVolume(), _soundManagerSE.GetVolume()));
+                        ChangeScreen(new SettingsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), _displayResolution, _soundManager.GetVolumeBGM(), _soundManager.GetVolumeSE()));
                     }
                     if (cmd is SplashInputCommand.BackSelect)
                     {
@@ -427,18 +442,22 @@ namespace SpooninDrawer.States.Splash
                     }
                     if (cmd is SplashInputCommand.MenuMoveUp)
                     {
+                        NotifyEvent(new SplashEvents.SplashMoveArrow());
                         menuNavigatorY--;
                     }
                     if (cmd is SplashInputCommand.MenuMoveDown)
                     {
+                        NotifyEvent(new SplashEvents.SplashMoveArrow());
                         menuNavigatorY++;
                     }
                     if (cmd is SplashInputCommand.MenuMoveLeft)
                     {
+                        NotifyEvent(new SplashEvents.SplashMoveArrow());
                         menuNavigatorX--;
                     }
                     if (cmd is SplashInputCommand.MenuMoveRight)
                     {
+                        NotifyEvent(new SplashEvents.SplashMoveArrow());
                         menuNavigatorX++;
                     }
                     //KeepArrowinBound(ref menuNavigatorX, menuNavigatorXCap);

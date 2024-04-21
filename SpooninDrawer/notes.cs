@@ -251,6 +251,10 @@ namespace SpooninDrawer
          *-For the volume not carrying, loading a track set it to it's original volume. Fixed by adjusting volume on load.
          *4/19/2024
          *-aligned volume bars and texts. Added BGM and SE text. Added jagged arraylike to arrow cap allowing limited selection in menu
+         *4/20/2024
+         *-SE volume control was working. Fixed by adding function for SE as soundmanager handles SE differntly. Meaning, I only need one soundmanager. Removed one of the sound manager
+         *-volume display doesn't carry over between screens. Fixed by removing initial sound setter. But now unable to adjust sound before game launches. May save for launch settings implementation
+         *-returning to title causes a null issue with tracks. Fixed by unloading soundtrack on return to title. Added beeps to moving in splash screen
          *
          *
          *

@@ -19,25 +19,38 @@ namespace SpooninDrawer.Engine.Sound
         private int _soundtrackIndex = -1;
         private List<SoundEffectInstance> _soundtracks = new List<SoundEffectInstance>();
         private Dictionary<Type, SoundBankItem> _soundBank = new Dictionary<Type, SoundBankItem>();
-        private float volume;
+        private float volumeBGM;
+        private float volumeSE;
 
         public void SetSoundtrack(List<SoundEffectInstance> tracks)
         {
             _soundtracks = tracks;
             _soundtrackIndex = _soundtracks.Count - 1;
-            ChangeVolume(volume);
+            ChangeVolumeBGM(volumeBGM);
         }
-        public void ChangeVolume(float volume)
+        public void ChangeVolumeBGM(float volumeBGM)
         {
-            this.volume = volume;
+            this.volumeBGM = volumeBGM;
             foreach(SoundEffectInstance soundtrack in _soundtracks)
             {
-                soundtrack.Volume = volume;
+                soundtrack.Volume = volumeBGM;
             }
         }
-        public float GetVolume()
+        public void ChangeVolumeSE(float volumeSE)
+        {
+            this.volumeSE = volumeSE;
+            foreach (KeyValuePair<Type, SoundBankItem> sounditem in _soundBank)
+            {
+                sounditem.Value.Attributes.Volume = volumeSE;
+            }
+        }
+        public float GetVolumeBGM()
         {            
-            return volume;
+            return volumeBGM;
+        }
+        public float GetVolumeSE()
+        {
+            return volumeSE;
         }
         public void OnNotify(BaseGameStateEvent gameEvent)
         {
@@ -58,8 +71,7 @@ namespace SpooninDrawer.Engine.Sound
             }
 
             var currentTrack = _soundtracks[_soundtrackIndex];
-            var nextTrack = _soundtracks[(_soundtrackIndex + 1) % nbTracks];
-
+            var nextTrack = _soundtracks[(_soundtrackIndex + 1) % nbTracks];           
             if (currentTrack.State == SoundState.Stopped)
             {
                 nextTrack.Play();
@@ -71,16 +83,20 @@ namespace SpooninDrawer.Engine.Sound
                 }
             }
         }
-
+        public void UnloadAllSound()
+        {
+            _soundtracks.Clear();
+            _soundBank.Clear();
+        }
         public void RegisterSound(BaseGameStateEvent gameEvent, SoundEffect sound)
         {
-            RegisterSound(gameEvent, sound, 1.0f, 0.0f, 0.0f);
+            RegisterSound(gameEvent, sound, volumeSE, 0.0f, 0.0f);
         }
 
         internal void RegisterSound(BaseGameStateEvent gameEvent, SoundEffect sound,
-                                    float volume, float pitch, float pan)
+                                    float volumeSE, float pitch, float pan)
         {
-            _soundBank.Add(gameEvent.GetType(), new SoundBankItem(sound, new SoundAttributes(volume, pitch, pan)));
+            _soundBank.Add(gameEvent.GetType(), new SoundBankItem(sound, new SoundAttributes(volumeSE, pitch, pan)));
         }
     }
 }

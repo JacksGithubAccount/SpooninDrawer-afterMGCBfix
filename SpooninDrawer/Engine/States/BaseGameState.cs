@@ -1,23 +1,16 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Engine2D.PipelineExtensions;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tiled.Renderers;
+using SpooninDrawer.Engine.Input;
+using SpooninDrawer.Engine.Objects;
+using SpooninDrawer.Engine.Sound;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using SpooninDrawer.Engine.States;
-using SpooninDrawer.Engine.Objects;
-using SpooninDrawer.Engine.Input;
-using Microsoft.Xna.Framework.Audio;
-using SpooninDrawer.Engine.Sound;
-using SpooninDrawer.Objects.Screens;
-using Engine2D.PipelineExtensions;
-using MonoGame.Extended.Tiled;
-using SpooninDrawer.Engine.Objects.Animations;
-using MonoGame.Extended.Tiled.Renderers;
-using System.Reflection.Metadata;
-using System.IO.Pipes;
 
 namespace SpooninDrawer.Engine.States
 {
@@ -32,8 +25,7 @@ namespace SpooninDrawer.Engine.States
         protected GameWindow _window;
         protected int _viewportHeight;
         protected int _viewportWidth;
-        protected SoundManager _soundManagerBGM = new SoundManager();
-        protected SoundManager _soundManagerSE = new SoundManager();
+        protected SoundManager _soundManager = new SoundManager();
         protected GraphicsDeviceManager _graphics;
         protected GraphicsAdapter _graphicsAdapter;
         protected Resolution _displayResolution;
@@ -101,8 +93,7 @@ namespace SpooninDrawer.Engine.States
         public void Update(GameTime gameTime)
         {
             UpdateGameState(gameTime);
-            _soundManagerBGM.PlaySoundtrack();
-            _soundManagerSE.PlaySoundtrack();
+            _soundManager.PlaySoundtrack();
         }
         protected Texture2D LoadTexture(string textureName)
         {
@@ -128,8 +119,7 @@ namespace SpooninDrawer.Engine.States
                 gameObject.OnNotify(gameEvent);
             }
 
-            _soundManagerBGM.OnNotify(gameEvent);
-            _soundManagerSE.OnNotify(gameEvent);
+            _soundManager.OnNotify(gameEvent);
         }
 
         protected void SwitchState(BaseGameState gameState)

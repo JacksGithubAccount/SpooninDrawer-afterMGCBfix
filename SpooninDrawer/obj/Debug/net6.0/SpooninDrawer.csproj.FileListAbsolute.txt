@@ -223,3 +223,4 @@ C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\n
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Menu\VolumeBar.xnb
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Menu\VolumeBarArrow.xnb
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Menu\VolumeBarFill.xnb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\sounds\beep.xnb
