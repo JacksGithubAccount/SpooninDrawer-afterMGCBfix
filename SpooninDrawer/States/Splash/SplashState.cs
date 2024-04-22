@@ -468,11 +468,11 @@ namespace SpooninDrawer.States.Splash
                 {
                     if (VolumeBGMControl)
                     {
-                        if (cmd is SplashInputCommand.MenuMoveLeft)
+                        if (cmd is SplashInputCommand.MenuMoveLeft || cmd is SplashInputCommand.MenuHoldLeft)
                         {
                             ChangeVolume(-0.01f, VolumeType.BGM);
                         }
-                        if (cmd is SplashInputCommand.MenuMoveRight)
+                        if (cmd is SplashInputCommand.MenuMoveRight || cmd is SplashInputCommand.MenuHoldRight)
                         {
                             ChangeVolume(0.01f, VolumeType.BGM);
                         }
@@ -486,11 +486,11 @@ namespace SpooninDrawer.States.Splash
                         }
                     }else if (VolumeSEControl)
                     {
-                        if (cmd is SplashInputCommand.MenuMoveLeft)
+                        if (cmd is SplashInputCommand.MenuMoveLeft || cmd is SplashInputCommand.MenuHoldLeft)
                         {
                             ChangeVolume(-0.01f, VolumeType.SE);
                         }
-                        if (cmd is SplashInputCommand.MenuMoveRight)
+                        if (cmd is SplashInputCommand.MenuMoveRight || cmd is SplashInputCommand.MenuHoldRight)
                         {
                             ChangeVolume(0.01f, VolumeType.SE);
                         }

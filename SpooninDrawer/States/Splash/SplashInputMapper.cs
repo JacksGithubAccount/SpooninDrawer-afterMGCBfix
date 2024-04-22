@@ -174,7 +174,15 @@ namespace SpooninDrawer.States.Splash
             {
                 commands.Add(new MenuMoveRight());
             }
-            if(currentKeyboardState.GetPressedKeyCount() == 0 && previousKeyboardState.GetPressedKeyCount() ==0)
+            if (inputDetector.IsActioninputtedbyType(Actions.MoveLeft, InputType.Hold))
+            {
+                commands.Add(new MenuHoldLeft());
+            }
+            if (inputDetector.IsActioninputtedbyType(Actions.MoveRight, InputType.Hold))
+            {
+                commands.Add(new MenuHoldRight());
+            }
+            if (currentKeyboardState.GetPressedKeyCount() == 0 && previousKeyboardState.GetPressedKeyCount() ==0)
             {
                 screenTransition = false;
             }

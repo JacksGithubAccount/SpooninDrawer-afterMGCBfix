@@ -38,3 +38,4 @@ C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtension
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.csproj.CoreCompileInputs.cache
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.dll
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.pdb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Debug\netstandard2.0\Engine2DPipelineExtensions.sourcelink.json

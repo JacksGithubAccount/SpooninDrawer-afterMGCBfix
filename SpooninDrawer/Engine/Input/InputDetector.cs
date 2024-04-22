@@ -32,6 +32,7 @@ namespace SpooninDrawer.Engine.Input
     public class InputDetector
     {
         private KeyboardState oldState;
+        private MouseState oldMouseState;
         private List<ActionKey> controls;
         private List<ActionKey> actionKeys;
         public InputDetector()

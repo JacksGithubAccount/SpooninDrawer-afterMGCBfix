@@ -255,6 +255,10 @@ namespace SpooninDrawer
          *-SE volume control was working. Fixed by adding function for SE as soundmanager handles SE differntly. Meaning, I only need one soundmanager. Removed one of the sound manager
          *-volume display doesn't carry over between screens. Fixed by removing initial sound setter. But now unable to adjust sound before game launches. May save for launch settings implementation
          *-returning to title causes a null issue with tracks. Fixed by unloading soundtrack on return to title. Added beeps to moving in splash screen
+         *4/21/2024
+         *-added holding down to change volume
+         *-started implementing mouse and controller input
+         *
          *
          *
          *
