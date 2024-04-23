@@ -15,6 +15,7 @@ namespace SpooninDrawer.Engine.Input
         public Keys key;
         public Actions action;
         public InputType type;
+        
 
         public ActionKey(Keys inputKey, Actions keyAction)
         {

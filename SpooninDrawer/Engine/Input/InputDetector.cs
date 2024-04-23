@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using SpooninDrawer.States.Dev;
 using SpooninDrawer.States.Gameplay;
 using System;
 using System.Collections.Generic;
@@ -31,20 +33,33 @@ namespace SpooninDrawer.Engine.Input
     }
     public class InputDetector
     {
-        private KeyboardState oldState;
+        private KeyboardState oldKeyboardState;
         private MouseState oldMouseState;
-        private List<ActionKey> controls;
+        private GamePadState oldGamePadState;
+        private List<ActionKey> keyboardControls;
         private List<ActionKey> actionKeys;
+        private List<ActionClick> mouseControls;
+        private Action mouseAction;
+
         public InputDetector()
         {
-            oldState = Keyboard.GetState();
+            oldKeyboardState = Keyboard.GetState();
+            oldMouseState = Mouse.GetState();
+            oldGamePadState = GamePad.GetState(PlayerIndex.One);
 
             //player input is added to this list which is then checked when an action is called and removed when player is no longer inputting that input
             actionKeys = new List<ActionKey>();
 
-
+            mouseControls = new List<ActionClick> 
+            {
+                new ActionClick(Click.LeftClick, Actions.Confirm),
+                new ActionClick(Click.RightClick, Actions.Cancel),
+                new ActionClick(Click.MiddleClick, Actions.OpenMenu),
+                new ActionClick(Click.ScrollUp, Actions.MoveUp),
+                new ActionClick(Click.ScrollDown, Actions.MoveDown)
+            };
             //contains the controls for  player input
-            controls = new List<ActionKey>
+            keyboardControls = new List<ActionKey>
             {
                 new ActionKey(Keys.A, Actions.MoveLeft),
                 new ActionKey(Keys.D, Actions.MoveRight),
@@ -56,16 +71,14 @@ namespace SpooninDrawer.Engine.Input
                 new ActionKey(Keys.Z, Actions.Attack),
                 new ActionKey(Keys.C, Actions.OpenMenu),
                 new ActionKey(Keys.P, Actions.Pause)
-            };
-            
-                               
+            };                                     
         }
         public Actions DoesKeyExistinControls(Keys keyToCheck, Actions actionToRemap)
         {
             Actions crossAction = Actions.NoInput;
-            if (controls.Exists(x => x.key == keyToCheck))
+            if (keyboardControls.Exists(x => x.key == keyToCheck))
             {
-                List<ActionKey> checkAKey = controls.FindAll(x => x.key == keyToCheck);
+                List<ActionKey> checkAKey = keyboardControls.FindAll(x => x.key == keyToCheck);
                 if (checkAKey.Count >= 1)
                 {
                     if (checkAKey.Exists(x => x.action == Actions.Confirm) && actionToRemap == Actions.Cancel)
@@ -96,11 +109,11 @@ namespace SpooninDrawer.Engine.Input
         }
         public void Remap(Keys remappedKey, Actions selectedAction)
         {
-            controls.Find(x => x.action == selectedAction).setKey(remappedKey);
+            keyboardControls.Find(x => x.action == selectedAction).setKey(remappedKey);
         }
         public Keys getKeyforAction(Actions selectedAction)
         {
-            return controls.Find(x => x.action == selectedAction).key;
+            return keyboardControls.Find(x => x.action == selectedAction).key;
         }
         public bool IsActionPressed(Actions selectedAction)
         {
@@ -113,7 +126,7 @@ namespace SpooninDrawer.Engine.Input
         }
         public bool IsActioninputtedbyType(Actions selectedAction, InputType inputType)
         {
-            ActionKey actionCheck = new ActionKey(controls.Find(x => x.action == selectedAction));
+            ActionKey actionCheck = new ActionKey(keyboardControls.Find(x => x.action == selectedAction));
             actionCheck.type = inputType;
             if (actionKeys.Exists(x => x.action == selectedAction && x.type == inputType))
             {
@@ -138,10 +151,10 @@ namespace SpooninDrawer.Engine.Input
         }
         public void PressButton(KeyboardState keyState, Actions action)
         {
-            Keys checkKey = controls.Find(x => x.action == action).key;
-            ActionKey tempActionKey = new ActionKey(controls.Find(x => x.action == action));
+            Keys checkKey = keyboardControls.Find(x => x.action == action).key;
+            ActionKey tempActionKey = new ActionKey(keyboardControls.Find(x => x.action == action));
 
-            if (keyState.IsKeyDown(checkKey) && oldState.IsKeyDown(checkKey))
+            if (keyState.IsKeyDown(checkKey) && oldKeyboardState.IsKeyDown(checkKey))
             {
                 tempActionKey.type = InputType.Hold;
                 if (!actionKeys.Exists(x => x.action == action && x.type == InputType.Hold))
@@ -156,7 +169,7 @@ namespace SpooninDrawer.Engine.Input
                     actionKeys.RemoveAll(x => x.action == action && x.type == InputType.Hold);
                 }
             }
-            if (keyState.IsKeyDown(checkKey) && oldState.IsKeyUp(checkKey))
+            if (keyState.IsKeyDown(checkKey) && oldKeyboardState.IsKeyUp(checkKey))
             {
                 tempActionKey.type = InputType.Press;
                 if (!actionKeys.Contains(tempActionKey))
@@ -171,7 +184,7 @@ namespace SpooninDrawer.Engine.Input
                     actionKeys.RemoveAll(x => x.action == action && x.type == InputType.Press);
                 }
             }
-            if (keyState.IsKeyUp(checkKey) && oldState.IsKeyDown(checkKey))
+            if (keyState.IsKeyUp(checkKey) && oldKeyboardState.IsKeyDown(checkKey))
             {
                 tempActionKey.type = InputType.Release;
                 if (!actionKeys.Exists(x => x.action == action && x.type == InputType.Release))
@@ -192,22 +205,42 @@ namespace SpooninDrawer.Engine.Input
             //        actionKeys.RemoveAll(x => x.action == action);
             //}
         }
+        public void MouseClick(MouseState mouseState, Action action)
+        {
+            if (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Pressed)
+            {
+            }
+        }
         public void SetOldKeyboardState(KeyboardState keyboardState)
         {
-            oldState = keyboardState;
+            oldKeyboardState = keyboardState;
         }
         public void update(KeyboardState keyState)
         {
-            for (int c = 0; c < controls.Count; c++)
+            for (int c = 0; c < keyboardControls.Count; c++)
             {
-                PressButton(keyState, controls[c].action);
+                PressButton(keyState, keyboardControls[c].action);
             }
 
             //if (keyState.GetPressedKeys().Length == 0)
             //{
             //    actionKeys.Clear();
             //}
-            oldState = keyState;
+            oldKeyboardState = keyState;
+        }
+        public void update(KeyboardState keyState, MouseState mouseState)
+        {
+            for (int c = 0; c < keyboardControls.Count; c++)
+            {
+                PressButton(keyState, keyboardControls[c].action);
+            }
+
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                //mouseAction
+            }
+            oldMouseState = mouseState;
+            oldKeyboardState = keyState;
         }
     }
 }
