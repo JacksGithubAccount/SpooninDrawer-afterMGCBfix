@@ -35,7 +35,7 @@ namespace SpooninDrawer.States.Splash
             var commands = new List<SplashInputCommand>();            
 
 
-            if (inputDetector.IsActioninputtedbyType(Actions.Confirm, InputType.Release) && !screenTransition)
+            if (inputDetector.IsActioninputtedbyTypeforKey(Actions.Confirm, InputType.Release) && !screenTransition)
             {
                 string commandState = splashState.GetCommandState();
                 screenTransition = true;
@@ -137,7 +137,7 @@ namespace SpooninDrawer.States.Splash
             {
                 screenTransition = true;
                 Keys inputKey = previousKeyboardState.GetPressedKeys()[0];
-                inputDetector.Remap(inputKey, RemapActionHolder);
+                inputDetector.RemapKey(inputKey, RemapActionHolder);
                 //reloads remap controls screen to update the new keybinds
                 commands.Add(new BackSelect());
                 commands.Add(new BackSelect());
@@ -154,31 +154,31 @@ namespace SpooninDrawer.States.Splash
             {
                 commands.Add(new TestMenuButton2());
             }
-            if (inputDetector.IsActioninputtedbyType(Actions.Cancel, InputType.Press))
+            if (inputDetector.IsActioninputtedbyTypeforKey(Actions.Cancel, InputType.Press))
             {
                 commands.Add(new BackSelect());
             }
-            if (inputDetector.IsActioninputtedbyType(Actions.MoveUp, InputType.Press))
+            if (inputDetector.IsActioninputtedbyTypeforKey(Actions.MoveUp, InputType.Press))
             {
                 commands.Add(new MenuMoveUp());
             }
-            if (inputDetector.IsActioninputtedbyType(Actions.MoveDown, InputType.Press))
+            if (inputDetector.IsActioninputtedbyTypeforKey(Actions.MoveDown, InputType.Press))
             {
                 commands.Add(new MenuMoveDown());
             }
-            if (inputDetector.IsActioninputtedbyType(Actions.MoveLeft, InputType.Press))
+            if (inputDetector.IsActioninputtedbyTypeforKey(Actions.MoveLeft, InputType.Press))
             {
                 commands.Add(new MenuMoveLeft());
             }
-            if (inputDetector.IsActioninputtedbyType(Actions.MoveRight, InputType.Press))
+            if (inputDetector.IsActioninputtedbyTypeforKey(Actions.MoveRight, InputType.Press))
             {
                 commands.Add(new MenuMoveRight());
             }
-            if (inputDetector.IsActioninputtedbyType(Actions.MoveLeft, InputType.Hold))
+            if (inputDetector.IsActioninputtedbyTypeforKey(Actions.MoveLeft, InputType.Hold))
             {
                 commands.Add(new MenuHoldLeft());
             }
-            if (inputDetector.IsActioninputtedbyType(Actions.MoveRight, InputType.Hold))
+            if (inputDetector.IsActioninputtedbyTypeforKey(Actions.MoveRight, InputType.Hold))
             {
                 commands.Add(new MenuHoldRight());
             }
