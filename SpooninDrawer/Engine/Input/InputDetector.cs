@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using SpooninDrawer.Extensions;
 using SpooninDrawer.States.Dev;
 using SpooninDrawer.States.Gameplay;
 using System;
@@ -236,13 +237,56 @@ namespace SpooninDrawer.Engine.Input
                 }
             }
         }
+        
         public void MouseClick(MouseState mouseState, Actions action)
         {
             Click checkClick = mouseControls.Find(x => x.action == action).click;
             ActionClick tempActionClick = new ActionClick(mouseControls.Find(x => x.action == action));
-
-            if (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton == ButtonState.Pressed)
+            
+            if (mouseState.IsClickDown(checkClick) && oldMouseState.IsClickDown(checkClick))
             {
+                tempActionClick.type = InputType.Hold;
+                if (!actionClicks.Exists(x => x.action == action && x.type == InputType.Hold))
+                {
+                    actionClicks.Add(tempActionClick);
+                }
+            }
+            else
+            {
+                if (actionKeys.Exists(x => x.action == action && x.type == InputType.Hold))
+                {
+                    actionKeys.RemoveAll(x => x.action == action && x.type == InputType.Hold);
+                }
+            }
+            if (mouseState.IsClickDown(checkClick) && oldMouseState.IsClickUp(checkClick))
+            {
+                tempActionClick.type = InputType.Press;
+                if (!actionClicks.Contains(tempActionClick))
+                {
+                    actionClicks.Add(tempActionClick);
+                }
+            }
+            else
+            {
+                if (actionClicks.Exists(x => x.action == action && x.type == InputType.Press))
+                {
+                    actionClicks.RemoveAll(x => x.action == action && x.type == InputType.Press);
+                }
+            }
+            if (mouseState.IsClickUp(checkClick) && oldMouseState.IsClickDown(checkClick))
+            {
+                tempActionClick.type = InputType.Release;
+                if (!actionClicks.Exists(x => x.action == action && x.type == InputType.Release))
+                {
+                    actionClicks.Add(tempActionClick);
+                }
+            }
+            else
+            {
+                if (actionClicks.Exists(x => x.action == action && x.type == InputType.Release))
+                {
+                    actionClicks.RemoveAll(x => x.action == action && x.type == InputType.Release);
+                }
             }
         }
         public void SetOldKeyboardState(KeyboardState keyboardState)

@@ -262,6 +262,8 @@ namespace SpooninDrawer
          *-Mouse is set differently than keyboard. Figuring out implementations allow for remapping the mouse controls.
          *4/23/2024
          *-more mouse stuff
+         *4/24/2024
+         *-added extension method for mousestate to make it handle more similar to keyboardstate
          *
          *
          *
