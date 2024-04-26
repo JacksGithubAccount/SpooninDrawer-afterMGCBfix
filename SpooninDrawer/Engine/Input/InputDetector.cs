@@ -306,12 +306,8 @@ namespace SpooninDrawer.Engine.Input
 
             oldKeyboardState = keyState;
         }
-        public void update(KeyboardState keyState, MouseState mouseState)
+        public void update(MouseState mouseState)
         {
-            for (int c = 0; c < keyboardControls.Count; c++)
-            {
-                PressButton(keyState, keyboardControls[c].action);
-            }
             for (int c = 0; c < mouseControls.Count; c++)
             {
                 MouseClick(mouseState, mouseControls[c].action);
@@ -319,7 +315,6 @@ namespace SpooninDrawer.Engine.Input
 
 
             oldMouseState = mouseState;
-            oldKeyboardState = keyState;
         }
     }
 }

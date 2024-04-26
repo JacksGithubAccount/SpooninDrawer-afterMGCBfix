@@ -188,6 +188,16 @@ namespace SpooninDrawer.States.Splash
             }
             return commands;
         }
+        public override IEnumerable<BaseInputCommand> GetMouseState(MouseState state)
+        {
+            previousMouseState = currentMouseState;
+            inputDetector.update(previousMouseState);
+            currentMouseState = state;
+            var commands = new List<SplashInputCommand>();
+
+
+            return commands;
+        }
         private bool isKeyPressed(Keys key)
         {
             return currentKeyboardState.IsKeyDown(key);
