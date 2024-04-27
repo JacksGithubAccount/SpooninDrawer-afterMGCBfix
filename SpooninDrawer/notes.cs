@@ -266,6 +266,8 @@ namespace SpooninDrawer
          *-added extension method for mousestate to make it handle more similar to keyboardstate
          *4/25/2024
          *-started adding mouse controls to settings
+         *4/26/2024
+         *-more mouse implementations
          *
          *
          *
