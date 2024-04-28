@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Newtonsoft.Json.Linq;
 
 namespace SpooninDrawer.Extensions
 {
@@ -17,6 +18,16 @@ namespace SpooninDrawer.Extensions
                 if( rect.Intersects(rectangle))
                     return true;
             }
+            return false;
+        }
+        //extension for rectangle used in mouse detection
+        public static bool Intersects(this Rectangle rect, Point position)
+        {
+            if (position.X < rect.Right && rect.Left < position.X && position.Y < rect.Bottom)
+            {
+                return rect.Top < position.Y;
+            }
+
             return false;
         }
     }

@@ -40,6 +40,7 @@ namespace SpooninDrawer.States.Splash
         private int menuNavigatorY = 0;
         private int[] menuNavigatorXCap;
         private int menuNavigatorYCap;
+        private MousePositionHandler MPH;
         BaseScreen currentScreen;
         BaseScreen previousScreen;
         BaseGameState StoredState;
@@ -89,6 +90,7 @@ namespace SpooninDrawer.States.Splash
             AddGameObject(_menuArrow);
 
             _menuArrow.Position = new Vector2(menuLocationArrayX[0], menuLocationArrayY[0]);
+            MPH = new MousePositionHandler(Mouse.GetState(), currentScreen);
 
             var beepSound = LoadSound(BeepSound);
             //var missileSound = LoadSound(MissileSound);

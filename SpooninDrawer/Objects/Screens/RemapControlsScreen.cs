@@ -33,7 +33,7 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; set; }
         public BaseTextObject[,] ScreenText { get; }
-
+        public Rectangle[][] ButtonRectangles { get; }
         private InputDetector inputDetector;
         private Resolution displayResolution;
         private Vector2 positionOffset;

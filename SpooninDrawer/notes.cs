@@ -268,7 +268,8 @@ namespace SpooninDrawer
          *-started adding mouse controls to settings
          *4/26/2024
          *-more mouse implementations
-         *
+         *4/27/2024
+         *-added class to handle mouse positions over buttons and added rectangles for buttons
          *
          *
          */

@@ -23,7 +23,7 @@ namespace SpooninDrawer.Objects.Screens
         public Vector2 Position { get; set; }
         //public SplashImage splashImage { get; }
         public BaseTextObject[,] ScreenText { get; }
-
+        public Rectangle[][] ButtonRectangles { get; }
         public ReturnToTitleScreen() : this(0, 0) { }
         public ReturnToTitleScreen(int positionx, int positiony)
         {

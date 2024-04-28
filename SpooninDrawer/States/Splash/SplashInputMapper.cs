@@ -195,13 +195,15 @@ namespace SpooninDrawer.States.Splash
             currentMouseState = state;
             var commands = new List<SplashInputCommand>();
 
-            if (inputDetector.IsActioninputtedbyTypeforKey(Actions.Confirm, InputType.Release) && !screenTransition)
+            if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Confirm, InputType.Release) && !screenTransition)
             {
                 string commandState = splashState.GetCommandState();
                 screenTransition = true;
                 switch (commandState)
                 {
-
+                    case "GameSelect":
+                        commands.Add(new GameSelect());
+                        break;
                 }
             }
 

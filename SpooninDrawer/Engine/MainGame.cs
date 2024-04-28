@@ -34,7 +34,7 @@ namespace SpooninDrawer.Engine
         {
             Content.RootDirectory = "Content";
             graphics = new GraphicsDeviceManager(this);
-
+            IsMouseVisible = true;
             _firstGameState = firstGameState;
             _DesignedResolutionWidth = width;
             _DesignedResolutionHeight = height;
