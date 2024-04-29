@@ -309,6 +309,7 @@ namespace SpooninDrawer.States.Splash
 
         public override void HandleInput(GameTime gameTime)
         {
+            MPH.SetMouseState(Mouse.GetState());
             try
             {
                 _menuArrow.Activate();
@@ -545,6 +546,13 @@ namespace SpooninDrawer.States.Splash
         }
         public override void UpdateGameState(GameTime gameTime)
         {
+            
+            if (MPH.IsMouseOverButton())
+            {
+                Vector2 holder = MPH.GetButtonUnderMouse();
+                menuNavigatorX = (int)holder.X;
+                menuNavigatorY = (int)holder.Y;
+            }
             _menuArrow.Update(gameTime);
             HandleInput(gameTime);
         }

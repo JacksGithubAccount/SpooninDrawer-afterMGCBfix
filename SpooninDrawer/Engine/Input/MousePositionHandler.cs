@@ -19,6 +19,10 @@ namespace SpooninDrawer.Engine.Input
             this.mouseState = mouseState;
             this.screen = screen;
         }
+        public void SetMouseState(MouseState mouseState)
+        {
+            this.mouseState = mouseState;
+        }
         public void SetScreen(BaseScreen screen)
         {
             this.screen = screen;
@@ -29,7 +33,8 @@ namespace SpooninDrawer.Engine.Input
             {
                 foreach (Rectangle rect in screen.ButtonRectangles[i])
                 {
-                    return rect.Intersects(mouseState.Position);
+                    if( rect.Intersects(mouseState.Position))
+                        return true;
                 };
             }
             return false;

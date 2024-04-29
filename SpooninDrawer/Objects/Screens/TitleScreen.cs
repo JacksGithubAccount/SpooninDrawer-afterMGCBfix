@@ -39,7 +39,13 @@ namespace SpooninDrawer.Objects.Screens
         {
             DisplayResolution = resolution;
             Position = new Vector2(0, 0);
-            ButtonRectangles = new Rectangle[1][];
+            ButtonRectangles = new Rectangle[1][] 
+            {
+                new Rectangle[4] 
+                {
+                    new Rectangle(), new Rectangle(),new Rectangle(),new Rectangle()
+                }
+            };
             if (DisplayResolution == Resolution.x1080)
             {
                 screenTexture = "Menu/TitleScreen1080";
@@ -55,10 +61,11 @@ namespace SpooninDrawer.Objects.Screens
             }
             menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1; ;
-            for(int i = 0; i < ButtonsAmount; i++)
+            for (int i = 0; i < ButtonsAmount; i++)
             {
-                ButtonRectangles[0][i] = (new Rectangle(menuLocationArrayX[i], menuLocationArrayY[i], ButtonX, ButtonY));
+                ButtonRectangles[0][i] = (new Rectangle(menuLocationArrayX[0], menuLocationArrayY[i], ButtonX, ButtonY));
             }
+
         }
         public TitleScreen(SpriteFont font, Resolution resolution) : this(resolution)
         {

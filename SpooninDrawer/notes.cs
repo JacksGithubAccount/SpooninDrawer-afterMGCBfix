@@ -270,7 +270,10 @@ namespace SpooninDrawer
          *-more mouse implementations
          *4/27/2024
          *-added class to handle mouse positions over buttons and added rectangles for buttons
-         *
+         *4/28/2024
+         *-Ran into issue where boxes weren't detecting mouse position, mouse state passed was not ref. Added in update, will need better way of getting this though
+         *-Another issue where only the first box is dtecting, the rest arent. The return in the checker breaks the loop, made if and only return true if passes if.
+         *-
          *
          */
     }
