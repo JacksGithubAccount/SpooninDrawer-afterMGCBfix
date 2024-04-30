@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using SpooninDrawer.Engine.Input;
+using SpooninDrawer.Engine.Objects;
+using SpooninDrawer.Objects.Screens;
 using SpooninDrawer.States.Dev;
 using SpooninDrawer.States.Gameplay;
 using System;
@@ -20,9 +22,14 @@ namespace SpooninDrawer.States.Splash
         private Actions RemapActionHolder;
         //used to stop the screen from activating the selected option when Z/enter is pressed and changing screens
         private bool screenTransition = false;
-        public SplashInputMapper(SplashState currentSplashState) : this(currentSplashState, new InputDetector()) { }
+        private MousePositionHandler mousePositionHandler;
+        public SplashInputMapper(SplashState currentSplashState, MousePositionHandler mousePositionHandler) : this(currentSplashState, new InputDetector()) 
+        { 
+            this.mousePositionHandler = mousePositionHandler;
+        }
         public SplashInputMapper(SplashState currentSplashState, InputDetector inputDetector)
         {
+            
             splashState = currentSplashState;
             this.inputDetector = inputDetector;
             RemapChecker = false;
@@ -37,101 +44,11 @@ namespace SpooninDrawer.States.Splash
 
             if (inputDetector.IsActioninputtedbyTypeforKey(Actions.Confirm, InputType.Release) && !screenTransition)
             {
-                string commandState = splashState.GetCommandState();
+                string commandState = splashState.GetCommandStateforKey();
                 screenTransition = true;
-                switch (commandState)
-                {
-                    case "GameSelect":
-                        commands.Add(new GameSelect());
-                        break;
-                    case "LoadSelect":
-                        commands.Add(new LoadSelect());
-                        break;
-                    case "SettingsSelect":
-                        commands.Add(new SettingsSelect());
-                        break;
-                    case "ExitSelect":
-                        commands.Add(new ExitSelect());
-                        break;
-                    case "ResumeSelect":
-                        commands.Add(new ResumeSelect());
-                        break;
-                    case "CheckMenuSelect":
-                        commands.Add(new CheckMenuSelect());
-                        break;
-                    case "BackSelect":
-                        commands.Add(new BackSelect());
-                        break;
-                    case "MoveArrowRight":
-                        commands.Add(new MenuMoveRight());
-                        break;
-                    case "Fullscreen":
-                        commands.Add(new SetFullScreen());
-                        break;
-                    case "Windows":
-                        commands.Add(new SetWindowScreen());
-                        break;
-                    case "Borderless":
-                        commands.Add(new SetBorderlessScreen());
-                        break;
-                    case "Resolution1080":
-                        commands.Add(new SetResolution1080());
-                        break;
-                    case "Resolution720":
-                        commands.Add(new SetResolution720());
-                        break;
-                    case "Controls":
-                        commands.Add(new RemapControlSelect());
-                        break;
-                    //cases to handle remapping controls
-                    case "RemapSelectConfirm":
-                        commands.Add(new RemapControlConfirm());
-                        RemapChecker = true;
-                        RemapActionHolder = Actions.Confirm;
-                        break;
-                    case "RemapSelectCancel":
-                        commands.Add(new RemapControlConfirm());
-                        RemapChecker = true;
-                        RemapActionHolder = Actions.Cancel;
-                        break;
-                    case "RemapSelectUp":
-                        commands.Add(new RemapControlConfirm());
-                        RemapChecker = true;
-                        RemapActionHolder = Actions.MoveUp;
-                        break;
-                    case "RemapSelectDown":
-                        commands.Add(new RemapControlConfirm());
-                        RemapChecker = true;
-                        RemapActionHolder = Actions.MoveDown;
-                        break;
-                    case "RemapSelectLeft":
-                        commands.Add(new RemapControlConfirm());
-                        RemapChecker = true;
-                        RemapActionHolder = Actions.MoveLeft;
-                        break;
-                    case "RemapSelectRight":
-                        commands.Add(new RemapControlConfirm());
-                        RemapChecker = true;
-                        RemapActionHolder = Actions.MoveRight;
-                        break;
-                    case "RemapSelectOpenMenu":
-                        commands.Add(new RemapControlConfirm());
-                        RemapChecker = true;
-                        RemapActionHolder = Actions.OpenMenu;
-                        break;
-                    case "RemapSelectPause":
-                        commands.Add(new RemapControlConfirm());
-                        RemapChecker = true;
-                        RemapActionHolder = Actions.Pause;
-                        break;
-                    //remap end
-                    case "VolumeBGM":
-                        commands.Add(new SettingVolumeBGMSelect());
-                        break;
-                    case "VolumeSE":
-                        commands.Add(new SettingVolumeSESelect());
-                        break;
-                }
+                commands.Add(FindConfirm(commandState));
+
+
             }
             if (RemapChecker && currentKeyboardState.GetPressedKeyCount() == 0 && previousKeyboardState.GetPressedKeyCount() !=0 && !screenTransition)
             {
@@ -197,7 +114,7 @@ namespace SpooninDrawer.States.Splash
 
             if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Confirm, InputType.Release) && !screenTransition)
             {
-                string commandState = splashState.GetCommandState();
+                string commandState = splashState.GetCommandStateforMouse();
                 screenTransition = true;
                 switch (commandState)
                 {
@@ -225,6 +142,102 @@ namespace SpooninDrawer.States.Splash
         public void ResetRemaps()
         {
             inputDetector.resetKeystoDefault();
+        }
+        private SplashInputCommand FindConfirm(string commandState)
+        {
+            switch (commandState)
+            {
+                case "GameSelect":
+                    return new GameSelect();
+                    
+                case "LoadSelect":
+                    return new LoadSelect();
+                    
+                case "SettingsSelect":
+                    return new SettingsSelect();
+                    
+                case "ExitSelect":
+                    return new ExitSelect();
+                    
+                case "ResumeSelect":
+                    return new ResumeSelect();
+                case "CheckMenuSelect":
+                    return new CheckMenuSelect();
+                    
+                case "BackSelect":
+                    return new BackSelect();
+                    
+                case "MoveArrowRight":
+                    return new MenuMoveRight();
+                    
+                case "Fullscreen":
+                    return new SetFullScreen();
+                    
+                case "Windows":
+                    return new SetWindowScreen();
+                    
+                case "Borderless":
+                    return new SetBorderlessScreen();
+                    
+                case "Resolution1080":
+                    return new SetResolution1080();
+                    
+                case "Resolution720":
+                    return new SetResolution720();
+                    
+                case "Controls":
+                    return new RemapControlSelect();
+                    
+                //cases to handle remapping controls
+                case "RemapSelectConfirm":
+                    
+                    RemapChecker = true;
+                    RemapActionHolder = Actions.Confirm;
+                    return new RemapControlConfirm();
+                case "RemapSelectCancel":
+                    
+                    RemapChecker = true;
+                    RemapActionHolder = Actions.Cancel;
+                    return new RemapControlConfirm(); 
+                case "RemapSelectUp":
+                    
+                    RemapChecker = true;
+                    RemapActionHolder = Actions.MoveUp;
+                    return new RemapControlConfirm(); 
+                case "RemapSelectDown":
+                    
+                    RemapChecker = true;
+                    RemapActionHolder = Actions.MoveDown;
+                    return new RemapControlConfirm(); 
+                case "RemapSelectLeft":
+                    RemapChecker = true;
+                    RemapActionHolder = Actions.MoveLeft;
+                    return new RemapControlConfirm(); 
+                case "RemapSelectRight":
+                    
+                    RemapChecker = true;
+                    RemapActionHolder = Actions.MoveRight;
+                    return new RemapControlConfirm();
+                case "RemapSelectOpenMenu":
+                    
+                    RemapChecker = true;
+                    RemapActionHolder = Actions.OpenMenu;
+                    return new RemapControlConfirm();
+                case "RemapSelectPause":
+                    
+                    RemapChecker = true;
+                    RemapActionHolder = Actions.Pause;
+                    return new RemapControlConfirm();
+                    
+                //remap end
+                case "VolumeBGM":
+                    return new SettingVolumeBGMSelect();
+                    
+                case "VolumeSE":
+                    return new SettingVolumeSESelect();
+                    
+            }
+            return new BackSelect();
         }
     }
 }

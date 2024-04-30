@@ -40,7 +40,7 @@ namespace SpooninDrawer.States.Splash
         private int menuNavigatorY = 0;
         private int[] menuNavigatorXCap;
         private int menuNavigatorYCap;
-        private MousePositionHandler MPH;
+        private MousePositionHandler mousePositionHandler;
         BaseScreen currentScreen;
         BaseScreen previousScreen;
         BaseGameState StoredState;
@@ -90,7 +90,7 @@ namespace SpooninDrawer.States.Splash
             AddGameObject(_menuArrow);
 
             _menuArrow.Position = new Vector2(menuLocationArrayX[0], menuLocationArrayY[0]);
-            MPH = new MousePositionHandler(Mouse.GetState(), currentScreen);
+            mousePositionHandler = new MousePositionHandler(currentScreen);
 
             var beepSound = LoadSound(BeepSound);
             //var missileSound = LoadSound(MissileSound);
@@ -309,7 +309,6 @@ namespace SpooninDrawer.States.Splash
 
         public override void HandleInput(GameTime gameTime)
         {
-            MPH.SetMouseState(Mouse.GetState());
             try
             {
                 _menuArrow.Activate();
@@ -509,10 +508,14 @@ namespace SpooninDrawer.States.Splash
                 }
             });
         }
-        public string GetCommandState()
+        public string GetCommandStateforKey()
         {
             string holder = currentScreen.GetMenuCommand(menuNavigatorX, menuNavigatorY);
             return holder;
+        }
+        public string GetCommandStateforMouse()
+        {
+            return currentScreen.GetMenuCommand(mousePositionHandler.GetScreenPosition());
         }
         private void KeepArrowinBound(ref int currentArrowPosition, int maxArrowPosition)
         {
@@ -547,9 +550,9 @@ namespace SpooninDrawer.States.Splash
         public override void UpdateGameState(GameTime gameTime)
         {
             
-            if (MPH.IsMouseOverButton())
+            if (mousePositionHandler.IsMouseOverButton())
             {
-                Vector2 holder = MPH.GetButtonUnderMouse();
+                Vector2 holder = mousePositionHandler.GetButtonUnderMouse();
                 menuNavigatorX = (int)holder.X;
                 menuNavigatorY = (int)holder.Y;
             }
@@ -559,7 +562,7 @@ namespace SpooninDrawer.States.Splash
 
         protected override void SetInputManager()
         {
-            InputManager = new InputManager(new SplashInputMapper(this));
+            InputManager = new InputManager(new SplashInputMapper(this, mousePositionHandler));
         }
     }
 }

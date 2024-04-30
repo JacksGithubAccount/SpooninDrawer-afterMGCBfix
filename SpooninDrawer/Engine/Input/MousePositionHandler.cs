@@ -14,21 +14,21 @@ namespace SpooninDrawer.Engine.Input
     {
         private MouseState mouseState;
         private BaseScreen screen;
-        public MousePositionHandler(MouseState mouseState, BaseScreen screen)
+        private Vector2 screenPosition;
+        public MousePositionHandler(BaseScreen screen)
         {
-            this.mouseState = mouseState;
+            mouseState = Mouse.GetState();
             this.screen = screen;
-        }
-        public void SetMouseState(MouseState mouseState)
-        {
-            this.mouseState = mouseState;
+            screenPosition = new Vector2(0, 0);
         }
         public void SetScreen(BaseScreen screen)
         {
             this.screen = screen;
         }
+        public Vector2 GetScreenPosition() { return screenPosition; }
         public bool IsMouseOverButton()
         {
+            mouseState = Mouse.GetState();
             for (int i = 0; i < screen.ButtonRectangles.Length; i++)
             {
                 foreach (Rectangle rect in screen.ButtonRectangles[i])
@@ -48,11 +48,11 @@ namespace SpooninDrawer.Engine.Input
                     if (rect.Intersects(mouseState.Position))
                     {
                         int j = Array.FindIndex(screen.ButtonRectangles[i], x => x == rect);
-                        return new Vector2(i, j);
+                        return screenPosition = new Vector2(i, j);
                     }                        
                 };
             }            
-            return new Vector2(0,0);
+            return screenPosition;
         }
     }
 }
