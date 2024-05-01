@@ -24,11 +24,13 @@ namespace SpooninDrawer.Engine.Objects
         Vector2 Position { get; }
         BaseTextObject[,] ScreenText { get; }
         Rectangle[][] ButtonRectangles { get; }
+        protected static int ButtonX;
+        protected static int ButtonY;
+        protected static int ButtonsAmount;
 
         BaseScreen Initialize(Resolution resolution) { return this; }
         //used for getting command for SplashInputMapper to know what context the enter button is doing
         string GetMenuCommand(int x, int y) { return ""; }
         virtual string GetMenuCommand(Vector2 position) { return GetMenuCommand((int)position.X, (int)position.Y); }
-
     }
 }

@@ -65,7 +65,6 @@ namespace SpooninDrawer.Objects.Screens
             {
                 ButtonRectangles[0][i] = (new Rectangle(menuLocationArrayX[0], menuLocationArrayY[i], ButtonX, ButtonY));
             }
-
         }
         public TitleScreen(SpriteFont font, Resolution resolution) : this(resolution)
         {

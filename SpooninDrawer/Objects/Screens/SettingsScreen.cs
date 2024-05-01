@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using SpooninDrawer.Content;
 using SpooninDrawer.Engine.Objects;
 using SpooninDrawer.Engine.Sound;
@@ -61,6 +62,9 @@ namespace SpooninDrawer.Objects.Screens
         private float maxVolume = 1.0f;
         public SettingsText volumeBGMText;
         public SettingsText volumeSEText;
+        private int ButtonX = 50;
+        private int ButtonY = 25;
+        private int ButtonsAmount = 4;
 
         public SettingsScreen(SpriteFont font, Vector2 positionOffset, Resolution resolution, float volumeBGM, float volumeSE)
         {
@@ -114,24 +118,37 @@ namespace SpooninDrawer.Objects.Screens
             volumeSEText = new SettingsText(font, Math.Round(volumeSE * 100).ToString());
             volumeSEText.Position = new Vector2(menuLocationArrayX[1]+50, menuLocationArrayY[4]) + positionOffset; ;
 
-            int i = 0;
+            int k = 0;
             int j = 0;
             foreach (SettingsText settingText in ScreenText)
             {
                 if (settingText == null)
                 {
-                    i++;
+                    k++;
                     continue;
-                    //break;
                 }
-                if (i >= menuLocationArrayY.Length)
+                if (k >= menuLocationArrayY.Length)
                 {
                     j++;
-                    i = 0;
+                    k = 0;
                 }
-                settingText.Position = new Vector2(menuLocationArrayX[j] + positionOffset.X, menuLocationArrayY[i] + positionOffset.Y);
+                settingText.Position = new Vector2(menuLocationArrayX[j] + positionOffset.X, menuLocationArrayY[k] + positionOffset.Y);
                 settingText.zIndex = 3;
-                i++;
+                k++;
+            }
+            ButtonRectangles = new Rectangle[4][]
+            {
+                new Rectangle[5] {new Rectangle(), new Rectangle(),new Rectangle(), new Rectangle(), new Rectangle()},
+                new Rectangle[4] {new Rectangle(), new Rectangle(), new Rectangle(), new Rectangle()},
+                new Rectangle[2] {new Rectangle(), new Rectangle()},
+                new Rectangle[2] {new Rectangle(), new Rectangle()}
+            };
+            for (int x = 0; x < menuLocationArrayX.Length; x++)
+            {
+                for (int y = 0; y < ButtonRectangles[x].Length; y++)
+                {
+                    ButtonRectangles[x][y] = new Rectangle(menuLocationArrayX[x]+ (int)positionOffset.X, menuLocationArrayY[y] + (int)positionOffset.Y, ButtonX, ButtonY);
+                }       
             }
         }
         public BaseScreen Initialize(Resolution resolution)

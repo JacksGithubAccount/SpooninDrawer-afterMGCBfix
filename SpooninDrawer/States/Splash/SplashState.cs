@@ -60,6 +60,7 @@ namespace SpooninDrawer.States.Splash
 
         private bool VolumeBGMControl = false;
         private bool VolumeSEControl = false;
+
         public SplashState(Resolution resolution)
         {
             _displayResolution = resolution;
@@ -113,6 +114,7 @@ namespace SpooninDrawer.States.Splash
             currentSplash.Position = screen.Position;
             BaseGameObject holder = getScreenExist(currentSplash.getTextureName());
             BaseGameObject previousholder = getScreenExist(previousScreen.screenTexture);
+            mousePositionHandler?.SetScreen(currentScreen);
 
             if (screen.GetType() == typeof(SettingsScreen))
             {
@@ -186,7 +188,7 @@ namespace SpooninDrawer.States.Splash
                 AddScreenText(currentScreen);
                 BaseGameObject toRemove = getScreenExist(screen.screenTexture);
                 RemoveGameObject(toRemove);
-
+                mousePositionHandler.SetScreen(currentScreen);
                 if (screen.GetType() == typeof(SettingsScreen))
                 {
                     RemoveSettingScreenAdditions((SettingsScreen)screen);
@@ -563,6 +565,17 @@ namespace SpooninDrawer.States.Splash
         protected override void SetInputManager()
         {
             InputManager = new InputManager(new SplashInputMapper(this, mousePositionHandler));
+        }
+        public override void Render(SpriteBatch spriteBatch)
+        {
+            base.Render(spriteBatch);
+            foreach (Rectangle[] rect in currentScreen.ButtonRectangles)
+            {
+                foreach (Rectangle rect2 in rect)
+                {
+                    //spriteBatch.Draw(blankTexture, new Vector2(rect2.X, rect2.Y), rect2, Color.Crimson);
+                }
+            }
         }
     }
 }

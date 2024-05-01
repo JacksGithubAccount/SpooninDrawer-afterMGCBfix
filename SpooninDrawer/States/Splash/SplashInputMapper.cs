@@ -116,12 +116,7 @@ namespace SpooninDrawer.States.Splash
             {
                 string commandState = splashState.GetCommandStateforMouse();
                 screenTransition = true;
-                switch (commandState)
-                {
-                    case "GameSelect":
-                        commands.Add(new GameSelect());
-                        break;
-                }
+                commands.Add(FindConfirm(commandState));
             }
 
             return commands;

@@ -26,6 +26,7 @@ namespace SpooninDrawer.Objects.Screens
         public BaseTextObject[,] ScreenText { get; }
         public Rectangle[][] ButtonRectangles { get; }
         private Resolution DisplayResolution;
+
         public MenuScreen(Resolution resolution)
         {
             DisplayResolution = resolution;

@@ -274,7 +274,9 @@ namespace SpooninDrawer
          *-Ran into issue where boxes weren't detecting mouse position, mouse state passed was not ref. Added in update, will need better way of getting this though
          *-Another issue where only the first box is dtecting, the rest arent. The return in the checker breaks the loop, made if and only return true if passes if.
          *4/29/2024
-         *-Removed mousestate passing from splash state
+         *-Removed mousestate passing from splash state. Setting up click to work
+         *4/30/2024
+         *-Clicking now works on the title screen. Added Settings screen rectangles. Also there is issue with click where clicking anywhere will pick the last selected option even if no longer hovering over an option
          *
          *
          *

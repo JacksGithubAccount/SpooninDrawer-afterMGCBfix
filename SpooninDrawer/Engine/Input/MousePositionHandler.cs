@@ -29,13 +29,16 @@ namespace SpooninDrawer.Engine.Input
         public bool IsMouseOverButton()
         {
             mouseState = Mouse.GetState();
-            for (int i = 0; i < screen.ButtonRectangles.Length; i++)
+            if (screen.ButtonRectangles != null)
             {
-                foreach (Rectangle rect in screen.ButtonRectangles[i])
+                for (int i = 0; i < screen.ButtonRectangles.Length; i++)
                 {
-                    if( rect.Intersects(mouseState.Position))
-                        return true;
-                };
+                    foreach (Rectangle rect in screen.ButtonRectangles[i])
+                    {
+                        if (rect.Intersects(mouseState.Position))
+                            return true;
+                    };
+                }
             }
             return false;
         }
