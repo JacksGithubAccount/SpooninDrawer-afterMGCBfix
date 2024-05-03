@@ -13,15 +13,15 @@ namespace SpooninDrawer.Engine.Input
     public class MousePositionHandler
     {
         private MouseState mouseState;
-        private BaseScreen screen;
+        private BaseScreenwithButtons screen;
         private Vector2 screenPosition;
-        public MousePositionHandler(BaseScreen screen)
+        public MousePositionHandler(BaseScreenwithButtons screen)
         {
             mouseState = Mouse.GetState();
             this.screen = screen;
             screenPosition = new Vector2(0, 0);
         }
-        public void SetScreen(BaseScreen screen)
+        public void SetScreen(BaseScreenwithButtons screen)
         {
             this.screen = screen;
         }
@@ -31,7 +31,7 @@ namespace SpooninDrawer.Engine.Input
             mouseState = Mouse.GetState();
             if (screen.ButtonRectangles != null)
             {
-                for (int i = 0; i < screen.ButtonRectangles.Length; i++)
+                for (int i = 0; i < screen.ButtonRectangles.Count; i++)
                 {
                     foreach (Rectangle rect in screen.ButtonRectangles[i])
                     {
@@ -44,7 +44,7 @@ namespace SpooninDrawer.Engine.Input
         }
         public Vector2 GetButtonUnderMouse()
         {
-            for (int i = 0; i < screen.ButtonRectangles.Length; i++) 
+            for (int i = 0; i < screen.ButtonRectangles.Count; i++) 
             {
                 foreach (Rectangle rect in screen.ButtonRectangles[i])
                 {

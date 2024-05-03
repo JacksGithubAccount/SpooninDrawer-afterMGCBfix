@@ -23,13 +23,13 @@ namespace SpooninDrawer.States.Splash
         //used to stop the screen from activating the selected option when Z/enter is pressed and changing screens
         private bool screenTransition = false;
         private MousePositionHandler mousePositionHandler;
-        public SplashInputMapper(SplashState currentSplashState, MousePositionHandler mousePositionHandler) : this(currentSplashState, new InputDetector()) 
-        { 
+        public SplashInputMapper(SplashState currentSplashState, MousePositionHandler mousePositionHandler) : this(currentSplashState, new InputDetector())
+        {
             this.mousePositionHandler = mousePositionHandler;
         }
         public SplashInputMapper(SplashState currentSplashState, InputDetector inputDetector)
         {
-            
+
             splashState = currentSplashState;
             this.inputDetector = inputDetector;
             RemapChecker = false;
@@ -39,7 +39,7 @@ namespace SpooninDrawer.States.Splash
             previousKeyboardState = currentKeyboardState;
             inputDetector.update(previousKeyboardState);
             currentKeyboardState = state;
-            var commands = new List<SplashInputCommand>();            
+            var commands = new List<SplashInputCommand>();
 
 
             if (inputDetector.IsActioninputtedbyTypeforKey(Actions.Confirm, InputType.Release) && !screenTransition)
@@ -50,7 +50,7 @@ namespace SpooninDrawer.States.Splash
 
 
             }
-            if (RemapChecker && currentKeyboardState.GetPressedKeyCount() == 0 && previousKeyboardState.GetPressedKeyCount() !=0 && !screenTransition)
+            if (RemapChecker && currentKeyboardState.GetPressedKeyCount() == 0 && previousKeyboardState.GetPressedKeyCount() != 0 && !screenTransition)
             {
                 screenTransition = true;
                 Keys inputKey = previousKeyboardState.GetPressedKeys()[0];
@@ -61,7 +61,7 @@ namespace SpooninDrawer.States.Splash
                 commands.Add(new RemapControlSelect());
                 commands.Add(new RemapControlDone());
                 RemapChecker = false;
-                
+
             }
             if (state.IsKeyDown(Keys.T) && HasBeenPressed(Keys.T))
             {
@@ -99,7 +99,7 @@ namespace SpooninDrawer.States.Splash
             {
                 commands.Add(new MenuHoldRight());
             }
-            if (currentKeyboardState.GetPressedKeyCount() == 0 && previousKeyboardState.GetPressedKeyCount() ==0)
+            if (currentKeyboardState.GetPressedKeyCount() == 0 && previousKeyboardState.GetPressedKeyCount() == 0)
             {
                 screenTransition = false;
             }
@@ -114,9 +114,12 @@ namespace SpooninDrawer.States.Splash
 
             if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Confirm, InputType.Release) && !screenTransition)
             {
-                string commandState = splashState.GetCommandStateforMouse();
-                screenTransition = true;
-                commands.Add(FindConfirm(commandState));
+                if (splashState.GetMousePositionHandler().IsMouseOverButton())
+                {
+                    string commandState = splashState.GetCommandStateforMouse();
+                    screenTransition = true;
+                    commands.Add(FindConfirm(commandState));
+                }
             }
 
             return commands;
@@ -144,93 +147,93 @@ namespace SpooninDrawer.States.Splash
             {
                 case "GameSelect":
                     return new GameSelect();
-                    
+
                 case "LoadSelect":
                     return new LoadSelect();
-                    
+
                 case "SettingsSelect":
                     return new SettingsSelect();
-                    
+
                 case "ExitSelect":
                     return new ExitSelect();
-                    
+
                 case "ResumeSelect":
                     return new ResumeSelect();
                 case "CheckMenuSelect":
                     return new CheckMenuSelect();
-                    
+
                 case "BackSelect":
                     return new BackSelect();
-                    
+
                 case "MoveArrowRight":
                     return new MenuMoveRight();
-                    
+
                 case "Fullscreen":
                     return new SetFullScreen();
-                    
+
                 case "Windows":
                     return new SetWindowScreen();
-                    
+
                 case "Borderless":
                     return new SetBorderlessScreen();
-                    
+
                 case "Resolution1080":
                     return new SetResolution1080();
-                    
+
                 case "Resolution720":
                     return new SetResolution720();
-                    
+
                 case "Controls":
                     return new RemapControlSelect();
-                    
+
                 //cases to handle remapping controls
                 case "RemapSelectConfirm":
-                    
+
                     RemapChecker = true;
                     RemapActionHolder = Actions.Confirm;
                     return new RemapControlConfirm();
                 case "RemapSelectCancel":
-                    
+
                     RemapChecker = true;
                     RemapActionHolder = Actions.Cancel;
-                    return new RemapControlConfirm(); 
+                    return new RemapControlConfirm();
                 case "RemapSelectUp":
-                    
+
                     RemapChecker = true;
                     RemapActionHolder = Actions.MoveUp;
-                    return new RemapControlConfirm(); 
+                    return new RemapControlConfirm();
                 case "RemapSelectDown":
-                    
+
                     RemapChecker = true;
                     RemapActionHolder = Actions.MoveDown;
-                    return new RemapControlConfirm(); 
+                    return new RemapControlConfirm();
                 case "RemapSelectLeft":
                     RemapChecker = true;
                     RemapActionHolder = Actions.MoveLeft;
-                    return new RemapControlConfirm(); 
+                    return new RemapControlConfirm();
                 case "RemapSelectRight":
-                    
+
                     RemapChecker = true;
                     RemapActionHolder = Actions.MoveRight;
                     return new RemapControlConfirm();
                 case "RemapSelectOpenMenu":
-                    
+
                     RemapChecker = true;
                     RemapActionHolder = Actions.OpenMenu;
                     return new RemapControlConfirm();
                 case "RemapSelectPause":
-                    
+
                     RemapChecker = true;
                     RemapActionHolder = Actions.Pause;
                     return new RemapControlConfirm();
-                    
+
                 //remap end
                 case "VolumeBGM":
                     return new SettingVolumeBGMSelect();
-                    
+
                 case "VolumeSE":
                     return new SettingVolumeSESelect();
-                    
+
             }
             return new BackSelect();
         }

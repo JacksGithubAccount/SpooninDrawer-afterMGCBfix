@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using SpooninDrawer.Engine.Input;
 using SpooninDrawer.Engine.Objects;
 using SpooninDrawer.Objects.Text;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Screens
 {
-    public class TitleScreen : BaseScreen
+    public class TitleScreen : BaseScreenwithButtons, iBaseScreen
     {
         enum titleCommands
         {
@@ -29,31 +30,23 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
-        public Rectangle[][] ButtonRectangles { get; }
+        //public Rectangle[][] ButtonRectangles { get; }
         private Resolution DisplayResolution;
-        private int ButtonX = 200;
-        private int ButtonY = 100;
-        private int ButtonsAmount = 4;
+
+        public bool hasButtons { get; }
 
         public TitleScreen(Resolution resolution)
-        {
+        {            
             DisplayResolution = resolution;
             Position = new Vector2(0, 0);
-            ButtonRectangles = new Rectangle[1][] 
-            {
-                new Rectangle[4] 
-                {
-                    new Rectangle(), new Rectangle(),new Rectangle(),new Rectangle()
-                }
-            };
             if (DisplayResolution == Resolution.x1080)
             {
                 screenTexture = "Menu/TitleScreen1080";
                 menuLocationArrayX = new int[1] { 750 };
                 menuLocationArrayY = new int[4] { 480, 580, 660, 760 };
-                
+
             }
-            else if(DisplayResolution == Resolution.x720)
+            else if (DisplayResolution == Resolution.x720)
             {
                 screenTexture = "Menu/TitleScreen720";
                 menuLocationArrayX = new int[1] { 445 };
@@ -61,17 +54,19 @@ namespace SpooninDrawer.Objects.Screens
             }
             menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1; ;
-            for (int i = 0; i < ButtonsAmount; i++)
-            {
-                ButtonRectangles[0][i] = (new Rectangle(menuLocationArrayX[0], menuLocationArrayY[i], ButtonX, ButtonY));
-            }
+
+            ButtonWidth = 200;
+            ButtonHeight = 75;
+            ButtonsAmount = 4;
+            hasButtons = true;
+            CreateRectangles(menuLocationArrayX, menuLocationArrayY);
         }
         public TitleScreen(SpriteFont font, Resolution resolution) : this(resolution)
         {
-            ScreenText = new TestText[0,1];
-            ScreenText[0,0] = new TestText(font);
+            ScreenText = new TestText[0, 1];
+            ScreenText[0, 0] = new TestText(font);
         }
-        public BaseScreen Initialize(Resolution resolution)
+        public iBaseScreen Initialize(Resolution resolution)
         {
             DisplayResolution = resolution;
             return new TitleScreen(resolution);

@@ -277,7 +277,10 @@ namespace SpooninDrawer
          *-Removed mousestate passing from splash state. Setting up click to work
          *4/30/2024
          *-Clicking now works on the title screen. Added Settings screen rectangles. Also there is issue with click where clicking anywhere will pick the last selected option even if no longer hovering over an option
-         *
+         *5/1/2024
+         *-Made click not work unless over a button. Removed the one empty box in settings
+         *5/2/2024
+         *-Added an abstract class to handle buttons since theres alot of repeated code
          *
          *
          */

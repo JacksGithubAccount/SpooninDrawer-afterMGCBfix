@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using SpooninDrawer.Content;
 using SpooninDrawer.Engine.Input;
 using SpooninDrawer.Engine.Objects;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Screens
 {
-    public class RemapControlsScreen : BaseScreen
+    public class RemapControlsScreen : iBaseScreen
     {
         enum titleCommands
         {
@@ -34,24 +35,28 @@ namespace SpooninDrawer.Objects.Screens
         public Vector2 Position { get; set; }
         public BaseTextObject[,] ScreenText { get; }
         public Rectangle[][] ButtonRectangles { get; }
+        public bool hasButtons { get; }
         private InputDetector inputDetector;
         private Resolution displayResolution;
         private Vector2 positionOffset;
         private SpriteFont spriteFont;
+        private int ButtonX = 50;
+        private int ButtonY = 25;
+        private int ButtonsAmount = 9;
         public RemapControlsScreen(SpriteFont font, Vector2 positionOffset, InputDetector inputDetector, Resolution resolution)
         {
             displayResolution = resolution;
             this.inputDetector = inputDetector;
             Position = new Vector2(0, 0);
-            if(displayResolution == Resolution.x1080)
+            if (displayResolution == Resolution.x1080)
             {
                 screenTexture = "Menu/RemapControlsScreen1080";
             }
-            else if(displayResolution==Resolution.x720) 
+            else if (displayResolution == Resolution.x720)
             {
                 screenTexture = "Menu/RemapControlsScreen720";
             }
-            
+
             menuLocationArrayX = new int[2] { 15, 125 };
             menuLocationArrayY = new int[9] { 150, 200, 250, 300, 350, 400, 450, 500, 550 };
             menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
@@ -93,8 +98,20 @@ namespace SpooninDrawer.Objects.Screens
                 settingText.zIndex = 3;
                 i++;
             }
+            ButtonRectangles = new Rectangle[1][]
+            {
+                new Rectangle[9]
+                {
+                    new Rectangle(), new Rectangle(),new Rectangle(),new Rectangle(), new Rectangle(), new Rectangle(),new Rectangle(),new Rectangle(),new Rectangle()
+                }
+            };
+            for (int k = 0; k < ButtonsAmount; k++)
+            {
+                ButtonRectangles[0][k] = (new Rectangle(menuLocationArrayX[0], menuLocationArrayY[k], ButtonX, ButtonY));
+            }
         }
-        public BaseScreen Initialize(Resolution resolution)
+    
+        public iBaseScreen Initialize(Resolution resolution)
         {
             displayResolution = resolution;
             return new RemapControlsScreen(spriteFont, positionOffset, inputDetector, resolution);

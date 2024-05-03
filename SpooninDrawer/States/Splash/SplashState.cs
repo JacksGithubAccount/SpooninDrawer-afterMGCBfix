@@ -41,10 +41,10 @@ namespace SpooninDrawer.States.Splash
         private int[] menuNavigatorXCap;
         private int menuNavigatorYCap;
         private MousePositionHandler mousePositionHandler;
-        BaseScreen currentScreen;
-        BaseScreen previousScreen;
+        iBaseScreen currentScreen;
+        iBaseScreen previousScreen;
         BaseGameState StoredState;
-        private Stack<BaseScreen> ScreenStack;
+        private Stack<iBaseScreen> ScreenStack;
 
         private const string TestFont = "Fonts/TestText";
         private const string MenuFontString = "Fonts/MenuFont";
@@ -66,12 +66,12 @@ namespace SpooninDrawer.States.Splash
             _displayResolution = resolution;
             currentScreen = new TitleScreen(_displayResolution);
         }
-        public SplashState(BaseScreen Screen, Resolution resolution)
+        public SplashState(iBaseScreen Screen, Resolution resolution)
         {
             _displayResolution = resolution;
             currentScreen = Screen;
         }
-        public SplashState(BaseScreen Screen, BaseGameState BeforeState, Resolution resolution, SoundManager soundManager) : this(Screen, resolution)
+        public SplashState(iBaseScreen Screen, BaseGameState BeforeState, Resolution resolution, SoundManager soundManager) : this(Screen, resolution)
         {
             StoredState = BeforeState;
             _soundManager = soundManager;
@@ -80,7 +80,7 @@ namespace SpooninDrawer.States.Splash
         {
             _soundManager.UnloadAllSound();
             MenuFont = LoadFont(MenuFontString);
-            ScreenStack = new Stack<BaseScreen>();
+            ScreenStack = new Stack<iBaseScreen>();
             _testText = new TestText(LoadFont(TestFont));
             _testText.Position = new Vector2(10.0f, 10.0f);
             _testText.zIndex = 3;
@@ -91,7 +91,8 @@ namespace SpooninDrawer.States.Splash
             AddGameObject(_menuArrow);
 
             _menuArrow.Position = new Vector2(menuLocationArrayX[0], menuLocationArrayY[0]);
-            mousePositionHandler = new MousePositionHandler(currentScreen);
+            if(currentScreen.hasButtons)
+                mousePositionHandler = new MousePositionHandler((BaseScreenwithButtons)currentScreen);
 
             var beepSound = LoadSound(BeepSound);
             //var missileSound = LoadSound(MissileSound);
@@ -102,7 +103,7 @@ namespace SpooninDrawer.States.Splash
             _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
         }
 
-        public void ChangeScreen(BaseScreen screen)
+        public void ChangeScreen(iBaseScreen screen)
         {
             previousScreen = currentScreen ?? new EmptyScreen();
             RemoveScreenText(previousScreen);
@@ -114,7 +115,8 @@ namespace SpooninDrawer.States.Splash
             currentSplash.Position = screen.Position;
             BaseGameObject holder = getScreenExist(currentSplash.getTextureName());
             BaseGameObject previousholder = getScreenExist(previousScreen.screenTexture);
-            mousePositionHandler?.SetScreen(currentScreen);
+            if(currentScreen.hasButtons)
+                mousePositionHandler?.SetScreen((BaseScreenwithButtons)currentScreen);
 
             if (screen.GetType() == typeof(SettingsScreen))
             {
@@ -159,7 +161,7 @@ namespace SpooninDrawer.States.Splash
             }
             if (previousScreen.GetType() == typeof(SettingsScreen))
             {
-                RemoveSettingScreenAdditions((SettingsScreen)screen);
+                RemoveSettingScreenAdditions((SettingsScreen)previousScreen);
             }
             if (holder != null)
             {
@@ -181,14 +183,15 @@ namespace SpooninDrawer.States.Splash
             }
             else
             {
-                BaseScreen screen = ScreenStack.Pop();
+                iBaseScreen screen = ScreenStack.Pop();
                 RemoveScreenText(screen);
                 ScreenStack.TryPeek(out currentScreen);
                 SetScreenPoints(currentScreen);
                 AddScreenText(currentScreen);
                 BaseGameObject toRemove = getScreenExist(screen.screenTexture);
                 RemoveGameObject(toRemove);
-                mousePositionHandler.SetScreen(currentScreen);
+                if(currentScreen.hasButtons)
+                    mousePositionHandler.SetScreen((BaseScreenwithButtons)currentScreen);
                 if (screen.GetType() == typeof(SettingsScreen))
                 {
                     RemoveSettingScreenAdditions((SettingsScreen)screen);
@@ -197,7 +200,7 @@ namespace SpooninDrawer.States.Splash
         }
         public void ReloadAllScreens()
         {
-            Stack<BaseScreen> LoadStack = new Stack<BaseScreen>();
+            Stack<iBaseScreen> LoadStack = new Stack<iBaseScreen>();
             for (int i = 0; i <= ScreenStack.Count; i++)
             {
                 LoadStack.Push(ScreenStack.Pop());
@@ -210,7 +213,7 @@ namespace SpooninDrawer.States.Splash
                 ChangeScreen(LoadStack.Pop().Initialize(_displayResolution));
             }
         }
-        private void SetScreenPoints(BaseScreen screen)
+        private void SetScreenPoints(iBaseScreen screen)
         {
             this.screenTexture = screen.screenTexture;
             this.menuLocationArrayX = screen.menuLocationArrayX;
@@ -218,7 +221,7 @@ namespace SpooninDrawer.States.Splash
             this.menuNavigatorXCap = screen.menuNavigatorXCap;
             this.menuNavigatorYCap = screen.menuNavigatorYCap;
         }
-        private void RemoveScreenText(BaseScreen screen)
+        private void RemoveScreenText(iBaseScreen screen)
         {
 
             if (screen.ScreenText != null)
@@ -229,7 +232,7 @@ namespace SpooninDrawer.States.Splash
                 }
             }
         }
-        private void AddScreenText(BaseScreen screen)
+        private void AddScreenText(iBaseScreen screen)
         {
             if (screen.ScreenText != null)
             {
@@ -440,7 +443,7 @@ namespace SpooninDrawer.States.Splash
                     {
                         VolumeBGMControl = true;
                     }
-                    if(cmd is SplashInputCommand.SettingVolumeSESelect)
+                    if (cmd is SplashInputCommand.SettingVolumeSESelect)
                     {
                         VolumeSEControl = true;
                     }
@@ -488,7 +491,8 @@ namespace SpooninDrawer.States.Splash
                         {
                             VolumeBGMControl = false;
                         }
-                    }else if (VolumeSEControl)
+                    }
+                    else if (VolumeSEControl)
                     {
                         if (cmd is SplashInputCommand.MenuMoveLeft || cmd is SplashInputCommand.MenuHoldLeft)
                         {
@@ -542,16 +546,16 @@ namespace SpooninDrawer.States.Splash
                 else if (currentArrowPositionX < 0)
                 {
                     currentArrowPositionX = maxArrowPositionX[currentArrowPositionY];
-                }                
+                }
             }
             else
             {
                 KeepArrowinBound(ref currentArrowPositionX, maxArrowPositionX[0]);
-            }            
+            }
         }
         public override void UpdateGameState(GameTime gameTime)
         {
-            
+
             if (mousePositionHandler.IsMouseOverButton())
             {
                 Vector2 holder = mousePositionHandler.GetButtonUnderMouse();
@@ -561,7 +565,7 @@ namespace SpooninDrawer.States.Splash
             _menuArrow.Update(gameTime);
             HandleInput(gameTime);
         }
-
+        public MousePositionHandler GetMousePositionHandler() { return mousePositionHandler; }
         protected override void SetInputManager()
         {
             InputManager = new InputManager(new SplashInputMapper(this, mousePositionHandler));
@@ -569,11 +573,15 @@ namespace SpooninDrawer.States.Splash
         public override void Render(SpriteBatch spriteBatch)
         {
             base.Render(spriteBatch);
-            foreach (Rectangle[] rect in currentScreen.ButtonRectangles)
+            if (currentScreen.hasButtons)
             {
-                foreach (Rectangle rect2 in rect)
+                BaseScreenwithButtons holder = (BaseScreenwithButtons)currentScreen;
+                foreach (Rectangle[] rect in holder.ButtonRectangles)
                 {
-                    //spriteBatch.Draw(blankTexture, new Vector2(rect2.X, rect2.Y), rect2, Color.Crimson);
+                    foreach (Rectangle rect2 in rect)
+                    {
+                        spriteBatch.Draw(blankTexture, new Vector2(rect2.X, rect2.Y), rect2, Color.Crimson * 0.5f);
+                    }
                 }
             }
         }

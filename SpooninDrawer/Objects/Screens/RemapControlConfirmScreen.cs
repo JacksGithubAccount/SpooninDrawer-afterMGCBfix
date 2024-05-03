@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Screens
 {
-    public class RemapControlConfirmScreen : BaseScreen
+    public class RemapControlConfirmScreen : iBaseScreen
     {
         enum titleCommands
         {
@@ -26,6 +26,7 @@ namespace SpooninDrawer.Objects.Screens
         public Vector2 Position { get; set; }
         public BaseTextObject[,] ScreenText { get; }
         public Rectangle[][] ButtonRectangles { get; }
+        public bool hasButtons { get; }
         private InputDetector inputDetector;
         private Vector2 textLocation;
         private SpriteFont spriteFont;
@@ -49,13 +50,13 @@ namespace SpooninDrawer.Objects.Screens
 
             ScreenText[0, 0].Position = textLocation;
             ScreenText[0, 0].zIndex = 3;
-
+            hasButtons = false;
         }
-        public BaseScreen Initialize()
+        public iBaseScreen Initialize()
         {
             return new RemapControlConfirmScreen(spriteFont, Position, inputDetector);
         }
-        public BaseScreen Initialize(Resolution resolution)
+        public iBaseScreen Initialize(Resolution resolution)
         {
             return new RemapControlConfirmScreen(spriteFont, Position, inputDetector);
         }

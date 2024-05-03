@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Screens
 {
-    public class SettingsScreen : BaseScreen
+    public class SettingsScreen : BaseScreenwithButtons, iBaseScreen
     {
         enum titleCommands
         {
@@ -44,7 +44,7 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
-        public Rectangle[][] ButtonRectangles { get; }
+        //public Rectangle[][] ButtonRectangles { get; }
         private Resolution DisplayResolution;
         private Vector2 positionOffset;
         private SpriteFont spriteFont;
@@ -57,17 +57,16 @@ namespace SpooninDrawer.Objects.Screens
         public Vector2 volumeSEBarPosition { get; }
         public Vector2 volumeSEBarArrowPosition { get; }
         public Vector2 volumeSEBarFillPosition { get; }
+        public bool hasButtons { get; }
         private float volumeBGM = 1.0f;
         private float volumeSE = 1.0f;
         private float maxVolume = 1.0f;
         public SettingsText volumeBGMText;
         public SettingsText volumeSEText;
-        private int ButtonX = 50;
-        private int ButtonY = 25;
-        private int ButtonsAmount = 4;
+
 
         public SettingsScreen(SpriteFont font, Vector2 positionOffset, Resolution resolution, float volumeBGM, float volumeSE)
-        {
+        {            
             this.volumeBGM = volumeBGM;
             this.volumeSE = volumeSE;
             spriteFont = font;
@@ -89,7 +88,7 @@ namespace SpooninDrawer.Objects.Screens
                 menuLocationArrayX = new int[4] { 100, 300, 500, 700 };
                 menuLocationArrayY = new int[5] { 250, 300, 350, 400, 450 };
             }
-            menuNavigatorXCap = new int[5] {3,2,0,1,1 };
+            menuNavigatorXCap = new int[5] { 3, 2, 0, 1, 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
             ScreenText = new BaseTextObject[menuLocationArrayX.Length, menuLocationArrayY.Length];
             ScreenText[0, 0] = new SettingsText(font, RStrings.SettingsScreenSettings);
@@ -114,9 +113,9 @@ namespace SpooninDrawer.Objects.Screens
             volumeSEBarArrowPosition = new Vector2(menuLocationArrayX[3], menuLocationArrayY[4]) + positionOffset;
             volumeSEBarFillPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[4]) + positionOffset;
             volumeBGMText = new SettingsText(font, Math.Round(volumeBGM * 100).ToString());
-            volumeBGMText.Position = new Vector2(menuLocationArrayX[1]+50, menuLocationArrayY[3]) + positionOffset; ;
+            volumeBGMText.Position = new Vector2(menuLocationArrayX[1] + 50, menuLocationArrayY[3]) + positionOffset; ;
             volumeSEText = new SettingsText(font, Math.Round(volumeSE * 100).ToString());
-            volumeSEText.Position = new Vector2(menuLocationArrayX[1]+50, menuLocationArrayY[4]) + positionOffset; ;
+            volumeSEText.Position = new Vector2(menuLocationArrayX[1] + 50, menuLocationArrayY[4]) + positionOffset; ;
 
             int k = 0;
             int j = 0;
@@ -136,22 +135,34 @@ namespace SpooninDrawer.Objects.Screens
                 settingText.zIndex = 3;
                 k++;
             }
+            hasButtons = true;
+            ButtonWidth = 50;
+            ButtonHeight = 25;
+            ButtonsAmount = 4;
+            //designed by Y first to fit
             ButtonRectangles = new Rectangle[4][]
             {
                 new Rectangle[5] {new Rectangle(), new Rectangle(),new Rectangle(), new Rectangle(), new Rectangle()},
-                new Rectangle[4] {new Rectangle(), new Rectangle(), new Rectangle(), new Rectangle()},
+                new Rectangle[5] {new Rectangle(), new Rectangle(), new Rectangle(), new Rectangle(), new Rectangle()},
                 new Rectangle[2] {new Rectangle(), new Rectangle()},
-                new Rectangle[2] {new Rectangle(), new Rectangle()}
+                new Rectangle[1] {new Rectangle()}
             };
-            for (int x = 0; x < menuLocationArrayX.Length; x++)
+
+            for (int x = 0; x < ButtonRectangles.Length; x++)
             {
                 for (int y = 0; y < ButtonRectangles[x].Length; y++)
                 {
-                    ButtonRectangles[x][y] = new Rectangle(menuLocationArrayX[x]+ (int)positionOffset.X, menuLocationArrayY[y] + (int)positionOffset.Y, ButtonX, ButtonY);
-                }       
+                    //the one empty box
+                    if (x == 1 && y == 2)
+                    {
+
+                    }
+                    else
+                        ButtonRectangles[x][y] = new Rectangle(menuLocationArrayX[x] + (int)positionOffset.X, menuLocationArrayY[y] + (int)positionOffset.Y, ButtonX, ButtonY);
+                }
             }
         }
-        public BaseScreen Initialize(Resolution resolution)
+        public iBaseScreen Initialize(Resolution resolution)
         {
             DisplayResolution = resolution;
             return new SettingsScreen(spriteFont, positionOffset, resolution, volumeBGM, volumeSE);
@@ -174,7 +185,7 @@ namespace SpooninDrawer.Objects.Screens
                     volumeBGMText.Text = (Math.Round(volumeBGM * 100)).ToString();
                 }
             }
-            else if(volumeType == VolumeType.SE)
+            else if (volumeType == VolumeType.SE)
             {
                 if (volumeSE <= maxVolume && volumeSE >= 0.0f)
                 {
@@ -193,9 +204,9 @@ namespace SpooninDrawer.Objects.Screens
         }
         public float GetVolume(VolumeType volumeType)
         {
-            if(volumeType == VolumeType.BGM)
+            if (volumeType == VolumeType.BGM)
                 return volumeBGM;
-            else if(volumeType == VolumeType.SE)
+            else if (volumeType == VolumeType.SE)
                 return volumeSE;
             else
                 return 0.0f;
