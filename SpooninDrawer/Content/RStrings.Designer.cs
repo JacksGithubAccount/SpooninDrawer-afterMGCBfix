@@ -97,6 +97,24 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Left Click.
+        /// </summary>
+        internal static string ControlLeftClick {
+            get {
+                return ResourceManager.GetString("ControlLeftClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Middle Click.
+        /// </summary>
+        internal static string ControlMiddleClick {
+            get {
+                return ResourceManager.GetString("ControlMiddleClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open Menu.
         /// </summary>
         internal static string ControlOpenMenu {
@@ -120,6 +138,33 @@ namespace SpooninDrawer.Content {
         internal static string ControlRight {
             get {
                 return ResourceManager.GetString("ControlRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right Click.
+        /// </summary>
+        internal static string ControlRightClick {
+            get {
+                return ResourceManager.GetString("ControlRightClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Down.
+        /// </summary>
+        internal static string ControlScrollDown {
+            get {
+                return ResourceManager.GetString("ControlScrollDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Up.
+        /// </summary>
+        internal static string ControlScrollUp {
+            get {
+                return ResourceManager.GetString("ControlScrollUp", resourceCulture);
             }
         }
         

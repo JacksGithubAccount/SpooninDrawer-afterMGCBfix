@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Screens
 {
-    public class ReturnToTitleScreen : iBaseScreen
+    public class ReturnToTitleScreen : BaseScreenwithButtons, iBaseScreen
     {
         enum titleCommands
         {
@@ -24,11 +24,8 @@ namespace SpooninDrawer.Objects.Screens
         public Vector2 Position { get; set; }
         //public SplashImage splashImage { get; }
         public BaseTextObject[,] ScreenText { get; }
-        public Rectangle[][] ButtonRectangles { get; }
         public bool hasButtons { get; }
-        private int ButtonX = 50;
-        private int ButtonY = 25;
-        private int ButtonsAmount = 2;
+
         public ReturnToTitleScreen() : this(0, 0) { }
         public ReturnToTitleScreen(int positionx, int positiony)
         {
@@ -39,22 +36,9 @@ namespace SpooninDrawer.Objects.Screens
             menuNavigatorXCap = new int[1] { 1 };
             menuNavigatorYCap = 0;
             hasButtons = true;
-            ButtonRectangles = new Rectangle[2][]
-            {
-                new Rectangle[1]
-                {
-                    new Rectangle()
-                },
-                new Rectangle[1]
-                {
-                    new Rectangle()
-                }
-
-            };
-            for (int i = 0; i < ButtonsAmount; i++)
-            {
-                ButtonRectangles[i][0] = (new Rectangle(menuLocationArrayX[i], menuLocationArrayY[0], ButtonX, ButtonY));
-            }
+            ButtonWidth = 50;
+            ButtonHeight = 25;
+            CreateRectangles(menuLocationArrayX, menuLocationArrayY);
         }
 
         public string GetMenuCommand(int x, int y)

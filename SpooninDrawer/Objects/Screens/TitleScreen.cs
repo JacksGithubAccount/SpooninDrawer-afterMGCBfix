@@ -30,13 +30,12 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
-        //public Rectangle[][] ButtonRectangles { get; }
         private Resolution DisplayResolution;
 
         public bool hasButtons { get; }
 
         public TitleScreen(Resolution resolution)
-        {            
+        {
             DisplayResolution = resolution;
             Position = new Vector2(0, 0);
             if (DisplayResolution == Resolution.x1080)
@@ -57,7 +56,6 @@ namespace SpooninDrawer.Objects.Screens
 
             ButtonWidth = 200;
             ButtonHeight = 75;
-            ButtonsAmount = 4;
             hasButtons = true;
             CreateRectangles(menuLocationArrayX, menuLocationArrayY);
         }

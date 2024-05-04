@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Screens
 {
-    internal class MenuScreen : iBaseScreen
+    internal class MenuScreen : BaseScreenwithButtons, iBaseScreen
     {
         enum titleCommands
         {
@@ -25,12 +25,8 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
-        public Rectangle[][] ButtonRectangles { get; }
         public bool hasButtons { get; }
         private Resolution DisplayResolution;
-        private int ButtonX = 400;
-        private int ButtonY = 100;
-        private int ButtonsAmount = 3;
 
         public MenuScreen(Resolution resolution)
         {
@@ -51,17 +47,9 @@ namespace SpooninDrawer.Objects.Screens
             menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
             hasButtons = true;
-            ButtonRectangles = new Rectangle[1][]
-{
-                new Rectangle[3]
-                {
-                    new Rectangle(), new Rectangle(),new Rectangle()
-                }
-};
-            for (int i = 0; i < ButtonsAmount; i++)
-            {
-                ButtonRectangles[0][i] = (new Rectangle(menuLocationArrayX[0], menuLocationArrayY[i], ButtonX, ButtonY));
-            }
+            ButtonWidth = 400;
+            ButtonHeight = 100;
+            CreateRectangles(menuLocationArrayX, menuLocationArrayY);
         }
         public iBaseScreen Initialize(Resolution resolution)
         {

@@ -44,7 +44,6 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
         public BaseTextObject[,] ScreenText { get; }
-        //public Rectangle[][] ButtonRectangles { get; }
         private Resolution DisplayResolution;
         private Vector2 positionOffset;
         private SpriteFont spriteFont;
@@ -66,7 +65,7 @@ namespace SpooninDrawer.Objects.Screens
 
 
         public SettingsScreen(SpriteFont font, Vector2 positionOffset, Resolution resolution, float volumeBGM, float volumeSE)
-        {            
+        {
             this.volumeBGM = volumeBGM;
             this.volumeSE = volumeSE;
             spriteFont = font;
@@ -138,29 +137,7 @@ namespace SpooninDrawer.Objects.Screens
             hasButtons = true;
             ButtonWidth = 50;
             ButtonHeight = 25;
-            ButtonsAmount = 4;
-            //designed by Y first to fit
-            ButtonRectangles = new Rectangle[4][]
-            {
-                new Rectangle[5] {new Rectangle(), new Rectangle(),new Rectangle(), new Rectangle(), new Rectangle()},
-                new Rectangle[5] {new Rectangle(), new Rectangle(), new Rectangle(), new Rectangle(), new Rectangle()},
-                new Rectangle[2] {new Rectangle(), new Rectangle()},
-                new Rectangle[1] {new Rectangle()}
-            };
-
-            for (int x = 0; x < ButtonRectangles.Length; x++)
-            {
-                for (int y = 0; y < ButtonRectangles[x].Length; y++)
-                {
-                    //the one empty box
-                    if (x == 1 && y == 2)
-                    {
-
-                    }
-                    else
-                        ButtonRectangles[x][y] = new Rectangle(menuLocationArrayX[x] + (int)positionOffset.X, menuLocationArrayY[y] + (int)positionOffset.Y, ButtonX, ButtonY);
-                }
-            }
+            CreateRectangles(menuLocationArrayX, menuLocationArrayY, menuNavigatorXCap);
         }
         public iBaseScreen Initialize(Resolution resolution)
         {

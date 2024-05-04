@@ -44,17 +44,17 @@ namespace SpooninDrawer.Engine.Input
         }
         public Vector2 GetButtonUnderMouse()
         {
-            for (int i = 0; i < screen.ButtonRectangles.Count; i++) 
+            for (int i = 0; i < screen.ButtonRectangles.Count; i++)
             {
                 foreach (Rectangle rect in screen.ButtonRectangles[i])
                 {
                     if (rect.Intersects(mouseState.Position))
                     {
                         int j = Array.FindIndex(screen.ButtonRectangles[i], x => x == rect);
-                        return screenPosition = new Vector2(i, j);
-                    }                        
+                        return screenPosition = new Vector2(j, i);
+                    }
                 };
-            }            
+            }
             return screenPosition;
         }
     }

@@ -11,7 +11,6 @@ namespace SpooninDrawer.Engine.Objects
     {
         protected int ButtonWidth;
         protected int ButtonHeight;
-        protected int ButtonsAmount;
         public List<Rectangle[]> ButtonRectangles { get; }
 
 
@@ -20,14 +19,23 @@ namespace SpooninDrawer.Engine.Objects
         protected BaseScreenwithButtons() { ButtonRectangles = new List<Rectangle[]>(); }
         public void CreateRectangles(int[] xRectangleNumbers, int[] yRectangleNumbers)
         {
-            for (int x = 0; x < xRectangleNumbers.Length; x++)
+            int[] xRectangleLimits = new int[yRectangleNumbers.Length];
+            for (int i = 0; i < yRectangleNumbers.Length; i++)
             {
-                ButtonRectangles.Add(new Rectangle[yRectangleNumbers.Length]);
-                for (int y = 0; y < yRectangleNumbers.Length; y++)
-                {
-                    ButtonRectangles[x][y] = (new Rectangle(xRectangleNumbers[x], yRectangleNumbers[y], ButtonWidth, ButtonHeight));
-                }
-            }            
+                xRectangleLimits[i] = xRectangleNumbers.Length - 1;
+            }
+            CreateRectangles(xRectangleNumbers, yRectangleNumbers, xRectangleLimits);
         }
-    }    
+        public void CreateRectangles(int[] xRectangleNumbers, int[] yRectangleNumbers, int[] xRectangleLimits)
+        {
+            for (int y = 0; y < yRectangleNumbers.Length; y++)
+            {
+                ButtonRectangles.Add(new Rectangle[xRectangleLimits[y] + 1]);
+                for (int x = 0; x <= xRectangleLimits[y]; x++)
+                {
+                    ButtonRectangles[y][x] = (new Rectangle(xRectangleNumbers[x], yRectangleNumbers[y], ButtonWidth, ButtonHeight));
+                }
+            }
+        }
+    }
 }

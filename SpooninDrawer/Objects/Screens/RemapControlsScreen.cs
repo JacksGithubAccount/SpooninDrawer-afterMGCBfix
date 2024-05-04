@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Screens
 {
-    public class RemapControlsScreen : iBaseScreen
+    public class RemapControlsScreen : BaseScreenwithButtons, iBaseScreen
     {
         enum titleCommands
         {
@@ -27,6 +27,14 @@ namespace SpooninDrawer.Objects.Screens
             RemapSelectPause,
             BackSelect
         }
+        enum secondColumnCommands
+        {
+            RemapMouseLeftClick,
+            RemapMouseRightClick,
+            RemapMouseMiddleClick,
+            RemapMouseScrollUp,
+            RemapMouseScrollDown
+        }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
         public int[] menuLocationArrayY { get; }
@@ -34,15 +42,12 @@ namespace SpooninDrawer.Objects.Screens
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; set; }
         public BaseTextObject[,] ScreenText { get; }
-        public Rectangle[][] ButtonRectangles { get; }
         public bool hasButtons { get; }
         private InputDetector inputDetector;
         private Resolution displayResolution;
         private Vector2 positionOffset;
         private SpriteFont spriteFont;
-        private int ButtonX = 50;
-        private int ButtonY = 25;
-        private int ButtonsAmount = 9;
+
         public RemapControlsScreen(SpriteFont font, Vector2 positionOffset, InputDetector inputDetector, Resolution resolution)
         {
             displayResolution = resolution;
@@ -98,19 +103,12 @@ namespace SpooninDrawer.Objects.Screens
                 settingText.zIndex = 3;
                 i++;
             }
-            ButtonRectangles = new Rectangle[1][]
-            {
-                new Rectangle[9]
-                {
-                    new Rectangle(), new Rectangle(),new Rectangle(),new Rectangle(), new Rectangle(), new Rectangle(),new Rectangle(),new Rectangle(),new Rectangle()
-                }
-            };
-            for (int k = 0; k < ButtonsAmount; k++)
-            {
-                ButtonRectangles[0][k] = (new Rectangle(menuLocationArrayX[0], menuLocationArrayY[k], ButtonX, ButtonY));
-            }
+            hasButtons = true;
+            ButtonWidth = 50;
+            ButtonHeight = 25;
+            CreateRectangles(menuLocationArrayX, menuLocationArrayY);
         }
-    
+
         public iBaseScreen Initialize(Resolution resolution)
         {
             displayResolution = resolution;
@@ -118,8 +116,18 @@ namespace SpooninDrawer.Objects.Screens
         }
         public string GetMenuCommand(int x, int y)
         {
-            var holder = (titleCommands)y;
-            return holder.ToString();
+            if (x == 0)
+            {
+                var holder = (titleCommands)y;
+                return holder.ToString();
+            }
+            else if (x == 1)
+            {
+                var holder = (secondColumnCommands)y;
+                return holder.ToString();
+            }
+            else
+                return "";
         }
     }
 }

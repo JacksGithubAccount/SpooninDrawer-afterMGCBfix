@@ -24,10 +24,7 @@ namespace SpooninDrawer.Engine.Objects
         Vector2 Position { get; }
         BaseTextObject[,] ScreenText { get; }
         bool hasButtons { get; }
-        //Rectangle[][] ButtonRectangles { get; }
-        //protected static int ButtonX;
-        //protected static int ButtonY;
-        //protected static int ButtonsAmount;
+
 
         iBaseScreen Initialize(Resolution resolution) { return this; }
         //used for getting command for SplashInputMapper to know what context the enter button is doing
