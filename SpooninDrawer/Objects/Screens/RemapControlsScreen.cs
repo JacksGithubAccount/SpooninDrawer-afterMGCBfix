@@ -62,7 +62,7 @@ namespace SpooninDrawer.Objects.Screens
                 screenTexture = "Menu/RemapControlsScreen720";
             }
 
-            menuLocationArrayX = new int[2] { 15, 125 };
+            menuLocationArrayX = new int[3] { 15, 125, 300 };
             menuLocationArrayY = new int[9] { 150, 200, 250, 300, 350, 400, 450, 500, 550 };
             menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
@@ -85,6 +85,34 @@ namespace SpooninDrawer.Objects.Screens
             ScreenText[1, 5] = new SettingsText(font, inputDetector.getKeyforAction(Actions.MoveRight).ToString());
             ScreenText[1, 6] = new SettingsText(font, inputDetector.getKeyforAction(Actions.OpenMenu).ToString());
             ScreenText[1, 7] = new SettingsText(font, inputDetector.getKeyforAction(Actions.Pause).ToString());
+
+            
+            for(int superi = 0; superi < 9; superi++)
+            {
+                if (ScreenText[0, superi].Text == inputDetector.getActionforClick(Click.LeftClick).ToString())
+                {
+                    ScreenText[2, superi] = new SettingsText(font, RStrings.ControlLeftClick);
+                }
+                if (ScreenText[0, superi].Text == inputDetector.getActionforClick(Click.MiddleClick).ToString())
+                {
+                    ScreenText[2, superi] = new SettingsText(font, RStrings.ControlMiddleClick);
+                }
+                if (ScreenText[0, superi].Text == inputDetector.getActionforClick(Click.RightClick).ToString())
+                {
+                    ScreenText[2, superi] = new SettingsText(font, RStrings.ControlRightClick);
+                }
+                if (ScreenText[0, superi].Text == inputDetector.getActionforClick(Click.ScrollUp).ToString())
+                {
+                    ScreenText[2, superi] = new SettingsText(font, RStrings.ControlScrollUp);
+                }
+                if (ScreenText[0, superi].Text == inputDetector.getActionforClick(Click.ScrollDown).ToString())
+                {
+                    ScreenText[2, superi] = new SettingsText(font, RStrings.ControlScrollDown);
+                }
+
+            }
+
+
             int i = 0;
             int j = 0;
             foreach (SettingsText settingText in ScreenText)

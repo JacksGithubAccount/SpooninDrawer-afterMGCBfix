@@ -126,6 +126,10 @@ namespace SpooninDrawer.Engine.Input
         {
             return mouseControls.Find(x => x.action == selectedAction).click;
         }
+        public Actions getActionforClick(Click selectedClick)
+        {
+            return mouseControls.Find(x => x.click == selectedClick).action;
+        }
         public bool IsActionPressedforKey(Actions selectedAction)
         {
             if (actionKeys.Exists(x => x.action == selectedAction))

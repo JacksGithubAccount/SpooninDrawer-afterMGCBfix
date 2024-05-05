@@ -283,6 +283,9 @@ namespace SpooninDrawer
          *-Added an abstract class to handle buttons since theres alot of repeated code
          *5/3/2024
          *-Changed screens to use abstract class, need to work on adding mouse control for volume bar and add mouse for remap
+         *5/4/2024
+         *-Added text for mouse remap
+         *
          *
          */
     }
