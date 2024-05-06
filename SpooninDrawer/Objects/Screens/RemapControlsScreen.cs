@@ -144,12 +144,12 @@ namespace SpooninDrawer.Objects.Screens
         }
         public string GetMenuCommand(int x, int y)
         {
-            if (x == 0)
+            if (x == 1)
             {
                 var holder = (titleCommands)y;
                 return holder.ToString();
             }
-            else if (x == 1)
+            else if (x == 2)
             {
                 var holder = (secondColumnCommands)y;
                 return holder.ToString();
