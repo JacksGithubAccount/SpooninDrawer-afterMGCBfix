@@ -286,7 +286,11 @@ namespace SpooninDrawer
          *5/4/2024
          *-Added text for mouse remap
          *5/5/2024
-         *-
+         *-remap screen needs the entire first column to be unclickable as the second and third columns are for keyboard and mouse respectively
+         *5/6/2024
+         *-created new object for rectangle and made it possible to be readonly. When readonly, mouse collision is turned off. Will need to add for keyboard input too
+         *-also, will need way  to mark as readonly
+         *-rectangle generation still needs work, only works from top left corner, needs way beyond that
          *
          *
          *

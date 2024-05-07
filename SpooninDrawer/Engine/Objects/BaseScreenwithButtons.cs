@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SpooninDrawer.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,11 @@ namespace SpooninDrawer.Engine.Objects
     {
         protected int ButtonWidth;
         protected int ButtonHeight;
-        public List<Rectangle[]> ButtonRectangles { get; }
+        public List<SplashRectangle[]> ButtonRectangles { get; }
 
+        protected BaseScreenwithButtons() { ButtonRectangles = new List<SplashRectangle[]>(); }
 
-
-
-        protected BaseScreenwithButtons() { ButtonRectangles = new List<Rectangle[]>(); }
+        //use for single column or row or if need every rectangles
         public void CreateRectangles(int[] xRectangleNumbers, int[] yRectangleNumbers)
         {
             int[] xRectangleLimits = new int[yRectangleNumbers.Length];
@@ -26,15 +26,31 @@ namespace SpooninDrawer.Engine.Objects
             }
             CreateRectangles(xRectangleNumbers, yRectangleNumbers, xRectangleLimits);
         }
+        //use for different amount of buttons row-wise
         public void CreateRectangles(int[] xRectangleNumbers, int[] yRectangleNumbers, int[] xRectangleLimits)
         {
             for (int y = 0; y < yRectangleNumbers.Length; y++)
             {
-                ButtonRectangles.Add(new Rectangle[xRectangleLimits[y] + 1]);
+                ButtonRectangles.Add(new SplashRectangle[xRectangleLimits[y] + 1]);
                 for (int x = 0; x <= xRectangleLimits[y]; x++)
                 {
-                    ButtonRectangles[y][x] = (new Rectangle(xRectangleNumbers[x], yRectangleNumbers[y], ButtonWidth, ButtonHeight));
+                    ButtonRectangles[y][x] = (new SplashRectangle(new Rectangle(xRectangleNumbers[x], yRectangleNumbers[y], ButtonWidth, ButtonHeight)));
                 }
+            }
+        }
+        //use for different amount of buttons row and column wise
+        public void CreateRectangles(int[] xRectangleNumbers, int[] yRectangleNumbers, int[] xRectangleLimits, int[] yRectangleLimits)
+        {
+            for (int y = 0; y < yRectangleNumbers.Length; y++)
+            {
+                ButtonRectangles.Add(new SplashRectangle[xRectangleLimits[y] + 1]);
+                for (int x = 0; x <= xRectangleLimits[y]; x++)
+                {
+                    if (yRectangleLimits[x] != 0 && yRectangleLimits[x] > y)
+                        ButtonRectangles[y][x] = new SplashRectangle(new Rectangle(xRectangleNumbers[x], yRectangleNumbers[y], ButtonWidth, ButtonHeight));
+                    else
+                        ButtonRectangles[y][x] = new SplashRectangle();
+                }                
             }
         }
     }

@@ -86,8 +86,8 @@ namespace SpooninDrawer.Objects.Screens
             ScreenText[1, 6] = new SettingsText(font, inputDetector.getKeyforAction(Actions.OpenMenu).ToString());
             ScreenText[1, 7] = new SettingsText(font, inputDetector.getKeyforAction(Actions.Pause).ToString());
 
-            
-            for(int superi = 0; superi < 9; superi++)
+
+            for (int superi = 0; superi < 9; superi++)
             {
                 if (ScreenText[0, superi].Text == inputDetector.getActionforClick(Click.LeftClick).ToString())
                 {
@@ -134,7 +134,7 @@ namespace SpooninDrawer.Objects.Screens
             hasButtons = true;
             ButtonWidth = 50;
             ButtonHeight = 25;
-            CreateRectangles(menuLocationArrayX, menuLocationArrayY);
+            CreateRectangles(menuLocationArrayX, menuLocationArrayY, new int[9] { 2, 2, 2, 2, 2, 2, 2, 2, 2 }, new int[3] { 0, menuNavigatorYCap, 5 });
         }
 
         public iBaseScreen Initialize(Resolution resolution)

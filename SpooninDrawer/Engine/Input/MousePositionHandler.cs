@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using SpooninDrawer.Engine.Objects;
 using SpooninDrawer.Extensions;
+using SpooninDrawer.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +34,9 @@ namespace SpooninDrawer.Engine.Input
             {
                 for (int i = 0; i < screen.ButtonRectangles.Count; i++)
                 {
-                    foreach (Rectangle rect in screen.ButtonRectangles[i])
+                    foreach (SplashRectangle rect in screen.ButtonRectangles[i])
                     {
-                        if (rect.Intersects(mouseState.Position))
+                        if (rect.Rectangle.Intersects(mouseState.Position) && !rect.ReadOnly)
                             return true;
                     };
                 }
@@ -46,9 +47,9 @@ namespace SpooninDrawer.Engine.Input
         {
             for (int i = 0; i < screen.ButtonRectangles.Count; i++)
             {
-                foreach (Rectangle rect in screen.ButtonRectangles[i])
+                foreach (SplashRectangle rect in screen.ButtonRectangles[i])
                 {
-                    if (rect.Intersects(mouseState.Position))
+                    if (rect.Rectangle.Intersects(mouseState.Position))
                     {
                         int j = Array.FindIndex(screen.ButtonRectangles[i], x => x == rect);
                         return screenPosition = new Vector2(j, i);

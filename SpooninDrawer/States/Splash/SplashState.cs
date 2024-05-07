@@ -91,7 +91,7 @@ namespace SpooninDrawer.States.Splash
             AddGameObject(_menuArrow);
 
             _menuArrow.Position = new Vector2(menuLocationArrayX[0], menuLocationArrayY[0]);
-            if(currentScreen.hasButtons)
+            if (currentScreen.hasButtons)
                 mousePositionHandler = new MousePositionHandler((BaseScreenwithButtons)currentScreen);
 
             var beepSound = LoadSound(BeepSound);
@@ -115,7 +115,7 @@ namespace SpooninDrawer.States.Splash
             currentSplash.Position = screen.Position;
             BaseGameObject holder = getScreenExist(currentSplash.getTextureName());
             BaseGameObject previousholder = getScreenExist(previousScreen.screenTexture);
-            if(currentScreen.hasButtons)
+            if (currentScreen.hasButtons)
                 mousePositionHandler?.SetScreen((BaseScreenwithButtons)currentScreen);
 
             if (screen.GetType() == typeof(SettingsScreen))
@@ -190,7 +190,7 @@ namespace SpooninDrawer.States.Splash
                 AddScreenText(currentScreen);
                 BaseGameObject toRemove = getScreenExist(screen.screenTexture);
                 RemoveGameObject(toRemove);
-                if(currentScreen.hasButtons)
+                if (currentScreen.hasButtons)
                     mousePositionHandler.SetScreen((BaseScreenwithButtons)currentScreen);
                 if (screen.GetType() == typeof(SettingsScreen))
                 {
@@ -576,11 +576,11 @@ namespace SpooninDrawer.States.Splash
             if (currentScreen.hasButtons)
             {
                 BaseScreenwithButtons holder = (BaseScreenwithButtons)currentScreen;
-                foreach (Rectangle[] rect in holder.ButtonRectangles)
+                foreach (SplashRectangle[] rect in holder.ButtonRectangles)
                 {
-                    foreach (Rectangle rect2 in rect)
+                    foreach (SplashRectangle rect2 in rect)
                     {
-                        spriteBatch.Draw(blankTexture, new Vector2(rect2.X, rect2.Y), rect2, Color.Crimson * 0.5f);
+                        spriteBatch.Draw(blankTexture, new Vector2(rect2.Rectangle.X, rect2.Rectangle.Y), rect2.Rectangle, Color.Crimson * 0.5f);
                     }
                 }
             }
