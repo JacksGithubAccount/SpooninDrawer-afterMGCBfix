@@ -467,8 +467,7 @@ namespace SpooninDrawer.States.Splash
                         NotifyEvent(new SplashEvents.SplashMoveArrow());
                         menuNavigatorX++;
                     }
-                    //KeepArrowinBound(ref menuNavigatorX, menuNavigatorXCap);
-                    //KeepArrowinBound(ref menuNavigatorY, menuNavigatorYCap);
+
                     KeepArrowinBound(ref menuNavigatorX, menuNavigatorXCap, ref menuNavigatorY, menuNavigatorYCap);
                 }
                 else

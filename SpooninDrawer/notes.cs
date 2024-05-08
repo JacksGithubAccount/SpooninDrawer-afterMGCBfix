@@ -291,7 +291,8 @@ namespace SpooninDrawer
          *-created new object for rectangle and made it possible to be readonly. When readonly, mouse collision is turned off. Will need to add for keyboard input too
          *-also, will need way  to mark as readonly
          *-rectangle generation still needs work, only works from top left corner, needs way beyond that
-         *
+         *5/7/2024
+         *-Adding class for handling keyboard movement/input
          *
          *
          */
