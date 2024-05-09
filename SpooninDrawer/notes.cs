@@ -293,7 +293,8 @@ namespace SpooninDrawer
          *-rectangle generation still needs work, only works from top left corner, needs way beyond that
          *5/7/2024
          *-Adding class for handling keyboard movement/input
-         *
+         *5/8/2024
+         *-more work on the class to handle keyboard movement
          *
          */
     }

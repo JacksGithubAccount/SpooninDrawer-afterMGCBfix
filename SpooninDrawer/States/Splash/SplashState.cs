@@ -41,6 +41,7 @@ namespace SpooninDrawer.States.Splash
         private int[] menuNavigatorXCap;
         private int menuNavigatorYCap;
         private MousePositionHandler mousePositionHandler;
+        private KeyboardPositionHandler keyboardPositionHandler;
         iBaseScreen currentScreen;
         iBaseScreen previousScreen;
         BaseGameState StoredState;
@@ -93,6 +94,7 @@ namespace SpooninDrawer.States.Splash
             _menuArrow.Position = new Vector2(menuLocationArrayX[0], menuLocationArrayY[0]);
             if (currentScreen.hasButtons)
                 mousePositionHandler = new MousePositionHandler((BaseScreenwithButtons)currentScreen);
+            keyboardPositionHandler = new KeyboardPositionHandler();
 
             var beepSound = LoadSound(BeepSound);
             //var missileSound = LoadSound(MissileSound);
@@ -465,7 +467,8 @@ namespace SpooninDrawer.States.Splash
                     if (cmd is SplashInputCommand.MenuMoveRight)
                     {
                         NotifyEvent(new SplashEvents.SplashMoveArrow());
-                        menuNavigatorX++;
+                        //menuNavigatorX++;
+                        menuNavigatorX = keyboardPositionHandler.CheckKeyboardforMove((BaseScreenwithButtons)currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(1, 0));
                     }
 
                     KeepArrowinBound(ref menuNavigatorX, menuNavigatorXCap, ref menuNavigatorY, menuNavigatorYCap);
