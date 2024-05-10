@@ -12,54 +12,39 @@ namespace SpooninDrawer.Engine.Input
 {
     public class KeyboardPositionHandler
     {
-        /*private KeyboardState keyboardState;
-        private BaseScreenwithButtons screen;
-        private Vector2 KeyPosition;
-
-        public KeyboardPositionHandler(KeyboardState keyboardState, BaseScreenwithButtons screen, Vector2 position)
-        {
-            this.keyboardState = keyboardState;
-            this.screen = screen;
-
-        }
-        public void SetScreen(BaseScreenwithButtons screen)
-        {
-            this.screen = screen;
-        }*/
-
         public int CheckKeyboardforMove(BaseScreenwithButtons screen, int xPosition, int yPosition, Vector2 direction)
         {
-            if (xPosition + (int)direction.X >= screen.ButtonRectangles.Count())
+            int finalInt = 0;
+            try
             {
-                return 0;
-            }
-            else
-            {
-                foreach (SplashRectangle[] rect in screen.ButtonRectangles)
+
+                if (screen.ButtonRectangles[yPosition + (int)direction.Y][xPosition + (int)direction.X].ReadOnly)
                 {
-                    if (yPosition + (int)direction.Y > rect.Length)
-                    {
-                        return 0;
-                    }
+                    if (direction.X > 0)
+                        finalInt = CheckKeyboardforMove(screen, xPosition + 1, yPosition, direction);
+                    else if (direction.X < 0)
+                        finalInt = CheckKeyboardforMove(screen, xPosition - 1, yPosition, direction);
+                    else if (direction.Y > 0)
+                        finalInt = CheckKeyboardforMove(screen, xPosition, yPosition + 1, direction);
+                    else
+                        finalInt = CheckKeyboardforMove(screen, xPosition, yPosition - 1, direction);
+                }
+                else
+                {
+                    if (direction.X != 0)
+                        return xPosition + (int)direction.X;
+                    else
+                        return yPosition + (int)direction.Y;
                 }
             }
-
-            if (screen.ButtonRectangles[xPosition + (int)direction.X][yPosition + (int)direction.Y].ReadOnly)
+            catch
             {
-                if (direction.X != 0)
-                    CheckKeyboardforMove(screen, xPosition + 1, yPosition, direction);
-                else
-                    CheckKeyboardforMove(screen, xPosition, yPosition + 1, direction);
+                if (direction.X > 0) { return xPosition + 1; }
+                else if (direction.X < 0) { return xPosition - 1; }
+                if (direction.Y > 0) { return yPosition + 1; }
+                else if (direction.Y < 0) { return yPosition - 1; }
             }
-            else
-            {
-                if (direction.X != 0)
-                    return xPosition + (int)direction.X;
-                else
-                    return yPosition + (int)direction.Y;
-            }
-            return 0;
+            return finalInt;
         }
-
     }
 }

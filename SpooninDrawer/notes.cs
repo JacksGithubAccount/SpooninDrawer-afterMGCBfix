@@ -294,7 +294,11 @@ namespace SpooninDrawer
          *5/7/2024
          *-Adding class for handling keyboard movement/input
          *5/8/2024
-         *-more work on the class to handle keyboard movement
+         *-more work on the class to hndle keyboard
+         *5/9/2024
+         *-finished the method for movement. Now works with readonly rectangles by skipping over them. Also for some reason, X and Y are reversed
+         *
+         *
          *
          */
     }

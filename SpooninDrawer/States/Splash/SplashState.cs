@@ -356,10 +356,7 @@ namespace SpooninDrawer.States.Splash
                             _graphics.PreferredBackBufferWidth = 1280;
                             _graphics.PreferredBackBufferHeight = 720;
                         }
-                        //_graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-                        //_graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
                         _graphics.HardwareModeSwitch = false;
-
                         _graphics.ApplyChanges();
                     }
                     if (cmd is SplashInputCommand.SetResolution1080)
@@ -452,22 +449,21 @@ namespace SpooninDrawer.States.Splash
                     if (cmd is SplashInputCommand.MenuMoveUp)
                     {
                         NotifyEvent(new SplashEvents.SplashMoveArrow());
-                        menuNavigatorY--;
+                        menuNavigatorY = keyboardPositionHandler.CheckKeyboardforMove((BaseScreenwithButtons)currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(0, -1));
                     }
                     if (cmd is SplashInputCommand.MenuMoveDown)
                     {
                         NotifyEvent(new SplashEvents.SplashMoveArrow());
-                        menuNavigatorY++;
+                        menuNavigatorY = keyboardPositionHandler.CheckKeyboardforMove((BaseScreenwithButtons)currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(0, 1));
                     }
                     if (cmd is SplashInputCommand.MenuMoveLeft)
                     {
                         NotifyEvent(new SplashEvents.SplashMoveArrow());
-                        menuNavigatorX--;
+                        menuNavigatorX = keyboardPositionHandler.CheckKeyboardforMove((BaseScreenwithButtons)currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(-1, 0));
                     }
                     if (cmd is SplashInputCommand.MenuMoveRight)
                     {
                         NotifyEvent(new SplashEvents.SplashMoveArrow());
-                        //menuNavigatorX++;
                         menuNavigatorX = keyboardPositionHandler.CheckKeyboardforMove((BaseScreenwithButtons)currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(1, 0));
                     }
 
