@@ -297,6 +297,8 @@ namespace SpooninDrawer
          *-more work on the class to hndle keyboard
          *5/9/2024
          *-finished the method for movement. Now works with readonly rectangles by skipping over them. Also for some reason, X and Y are reversed
+         *5/10/2024
+         *-added mouse methods to help with remapping in extensions
          *
          *
          *

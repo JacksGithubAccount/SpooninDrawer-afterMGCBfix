@@ -60,5 +60,28 @@ namespace SpooninDrawer.Extensions
                 return false;
             }
         }
+        public static List<Click> GetPressedClicks(this MouseState mouseState)
+        {
+            List<Click> pressedClicks = new List<Click>();
+            for (int i = 0; i < Enum.GetNames(typeof(Click)).Length; i++)
+            {
+                if (IsClickDown(mouseState, (Click)i))
+                {
+                    pressedClicks.Add((Click)i);
+                }
+            }
+            return pressedClicks;
+        }
+        public static int GetPressedClickCount(this MouseState mouseState)
+        {
+            int pressedClicks = 0;
+            if (mouseState.LeftButton == ButtonState.Pressed)
+                pressedClicks++;
+            if (mouseState.RightButton == ButtonState.Pressed)
+                pressedClicks++;
+            if (mouseState.MiddleButton == ButtonState.Pressed)
+                pressedClicks++;
+            return pressedClicks;
+        }
     }
 }

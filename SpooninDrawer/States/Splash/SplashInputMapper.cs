@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using SpooninDrawer.Engine.Input;
 using SpooninDrawer.Engine.Objects;
+using SpooninDrawer.Extensions;
 using SpooninDrawer.Objects.Screens;
 using SpooninDrawer.States.Dev;
 using SpooninDrawer.States.Gameplay;
@@ -111,6 +112,20 @@ namespace SpooninDrawer.States.Splash
             inputDetector.update(previousMouseState);
             currentMouseState = state;
             var commands = new List<SplashInputCommand>();
+
+            if (RemapChecker && currentMouseState.GetPressedClickCount() == 0 && previousMouseState.GetPressedClickCount() != 0 && !screenTransition)
+            {
+                screenTransition = true;
+                Click inputClick = previousMouseState.GetPressedClicks()[0];
+                inputDetector.RemapClick(inputClick, RemapActionHolder);
+                //reloads remap controls screen to update the new keybinds
+                commands.Add(new BackSelect());
+                commands.Add(new BackSelect());
+                commands.Add(new RemapControlSelect());
+                commands.Add(new RemapControlDone());
+                RemapChecker = false;
+
+            }
 
             if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Confirm, InputType.Release) && !screenTransition)
             {
