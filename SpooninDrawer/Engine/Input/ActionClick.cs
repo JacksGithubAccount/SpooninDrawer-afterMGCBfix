@@ -13,7 +13,8 @@ namespace SpooninDrawer.Engine.Input
         RightClick, 
         MiddleClick,
         ScrollUp,
-        ScrollDown
+        ScrollDown,
+        None
     }
     class ActionClick
     {

@@ -32,6 +32,12 @@ namespace SpooninDrawer.Engine.Input
         Release,
         Hold
     }
+    public enum InputDevice
+    {
+        Keyboard,
+        Mouse,
+        Gamepad
+    }
     public class InputDetector
     {
         private KeyboardState oldKeyboardState;
@@ -59,7 +65,13 @@ namespace SpooninDrawer.Engine.Input
                 new ActionClick(Click.RightClick, Actions.Cancel),
                 new ActionClick(Click.MiddleClick, Actions.OpenMenu),
                 new ActionClick(Click.ScrollUp, Actions.MoveUp),
-                new ActionClick(Click.ScrollDown, Actions.MoveDown)
+                new ActionClick(Click.ScrollDown, Actions.MoveDown),
+                new ActionClick(Click.None, Actions.MoveLeft),
+                new ActionClick(Click.None, Actions.MoveRight),
+                new ActionClick(Click.None, Actions.Interact),
+                new ActionClick(Click.None, Actions.Attack),
+                new ActionClick(Click.None, Actions.OpenMenu),
+                new ActionClick(Click.None, Actions.Pause)
             };
             //contains the controls for  player input
             keyboardControls = new List<ActionKey>

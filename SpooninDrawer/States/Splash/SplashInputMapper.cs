@@ -24,6 +24,7 @@ namespace SpooninDrawer.States.Splash
         //used to stop the screen from activating the selected option when Z/enter is pressed and changing screens
         private bool screenTransition = false;
         private MousePositionHandler mousePositionHandler;
+        private InputDevice remapDevice;
         public SplashInputMapper(SplashState currentSplashState, MousePositionHandler mousePositionHandler) : this(currentSplashState, new InputDetector())
         {
             this.mousePositionHandler = mousePositionHandler;
@@ -51,7 +52,7 @@ namespace SpooninDrawer.States.Splash
 
 
             }
-            if (RemapChecker && currentKeyboardState.GetPressedKeyCount() == 0 && previousKeyboardState.GetPressedKeyCount() != 0 && !screenTransition)
+            if (RemapChecker && currentKeyboardState.GetPressedKeyCount() == 0 && previousKeyboardState.GetPressedKeyCount() != 0 && !screenTransition && remapDevice == InputDevice.Keyboard)
             {
                 screenTransition = true;
                 Keys inputKey = previousKeyboardState.GetPressedKeys()[0];
@@ -113,7 +114,7 @@ namespace SpooninDrawer.States.Splash
             currentMouseState = state;
             var commands = new List<SplashInputCommand>();
 
-            if (RemapChecker && currentMouseState.GetPressedClickCount() == 0 && previousMouseState.GetPressedClickCount() != 0 && !screenTransition)
+            if (RemapChecker && currentMouseState.GetPressedClickCount() == 0 && previousMouseState.GetPressedClickCount() != 0 && !screenTransition && remapDevice == InputDevice.Mouse)
             {
                 screenTransition = true;
                 Click inputClick = previousMouseState.GetPressedClicks()[0];
@@ -205,43 +206,98 @@ namespace SpooninDrawer.States.Splash
                 case "RemapSelectConfirm":
 
                     RemapChecker = true;
+                    remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.Confirm;
                     return new RemapControlConfirm();
                 case "RemapSelectCancel":
 
                     RemapChecker = true;
+                    remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.Cancel;
                     return new RemapControlConfirm();
                 case "RemapSelectUp":
 
                     RemapChecker = true;
+                    remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.MoveUp;
                     return new RemapControlConfirm();
                 case "RemapSelectDown":
 
                     RemapChecker = true;
+                    remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.MoveDown;
                     return new RemapControlConfirm();
                 case "RemapSelectLeft":
                     RemapChecker = true;
+                    remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.MoveLeft;
                     return new RemapControlConfirm();
                 case "RemapSelectRight":
 
                     RemapChecker = true;
+                    remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.MoveRight;
                     return new RemapControlConfirm();
                 case "RemapSelectOpenMenu":
 
                     RemapChecker = true;
+                    remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.OpenMenu;
                     return new RemapControlConfirm();
                 case "RemapSelectPause":
 
                     RemapChecker = true;
+                    remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.Pause;
                     return new RemapControlConfirm();
+                //mouse
+                case "RemapMouseSelectConfirm":
 
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Mouse;
+                    RemapActionHolder = Actions.Confirm;
+                    return new RemapControlConfirm();
+                case "RemapMouseSelectCancel":
+
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Mouse;
+                    RemapActionHolder = Actions.Cancel;
+                    return new RemapControlConfirm();
+                case "RemapMouseSelectUp":
+
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Mouse;
+                    RemapActionHolder = Actions.MoveUp;
+                    return new RemapControlConfirm();
+                case "RemapMouseSelectDown":
+
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Mouse;
+                    RemapActionHolder = Actions.MoveDown;
+                    return new RemapControlConfirm();
+                case "RemapMouseSelectLeft":
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Mouse;
+                    RemapActionHolder = Actions.MoveLeft;
+                    return new RemapControlConfirm();
+                case "RemapMouseSelectRight":
+
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Mouse;
+                    RemapActionHolder = Actions.MoveRight;
+                    return new RemapControlConfirm();
+                case "RemapMouseSelectOpenMenu":
+
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Mouse;
+                    RemapActionHolder = Actions.OpenMenu;
+                    return new RemapControlConfirm();
+                case "RemapMouseSelectPause":
+
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Mouse;
+                    RemapActionHolder = Actions.Pause;
+                    return new RemapControlConfirm();
                 //remap end
                 case "VolumeBGM":
                     return new SettingVolumeBGMSelect();

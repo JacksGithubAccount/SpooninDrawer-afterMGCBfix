@@ -299,7 +299,8 @@ namespace SpooninDrawer
          *-finished the method for movement. Now works with readonly rectangles by skipping over them. Also for some reason, X and Y are reversed
          *5/10/2024
          *-added mouse methods to help with remapping in extensions
-         *
+         *5/11/2024
+         *-issue with remapping where trying to remap mouse keeps selecting scroll up regardless of button pressed
          *
          *
          */

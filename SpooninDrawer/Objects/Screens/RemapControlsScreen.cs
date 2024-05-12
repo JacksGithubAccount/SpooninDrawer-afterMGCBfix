@@ -16,6 +16,10 @@ namespace SpooninDrawer.Objects.Screens
     public class RemapControlsScreen : BaseScreenwithButtons, iBaseScreen
     {
         enum titleCommands
+        {            
+            BackSelect
+        }
+        enum secondColumnCommands
         {
             RemapSelectConfirm,
             RemapSelectCancel,
@@ -24,16 +28,18 @@ namespace SpooninDrawer.Objects.Screens
             RemapSelectLeft,
             RemapSelectRight,
             RemapSelectOpenMenu,
-            RemapSelectPause,
-            BackSelect
+            RemapSelectPause
         }
-        enum secondColumnCommands
+        enum thirdColumnCommands
         {
-            RemapMouseLeftClick,
-            RemapMouseRightClick,
-            RemapMouseMiddleClick,
-            RemapMouseScrollUp,
-            RemapMouseScrollDown
+            RemapMouseSelectConfirm,
+            RemapMouseSelectCancel,
+            RemapMouseSelectUp,
+            RemapMouseSelectDown,
+            RemapMouseSelectLeft,
+            RemapMouseSelectRight,
+            RemapMouseSelectOpenMenu,
+            RemapMouseSelectPause,
         }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
@@ -144,14 +150,19 @@ namespace SpooninDrawer.Objects.Screens
         }
         public string GetMenuCommand(int x, int y)
         {
-            if (x == 1)
+            if (x == 0)
             {
                 var holder = (titleCommands)y;
                 return holder.ToString();
             }
-            else if (x == 2)
+            else if (x == 1)
             {
                 var holder = (secondColumnCommands)y;
+                return holder.ToString();
+            }
+            else if (x == 2)
+            {
+                var holder = (thirdColumnCommands)y;
                 return holder.ToString();
             }
             else
