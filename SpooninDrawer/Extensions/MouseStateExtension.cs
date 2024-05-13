@@ -51,10 +51,10 @@ namespace SpooninDrawer.Extensions
             {
                 return mouseState.MiddleButton == ButtonState.Released;
             }
-            //else if (click == Click.ScrollUp || click == Click.ScrollDown)
-            //{
-            //    return mouseState.ScrollWheelValue == 0;
-            //}
+            else if (click == Click.ScrollUp || click == Click.ScrollDown)
+            {
+                return mouseState.ScrollWheelValue == 0;
+            }
             else
             {
                 return false;

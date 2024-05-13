@@ -118,6 +118,36 @@ namespace SpooninDrawer.Engine.Input
             else
                 return actionToRemap;
         }
+        public Actions DoesClickExistinControls(Click clickToCheck, Actions actionToRemap)
+        {
+            Actions crossAction = Actions.NoInput;
+            if (mouseControls.Exists(x => x.click == clickToCheck))
+            {
+                List<ActionClick> checkAClick = mouseControls.FindAll(x => x.click == clickToCheck);
+                if (checkAClick.Count >= 1)
+                {
+                    if (checkAClick.Exists(x => x.action == Actions.Confirm) && actionToRemap == Actions.Cancel)
+                    {
+                        return Actions.Confirm;
+                    }
+                    else if (checkAClick.Exists(x => x.action == Actions.Cancel) && actionToRemap == Actions.Confirm)
+                    {
+                        return Actions.Cancel;
+                    }
+                    else
+                    {
+                        checkAClick.RemoveAll(x => x.action == Actions.Cancel && x.action == Actions.Confirm);
+                        if (checkAClick.Count >= 1)
+                        {
+                            crossAction = checkAClick[0].action;
+                        }
+                    }
+                }
+                return crossAction;
+            }
+            else
+                return actionToRemap;
+        }
         public bool IsAnyButtonInputTyped(InputType inputType)
         {
             return actionKeys.Exists(x => x.type == inputType);
@@ -140,7 +170,10 @@ namespace SpooninDrawer.Engine.Input
         }
         public Actions getActionforClick(Click selectedClick)
         {
-            return mouseControls.Find(x => x.click == selectedClick).action;
+            Actions returnAction = Actions.NoInput;
+            if (IsClickExist(selectedClick))
+                returnAction = mouseControls.Find(x => x.click == selectedClick).action;
+            return returnAction;
         }
         public bool IsActionPressedforKey(Actions selectedAction)
         {
@@ -150,6 +183,11 @@ namespace SpooninDrawer.Engine.Input
             }
             else
                 return false;
+        }
+        public bool IsClickExist(Click selectedClick)
+        {
+            if(mouseControls.Exists(x => x.click == selectedClick)) { return true; }
+            return false;
         }
         public bool IsActionPressedforClick(Actions selectedAction)
         {

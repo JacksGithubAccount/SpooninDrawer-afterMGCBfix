@@ -124,10 +124,10 @@
     <value>Confirm</value>
   </data>
   <data name="ControlDown" xml:space="preserve">
-    <value>Down</value>
+    <value>Move Down</value>
   </data>
   <data name="ControlLeft" xml:space="preserve">
-    <value>Left</value>
+    <value>Move Left</value>
   </data>
   <data name="ControlLeftClick" xml:space="preserve">
     <value>Left Click</value>
@@ -142,7 +142,7 @@
     <value>Pause</value>
   </data>
   <data name="ControlRight" xml:space="preserve">
-    <value>Right</value>
+    <value>Move Right</value>
   </data>
   <data name="ControlRightClick" xml:space="preserve">
     <value>Right Click</value>
@@ -154,7 +154,7 @@
     <value>Scroll Up</value>
   </data>
   <data name="ControlUp" xml:space="preserve">
-    <value>Up</value>
+    <value>Move Up</value>
   </data>
   <data name="GoodLuckPlayer1" xml:space="preserve">
     <value>Good Luck, Player 1!</value>

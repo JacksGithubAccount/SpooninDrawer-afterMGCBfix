@@ -95,23 +95,23 @@ namespace SpooninDrawer.Objects.Screens
 
             for (int superi = 0; superi < 9; superi++)
             {
-                if (ScreenText[0, superi].Text == inputDetector.getActionforClick(Click.LeftClick).ToString())
+                if (ScreenText[0, superi].Text.Replace(" ", String.Empty) == inputDetector.getActionforClick(Click.LeftClick).ToString())
                 {
                     ScreenText[2, superi] = new SettingsText(font, RStrings.ControlLeftClick);
                 }
-                if (ScreenText[0, superi].Text == inputDetector.getActionforClick(Click.MiddleClick).ToString())
+                if (ScreenText[0, superi].Text.Replace(" ", String.Empty) == inputDetector.getActionforClick(Click.MiddleClick).ToString())
                 {
                     ScreenText[2, superi] = new SettingsText(font, RStrings.ControlMiddleClick);
                 }
-                if (ScreenText[0, superi].Text == inputDetector.getActionforClick(Click.RightClick).ToString())
+                if (ScreenText[0, superi].Text.Replace(" ", String.Empty) == inputDetector.getActionforClick(Click.RightClick).ToString())
                 {
                     ScreenText[2, superi] = new SettingsText(font, RStrings.ControlRightClick);
                 }
-                if (ScreenText[0, superi].Text == inputDetector.getActionforClick(Click.ScrollUp).ToString())
+                if (ScreenText[0, superi].Text.Replace(" ", String.Empty)  == inputDetector.getActionforClick(Click.ScrollUp).ToString())
                 {
                     ScreenText[2, superi] = new SettingsText(font, RStrings.ControlScrollUp);
                 }
-                if (ScreenText[0, superi].Text == inputDetector.getActionforClick(Click.ScrollDown).ToString())
+                if (ScreenText[0, superi].Text.Replace(" ", String.Empty) == inputDetector.getActionforClick(Click.ScrollDown).ToString())
                 {
                     ScreenText[2, superi] = new SettingsText(font, RStrings.ControlScrollDown);
                 }
@@ -140,7 +140,11 @@ namespace SpooninDrawer.Objects.Screens
             hasButtons = true;
             ButtonWidth = 50;
             ButtonHeight = 25;
-            CreateRectangles(menuLocationArrayX, menuLocationArrayY, new int[9] { 2, 2, 2, 2, 2, 2, 2, 2, 2 }, new int[3] { 0, menuNavigatorYCap, 5 });
+            CreateRectangles(menuLocationArrayX, menuLocationArrayY, new int[9] { 2, 2, 2, 2, 2, 2, 2, 2, 2 }, new int[3] { menuNavigatorYCap + 1, menuNavigatorYCap, menuNavigatorYCap });
+            for (int b = 0; b < menuNavigatorYCap; b++)
+            {
+                ButtonRectangles[b][0].ReadOnly = true;
+            }
         }
 
         public iBaseScreen Initialize(Resolution resolution)

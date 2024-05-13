@@ -79,7 +79,7 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Down.
+        ///   Looks up a localized string similar to Move Down.
         /// </summary>
         internal static string ControlDown {
             get {
@@ -88,7 +88,7 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Left.
+        ///   Looks up a localized string similar to Move Left.
         /// </summary>
         internal static string ControlLeft {
             get {
@@ -133,7 +133,7 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Right.
+        ///   Looks up a localized string similar to Move Right.
         /// </summary>
         internal static string ControlRight {
             get {
@@ -169,7 +169,7 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Up.
+        ///   Looks up a localized string similar to Move Up.
         /// </summary>
         internal static string ControlUp {
             get {

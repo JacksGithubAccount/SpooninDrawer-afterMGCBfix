@@ -56,14 +56,20 @@ namespace SpooninDrawer.States.Splash
             {
                 screenTransition = true;
                 Keys inputKey = previousKeyboardState.GetPressedKeys()[0];
+                Actions duplicateRemapActions = inputDetector.DoesKeyExistinControls(inputKey, RemapActionHolder);
+                //if key is used for another action, this if swaps the keys for the two actions
+                if (duplicateRemapActions != RemapActionHolder)
+                {
+                    Keys switchingKey = inputDetector.getKeyforAction(RemapActionHolder);                    
+                    inputDetector.RemapKey(switchingKey, duplicateRemapActions);
+                }
                 inputDetector.RemapKey(inputKey, RemapActionHolder);
-                //reloads remap controls screen to update the new keybinds
+                //reloads remap controls screen to update the new keybinds 
                 commands.Add(new BackSelect());
                 commands.Add(new BackSelect());
                 commands.Add(new RemapControlSelect());
                 commands.Add(new RemapControlDone());
                 RemapChecker = false;
-
             }
             if (state.IsKeyDown(Keys.T) && HasBeenPressed(Keys.T))
             {

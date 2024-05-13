@@ -301,6 +301,10 @@ namespace SpooninDrawer
          *-added mouse methods to help with remapping in extensions
          *5/11/2024
          *-issue with remapping where trying to remap mouse keeps selecting scroll up regardless of button pressed
+         *5/12/2024
+         *-turns out the scroll up was a text printing issue as the texts didn't match up. Also it isn't printing the correct remap
+         *-will need to add swapping remap keys as that's not in yet. Added in for key, may need confirm box
+         *
          *
          *
          */
