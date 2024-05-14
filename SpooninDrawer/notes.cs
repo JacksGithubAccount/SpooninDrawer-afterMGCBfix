@@ -294,7 +294,7 @@ namespace SpooninDrawer
          *5/7/2024
          *-Adding class for handling keyboard movement/input
          *5/8/2024
-         *-more work on the class to hndle keyboard
+         *-more work on the class to handle keyboard
          *5/9/2024
          *-finished the method for movement. Now works with readonly rectangles by skipping over them. Also for some reason, X and Y are reversed
          *5/10/2024
@@ -304,7 +304,9 @@ namespace SpooninDrawer
          *5/12/2024
          *-turns out the scroll up was a text printing issue as the texts didn't match up. Also it isn't printing the correct remap
          *-will need to add swapping remap keys as that's not in yet. Added in for key, may need confirm box
-         *
+         *5/13/2024
+         *-Added remapping for mouse. Ran into issue where the text kept appearing one up after remapping left click. Fixed by adding empty text
+         *-
          *
          *
          */

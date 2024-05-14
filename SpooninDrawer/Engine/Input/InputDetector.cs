@@ -59,7 +59,7 @@ namespace SpooninDrawer.Engine.Input
             actionKeys = new List<ActionKey>();
             actionClicks = new List<ActionClick>();
 
-            mouseControls = new List<ActionClick> 
+            mouseControls = new List<ActionClick>
             {
                 new ActionClick(Click.LeftClick, Actions.Confirm),
                 new ActionClick(Click.RightClick, Actions.Cancel),
@@ -86,7 +86,7 @@ namespace SpooninDrawer.Engine.Input
                 new ActionKey(Keys.Z, Actions.Attack),
                 new ActionKey(Keys.C, Actions.OpenMenu),
                 new ActionKey(Keys.P, Actions.Pause)
-            };                                     
+            };
         }
         public Actions DoesKeyExistinControls(Keys keyToCheck, Actions actionToRemap)
         {
@@ -186,7 +186,7 @@ namespace SpooninDrawer.Engine.Input
         }
         public bool IsClickExist(Click selectedClick)
         {
-            if(mouseControls.Exists(x => x.click == selectedClick)) { return true; }
+            if (mouseControls.Exists(x => x.click == selectedClick)) { return true; }
             return false;
         }
         public bool IsActionPressedforClick(Actions selectedAction)
@@ -291,12 +291,12 @@ namespace SpooninDrawer.Engine.Input
                 }
             }
         }
-        
+
         public void MouseClick(MouseState mouseState, Actions action)
         {
             Click checkClick = mouseControls.Find(x => x.action == action).click;
             ActionClick tempActionClick = new ActionClick(mouseControls.Find(x => x.action == action));
-            
+
             if (mouseState.IsClickDown(checkClick) && oldMouseState.IsClickDown(checkClick))
             {
                 tempActionClick.type = InputType.Hold;

@@ -16,7 +16,7 @@ namespace SpooninDrawer.Objects.Screens
     public class RemapControlsScreen : BaseScreenwithButtons, iBaseScreen
     {
         enum titleCommands
-        {            
+        {
             BackSelect
         }
         enum secondColumnCommands
@@ -99,23 +99,24 @@ namespace SpooninDrawer.Objects.Screens
                 {
                     ScreenText[2, superi] = new SettingsText(font, RStrings.ControlLeftClick);
                 }
-                if (ScreenText[0, superi].Text.Replace(" ", String.Empty) == inputDetector.getActionforClick(Click.MiddleClick).ToString())
+                else if (ScreenText[0, superi].Text.Replace(" ", String.Empty) == inputDetector.getActionforClick(Click.MiddleClick).ToString())
                 {
                     ScreenText[2, superi] = new SettingsText(font, RStrings.ControlMiddleClick);
                 }
-                if (ScreenText[0, superi].Text.Replace(" ", String.Empty) == inputDetector.getActionforClick(Click.RightClick).ToString())
+                else if (ScreenText[0, superi].Text.Replace(" ", String.Empty) == inputDetector.getActionforClick(Click.RightClick).ToString())
                 {
                     ScreenText[2, superi] = new SettingsText(font, RStrings.ControlRightClick);
                 }
-                if (ScreenText[0, superi].Text.Replace(" ", String.Empty)  == inputDetector.getActionforClick(Click.ScrollUp).ToString())
+                else if (ScreenText[0, superi].Text.Replace(" ", String.Empty) == inputDetector.getActionforClick(Click.ScrollUp).ToString())
                 {
                     ScreenText[2, superi] = new SettingsText(font, RStrings.ControlScrollUp);
                 }
-                if (ScreenText[0, superi].Text.Replace(" ", String.Empty) == inputDetector.getActionforClick(Click.ScrollDown).ToString())
+                else if (ScreenText[0, superi].Text.Replace(" ", String.Empty) == inputDetector.getActionforClick(Click.ScrollDown).ToString())
                 {
                     ScreenText[2, superi] = new SettingsText(font, RStrings.ControlScrollDown);
                 }
-
+                else
+                    ScreenText[2, superi] = new SettingsText(font, "");
             }
 
 

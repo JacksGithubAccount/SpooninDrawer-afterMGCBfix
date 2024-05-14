@@ -60,7 +60,7 @@ namespace SpooninDrawer.States.Splash
                 //if key is used for another action, this if swaps the keys for the two actions
                 if (duplicateRemapActions != RemapActionHolder)
                 {
-                    Keys switchingKey = inputDetector.getKeyforAction(RemapActionHolder);                    
+                    Keys switchingKey = inputDetector.getKeyforAction(RemapActionHolder);
                     inputDetector.RemapKey(switchingKey, duplicateRemapActions);
                 }
                 inputDetector.RemapKey(inputKey, RemapActionHolder);
@@ -124,6 +124,13 @@ namespace SpooninDrawer.States.Splash
             {
                 screenTransition = true;
                 Click inputClick = previousMouseState.GetPressedClicks()[0];
+                Actions duplicateRemapActions = inputDetector.DoesClickExistinControls(inputClick, RemapActionHolder);
+                //if key is used for another action, this if swaps the keys for the two actions
+                if (duplicateRemapActions != RemapActionHolder)
+                {
+                    Click switchingClick = inputDetector.getClickforAction(RemapActionHolder);
+                    inputDetector.RemapClick(switchingClick, duplicateRemapActions);
+                }
                 inputDetector.RemapClick(inputClick, RemapActionHolder);
                 //reloads remap controls screen to update the new keybinds
                 commands.Add(new BackSelect());
@@ -142,6 +149,10 @@ namespace SpooninDrawer.States.Splash
                     screenTransition = true;
                     commands.Add(FindConfirm(commandState));
                 }
+            }
+            if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Cancel, InputType.Press))
+            {
+                commands.Add(new BackSelect());
             }
 
             return commands;
