@@ -22,7 +22,7 @@ namespace SpooninDrawer.Engine.Objects
         int[] menuNavigatorXCap { get; }
         int menuNavigatorYCap { get; }
         Vector2 Position { get; }
-        BaseTextObject[,] ScreenText { get; }
+        BaseTextObject[,] ScreenText { get; set; }
         bool hasButtons { get; }
 
 

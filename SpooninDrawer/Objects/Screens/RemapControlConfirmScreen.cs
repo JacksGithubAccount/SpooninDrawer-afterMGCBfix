@@ -24,7 +24,7 @@ namespace SpooninDrawer.Objects.Screens
         public int[] menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; set; }
-        public BaseTextObject[,] ScreenText { get; }
+        public BaseTextObject[,] ScreenText { get; set; }
         public Rectangle[][] ButtonRectangles { get; }
         public bool hasButtons { get; }
         private InputDetector inputDetector;
@@ -37,10 +37,10 @@ namespace SpooninDrawer.Objects.Screens
             this.inputDetector = inputDetector;
             Position = position;
             screenTexture = "Menu/RemapControlConfirm";
- 
+
             menuLocationArrayX = new int[0] { };
             menuLocationArrayY = new int[0] { };
-            textLocation = new Vector2(position.X /3, position.Y/3);
+            textLocation = new Vector2(position.X / 3, position.Y / 3);
             menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
             ScreenText = new BaseTextObject[1, 1];

@@ -44,6 +44,8 @@ namespace SpooninDrawer.States.Splash
         private KeyboardPositionHandler keyboardPositionHandler;
         iBaseScreen currentScreen;
         iBaseScreen previousScreen;
+        private PopupScreen popupScreen;
+        private Vector2 popupPosition;
         BaseGameState StoredState;
         private Stack<iBaseScreen> ScreenStack;
 
@@ -103,12 +105,21 @@ namespace SpooninDrawer.States.Splash
             var track1 = LoadSound(Soundtrack1).CreateInstance();
             var track2 = LoadSound(Soundtrack2).CreateInstance();
             _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
-        }
 
+            popupPosition = new Vector2(_graphicsDevice.Viewport.Width / 3, _graphicsDevice.Viewport.Height / 3);
+            popupScreen = new PopupScreen(MenuFont, popupPosition);
+        }
         public void ChangeScreen(iBaseScreen screen)
         {
+            ChangeScreen(screen, true);
+        }
+        public void ChangeScreen(iBaseScreen screen, bool hidePreviousScreenText)
+        {
             previousScreen = currentScreen ?? new EmptyScreen();
-            RemoveScreenText(previousScreen);
+            if (hidePreviousScreenText)
+            {
+                RemoveScreenText(previousScreen);
+            }
             currentScreen = screen;
             ScreenStack.Push(currentScreen);
             SetScreenPoints(screen);
@@ -408,6 +419,10 @@ namespace SpooninDrawer.States.Splash
                         {
                             SwitchState(new DevState());
                         }
+                    }
+                    if (cmd is SplashInputCommand.LoadSelect)
+                    {
+                        ChangeScreen(popupScreen, true); //testing popup windows
                     }
                     if (cmd is SplashInputCommand.SettingsSelect)
                     {

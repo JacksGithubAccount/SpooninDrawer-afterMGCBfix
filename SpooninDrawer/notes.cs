@@ -306,7 +306,9 @@ namespace SpooninDrawer
          *-will need to add swapping remap keys as that's not in yet. Added in for key, may need confirm box
          *5/13/2024
          *-Added remapping for mouse. Ran into issue where the text kept appearing one up after remapping left click. Fixed by adding empty text
-         *-
+         *5/14/2024
+         *-Added pop up screen. Ran into issue where text was not displaying correctly if there was a null text in the middle of the list
+         *-fixed by moving the null check after the column/row check in positioning
          *
          *
          */

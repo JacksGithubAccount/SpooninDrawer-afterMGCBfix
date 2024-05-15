@@ -47,7 +47,7 @@ namespace SpooninDrawer.Objects.Screens
         public int[] menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; set; }
-        public BaseTextObject[,] ScreenText { get; }
+        public BaseTextObject[,] ScreenText { get; set; }
         public bool hasButtons { get; }
         private InputDetector inputDetector;
         private Resolution displayResolution;

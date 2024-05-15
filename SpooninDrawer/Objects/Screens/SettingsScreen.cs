@@ -43,7 +43,7 @@ namespace SpooninDrawer.Objects.Screens
         public int[] menuNavigatorXCap { get; }
         public int menuNavigatorYCap { get; }
         public Vector2 Position { get; }
-        public BaseTextObject[,] ScreenText { get; }
+        public BaseTextObject[,] ScreenText { get; set; }
         private Resolution DisplayResolution;
         private Vector2 positionOffset;
         private SpriteFont spriteFont;
@@ -120,15 +120,15 @@ namespace SpooninDrawer.Objects.Screens
             int j = 0;
             foreach (SettingsText settingText in ScreenText)
             {
-                if (settingText == null)
-                {
-                    k++;
-                    continue;
-                }
                 if (k >= menuLocationArrayY.Length)
                 {
                     j++;
                     k = 0;
+                }
+                if (settingText == null)
+                {
+                    k++;
+                    continue;
                 }
                 settingText.Position = new Vector2(menuLocationArrayX[j] + positionOffset.X, menuLocationArrayY[k] + positionOffset.Y);
                 settingText.zIndex = 3;
