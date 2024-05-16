@@ -399,6 +399,11 @@ namespace SpooninDrawer.States.Splash
                     {
                         ChangeScreen(new RemapControlDoneScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
                     }
+                    if (cmd is SplashInputCommand.RemapControlDuplicate)
+                    {
+                        popupScreen.DescriptionString = "This button is used for another action. Swap?";
+                        ChangeScreen(popupScreen, false);
+                    }
                     if (cmd is SplashInputCommand.TestMenuButton)
                     {
                         BaseGameObject holder = getScreenExist(screenTexture);

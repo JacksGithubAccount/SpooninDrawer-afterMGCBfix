@@ -128,6 +128,7 @@ namespace SpooninDrawer.States.Splash
                 //if key is used for another action, this if swaps the keys for the two actions
                 if (duplicateRemapActions != RemapActionHolder)
                 {
+                    commands.Add(new RemapControlDuplicate());
                     Click switchingClick = inputDetector.getClickforAction(RemapActionHolder);
                     inputDetector.RemapClick(switchingClick, duplicateRemapActions);
                 }

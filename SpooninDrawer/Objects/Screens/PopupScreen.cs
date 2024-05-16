@@ -29,6 +29,7 @@ namespace SpooninDrawer.Objects.Screens
         private Vector2 textLocation;
         private Vector2 positionOffset = new Vector2(9, 16);
         private SpriteFont spriteFont;
+        public string DescriptionString = "";
         public string YesString = "Yes";
         public string NoString = "No";
 
@@ -44,8 +45,9 @@ namespace SpooninDrawer.Objects.Screens
             textLocation = new Vector2(position.X / 3, position.Y / 3);
             menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
+            DescriptionString = "This is a test string, it does stuff. Long for the sake of the test.s";
             ScreenText = new BaseTextObject[2, 2];
-            ScreenText[0, 0] = new SettingsText(font, "This is a test string, it does stuff. Long for the sake of the test.s");
+            ScreenText[0, 0] = new SettingsText(font, DescriptionString);
             //ScreenText[0, 0].Position = position;
             //ScreenText[0, 0].Position = textLocation;
             //ScreenText[0, 0].zIndex = 3;

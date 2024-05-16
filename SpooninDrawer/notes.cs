@@ -309,7 +309,9 @@ namespace SpooninDrawer
          *5/14/2024
          *-Added pop up screen. Ran into issue where text was not displaying correctly if there was a null text in the middle of the list
          *-fixed by moving the null check after the column/row check in positioning
-         *
+         *5/15/2024
+         *-RemapControlDuplicate doesn't work, it continues with the back commands
+         *-
          *
          */
     }
