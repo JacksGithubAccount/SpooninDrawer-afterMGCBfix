@@ -324,7 +324,10 @@ namespace SpooninDrawer.States.Splash
                 gameState.paused = false;
             }
         }
-
+        public void ChangePopupDescriptionText(string desription)
+        {
+            popupScreen.ScreenText[0, 0].Text = desription;
+        }
         public override void HandleInput(GameTime gameTime)
         {
             try
@@ -401,7 +404,6 @@ namespace SpooninDrawer.States.Splash
                     }
                     if (cmd is SplashInputCommand.RemapControlDuplicate)
                     {
-                        popupScreen.DescriptionString = "This button is used for another action. Swap?";
                         ChangeScreen(popupScreen, false);
                     }
                     if (cmd is SplashInputCommand.TestMenuButton)
