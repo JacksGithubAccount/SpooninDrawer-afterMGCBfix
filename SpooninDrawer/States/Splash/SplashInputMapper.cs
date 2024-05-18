@@ -25,6 +25,7 @@ namespace SpooninDrawer.States.Splash
         private bool screenTransition = false;
         private MousePositionHandler mousePositionHandler;
         private InputDevice remapDevice;
+        private bool remapDuplicateSwap = false;
         public SplashInputMapper(SplashState currentSplashState, MousePositionHandler mousePositionHandler) : this(currentSplashState, new InputDetector())
         {
             this.mousePositionHandler = mousePositionHandler;
@@ -128,12 +129,17 @@ namespace SpooninDrawer.States.Splash
                 //if key is used for another action, this if swaps the keys for the two actions
                 if (duplicateRemapActions != RemapActionHolder)
                 {
+                    remapDuplicateSwap = true;
                     Click switchingClick = inputDetector.getClickforAction(RemapActionHolder);
                     splashState.ChangePopupDescriptionText(inputClick.ToString() + " is already mapped to " + duplicateRemapActions.ToString());
                     commands.Add(new RemapControlDuplicate());
-                    inputDetector.RemapClick(switchingClick, duplicateRemapActions);
+                    if (remapDuplicateSwap)
+                    {
+                        inputDetector.RemapClick(switchingClick, duplicateRemapActions);
+                        remapDuplicateSwap = false;
+                    }
                 }
-                else
+                if (!remapDuplicateSwap)
                 {
                     inputDetector.RemapClick(inputClick, RemapActionHolder);
                     //reloads remap controls screen to update the new keybinds
@@ -145,19 +151,21 @@ namespace SpooninDrawer.States.Splash
                 RemapChecker = false;
 
             }
-
-            if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Confirm, InputType.Release) && !screenTransition)
+            if (!RemapChecker)
             {
-                if (splashState.GetMousePositionHandler().IsMouseOverButton())
+                if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Confirm, InputType.Release) && !screenTransition)
                 {
-                    string commandState = splashState.GetCommandStateforMouse();
-                    screenTransition = true;
-                    commands.Add(FindConfirm(commandState));
+                    if (splashState.GetMousePositionHandler().IsMouseOverButton())
+                    {
+                        string commandState = splashState.GetCommandStateforMouse();
+                        screenTransition = true;
+                        commands.Add(FindConfirm(commandState));
+                    }
                 }
-            }
-            if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Cancel, InputType.Press))
-            {
-                commands.Add(new BackSelect());
+                if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Cancel, InputType.Press))
+                {
+                    commands.Add(new BackSelect());
+                }
             }
 
             return commands;
@@ -320,6 +328,9 @@ namespace SpooninDrawer.States.Splash
                     remapDevice = InputDevice.Mouse;
                     RemapActionHolder = Actions.Pause;
                     return new RemapControlConfirm();
+                case "RemapAcceptDuplicateSwap":
+                    remapDuplicateSwap = true;
+                    return new RemapControlDone();
                 //remap end
                 case "VolumeBGM":
                     return new SettingVolumeBGMSelect();

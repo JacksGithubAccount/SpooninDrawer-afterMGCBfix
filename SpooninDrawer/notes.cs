@@ -311,9 +311,11 @@ namespace SpooninDrawer
          *-fixed by moving the null check after the column/row check in positioning
          *5/15/2024
          *-RemapControlDuplicate doesn't work, it continues with the back commands
-         *-5/16/2024
+         *5/16/2024
          *-Fixed text issue where the pop up wouldn't change text. Also fixed passing input control to pop up so now it displays action and click when selecting duplicate click
-         *-
+         *5/17/2024
+         *-Fixed issue where the remap swap dupe wasn't working and kept repeating. Used bool to control click
+         *-need to implement multiple pop ups though, also text for the pop up screens stays after the popup goes away
          *
          */
     }

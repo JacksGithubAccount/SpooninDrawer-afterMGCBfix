@@ -16,7 +16,7 @@ namespace SpooninDrawer.Objects.Screens
     {
         enum titleCommands
         {
-            RemapControlButtonPressed,
+            RemapAcceptDuplicateSwap,
             BackSelect
         }
         public string screenTexture { get; }
@@ -94,11 +94,7 @@ namespace SpooninDrawer.Objects.Screens
         }
         public string GetMenuCommand(int x, int y)
         {
-            if (y < menuLocationArrayY.Length - 1)
-            {
-                y = 0;
-            }
-            var holder = (titleCommands)y;
+            var holder = (titleCommands)x;
             return holder.ToString();
         }
     }
