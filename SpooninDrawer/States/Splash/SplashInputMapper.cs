@@ -26,6 +26,7 @@ namespace SpooninDrawer.States.Splash
         private MousePositionHandler mousePositionHandler;
         private InputDevice remapDevice;
         private bool remapDuplicateSwap = false;
+        private bool remapDuplicatePopup = false;
         public SplashInputMapper(SplashState currentSplashState, MousePositionHandler mousePositionHandler) : this(currentSplashState, new InputDetector())
         {
             this.mousePositionHandler = mousePositionHandler;
@@ -129,7 +130,7 @@ namespace SpooninDrawer.States.Splash
                 //if key is used for another action, this if swaps the keys for the two actions
                 if (duplicateRemapActions != RemapActionHolder)
                 {
-                    remapDuplicateSwap = true;
+                    remapDuplicatePopup = true;
                     Click switchingClick = inputDetector.getClickforAction(RemapActionHolder);
                     splashState.ChangePopupDescriptionText(inputClick.ToString() + " is already mapped to " + duplicateRemapActions.ToString());
                     commands.Add(new RemapControlDuplicate());
@@ -139,7 +140,7 @@ namespace SpooninDrawer.States.Splash
                         remapDuplicateSwap = false;
                     }
                 }
-                if (!remapDuplicateSwap)
+                if (!remapDuplicatePopup)
                 {
                     inputDetector.RemapClick(inputClick, RemapActionHolder);
                     //reloads remap controls screen to update the new keybinds
@@ -330,7 +331,12 @@ namespace SpooninDrawer.States.Splash
                     return new RemapControlConfirm();
                 case "RemapAcceptDuplicateSwap":
                     remapDuplicateSwap = true;
+                    remapDuplicatePopup = false;
                     return new RemapControlDone();
+                case "RemapBackSelect":
+                    remapDuplicateSwap = false;
+                    remapDuplicatePopup = false;
+                    return new BackSelect();
                 //remap end
                 case "VolumeBGM":
                     return new SettingVolumeBGMSelect();

@@ -316,6 +316,8 @@ namespace SpooninDrawer
          *5/17/2024
          *-Fixed issue where the remap swap dupe wasn't working and kept repeating. Used bool to control click
          *-need to implement multiple pop ups though, also text for the pop up screens stays after the popup goes away
+         *5/18/2024
+         *-turns out the pop ups aren't working for remap again. may have to implement the remap pop ups are popups, then work on fixing
          *
          */
     }
