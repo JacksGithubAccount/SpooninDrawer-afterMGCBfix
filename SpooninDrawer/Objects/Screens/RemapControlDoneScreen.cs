@@ -60,6 +60,10 @@ namespace SpooninDrawer.Objects.Screens
         }
         public string GetMenuCommand(int x, int y)
         {
+            if(y > 0)
+            {
+                y = 0;
+            }
             var holder = (titleCommands)y;
             return holder.ToString();
         }
