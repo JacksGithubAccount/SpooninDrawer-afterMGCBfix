@@ -12,12 +12,11 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Screens
 {
-    public class RemapControlConfirmScreen : iBaseScreen
+    public class RemapControlEnterButtonScreen : iBaseScreen
     {
         enum titleCommands
         {
-            RemapControlButtonPressed,
-            RemapBackSelect
+            RemapControlButtonPressed
         }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
@@ -32,7 +31,7 @@ namespace SpooninDrawer.Objects.Screens
         private Vector2 textLocation;
         private SpriteFont spriteFont;
 
-        public RemapControlConfirmScreen(SpriteFont font, Vector2 position, InputDetector inputDetector)
+        public RemapControlEnterButtonScreen(SpriteFont font, Vector2 position, InputDetector inputDetector)
         {
             spriteFont = font;
             this.inputDetector = inputDetector;
@@ -45,7 +44,7 @@ namespace SpooninDrawer.Objects.Screens
             menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
             ScreenText = new BaseTextObject[1, 1];
-            ScreenText[0, 0] = new SettingsText(font, RStrings.SettingsRemapConfirm);
+            ScreenText[0, 0] = new SettingsText(font, RStrings.SettingsRemapEnterButton);
             ScreenText[0, 0].Position = position;
 
 
@@ -55,11 +54,11 @@ namespace SpooninDrawer.Objects.Screens
         }
         public iBaseScreen Initialize()
         {
-            return new RemapControlConfirmScreen(spriteFont, Position, inputDetector);
+            return new RemapControlEnterButtonScreen(spriteFont, Position, inputDetector);
         }
         public iBaseScreen Initialize(Resolution resolution)
         {
-            return new RemapControlConfirmScreen(spriteFont, Position, inputDetector);
+            return new RemapControlEnterButtonScreen(spriteFont, Position, inputDetector);
         }
         public string GetMenuCommand(int x, int y)
         {

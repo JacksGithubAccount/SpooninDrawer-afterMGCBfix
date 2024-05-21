@@ -395,16 +395,19 @@ namespace SpooninDrawer.States.Splash
                     }
                     if (cmd is SplashInputCommand.RemapControlConfirm)
                     {
-                        ChangeScreen(new RemapControlConfirmScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
+                        ChangeScreen(new RemapControlEnterButtonScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
 
                     }
                     if (cmd is SplashInputCommand.RemapControlDone)
                     {
+                        RemoveScreen();
+                        RemoveScreen();
+
                         ChangeScreen(new RemapControlDoneScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
                     }
                     if (cmd is SplashInputCommand.RemapControlDuplicate)
                     {
-                        ChangeScreen(popupScreen, false);
+                        ChangeScreen(popupScreen);
                     }
                     if (cmd is SplashInputCommand.TestMenuButton)
                     {

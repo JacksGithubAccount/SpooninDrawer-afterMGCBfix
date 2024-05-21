@@ -320,6 +320,11 @@ namespace SpooninDrawer
          *-turns out the pop ups aren't working for remap again. may have to implement the remap pop ups are popups, then work on fixing
          *5/19/2024
          *-turns out the GetMenuCommand was sending 1 instead of 0, and 1 has no value. Changed so it works.
+         *5/20/2024
+         *-fixed issue of repeating remap swap popup by removing it from stack after confirming swap, but before done screen added
+         *-the bool to not remove text on screen change maskes it so the text doesn't get removed at all
+         *-also, the swap remap isn't working again, turns out the code to remap is built into the click itself. Will need to remove and make a callable method. Perhaps store in inputdetector as temp
+         *
          *
          */
     }

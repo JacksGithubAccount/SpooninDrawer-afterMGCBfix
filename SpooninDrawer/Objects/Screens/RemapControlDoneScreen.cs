@@ -16,7 +16,7 @@ namespace SpooninDrawer.Objects.Screens
     {
         enum titleCommands
         {
-            Controls
+            BackSelect
         }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
@@ -60,7 +60,7 @@ namespace SpooninDrawer.Objects.Screens
         }
         public string GetMenuCommand(int x, int y)
         {
-            if(y > 0)
+            if (y > 0)
             {
                 y = 0;
             }
