@@ -324,7 +324,8 @@ namespace SpooninDrawer
          *-fixed issue of repeating remap swap popup by removing it from stack after confirming swap, but before done screen added
          *-the bool to not remove text on screen change maskes it so the text doesn't get removed at all
          *-also, the swap remap isn't working again, turns out the code to remap is built into the click itself. Will need to remove and make a callable method. Perhaps store in inputdetector as temp
-         *
+         *5/21/2024
+         *-
          *
          */
     }
