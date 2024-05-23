@@ -47,7 +47,11 @@ namespace SpooninDrawer.Engine.Input
         private List<ActionKey> actionKeys;
         private List<ActionClick> mouseControls;
         private List<ActionClick> actionClicks;
-        private Action mouseAction;
+
+        //handling remap
+        private List<Actions> remapTempActionHolder;
+        private List<Keys> remapTempKeyHolder;
+        private List<Click> remapTempClickHolder;
 
         public InputDetector()
         {
@@ -87,6 +91,10 @@ namespace SpooninDrawer.Engine.Input
                 new ActionKey(Keys.C, Actions.OpenMenu),
                 new ActionKey(Keys.P, Actions.Pause)
             };
+
+            remapTempActionHolder = new List<Actions>();
+            remapTempClickHolder = new List<Click>();
+            remapTempKeyHolder = new List<Keys>();
         }
         public Actions DoesKeyExistinControls(Keys keyToCheck, Actions actionToRemap)
         {
@@ -159,6 +167,36 @@ namespace SpooninDrawer.Engine.Input
         public void RemapClick(Click remappedClick, Actions selectedAction)
         {
             mouseControls.Find(x => x.action == selectedAction).setClick(remappedClick);
+        }
+        public void HoldRemap(Click remapClick, Actions selectedAction)
+        {
+            remapTempClickHolder.Add(remapClick);
+            remapTempActionHolder.Add(selectedAction);
+        }
+        public void HoldRemap(Keys remapKey, Actions selectedAction)
+        {
+            remapTempKeyHolder.Add(remapKey);
+            remapTempActionHolder.Add(selectedAction);
+        }
+        public void ConfirmRemap()
+        {
+            if (remapTempClickHolder.Count > 0)
+            {
+                for (int i = 0; i < remapTempClickHolder.Count; i++)
+                {
+                    RemapClick(remapTempClickHolder[i], remapTempActionHolder[i]);
+                }
+            }
+            else if (remapTempKeyHolder.Count > 0)
+            {
+                for (int i = 0; i < remapTempKeyHolder.Count; i++)
+                {
+                    RemapKey(remapTempKeyHolder[i], remapTempActionHolder[i]);
+                }
+            }
+            remapTempKeyHolder.Clear();
+            remapTempClickHolder.Clear();
+            remapTempActionHolder.Clear();
         }
         public Keys getKeyforAction(Actions selectedAction)
         {

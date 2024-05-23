@@ -328,6 +328,10 @@ namespace SpooninDrawer.States.Splash
         {
             popupScreen.ScreenText[0, 0].Text = desription;
         }
+        public bool IsCurrentScreenHasButtons()
+        {
+            return currentScreen.hasButtons;
+        }
         public override void HandleInput(GameTime gameTime)
         {
             try
@@ -400,9 +404,11 @@ namespace SpooninDrawer.States.Splash
                     }
                     if (cmd is SplashInputCommand.RemapControlDone)
                     {
+                        //removes pop ups from stack and refreshes remap screen to display up to date information
                         RemoveScreen();
                         RemoveScreen();
-
+                        RemoveScreen();
+                        ChangeScreen(new RemapControlsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), InputManager.GetInputDetector(), _displayResolution));
                         ChangeScreen(new RemapControlDoneScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
                     }
                     if (cmd is SplashInputCommand.RemapControlDuplicate)

@@ -325,7 +325,14 @@ namespace SpooninDrawer
          *-the bool to not remove text on screen change maskes it so the text doesn't get removed at all
          *-also, the swap remap isn't working again, turns out the code to remap is built into the click itself. Will need to remove and make a callable method. Perhaps store in inputdetector as temp
          *5/21/2024
+         *-swap remap works now, added as temp holders in input detector and added the extra remap instead of just one remap
+         *-also the text isn't refreshing on remap.
+         *5/22/2024
+         *-Fixed text refresh by moving the refreshing of screen from inputmapper to splashstate
+         *-Fixed some more issues like extra rectangles on yesnopopup, back not working on remap control screen, and clicking on remap done screen
+         *-Selecting no on swap confirm makes go back to enter button screen not work. Fixed by adding another back to rid enter  button screen
          *-
+         *
          *
          */
     }

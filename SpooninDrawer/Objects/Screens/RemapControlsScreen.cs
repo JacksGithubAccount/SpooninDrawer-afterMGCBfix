@@ -157,7 +157,7 @@ namespace SpooninDrawer.Objects.Screens
         {
             if (x == 0)
             {
-                var holder = (titleCommands)y;
+                var holder = (titleCommands)x;
                 return holder.ToString();
             }
             else if (x == 1)

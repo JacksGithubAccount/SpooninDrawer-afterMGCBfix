@@ -25,7 +25,6 @@ namespace SpooninDrawer.States.Splash
         private bool screenTransition = false;
         private MousePositionHandler mousePositionHandler;
         private InputDevice remapDevice;
-        private bool remapDuplicateSwap = false;
         private bool remapDuplicatePopup = false;
         public SplashInputMapper(SplashState currentSplashState, MousePositionHandler mousePositionHandler) : this(currentSplashState, new InputDetector())
         {
@@ -50,7 +49,8 @@ namespace SpooninDrawer.States.Splash
             {
                 string commandState = splashState.GetCommandStateforKey();
                 screenTransition = true;
-                commands.Add(FindConfirm(commandState));
+                //commands.Add(FindConfirm(commandState));
+                FindConfirm(commandState, commands);
 
 
             }
@@ -66,11 +66,6 @@ namespace SpooninDrawer.States.Splash
                     inputDetector.RemapKey(switchingKey, duplicateRemapActions);
                 }
                 inputDetector.RemapKey(inputKey, RemapActionHolder);
-                //reloads remap controls screen to update the new keybinds 
-                commands.Add(new BackSelect());
-                commands.Add(new BackSelect());
-                commands.Add(new RemapControlSelect());
-                commands.Add(new RemapControlDone());
                 RemapChecker = false;
             }
             if (state.IsKeyDown(Keys.T) && HasBeenPressed(Keys.T))
@@ -134,20 +129,12 @@ namespace SpooninDrawer.States.Splash
                     Click switchingClick = inputDetector.getClickforAction(RemapActionHolder);
                     splashState.ChangePopupDescriptionText(inputClick.ToString() + " is already mapped to " + duplicateRemapActions.ToString());
                     commands.Add(new RemapControlDuplicate());
-                    if (remapDuplicateSwap)
-                    {
-                        inputDetector.RemapClick(switchingClick, duplicateRemapActions);
-                        remapDuplicateSwap = false;
-                    }
+                    inputDetector.HoldRemap(switchingClick, duplicateRemapActions);
+                    inputDetector.HoldRemap(inputClick, RemapActionHolder);
                 }
                 if (!remapDuplicatePopup)
                 {
                     inputDetector.RemapClick(inputClick, RemapActionHolder);
-                    //reloads remap controls screen to update the new keybinds
-                    commands.Add(new BackSelect());
-                    commands.Add(new BackSelect());
-                    commands.Add(new RemapControlSelect());
-                    commands.Add(new RemapControlDone());
                 }
                 RemapChecker = false;
 
@@ -156,11 +143,11 @@ namespace SpooninDrawer.States.Splash
             {
                 if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Confirm, InputType.Release) && !screenTransition)
                 {
-                    if (splashState.GetMousePositionHandler().IsMouseOverButton())
+                    if (splashState.GetMousePositionHandler().IsMouseOverButton() || !splashState.IsCurrentScreenHasButtons())
                     {
                         string commandState = splashState.GetCommandStateforMouse();
                         screenTransition = true;
-                        commands.Add(FindConfirm(commandState));
+                        FindConfirm(commandState, commands);
                     }
                 }
                 if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Cancel, InputType.Press))
@@ -188,164 +175,182 @@ namespace SpooninDrawer.States.Splash
         {
             inputDetector.resetKeystoDefault();
         }
-        private SplashInputCommand FindConfirm(string commandState)
+        private void FindConfirm(string commandState, List<SplashInputCommand> commands)
         {
             switch (commandState)
             {
                 case "GameSelect":
-                    return new GameSelect();
-
+                    commands.Add(new GameSelect());
+                    break;
                 case "LoadSelect":
-                    return new LoadSelect();
-
+                    commands.Add(new LoadSelect());
+                    break;
                 case "SettingsSelect":
-                    return new SettingsSelect();
-
+                    commands.Add(new SettingsSelect());
+                    break;
                 case "ExitSelect":
-                    return new ExitSelect();
-
+                    commands.Add(new ExitSelect());
+                    break;
                 case "ResumeSelect":
-                    return new ResumeSelect();
+                    commands.Add(new ResumeSelect());
+                    break;
                 case "CheckMenuSelect":
-                    return new CheckMenuSelect();
-
+                    commands.Add(new CheckMenuSelect());
+                    break;
                 case "BackSelect":
-                    return new BackSelect();
-
+                    commands.Add(new BackSelect());
+                    break;
                 case "MoveArrowRight":
-                    return new MenuMoveRight();
-
+                    commands.Add(new MenuMoveRight());
+                    break;
                 case "Fullscreen":
-                    return new SetFullScreen();
-
+                    commands.Add(new SetFullScreen());
+                    break;
                 case "Windows":
-                    return new SetWindowScreen();
-
+                    commands.Add(new SetWindowScreen());
+                    break;
                 case "Borderless":
-                    return new SetBorderlessScreen();
-
+                    commands.Add(new SetBorderlessScreen());
+                    break;
                 case "Resolution1080":
-                    return new SetResolution1080();
-
+                    commands.Add(new SetResolution1080());
+                    break;
                 case "Resolution720":
-                    return new SetResolution720();
-
+                    commands.Add(new SetResolution720());
+                    break;
                 case "Controls":
-                    return new RemapControlSelect();
-
+                    commands.Add(new RemapControlSelect());
+                    break;
                 //cases to handle remapping controls
                 case "RemapSelectConfirm":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.Confirm;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapSelectCancel":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.Cancel;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapSelectUp":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.MoveUp;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapSelectDown":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.MoveDown;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapSelectLeft":
                     RemapChecker = true;
                     remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.MoveLeft;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapSelectRight":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.MoveRight;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapSelectOpenMenu":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.OpenMenu;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapSelectPause":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Keyboard;
                     RemapActionHolder = Actions.Pause;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 //mouse
                 case "RemapMouseSelectConfirm":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Mouse;
                     RemapActionHolder = Actions.Confirm;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapMouseSelectCancel":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Mouse;
                     RemapActionHolder = Actions.Cancel;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapMouseSelectUp":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Mouse;
                     RemapActionHolder = Actions.MoveUp;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapMouseSelectDown":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Mouse;
                     RemapActionHolder = Actions.MoveDown;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapMouseSelectLeft":
                     RemapChecker = true;
                     remapDevice = InputDevice.Mouse;
                     RemapActionHolder = Actions.MoveLeft;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapMouseSelectRight":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Mouse;
                     RemapActionHolder = Actions.MoveRight;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapMouseSelectOpenMenu":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Mouse;
                     RemapActionHolder = Actions.OpenMenu;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapMouseSelectPause":
 
                     RemapChecker = true;
                     remapDevice = InputDevice.Mouse;
                     RemapActionHolder = Actions.Pause;
-                    return new RemapControlConfirm();
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapAcceptDuplicateSwap":
-                    remapDuplicateSwap = true;
                     remapDuplicatePopup = false;
-                    return new RemapControlDone();
+                    inputDetector.ConfirmRemap();
+                    commands.Add(new RemapControlDone());
+                    break;
                 case "RemapBackSelect":
-                    remapDuplicateSwap = false;
                     remapDuplicatePopup = false;
-                    return new BackSelect();
+                    commands.Add(new BackSelect());
+                    commands.Add(new BackSelect());
+                    break;
                 //remap end
                 case "VolumeBGM":
-                    return new SettingVolumeBGMSelect();
-
+                    commands.Add(new SettingVolumeBGMSelect());
+                    break;
                 case "VolumeSE":
-                    return new SettingVolumeSESelect();
-
+                    commands.Add(new SettingVolumeSESelect());
+                    break;
             }
-            return new BackSelect();
         }
     }
 }

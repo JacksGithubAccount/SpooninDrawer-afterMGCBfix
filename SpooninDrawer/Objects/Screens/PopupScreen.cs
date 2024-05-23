@@ -17,7 +17,7 @@ namespace SpooninDrawer.Objects.Screens
         enum titleCommands
         {
             RemapAcceptDuplicateSwap,
-            BackSelect
+            RemapBackSelect
         }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
@@ -82,6 +82,8 @@ namespace SpooninDrawer.Objects.Screens
                 ButtonWidth = 50;
                 ButtonHeight = 25;
                 CreateRectangles(menuLocationArrayX, menuLocationArrayY);
+                ButtonRectangles[0][0].ReadOnly = true;
+                ButtonRectangles[0][1].ReadOnly = true;
             }
         }
         public iBaseScreen Initialize()
