@@ -46,5 +46,28 @@ namespace SpooninDrawer.Engine.Input
             }
             return finalInt;
         }
+        public Vector2 CheckReadOnlyPositionAtScreenLoad(BaseScreenwithButtons screen, int xPosition, int yPosition)
+        {
+            if (screen.ButtonRectangles[xPosition][yPosition].ReadOnly)
+            {
+                if (screen.ButtonRectangles.Count > xPosition + 1)
+                {
+                    if (!screen.ButtonRectangles[xPosition + 1][yPosition].ReadOnly)
+                    {
+                        return new Vector2(xPosition + 1, yPosition);
+                    }
+                }
+                else if (screen.ButtonRectangles[xPosition].Length > yPosition + 1)
+                {
+                    if (!screen.ButtonRectangles[xPosition][yPosition + 1].ReadOnly)
+
+                    {
+                        return new Vector2(xPosition, yPosition + 1);
+
+                    }
+                }
+            }
+            return new Vector2(xPosition, yPosition);
+        }
     }
 }

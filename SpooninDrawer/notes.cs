@@ -331,7 +331,9 @@ namespace SpooninDrawer
          *-Fixed text refresh by moving the refreshing of screen from inputmapper to splashstate
          *-Fixed some more issues like extra rectangles on yesnopopup, back not working on remap control screen, and clicking on remap done screen
          *-Selecting no on swap confirm makes go back to enter button screen not work. Fixed by adding another back to rid enter  button screen
-         *-
+         *5/23/2024
+         *-Added swap remap for key, but pause remap doesn't work. fixed, needed to add a call to remapcontroldone after remapping
+         *-Added method in keyboard handler to account for readonly rects on screen load. Still a work in progress.
          *
          *
          */

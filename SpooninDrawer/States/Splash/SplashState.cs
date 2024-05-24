@@ -126,6 +126,12 @@ namespace SpooninDrawer.States.Splash
             AddScreenText(currentScreen);
             SplashImage currentSplash = new SplashImage(LoadTexture(screenTexture));
             currentSplash.Position = screen.Position;
+            if (currentScreen.hasButtons && keyboardPositionHandler is not null)
+            {
+                Vector2 menuArrowChecker = keyboardPositionHandler.CheckReadOnlyPositionAtScreenLoad((BaseScreenwithButtons)currentScreen, menuNavigatorX, menuNavigatorY);
+                menuNavigatorX = (int)menuArrowChecker.X;
+                menuNavigatorY = (int)menuArrowChecker.Y;
+            }
             BaseGameObject holder = getScreenExist(currentSplash.getTextureName());
             BaseGameObject previousholder = getScreenExist(previousScreen.screenTexture);
             if (currentScreen.hasButtons)

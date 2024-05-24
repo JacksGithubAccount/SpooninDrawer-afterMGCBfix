@@ -62,10 +62,19 @@ namespace SpooninDrawer.States.Splash
                 //if key is used for another action, this if swaps the keys for the two actions
                 if (duplicateRemapActions != RemapActionHolder)
                 {
+                    remapDuplicatePopup = true;
                     Keys switchingKey = inputDetector.getKeyforAction(RemapActionHolder);
-                    inputDetector.RemapKey(switchingKey, duplicateRemapActions);
+                    splashState.ChangePopupDescriptionText(inputKey.ToString() + " is already mapped to " + duplicateRemapActions.ToString());
+                    commands.Add(new RemapControlDuplicate());
+                    inputDetector.HoldRemap(switchingKey, duplicateRemapActions);
+                    inputDetector.HoldRemap(inputKey, RemapActionHolder);
                 }
-                inputDetector.RemapKey(inputKey, RemapActionHolder);
+                if (!remapDuplicatePopup)
+                {
+                    commands.Add(new RemapControlDone());
+                    inputDetector.RemapKey(inputKey, RemapActionHolder);
+
+                }
                 RemapChecker = false;
             }
             if (state.IsKeyDown(Keys.T) && HasBeenPressed(Keys.T))
@@ -135,6 +144,7 @@ namespace SpooninDrawer.States.Splash
                 if (!remapDuplicatePopup)
                 {
                     inputDetector.RemapClick(inputClick, RemapActionHolder);
+                    commands.Add(new RemapControlDone());
                 }
                 RemapChecker = false;
 
