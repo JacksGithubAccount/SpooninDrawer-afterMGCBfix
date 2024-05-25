@@ -334,7 +334,8 @@ namespace SpooninDrawer
          *5/23/2024
          *-Added swap remap for key, but pause remap doesn't work. fixed, needed to add a call to remapcontroldone after remapping
          *-Added method in keyboard handler to account for readonly rects on screen load. Still a work in progress.
-         *
+         *5/24/2024
+         *-more adjusting the method, currently it moves opposite x,y directions. ned to fix.
          *
          */
     }
