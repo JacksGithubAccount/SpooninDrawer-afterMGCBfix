@@ -12,8 +12,26 @@ namespace SpooninDrawer.Engine.Input
 {
     public class KeyboardPositionHandler
     {
-        public int CheckKeyboardforMove(BaseScreenwithButtons screen, int xPosition, int yPosition, Vector2 direction)
+        public int CheckKeyboardforMove(iBaseScreen screen, int xPosition, int yPosition, Vector2 direction)
         {
+            BaseScreenwithButtons screenWithButtons;
+            int finalInt = 0;
+            if (screen.hasButtons)
+            {
+                screenWithButtons = (BaseScreenwithButtons)screen;
+                finalInt = CheckKeyboardforMove(screenWithButtons, xPosition, yPosition, direction);
+            }
+            else
+            {
+                if (direction.X != 0)
+                    return xPosition;
+                else
+                    return yPosition;
+            }
+            return finalInt;
+        }
+        public int CheckKeyboardforMove(BaseScreenwithButtons screen, int xPosition, int yPosition, Vector2 direction)
+        {            
             int finalInt = 0;
             try
             {
@@ -39,53 +57,75 @@ namespace SpooninDrawer.Engine.Input
             }
             catch
             {
-                if (direction.X > 0) { return xPosition + 1; }
-                else if (direction.X < 0) { return xPosition - 1; }
-                if (direction.Y > 0) { return yPosition + 1; }
-                else if (direction.Y < 0) { return yPosition - 1; }
+                if (direction.X > 0) 
+                {
+                    if (screen.ButtonRectangles[yPosition + (int)direction.Y][0].ReadOnly)
+                    {
+                        finalInt = CheckKeyboardforMove(screen, 0, yPosition, direction);
+                    }
+                    else                    
+                        return xPosition + 1;                    
+                }
+                else if (direction.X < 0) 
+                {
+                    if (screen.ButtonRectangles[yPosition + (int)direction.Y][screen.ButtonRectangles[yPosition + (int)direction.Y].Length - 1].ReadOnly)
+                    {
+                        finalInt = CheckKeyboardforMove(screen, screen.ButtonRectangles[yPosition + (int)direction.Y].Length - 1, yPosition, direction); ;
+                    }
+                    else 
+                        return xPosition - 1; 
+                }
+                if (direction.Y > 0)                 
+                {
+                    if (screen.ButtonRectangles[0][xPosition + (int)direction.X].ReadOnly)
+                    {
+                        finalInt = CheckKeyboardforMove(screen, xPosition, 0, direction);
+                    }
+                    else
+                        return yPosition + 1; 
+                }
+                else if (direction.Y < 0) 
+                {
+                    if (screen.ButtonRectangles[screen.ButtonRectangles.Count - 1][xPosition + (int)direction.X].ReadOnly)
+                    {
+                        finalInt = CheckKeyboardforMove(screen, xPosition, screen.ButtonRectangles.Count - 1, direction);
+                    }
+                    else
+                        return yPosition - 1;                 
+                }
             }
             return finalInt;
         }
         public Vector2 CheckReadOnlyPositionAtScreenLoad(BaseScreenwithButtons screen, int xPosition, int yPosition)
         {
-            if (screen.ButtonRectangles.Count <= xPosition)
+            Vector2 ReturnVector = new Vector2(xPosition, yPosition);
+            if (screen.ButtonRectangles[yPosition][xPosition].ReadOnly)
             {
-                xPosition = 0;
-            }
-            if (screen.ButtonRectangles[xPosition].Length <= yPosition)
-            {
-                yPosition = 0;
-            }
-
-
-            if (screen.ButtonRectangles[xPosition][yPosition].ReadOnly)
-            {
+                if (screen.ButtonRectangles[xPosition].Length > yPosition + 1)
+                {
+                    for (int i = 0; i < screen.ButtonRectangles[yPosition].Count(); i++)
+                    {
+                        if (!screen.ButtonRectangles[xPosition][i].ReadOnly)
+                        {
+                            ReturnVector = new Vector2(i, xPosition);
+                            return ReturnVector;
+                        } 
+                    }
+                }
                 if (screen.ButtonRectangles.Count > xPosition + 1)
                 {
-                    if (!screen.ButtonRectangles[xPosition + 1][yPosition].ReadOnly)
+                    for (int i = 0; i < screen.ButtonRectangles.Count; i++)
                     {
-                        return new Vector2(xPosition + 1, yPosition);
+                        if (!screen.ButtonRectangles[i][yPosition].ReadOnly)
+                        {
+                            ReturnVector = new Vector2(yPosition, i);
+                            return ReturnVector;
+                        }
                     }
-                    else
-                    {
-                        CheckReadOnlyPositionAtScreenLoad(screen, xPosition + 1, yPosition);
-                    }
-                }
-                else if (screen.ButtonRectangles[xPosition].Length > yPosition + 1)
-                {
-                    if (!screen.ButtonRectangles[xPosition][yPosition + 1].ReadOnly)
-                    {
-                        return new Vector2(xPosition, yPosition + 1);
 
-                    }
-                    else
-                    {
-                        CheckReadOnlyPositionAtScreenLoad(screen, xPosition, yPosition + 1);
-
-                    }
-                }
+                }                
             }
-            return new Vector2(xPosition, yPosition);
+            return ReturnVector;
         }
     }
 }

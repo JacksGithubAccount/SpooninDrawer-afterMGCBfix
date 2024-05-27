@@ -336,6 +336,15 @@ namespace SpooninDrawer
          *-Added method in keyboard handler to account for readonly rects on screen load. Still a work in progress.
          *5/24/2024
          *-more adjusting the method, currently it moves opposite x,y directions. ned to fix.
+         *5/25/2024
+         *-fixed, the recursion with returns don't work at all. Turned into for loops and swapped the x,y on return. Also removed else from x/y checker. It's working now.
+         *-next issue is keyboard input to circle around ignores readonly
+         *5/26/2024
+         *-fixed, added code to check for readonly when when keeping arrow in bounds
+         *-ran into issue where the the keeping bounds was calling even when screen has no buttons, cause crash. Fixed by adding checker for button screens.
+         *-
+         *
+         *
          *
          */
     }

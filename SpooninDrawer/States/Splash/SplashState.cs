@@ -126,11 +126,13 @@ namespace SpooninDrawer.States.Splash
             AddScreenText(currentScreen);
             SplashImage currentSplash = new SplashImage(LoadTexture(screenTexture));
             currentSplash.Position = screen.Position;
+            menuNavigatorX = 0;
+            menuNavigatorY = 0;
             if (currentScreen.hasButtons && keyboardPositionHandler is not null)
             {
                 Vector2 menuArrowChecker = keyboardPositionHandler.CheckReadOnlyPositionAtScreenLoad((BaseScreenwithButtons)currentScreen, menuNavigatorX, menuNavigatorY);
-                menuNavigatorX = (int)menuArrowChecker.X;
-                menuNavigatorY = (int)menuArrowChecker.Y;
+                menuNavigatorX = (int)Math.Round(menuArrowChecker.X);
+                menuNavigatorY = (int)Math.Round(menuArrowChecker.Y);
             }
             BaseGameObject holder = getScreenExist(currentSplash.getTextureName());
             BaseGameObject previousholder = getScreenExist(previousScreen.screenTexture);
@@ -207,6 +209,14 @@ namespace SpooninDrawer.States.Splash
                 ScreenStack.TryPeek(out currentScreen);
                 SetScreenPoints(currentScreen);
                 AddScreenText(currentScreen);
+                menuNavigatorX = 0;
+                menuNavigatorY = 0;
+                if (currentScreen.hasButtons && keyboardPositionHandler is not null)
+                {
+                    Vector2 menuArrowChecker = keyboardPositionHandler.CheckReadOnlyPositionAtScreenLoad((BaseScreenwithButtons)currentScreen, menuNavigatorX, menuNavigatorY);
+                    menuNavigatorX = (int)Math.Round(menuArrowChecker.X);
+                    menuNavigatorY = (int)Math.Round(menuArrowChecker.Y);
+                }
                 BaseGameObject toRemove = getScreenExist(screen.screenTexture);
                 RemoveGameObject(toRemove);
                 if (currentScreen.hasButtons)
@@ -486,22 +496,22 @@ namespace SpooninDrawer.States.Splash
                     if (cmd is SplashInputCommand.MenuMoveUp)
                     {
                         NotifyEvent(new SplashEvents.SplashMoveArrow());
-                        menuNavigatorY = keyboardPositionHandler.CheckKeyboardforMove((BaseScreenwithButtons)currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(0, -1));
+                        menuNavigatorY = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(0, -1));
                     }
                     if (cmd is SplashInputCommand.MenuMoveDown)
                     {
                         NotifyEvent(new SplashEvents.SplashMoveArrow());
-                        menuNavigatorY = keyboardPositionHandler.CheckKeyboardforMove((BaseScreenwithButtons)currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(0, 1));
+                        menuNavigatorY = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(0, 1));
                     }
                     if (cmd is SplashInputCommand.MenuMoveLeft)
                     {
                         NotifyEvent(new SplashEvents.SplashMoveArrow());
-                        menuNavigatorX = keyboardPositionHandler.CheckKeyboardforMove((BaseScreenwithButtons)currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(-1, 0));
+                        menuNavigatorX = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(-1, 0));
                     }
                     if (cmd is SplashInputCommand.MenuMoveRight)
                     {
                         NotifyEvent(new SplashEvents.SplashMoveArrow());
-                        menuNavigatorX = keyboardPositionHandler.CheckKeyboardforMove((BaseScreenwithButtons)currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(1, 0));
+                        menuNavigatorX = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(1, 0));
                     }
 
                     KeepArrowinBound(ref menuNavigatorX, menuNavigatorXCap, ref menuNavigatorY, menuNavigatorYCap);
@@ -576,7 +586,7 @@ namespace SpooninDrawer.States.Splash
             {
                 if (currentArrowPositionX > maxArrowPositionX[currentArrowPositionY])
                 {
-                    currentArrowPositionX = 0;
+                    currentArrowPositionX = 0;              
                 }
                 else if (currentArrowPositionX < 0)
                 {
