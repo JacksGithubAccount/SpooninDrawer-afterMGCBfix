@@ -13,6 +13,8 @@ namespace SpooninDrawer.Objects
     {
         public Rectangle Rectangle;
         public bool ReadOnly = false;
+        public bool IsClickable = true;
+        public bool IsKeyboardable = true;
         public SplashRectangle() : this(new Rectangle()) { }
         public SplashRectangle(bool isReadOnly) : this(new Rectangle(), isReadOnly) { }
         public SplashRectangle(Rectangle rectangle) : this(rectangle, false) { }
@@ -20,6 +22,11 @@ namespace SpooninDrawer.Objects
         {
             Rectangle = rectangle;
             ReadOnly = isReadOnly;
+        }
+        public SplashRectangle(Rectangle rectangle, bool isReadOnly, bool isClickable, bool isKeyboardable):this(rectangle,isReadOnly)
+        {
+            IsClickable = isClickable;
+            IsKeyboardable = isKeyboardable;
         }
     }
 }

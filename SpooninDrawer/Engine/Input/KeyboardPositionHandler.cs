@@ -36,7 +36,7 @@ namespace SpooninDrawer.Engine.Input
             try
             {
 
-                if (screen.ButtonRectangles[yPosition + (int)direction.Y][xPosition + (int)direction.X].ReadOnly)
+                if (screen.ButtonRectangles[yPosition + (int)direction.Y][xPosition + (int)direction.X].ReadOnly || !screen.ButtonRectangles[yPosition + (int)direction.Y][xPosition + (int)direction.X].IsKeyboardable)
                 {
                     if (direction.X > 0)
                         finalInt = CheckKeyboardforMove(screen, xPosition + 1, yPosition, direction);
@@ -44,7 +44,7 @@ namespace SpooninDrawer.Engine.Input
                         finalInt = CheckKeyboardforMove(screen, xPosition - 1, yPosition, direction);
                     else if (direction.Y > 0)
                         finalInt = CheckKeyboardforMove(screen, xPosition, yPosition + 1, direction);
-                    else
+                    else if (direction.Y < 0)
                         finalInt = CheckKeyboardforMove(screen, xPosition, yPosition - 1, direction);
                 }
                 else
@@ -59,7 +59,7 @@ namespace SpooninDrawer.Engine.Input
             {
                 if (direction.X > 0) 
                 {
-                    if (screen.ButtonRectangles[yPosition + (int)direction.Y][0].ReadOnly)
+                    if (screen.ButtonRectangles[yPosition + (int)direction.Y][0].ReadOnly || !screen.ButtonRectangles[yPosition + (int)direction.Y][0].IsKeyboardable)
                     {
                         finalInt = CheckKeyboardforMove(screen, 0, yPosition, direction);
                     }
@@ -68,7 +68,7 @@ namespace SpooninDrawer.Engine.Input
                 }
                 else if (direction.X < 0) 
                 {
-                    if (screen.ButtonRectangles[yPosition + (int)direction.Y][screen.ButtonRectangles[yPosition + (int)direction.Y].Length - 1].ReadOnly)
+                    if (screen.ButtonRectangles[yPosition + (int)direction.Y][screen.ButtonRectangles[yPosition + (int)direction.Y].Length - 1].ReadOnly || !screen.ButtonRectangles[yPosition + (int)direction.Y][screen.ButtonRectangles[yPosition + (int)direction.Y].Length - 1].IsKeyboardable)
                     {
                         finalInt = CheckKeyboardforMove(screen, screen.ButtonRectangles[yPosition + (int)direction.Y].Length - 1, yPosition, direction); ;
                     }
@@ -77,7 +77,7 @@ namespace SpooninDrawer.Engine.Input
                 }
                 if (direction.Y > 0)                 
                 {
-                    if (screen.ButtonRectangles[0][xPosition + (int)direction.X].ReadOnly)
+                    if (screen.ButtonRectangles[0][xPosition + (int)direction.X].ReadOnly || !screen.ButtonRectangles[0][xPosition + (int)direction.X].IsKeyboardable)
                     {
                         finalInt = CheckKeyboardforMove(screen, xPosition, 0, direction);
                     }
@@ -86,7 +86,7 @@ namespace SpooninDrawer.Engine.Input
                 }
                 else if (direction.Y < 0) 
                 {
-                    if (screen.ButtonRectangles[screen.ButtonRectangles.Count - 1][xPosition + (int)direction.X].ReadOnly)
+                    if (screen.ButtonRectangles[screen.ButtonRectangles.Count - 1][xPosition + (int)direction.X].ReadOnly || !screen.ButtonRectangles[screen.ButtonRectangles.Count - 1][xPosition + (int)direction.X].IsKeyboardable)
                     {
                         finalInt = CheckKeyboardforMove(screen, xPosition, screen.ButtonRectangles.Count - 1, direction);
                     }

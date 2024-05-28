@@ -2,6 +2,7 @@
 using SpooninDrawer.Objects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace SpooninDrawer.Engine.Objects
     {
         protected int ButtonWidth;
         protected int ButtonHeight;
+        
         public List<SplashRectangle[]> ButtonRectangles { get; }
 
         protected BaseScreenwithButtons() { ButtonRectangles = new List<SplashRectangle[]>(); }

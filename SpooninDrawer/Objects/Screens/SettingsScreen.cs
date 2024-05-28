@@ -31,7 +31,9 @@ namespace SpooninDrawer.Objects.Screens
         enum thirdColumnCommands
         {
             Windows,
-            Resolution720
+            Resolution720,
+            MouseVolumeBGM = 3,
+            MouseVolumeSE = 4
         }
         enum fourthColumnCommands
         {
@@ -87,7 +89,7 @@ namespace SpooninDrawer.Objects.Screens
                 menuLocationArrayX = new int[4] { 100, 300, 500, 700 };
                 menuLocationArrayY = new int[5] { 250, 300, 350, 400, 450 };
             }
-            menuNavigatorXCap = new int[5] { 3, 2, 0, 1, 1 };
+            menuNavigatorXCap = new int[5] { 3, 2, 0, 2, 2 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
             ScreenText = new BaseTextObject[menuLocationArrayX.Length, menuLocationArrayY.Length];
             ScreenText[0, 0] = new SettingsText(font, RStrings.SettingsScreenSettings);
@@ -138,6 +140,8 @@ namespace SpooninDrawer.Objects.Screens
             ButtonWidth = 50;
             ButtonHeight = 25;
             CreateRectangles(menuLocationArrayX, menuLocationArrayY, menuNavigatorXCap);
+            ButtonRectangles[3][2] = new SplashRectangle(new Rectangle(585, 410, 305, 20), false, true, false);
+            ButtonRectangles[4][2] = new SplashRectangle(new Rectangle(585, 460, 305, 20), false, true, false);
         }
         public iBaseScreen Initialize(Resolution resolution)
         {

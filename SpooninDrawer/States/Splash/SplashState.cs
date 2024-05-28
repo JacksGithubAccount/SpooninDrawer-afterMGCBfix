@@ -142,43 +142,7 @@ namespace SpooninDrawer.States.Splash
             if (screen.GetType() == typeof(SettingsScreen))
             {
                 SettingsScreen setScreen = (SettingsScreen)screen;
-                SplashImage volumeBGMBar1 = new SplashImage(LoadTexture(setScreen.volumeBar));
-                SplashImage volumeBGMBarArrow = new SplashImage(LoadTexture(setScreen.volumeBarArrow));
-                SplashImageLoadingBar volumeBGMBarFill = new SplashImageLoadingBar(LoadTexture(setScreen.volumeBarFill), setScreen.GetVolume(VolumeType.BGM));
-                SplashImage volumeSEBar1 = new SplashImage(LoadTexture(setScreen.volumeBar));
-                SplashImage volumeSEBarArrow = new SplashImage(LoadTexture(setScreen.volumeBarArrow));
-                SplashImageLoadingBar volumeSEBarFill = new SplashImageLoadingBar(LoadTexture(setScreen.volumeBarFill), setScreen.GetVolume(VolumeType.SE));
-                volumeBGMBar1.Position = setScreen.volumeBGMBarPosition;
-                volumeBGMBarFill.Position = setScreen.volumeBGMBarFillPosition;
-                volumeBGMBarArrow.Position = volumeBGMBarFill.GetEndofBarPosition() - new Vector2(volumeBGMBarArrow.Width / 2, volumeBGMBarArrow.Height / 2);
-                volumeSEBar1.Position = setScreen.volumeSEBarPosition;
-                volumeSEBarFill.Position = setScreen.volumeSEBarFillPosition;
-                volumeSEBarArrow.Position = volumeSEBarFill.GetEndofBarPosition() - new Vector2(volumeSEBarArrow.Width / 2, volumeSEBarArrow.Height / 2);
-                volumeBGMBar1.zIndex = 2;
-                volumeBGMBarArrow.zIndex = 4;
-                volumeBGMBarFill.zIndex = 3;
-                volumeSEBar1.zIndex = 2;
-                volumeSEBarArrow.zIndex = 4;
-                volumeSEBarFill.zIndex = 3;
-                volumeBGMBar1.Activate();
-                volumeBGMBarArrow.Activate();
-                volumeBGMBarFill.Activate();
-                volumeSEBar1.Activate();
-                volumeSEBarArrow.Activate();
-                volumeSEBarFill.Activate();
-                AddGameObject(volumeBGMBar1);
-                AddGameObject(volumeBGMBarArrow);
-                AddGameObject(volumeBGMBarFill);
-                AddGameObject(volumeSEBar1);
-                AddGameObject(volumeSEBarArrow);
-                AddGameObject(volumeSEBarFill);
-                setScreen.volumeBGMText.zIndex = 2;
-                setScreen.volumeBGMText.Activate();
-                AddGameObject(setScreen.volumeBGMText);
-                setScreen.volumeSEText.zIndex = 2;
-                setScreen.volumeSEText.Activate();
-                AddGameObject(setScreen.volumeSEText);
-
+                AddSettingScreenAdditions(setScreen);
             }
             if (previousScreen.GetType() == typeof(SettingsScreen))
             {
@@ -209,6 +173,11 @@ namespace SpooninDrawer.States.Splash
                 ScreenStack.TryPeek(out currentScreen);
                 SetScreenPoints(currentScreen);
                 AddScreenText(currentScreen);
+                if (currentScreen.GetType() == typeof(SettingsScreen))
+                {
+                    SettingsScreen setScreen = (SettingsScreen)currentScreen;
+                    AddSettingScreenAdditions(setScreen);
+                }
                 menuNavigatorX = 0;
                 menuNavigatorY = 0;
                 if (currentScreen.hasButtons && keyboardPositionHandler is not null)
@@ -271,6 +240,46 @@ namespace SpooninDrawer.States.Splash
                         AddGameObject(text);
                 }
             }
+        }
+        private void AddSettingScreenAdditions(SettingsScreen setScreen)
+        {
+            SplashImage volumeBGMBar1 = new SplashImage(LoadTexture(setScreen.volumeBar));
+            SplashImage volumeBGMBarArrow = new SplashImage(LoadTexture(setScreen.volumeBarArrow));
+            SplashImageLoadingBar volumeBGMBarFill = new SplashImageLoadingBar(LoadTexture(setScreen.volumeBarFill), setScreen.GetVolume(VolumeType.BGM));
+            SplashImage volumeSEBar1 = new SplashImage(LoadTexture(setScreen.volumeBar));
+            SplashImage volumeSEBarArrow = new SplashImage(LoadTexture(setScreen.volumeBarArrow));
+            SplashImageLoadingBar volumeSEBarFill = new SplashImageLoadingBar(LoadTexture(setScreen.volumeBarFill), setScreen.GetVolume(VolumeType.SE));
+            volumeBGMBar1.Position = setScreen.volumeBGMBarPosition;
+            volumeBGMBarFill.Position = setScreen.volumeBGMBarFillPosition;
+            volumeBGMBarArrow.Position = volumeBGMBarFill.GetEndofBarPosition() - new Vector2(volumeBGMBarArrow.Width / 2, volumeBGMBarArrow.Height / 2);
+            volumeSEBar1.Position = setScreen.volumeSEBarPosition;
+            volumeSEBarFill.Position = setScreen.volumeSEBarFillPosition;
+            volumeSEBarArrow.Position = volumeSEBarFill.GetEndofBarPosition() - new Vector2(volumeSEBarArrow.Width / 2, volumeSEBarArrow.Height / 2);
+            volumeBGMBar1.zIndex = 2;
+            volumeBGMBarArrow.zIndex = 4;
+            volumeBGMBarFill.zIndex = 3;
+            volumeSEBar1.zIndex = 2;
+            volumeSEBarArrow.zIndex = 4;
+            volumeSEBarFill.zIndex = 3;
+            volumeBGMBar1.Activate();
+            volumeBGMBarArrow.Activate();
+            volumeBGMBarFill.Activate();
+            volumeSEBar1.Activate();
+            volumeSEBarArrow.Activate();
+            volumeSEBarFill.Activate();
+            AddGameObject(volumeBGMBar1);
+            AddGameObject(volumeBGMBarArrow);
+            AddGameObject(volumeBGMBarFill);
+            AddGameObject(volumeSEBar1);
+            AddGameObject(volumeSEBarArrow);
+            AddGameObject(volumeSEBarFill);
+            setScreen.volumeBGMText.zIndex = 2;
+            setScreen.volumeBGMText.Activate();
+            AddGameObject(setScreen.volumeBGMText);
+            setScreen.volumeSEText.zIndex = 2;
+            setScreen.volumeSEText.Activate();
+            AddGameObject(setScreen.volumeSEText);
+
         }
         private void RemoveSettingScreenAdditions(SettingsScreen screen)
         {

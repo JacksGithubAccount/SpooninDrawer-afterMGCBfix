@@ -342,8 +342,9 @@ namespace SpooninDrawer
          *5/26/2024
          *-fixed, added code to check for readonly when when keeping arrow in bounds
          *-ran into issue where the the keeping bounds was calling even when screen has no buttons, cause crash. Fixed by adding checker for button screens.
-         *-
-         *
+         *5/27/2024
+         *-Volume bar didn't bar on going back. Fixed by adding the settings loader on remove screen.
+         *-adding code to made volume bar work with click, ran into issue where overlapping up on keyboard to volume bar stack overflows
          *
          *
          */
