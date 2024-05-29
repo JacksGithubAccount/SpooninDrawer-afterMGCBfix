@@ -57,6 +57,7 @@ namespace SpooninDrawer.Engine.Input
             }
             catch
             {
+                //if out of bounds, then returns to in bounds based on direction
                 if (direction.X > 0) 
                 {
                     if (screen.ButtonRectangles[yPosition + (int)direction.Y][0].ReadOnly || !screen.ButtonRectangles[yPosition + (int)direction.Y][0].IsKeyboardable)
@@ -86,6 +87,19 @@ namespace SpooninDrawer.Engine.Input
                 }
                 else if (direction.Y < 0) 
                 {
+                    //if overmoving back to a spot that doesn't exist, doens't move at all
+                    try
+                    {
+                        if (screen.ButtonRectangles[yPosition + (int)direction.Y].Length < xPosition)
+                        {
+                            return 0;
+                        }
+                    }
+                    catch
+                    {
+                        //return 0;
+                    }
+                    if(xPosition + (int)direction.X > screen.ButtonRectangles[yPosition].Length)
                     if (screen.ButtonRectangles[screen.ButtonRectangles.Count - 1][xPosition + (int)direction.X].ReadOnly || !screen.ButtonRectangles[screen.ButtonRectangles.Count - 1][xPosition + (int)direction.X].IsKeyboardable)
                     {
                         finalInt = CheckKeyboardforMove(screen, xPosition, screen.ButtonRectangles.Count - 1, direction);

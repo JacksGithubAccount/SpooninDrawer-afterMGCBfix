@@ -595,7 +595,7 @@ namespace SpooninDrawer.States.Splash
             {
                 if (currentArrowPositionX > maxArrowPositionX[currentArrowPositionY])
                 {
-                    currentArrowPositionX = 0;              
+                    currentArrowPositionX = 0;
                 }
                 else if (currentArrowPositionX < 0)
                 {

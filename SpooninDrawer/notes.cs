@@ -345,7 +345,10 @@ namespace SpooninDrawer
          *5/27/2024
          *-Volume bar didn't bar on going back. Fixed by adding the settings loader on remove screen.
          *-adding code to made volume bar work with click, ran into issue where overlapping up on keyboard to volume bar stack overflows
-         *
+         *5/28/2024
+         *-fixed by adding check if xposition is greater than the x buttons that exist, return 0 which makes it do nothing
+         *-found another issue where moving up from the right most resolution option causes index out of bounds issue that the previous statement was supposed to solve
+         *-
          *
          */
     }
