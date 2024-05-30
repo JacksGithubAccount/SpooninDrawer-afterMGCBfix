@@ -31,7 +31,7 @@ namespace SpooninDrawer.Engine.Input
             return finalInt;
         }
         public int CheckKeyboardforMove(BaseScreenwithButtons screen, int xPosition, int yPosition, Vector2 direction)
-        {            
+        {
             int finalInt = 0;
             try
             {
@@ -58,54 +58,52 @@ namespace SpooninDrawer.Engine.Input
             catch
             {
                 //if out of bounds, then returns to in bounds based on direction
-                if (direction.X > 0) 
+                if (direction.X > 0)
                 {
                     if (screen.ButtonRectangles[yPosition + (int)direction.Y][0].ReadOnly || !screen.ButtonRectangles[yPosition + (int)direction.Y][0].IsKeyboardable)
                     {
                         finalInt = CheckKeyboardforMove(screen, 0, yPosition, direction);
                     }
-                    else                    
-                        return xPosition + 1;                    
+                    else
+                        return xPosition + 1;
                 }
-                else if (direction.X < 0) 
+                else if (direction.X < 0)
                 {
                     if (screen.ButtonRectangles[yPosition + (int)direction.Y][screen.ButtonRectangles[yPosition + (int)direction.Y].Length - 1].ReadOnly || !screen.ButtonRectangles[yPosition + (int)direction.Y][screen.ButtonRectangles[yPosition + (int)direction.Y].Length - 1].IsKeyboardable)
                     {
                         finalInt = CheckKeyboardforMove(screen, screen.ButtonRectangles[yPosition + (int)direction.Y].Length - 1, yPosition, direction); ;
                     }
-                    else 
-                        return xPosition - 1; 
+                    else
+                        return xPosition - 1;
                 }
-                if (direction.Y > 0)                 
+                if (direction.Y > 0)
                 {
                     if (screen.ButtonRectangles[0][xPosition + (int)direction.X].ReadOnly || !screen.ButtonRectangles[0][xPosition + (int)direction.X].IsKeyboardable)
                     {
                         finalInt = CheckKeyboardforMove(screen, xPosition, 0, direction);
                     }
                     else
-                        return yPosition + 1; 
+                        return yPosition + 1;
                 }
-                else if (direction.Y < 0) 
+                else if (direction.Y < 0)
                 {
-                    //if overmoving back to a spot that doesn't exist, doens't move at all
-                    try
+
+                    if (yPosition + (int)direction.Y < 0)
                     {
-                        if (screen.ButtonRectangles[yPosition + (int)direction.Y].Length < xPosition)
+                        yPosition = screen.ButtonRectangles.Count;
+                    }
+
+                    if (xPosition + (int)direction.X < screen.ButtonRectangles[screen.ButtonRectangles.Count - 1].Length)
+                    {
+                        if (screen.ButtonRectangles[screen.ButtonRectangles.Count - 1][xPosition + (int)direction.X].ReadOnly || !screen.ButtonRectangles[screen.ButtonRectangles.Count - 1][xPosition + (int)direction.X].IsKeyboardable)
                         {
-                            return 0;
+                            finalInt = CheckKeyboardforMove(screen, xPosition, yPosition - 1, direction);
                         }
-                    }
-                    catch
-                    {
-                        //return 0;
-                    }
-                    if(xPosition + (int)direction.X > screen.ButtonRectangles[yPosition].Length)
-                    if (screen.ButtonRectangles[screen.ButtonRectangles.Count - 1][xPosition + (int)direction.X].ReadOnly || !screen.ButtonRectangles[screen.ButtonRectangles.Count - 1][xPosition + (int)direction.X].IsKeyboardable)
-                    {
-                        finalInt = CheckKeyboardforMove(screen, xPosition, screen.ButtonRectangles.Count - 1, direction);
+                        else
+                            return yPosition - 1;
                     }
                     else
-                        return yPosition - 1;                 
+                        return yPosition - 1;
                 }
             }
             return finalInt;
@@ -123,7 +121,7 @@ namespace SpooninDrawer.Engine.Input
                         {
                             ReturnVector = new Vector2(i, xPosition);
                             return ReturnVector;
-                        } 
+                        }
                     }
                 }
                 if (screen.ButtonRectangles.Count > xPosition + 1)
@@ -137,7 +135,7 @@ namespace SpooninDrawer.Engine.Input
                         }
                     }
 
-                }                
+                }
             }
             return ReturnVector;
         }

@@ -22,6 +22,10 @@ namespace SpooninDrawer.Engine.Input
             this.screen = screen;
             screenPosition = new Vector2(0, 0);
         }
+        public MouseState GetMouseState()
+        {
+            return mouseState;
+        }
         public void SetScreen(BaseScreenwithButtons screen)
         {
             this.screen = screen;

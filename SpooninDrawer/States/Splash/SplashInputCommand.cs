@@ -39,5 +39,7 @@ namespace SpooninDrawer.States.Splash
         public class SettingVolumeSESelect : SplashInputCommand { }
         public class YesNoPopupDisplay : SplashInputCommand { }
         public class RemapControlDuplicate : SplashInputCommand { }
+        public class MouseVolumeBGM : SplashInputCommand { }
+        public class MouseVolumeSE : SplashInputCommand { }
     }
 }

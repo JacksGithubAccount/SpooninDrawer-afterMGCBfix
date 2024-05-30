@@ -15,6 +15,11 @@ namespace SpooninDrawer.Objects.Screens
 {
     public class SettingsScreen : BaseScreenwithButtons, iBaseScreen
     {
+        public enum VolumeChangeType
+        {
+            incremental,
+            set
+        }
         enum titleCommands
         {
             MoveArrowRight,
@@ -52,6 +57,7 @@ namespace SpooninDrawer.Objects.Screens
         public string volumeBar { get; }
         public string volumeBarArrow { get; }
         public string volumeBarFill { get; }
+        public int volumeBarLength { get; set; }
         public Vector2 volumeBGMBarPosition { get; }
         public Vector2 volumeBGMBarArrowPosition { get; }
         public Vector2 volumeBGMBarFillPosition { get; }
@@ -148,13 +154,16 @@ namespace SpooninDrawer.Objects.Screens
             DisplayResolution = resolution;
             return new SettingsScreen(spriteFont, positionOffset, resolution, volumeBGM, volumeSE);
         }
-        public void VolumeChange(float volume, VolumeType volumeType)
+        public void VolumeChange(float volume, VolumeType volumeType, VolumeChangeType volumeChangeType)
         {
             if (volumeType == VolumeType.BGM)
             {
                 if (volumeBGM <= maxVolume && volumeBGM >= 0.0f)
                 {
-                    volumeBGM += volume;
+                    if (volumeChangeType == VolumeChangeType.incremental)
+                        volumeBGM += volume;
+                    else
+                        volumeBGM = volume;
                     if (volumeBGM > maxVolume)
                     {
                         volumeBGM = maxVolume;
@@ -170,7 +179,10 @@ namespace SpooninDrawer.Objects.Screens
             {
                 if (volumeSE <= maxVolume && volumeSE >= 0.0f)
                 {
-                    volumeSE += volume;
+                    if (volumeChangeType == VolumeChangeType.incremental)
+                        volumeSE += volume;
+                    else
+                        volumeSE = volume;
                     if (volumeSE > maxVolume)
                     {
                         volumeSE = maxVolume;
@@ -210,7 +222,7 @@ namespace SpooninDrawer.Objects.Screens
                 var holder = (secondColumnCommands)y;
                 return holder.ToString();
             }
-            else if (x == 2 && y != 4)
+            else if (x == 2 && y <= 4)
             {
                 var holder = (thirdColumnCommands)y;
                 return holder.ToString();

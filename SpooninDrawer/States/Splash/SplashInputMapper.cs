@@ -158,6 +158,35 @@ namespace SpooninDrawer.States.Splash
                         string commandState = splashState.GetCommandStateforMouse();
                         screenTransition = true;
                         FindConfirm(commandState, commands);
+
+                        switch (commandState)
+                        {
+                            case "MouseVolumeBGM":
+                                commands.Add(new MouseVolumeBGM());
+                                break;
+                            case "MouseVolumeSE":
+                                commands.Add(new MouseVolumeSE());
+                                break;
+                        }
+                    }
+                }
+                if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Confirm, InputType.Hold))
+                {
+                    if (splashState.GetMousePositionHandler().IsMouseOverButton() || !splashState.IsCurrentScreenHasButtons())
+                    {
+                        string commandState = splashState.GetCommandStateforMouse();
+                        screenTransition = true;
+                        FindConfirm(commandState, commands);
+
+                        switch (commandState)
+                        {
+                            case "MouseVolumeBGM":
+                                commands.Add(new MouseVolumeBGM());
+                                break;
+                            case "MouseVolumeSE":
+                                commands.Add(new MouseVolumeSE());
+                                break;
+                        }
                     }
                 }
                 if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Cancel, InputType.Press))

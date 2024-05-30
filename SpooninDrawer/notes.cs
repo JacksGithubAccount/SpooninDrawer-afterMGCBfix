@@ -348,7 +348,10 @@ namespace SpooninDrawer
          *5/28/2024
          *-fixed by adding check if xposition is greater than the x buttons that exist, return 0 which makes it do nothing
          *-found another issue where moving up from the right most resolution option causes index out of bounds issue that the previous statement was supposed to solve
-         *-
+         *5/29/2024
+         *-fixed by adding check for out of bounds and setting yposition to max if negative then moving up.
+         *-added clicking to adjust the volume for BGM, SE broke and clicking isn't working. Turns out the title commands wasn't adjusted when new options were added. Fixed now.
+         *-Now to add holding clicks, ran into issue where clicking once makes it think it's holding the entire time
          *
          */
     }

@@ -23,6 +23,8 @@ using System.Data;
 using SpooninDrawer.Engine.Sound;
 using Microsoft.Xna.Framework.Audio;
 using SpooninDrawer.States.Gameplay;
+using SpooninDrawer.Objects.Screens;
+using static SpooninDrawer.Objects.Screens.SettingsScreen;
 
 namespace SpooninDrawer.States.Splash
 {
@@ -244,6 +246,7 @@ namespace SpooninDrawer.States.Splash
         private void AddSettingScreenAdditions(SettingsScreen setScreen)
         {
             SplashImage volumeBGMBar1 = new SplashImage(LoadTexture(setScreen.volumeBar));
+            setScreen.volumeBarLength = volumeBGMBar1.Width;
             SplashImage volumeBGMBarArrow = new SplashImage(LoadTexture(setScreen.volumeBarArrow));
             SplashImageLoadingBar volumeBGMBarFill = new SplashImageLoadingBar(LoadTexture(setScreen.volumeBarFill), setScreen.GetVolume(VolumeType.BGM));
             SplashImage volumeSEBar1 = new SplashImage(LoadTexture(setScreen.volumeBar));
@@ -306,12 +309,12 @@ namespace SpooninDrawer.States.Splash
             screen.volumeSEText.Deactivate();
             RemoveGameObject(screen.volumeSEText);
         }
-        private void ChangeVolume(float volume, VolumeType volumeType)
+        private void ChangeVolume(float volume, VolumeType volumeType, VolumeChangeType volumeChangeType)
         {
             if (currentScreen.GetType() == typeof(SettingsScreen))
             {
                 SettingsScreen settingsScreen = (SettingsScreen)currentScreen;
-                settingsScreen.VolumeChange(volume, volumeType);
+                settingsScreen.VolumeChange(volume, volumeType, volumeChangeType);
                 if (volumeType == VolumeType.BGM)
                 {
                     _soundManager.ChangeVolumeBGM(settingsScreen.GetVolume(volumeType));
@@ -322,7 +325,7 @@ namespace SpooninDrawer.States.Splash
                         BaseGameObject volumeBarArrow = getScreenExist(settingsScreen.volumeBarArrow);
                         volumeBarArrow.Position = volumeBarFill.GetEndofBarPosition() - new Vector2(volumeBarArrow.Width / 2, volumeBarArrow.Height / 2);
                     }
-                    catch { }
+                    catch { /*do nothing*/}
                 }
                 else if (volumeType == VolumeType.SE)
                 {
@@ -334,7 +337,7 @@ namespace SpooninDrawer.States.Splash
                         BaseGameObject volumeBarArrow = getAllScreenExist(settingsScreen.volumeBarArrow)[1];
                         volumeBarArrow.Position = volumeBarFill.GetEndofBarPosition() - new Vector2(volumeBarArrow.Width / 2, volumeBarArrow.Height / 2);
                     }
-                    catch { }
+                    catch { /*do nothing*/}
                 }
 
 
@@ -373,6 +376,26 @@ namespace SpooninDrawer.States.Splash
             {
                 if (!VolumeBGMControl && !VolumeSEControl)
                 {
+                    if (cmd is SplashInputCommand.MenuMoveUp)
+                    {
+                        NotifyEvent(new SplashEvents.SplashMoveArrow());
+                        menuNavigatorY = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(0, -1));
+                    }
+                    if (cmd is SplashInputCommand.MenuMoveDown)
+                    {
+                        NotifyEvent(new SplashEvents.SplashMoveArrow());
+                        menuNavigatorY = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(0, 1));
+                    }
+                    if (cmd is SplashInputCommand.MenuMoveLeft)
+                    {
+                        NotifyEvent(new SplashEvents.SplashMoveArrow());
+                        menuNavigatorX = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(-1, 0));
+                    }
+                    if (cmd is SplashInputCommand.MenuMoveRight)
+                    {
+                        NotifyEvent(new SplashEvents.SplashMoveArrow());
+                        menuNavigatorX = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(1, 0));
+                    }
                     if (cmd is SplashInputCommand.SetFullScreen)
                     {
                         _graphics.IsFullScreen = true;
@@ -502,27 +525,17 @@ namespace SpooninDrawer.States.Splash
                     {
                         VolumeSEControl = true;
                     }
-                    if (cmd is SplashInputCommand.MenuMoveUp)
+                    if (cmd is SplashInputCommand.MouseVolumeBGM)
                     {
-                        NotifyEvent(new SplashEvents.SplashMoveArrow());
-                        menuNavigatorY = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(0, -1));
+                        SettingsScreen setScreen = (SettingsScreen)currentScreen;
+                        ChangeVolume((mousePositionHandler.GetMouseState().Position.X - setScreen.volumeBGMBarPosition.X) / setScreen.volumeBarLength, VolumeType.BGM, VolumeChangeType.set);
                     }
-                    if (cmd is SplashInputCommand.MenuMoveDown)
+                    if (cmd is SplashInputCommand.MouseVolumeSE)
                     {
-                        NotifyEvent(new SplashEvents.SplashMoveArrow());
-                        menuNavigatorY = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(0, 1));
-                    }
-                    if (cmd is SplashInputCommand.MenuMoveLeft)
-                    {
-                        NotifyEvent(new SplashEvents.SplashMoveArrow());
-                        menuNavigatorX = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(-1, 0));
-                    }
-                    if (cmd is SplashInputCommand.MenuMoveRight)
-                    {
-                        NotifyEvent(new SplashEvents.SplashMoveArrow());
-                        menuNavigatorX = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(1, 0));
-                    }
+                        SettingsScreen setScreen = (SettingsScreen)currentScreen;
+                        ChangeVolume((mousePositionHandler.GetMouseState().Position.X - setScreen.volumeBGMBarPosition.X) / setScreen.volumeBarLength, VolumeType.SE, VolumeChangeType.set);
 
+                    }
                     KeepArrowinBound(ref menuNavigatorX, menuNavigatorXCap, ref menuNavigatorY, menuNavigatorYCap);
                 }
                 else
@@ -531,11 +544,11 @@ namespace SpooninDrawer.States.Splash
                     {
                         if (cmd is SplashInputCommand.MenuMoveLeft || cmd is SplashInputCommand.MenuHoldLeft)
                         {
-                            ChangeVolume(-0.01f, VolumeType.BGM);
+                            ChangeVolume(-0.01f, VolumeType.BGM, VolumeChangeType.incremental);
                         }
                         if (cmd is SplashInputCommand.MenuMoveRight || cmd is SplashInputCommand.MenuHoldRight)
                         {
-                            ChangeVolume(0.01f, VolumeType.BGM);
+                            ChangeVolume(0.01f, VolumeType.BGM, VolumeChangeType.incremental);
                         }
                         if (cmd is SplashInputCommand.BackSelect)
                         {
@@ -550,11 +563,11 @@ namespace SpooninDrawer.States.Splash
                     {
                         if (cmd is SplashInputCommand.MenuMoveLeft || cmd is SplashInputCommand.MenuHoldLeft)
                         {
-                            ChangeVolume(-0.01f, VolumeType.SE);
+                            ChangeVolume(-0.01f, VolumeType.SE, VolumeChangeType.incremental);
                         }
                         if (cmd is SplashInputCommand.MenuMoveRight || cmd is SplashInputCommand.MenuHoldRight)
                         {
-                            ChangeVolume(0.01f, VolumeType.SE);
+                            ChangeVolume(0.01f, VolumeType.SE, VolumeChangeType.incremental);
                         }
                         if (cmd is SplashInputCommand.BackSelect)
                         {
