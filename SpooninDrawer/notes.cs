@@ -352,7 +352,10 @@ namespace SpooninDrawer
          *-fixed by adding check for out of bounds and setting yposition to max if negative then moving up.
          *-added clicking to adjust the volume for BGM, SE broke and clicking isn't working. Turns out the title commands wasn't adjusted when new options were added. Fixed now.
          *-Now to add holding clicks, ran into issue where clicking once makes it think it's holding the entire time
-         *
+         *5/30/2024
+         *-fixed, the removal of holding clicks didn't actually remove holding clicks. It does now.
+         *5/31/2024
+         *-working on adding a settings save so it can carry over between sessions
          */
     }
 }

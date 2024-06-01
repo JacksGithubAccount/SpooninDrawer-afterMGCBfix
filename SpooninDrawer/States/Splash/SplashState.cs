@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using SpooninDrawer.Objects;
-
+using System.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +59,12 @@ namespace SpooninDrawer.States.Splash
         private const string Soundtrack1 = "Music/FutureAmbient_3";
         private const string Soundtrack2 = "Music/FutureAmbient_4";
 
+        private const string SettingsTextFileName = "Settings.txt";
+        private const string ScreenSettingsText = "[ScreenSettings]";
+        private const string ResolutionText = "[Resolution]";
+        private const string ControlsText = "[Controls]";
+        private const string VolumeBGMText = "[VolumeBGM]";
+        private const string VolumeSEText = "[VolumeSE]";
 
         private SpriteFont MenuFont;
         TestText _testText;
@@ -83,6 +89,35 @@ namespace SpooninDrawer.States.Splash
         }
         public override void LoadContent(ContentManager content)
         {
+            if (StoredState is null)
+            {
+                if (File.Exists(SettingsTextFileName))
+                {
+                    string line = "";
+                    using (StreamReader sr = new StreamReader(SettingsTextFileName))
+                    {
+                        while ((line = sr.ReadLine()) is not null)
+                        {
+
+                        }
+                    }
+                }
+                else
+                {
+                    using (StreamWriter sw = new StreamWriter(SettingsTextFileName))
+                    {
+                        sw.WriteLine(ScreenSettingsText);
+
+                        sw.WriteLine(ResolutionText);
+
+                        sw.WriteLine(ControlsText);
+
+                        sw.WriteLine(VolumeBGMText);
+
+                        sw.WriteLine(VolumeSEText);
+                    }
+                }
+            }
             _soundManager.UnloadAllSound();
             MenuFont = LoadFont(MenuFontString);
             ScreenStack = new Stack<iBaseScreen>();
