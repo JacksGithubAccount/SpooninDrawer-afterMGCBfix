@@ -356,6 +356,10 @@ namespace SpooninDrawer
          *-fixed, the removal of holding clicks didn't actually remove holding clicks. It does now.
          *5/31/2024
          *-working on adding a settings save so it can carry over between sessions
+         *6/1/2024
+         *-need to pass values to text file somehow
+         *
+         *
          */
     }
 }
