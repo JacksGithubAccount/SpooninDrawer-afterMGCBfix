@@ -66,7 +66,7 @@ namespace SpooninDrawer.States.Splash
         private const string VolumeSEText = "[VolumeSE]";
         private const string SettingsDelimiterText = ":";
 
-        private bool 
+        private string ScreenSettingsValueforText = "";
 
         private SpriteFont MenuFont;
         TestText _testText;
