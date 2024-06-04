@@ -66,7 +66,13 @@ namespace SpooninDrawer.States.Splash
         private const string VolumeSEText = "[VolumeSE]";
         private const string SettingsDelimiterText = ":";
 
+        private const string FullScreenText = "FullScreen";
+        private const string WindowText = "Window";
+        private const string BorderlessText = "Borderless";
+
         private string ScreenSettingsValueforText = "";
+        private string VolumeBGMValueText = "";
+        private string VolumeSEValueText = "";
 
         private SpriteFont MenuFont;
         TestText _testText;
@@ -101,10 +107,10 @@ namespace SpooninDrawer.States.Splash
                         while ((line = sr.ReadLine()) is not null)
                         {
                             if (line == ScreenSettingsText) { }
-                            else if (line == ResolutionText) { }
-                            else if (line == ControlsText) { }
+                            else if (line == ResolutionText) { }                            
                             else if (line == VolumeBGMText) { }
                             else if (line == VolumeSEText) { }
+                            else if (line == ControlsText) { }
                         }
                     }
                 }
@@ -112,15 +118,15 @@ namespace SpooninDrawer.States.Splash
                 {
                     using (StreamWriter sw = new StreamWriter(SettingsTextFileName))
                     {
-                        sw.WriteLine(ScreenSettingsText + SettingsDelimiterText );
+                        sw.WriteLine(ScreenSettingsText + SettingsDelimiterText + WindowText);
 
-                        sw.WriteLine(ResolutionText + SettingsDelimiterText + _displayResolution.ToString());
-
-                        sw.WriteLine(ControlsText + SettingsDelimiterText);
+                        sw.WriteLine(ResolutionText + SettingsDelimiterText + _displayResolution.ToString());                        
 
                         sw.WriteLine(VolumeBGMText + SettingsDelimiterText);
 
                         sw.WriteLine(VolumeSEText + SettingsDelimiterText);
+
+                        sw.WriteLine(ControlsText + SettingsDelimiterText);
                     }
                 }
             }

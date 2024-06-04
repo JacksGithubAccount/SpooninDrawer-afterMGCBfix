@@ -1,0 +1,5 @@
+[ScreenSettings]:
+[Resolution]:x1080
+[Controls]:
+[VolumeBGM]:
+[VolumeSE]:

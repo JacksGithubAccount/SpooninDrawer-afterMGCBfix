@@ -358,7 +358,10 @@ namespace SpooninDrawer
          *-working on adding a settings save so it can carry over between sessions
          *6/1/2024
          *-need to pass values to text file somehow
-         *
+         *6/2/2024
+         *-more work on serialization
+         *6/3/2024
+         *-more work on passing values
          *
          */
     }
