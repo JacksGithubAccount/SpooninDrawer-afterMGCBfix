@@ -362,6 +362,8 @@ namespace SpooninDrawer
          *-more work on serialization
          *6/3/2024
          *-more work on passing values
+         *6/4/2024
+         *-created class to store values that gets passed and a manager to handle savng loading and creating
          *
          */
     }

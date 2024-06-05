@@ -24,6 +24,7 @@ using SpooninDrawer.Engine.Sound;
 using Microsoft.Xna.Framework.Audio;
 using SpooninDrawer.States.Gameplay;
 using static SpooninDrawer.Objects.Screens.SettingsScreen;
+using SpooninDrawer.Engine.SaveData;
 
 namespace SpooninDrawer.States.Splash
 {
@@ -58,21 +59,8 @@ namespace SpooninDrawer.States.Splash
         private const string Soundtrack1 = "Music/FutureAmbient_3";
         private const string Soundtrack2 = "Music/FutureAmbient_4";
 
-        private const string SettingsTextFileName = "Settings.txt";
-        private const string ScreenSettingsText = "[ScreenSettings]";
-        private const string ResolutionText = "[Resolution]";
-        private const string ControlsText = "[Controls]";
-        private const string VolumeBGMText = "[VolumeBGM]";
-        private const string VolumeSEText = "[VolumeSE]";
-        private const string SettingsDelimiterText = ":";
-
-        private const string FullScreenText = "FullScreen";
-        private const string WindowText = "Window";
-        private const string BorderlessText = "Borderless";
-
-        private string ScreenSettingsValueforText = "";
-        private string VolumeBGMValueText = "";
-        private string VolumeSEValueText = "";
+        SettingsDataManager settingsDataManager;
+        SettingsData data;
 
         private SpriteFont MenuFont;
         TestText _testText;
@@ -99,36 +87,7 @@ namespace SpooninDrawer.States.Splash
         {
             if (StoredState is null)
             {
-                if (File.Exists(SettingsTextFileName))
-                {
-                    string line = "";
-                    using (StreamReader sr = new StreamReader(SettingsTextFileName))
-                    {
-                        while ((line = sr.ReadLine()) is not null)
-                        {
-                            if (line == ScreenSettingsText) { }
-                            else if (line == ResolutionText) { }                            
-                            else if (line == VolumeBGMText) { }
-                            else if (line == VolumeSEText) { }
-                            else if (line == ControlsText) { }
-                        }
-                    }
-                }
-                else
-                {
-                    using (StreamWriter sw = new StreamWriter(SettingsTextFileName))
-                    {
-                        sw.WriteLine(ScreenSettingsText + SettingsDelimiterText + WindowText);
-
-                        sw.WriteLine(ResolutionText + SettingsDelimiterText + _displayResolution.ToString());                        
-
-                        sw.WriteLine(VolumeBGMText + SettingsDelimiterText);
-
-                        sw.WriteLine(VolumeSEText + SettingsDelimiterText);
-
-                        sw.WriteLine(ControlsText + SettingsDelimiterText);
-                    }
-                }
+                
             }
             _soundManager.UnloadAllSound();
             MenuFont = LoadFont(MenuFontString);

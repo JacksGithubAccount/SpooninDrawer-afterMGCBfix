@@ -96,6 +96,14 @@ namespace SpooninDrawer.Engine.Input
             remapTempClickHolder = new List<Click>();
             remapTempKeyHolder = new List<Keys>();
         }
+        public List<ActionClick> GetMouseControls()
+        {
+            return mouseControls;
+        }
+        public List<ActionKey> GetKeyboardControls()
+        {
+            return keyboardControls;
+        }
         public Actions DoesKeyExistinControls(Keys keyToCheck, Actions actionToRemap)
         {
             Actions crossAction = Actions.NoInput;

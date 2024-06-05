@@ -16,7 +16,7 @@ namespace SpooninDrawer.Engine.Input
         ScrollDown,
         None
     }
-    class ActionClick
+    public class ActionClick
     {
         public Click click;
         public Actions action;

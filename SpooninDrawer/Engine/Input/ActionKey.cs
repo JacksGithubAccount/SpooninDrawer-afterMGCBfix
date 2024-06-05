@@ -10,7 +10,7 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace SpooninDrawer.Engine.Input
 {
-    class ActionKey
+    public class ActionKey
     {
         public Keys key;
         public Actions action;
