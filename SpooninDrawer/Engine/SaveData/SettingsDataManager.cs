@@ -27,10 +27,10 @@ namespace SpooninDrawer.Engine.SaveData
         private SettingsData data;
 
         public SettingsDataManager() { }
-        public SettingsDataManager(SettingsData data) { }
+        public SettingsDataManager(SettingsData data) { this.data = data; }
 
         public void CreateFile()
-        {            
+        {
             using (StreamWriter sw = new StreamWriter(SettingsTextFileName))
             {
                 sw.WriteLine(ScreenSettingsText + SettingsDelimiterText + data.ScreenSettingsValue);
@@ -42,7 +42,7 @@ namespace SpooninDrawer.Engine.SaveData
                 sw.WriteLine(VolumeSEText + SettingsDelimiterText + data.VolumeSEValue);
 
                 sw.WriteLine(ControlsText + SettingsDelimiterText);
-                foreach (ActionKey key in data.KeyboardControls) 
+                foreach (ActionKey key in data.KeyboardControls)
                 {
                     sw.WriteLine(key.action.ToString() + SettingsDelimiterText + key.key.ToString());
                 }
@@ -52,13 +52,13 @@ namespace SpooninDrawer.Engine.SaveData
                 }
             }
         }
-        public void LoadSettingsData(SettingsData data) 
+        public void LoadSettingsData(SettingsData data)
         {
             if (File.Exists(SettingsTextFileName))
             {
                 string line = "";
                 using (StreamReader sr = new StreamReader(SettingsTextFileName))
-                {                    
+                {
                     while ((line = sr.ReadLine()) is not null)
                     {
                         string[] splitLine = line.Split(SettingsDelimiterText);
@@ -74,15 +74,35 @@ namespace SpooninDrawer.Engine.SaveData
                                 data.ResolutionValue = Resolution.x720;
                             }
                         }
-                        else if (splitLine[0] == VolumeBGMText) { data.VolumeBGMValue = splitLine[1]; }
-                        else if (splitLine[0] == VolumeSEText) { data.VolumeSEValue = splitLine[1]; }
+                        else if (splitLine[0] == VolumeBGMText) 
+                        {
+                            try
+                            {
+                                data.VolumeBGMValue = float.Parse(splitLine[1]);
+                            }
+                            catch
+                            {
+                                data.VolumeBGMValue = 0.5f;
+                            }
+                        }
+                        else if (splitLine[0] == VolumeSEText) 
+                        { 
+                            try
+                            {
+                                data.VolumeSEValue = float.Parse(splitLine[1]);
+                            }
+                            catch
+                            {
+                                data.VolumeSEValue = 0.5f;
+                            }
+                        }
                         else
                         {
                             foreach (ActionKey key in data.KeyboardControls)
-                            { 
-                                if(splitLine[0] == key.action.ToString())
+                            {
+                                if (splitLine[0] == key.action.ToString())
                                 {
-                                    Enum.TryParse(splitLine[1],false, out key.key);
+                                    Enum.TryParse(splitLine[1], false, out key.key);
                                 }
                             }
                             foreach (ActionClick click in data.MouseControls)
@@ -97,6 +117,10 @@ namespace SpooninDrawer.Engine.SaveData
                 }
             }
         }
+        public bool DoesSettingsDataTextExist()
+        {
+            return File.Exists(SettingsTextFileName);
 
+        }
     }
 }

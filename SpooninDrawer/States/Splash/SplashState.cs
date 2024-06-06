@@ -85,10 +85,10 @@ namespace SpooninDrawer.States.Splash
         }
         public override void LoadContent(ContentManager content)
         {
-            if (StoredState is null)
-            {
-                
-            }
+            data = new SettingsData();
+            settingsDataManager = new SettingsDataManager(data);
+            if (!settingsDataManager.DoesSettingsDataTextExist())
+                settingsDataManager.CreateFile();
             _soundManager.UnloadAllSound();
             MenuFont = LoadFont(MenuFontString);
             ScreenStack = new Stack<iBaseScreen>();

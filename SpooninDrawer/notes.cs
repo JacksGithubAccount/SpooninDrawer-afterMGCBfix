@@ -364,6 +364,10 @@ namespace SpooninDrawer
          *-more work on passing values
          *6/4/2024
          *-created class to store values that gets passed and a manager to handle savng loading and creating
+         *6/5/2024
+         *-creating a settings file using defaults work now
+         *
+         *
          *
          */
     }

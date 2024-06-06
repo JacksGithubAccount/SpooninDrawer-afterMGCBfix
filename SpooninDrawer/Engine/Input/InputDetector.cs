@@ -353,9 +353,9 @@ namespace SpooninDrawer.Engine.Input
             }
             else
             {
-                if (actionKeys.Exists(x => x.action == action && x.type == InputType.Hold))
+                if (actionClicks.Exists(x => x.action == action && x.type == InputType.Hold))
                 {
-                    actionKeys.RemoveAll(x => x.action == action && x.type == InputType.Hold);
+                    actionClicks.RemoveAll(x => x.action == action && x.type == InputType.Hold);
                 }
             }
             if (mouseState.IsClickDown(checkClick) && oldMouseState.IsClickUp(checkClick))
