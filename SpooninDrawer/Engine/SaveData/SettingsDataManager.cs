@@ -20,10 +20,12 @@ namespace SpooninDrawer.Engine.SaveData
         private const string VolumeBGMText = "[VolumeBGM]";
         private const string VolumeSEText = "[VolumeSE]";
         private const char SettingsDelimiterText = ':';
+        private const string Keyboard = "Keyboard";
+        private const string Mouse = "Mouse";
 
-        private const string FullScreenText = "FullScreen";
-        private const string WindowText = "Window";
-        private const string BorderlessText = "Borderless";
+        public const string FullScreenText = "FullScreen";
+        public const string WindowText = "Window";
+        public const string BorderlessText = "Borderless";
         private SettingsData data;
 
         public SettingsDataManager() { }
@@ -44,11 +46,11 @@ namespace SpooninDrawer.Engine.SaveData
                 sw.WriteLine(ControlsText + SettingsDelimiterText);
                 foreach (ActionKey key in data.KeyboardControls)
                 {
-                    sw.WriteLine(key.action.ToString() + SettingsDelimiterText + key.key.ToString());
+                    sw.WriteLine(Keyboard + SettingsDelimiterText + key.action.ToString() + SettingsDelimiterText + key.key.ToString());
                 }
                 foreach (ActionClick click in data.MouseControls)
                 {
-                    sw.WriteLine(click.action.ToString() + SettingsDelimiterText + click.click.ToString());
+                    sw.WriteLine(Mouse + SettingsDelimiterText + click.action.ToString() + SettingsDelimiterText + click.click.ToString());
                 }
             }
         }
@@ -74,7 +76,7 @@ namespace SpooninDrawer.Engine.SaveData
                                 data.ResolutionValue = Resolution.x720;
                             }
                         }
-                        else if (splitLine[0] == VolumeBGMText) 
+                        else if (splitLine[0] == VolumeBGMText)
                         {
                             try
                             {
@@ -85,8 +87,8 @@ namespace SpooninDrawer.Engine.SaveData
                                 data.VolumeBGMValue = 0.5f;
                             }
                         }
-                        else if (splitLine[0] == VolumeSEText) 
-                        { 
+                        else if (splitLine[0] == VolumeSEText)
+                        {
                             try
                             {
                                 data.VolumeSEValue = float.Parse(splitLine[1]);
@@ -98,18 +100,25 @@ namespace SpooninDrawer.Engine.SaveData
                         }
                         else
                         {
-                            foreach (ActionKey key in data.KeyboardControls)
+                            if (splitLine[0] == Keyboard)
                             {
-                                if (splitLine[0] == key.action.ToString())
+                                foreach (ActionKey key in data.KeyboardControls)
                                 {
-                                    Enum.TryParse(splitLine[1], false, out key.key);
+                                    if (splitLine[1] == key.action.ToString())
+                                    {
+                                        Enum.TryParse(splitLine[2], false, out key.key);
+                                    }
                                 }
                             }
-                            foreach (ActionClick click in data.MouseControls)
+                            else if ((splitLine[0] == Mouse))
                             {
-                                if (splitLine[0] == click.action.ToString())
+                                foreach (ActionClick click in data.MouseControls)
                                 {
-                                    Enum.TryParse(splitLine[1], false, out click.click);
+                                    if (splitLine[1] == click.action.ToString())
+                                    {
+                                        Enum.TryParse(splitLine[2], false, out click.click);
+                                        continue;
+                                    }
                                 }
                             }
                         }

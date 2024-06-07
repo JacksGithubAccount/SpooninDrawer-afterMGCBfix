@@ -366,7 +366,8 @@ namespace SpooninDrawer
          *-created class to store values that gets passed and a manager to handle savng loading and creating
          *6/5/2024
          *-creating a settings file using defaults work now
-         *
+         *6/6/2024
+         *-passed most of the info to the Settings data, need to figure how to pass remap data. May need to pass entire thing anyways
          *
          *
          */

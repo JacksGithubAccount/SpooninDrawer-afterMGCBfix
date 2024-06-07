@@ -89,6 +89,7 @@ namespace SpooninDrawer.States.Splash
             settingsDataManager = new SettingsDataManager(data);
             if (!settingsDataManager.DoesSettingsDataTextExist())
                 settingsDataManager.CreateFile();
+            settingsDataManager.LoadSettingsData(data);
             _soundManager.UnloadAllSound();
             MenuFont = LoadFont(MenuFontString);
             ScreenStack = new Stack<iBaseScreen>();
@@ -332,6 +333,7 @@ namespace SpooninDrawer.States.Splash
                         volumeBarArrow.Position = volumeBarFill.GetEndofBarPosition() - new Vector2(volumeBarArrow.Width / 2, volumeBarArrow.Height / 2);
                     }
                     catch { /*do nothing*/}
+                    data.VolumeBGMValue = settingsScreen.GetVolume(volumeType);
                 }
                 else if (volumeType == VolumeType.SE)
                 {
@@ -344,6 +346,7 @@ namespace SpooninDrawer.States.Splash
                         volumeBarArrow.Position = volumeBarFill.GetEndofBarPosition() - new Vector2(volumeBarArrow.Width / 2, volumeBarArrow.Height / 2);
                     }
                     catch { /*do nothing*/}
+                    data.VolumeSEValue = settingsScreen.GetVolume(volumeType);
                 }
 
 
@@ -407,11 +410,13 @@ namespace SpooninDrawer.States.Splash
                         _graphics.IsFullScreen = true;
                         _graphics.HardwareModeSwitch = true;
                         _graphics.ApplyChanges();
+                        data.ScreenSettingsValue = SettingsDataManager.FullScreenText;
                     }
                     if (cmd is SplashInputCommand.SetWindowScreen)
                     {
                         _graphics.IsFullScreen = false;
                         _graphics.ApplyChanges();
+                        data.ScreenSettingsValue = SettingsDataManager.WindowText;
                     }
                     if (cmd is SplashInputCommand.SetBorderlessScreen)
                     {
@@ -430,6 +435,7 @@ namespace SpooninDrawer.States.Splash
                         }
                         _graphics.HardwareModeSwitch = false;
                         _graphics.ApplyChanges();
+                        data.ScreenSettingsValue = SettingsDataManager.BorderlessText;
                     }
                     if (cmd is SplashInputCommand.SetResolution1080)
                     {
@@ -438,6 +444,7 @@ namespace SpooninDrawer.States.Splash
                         _graphics.PreferredBackBufferHeight = 1080;
                         _graphics.ApplyChanges();
                         ReloadAllScreens();
+                        data.ResolutionValue = _displayResolution;
                     }
                     if (cmd is SplashInputCommand.SetResolution720)
                     {
@@ -446,6 +453,7 @@ namespace SpooninDrawer.States.Splash
                         _graphics.PreferredBackBufferHeight = 720;
                         _graphics.ApplyChanges();
                         ReloadAllScreens();
+                        data.ResolutionValue = _displayResolution;
                     }
                     if (cmd is SplashInputCommand.RemapControlSelect)
                     {
