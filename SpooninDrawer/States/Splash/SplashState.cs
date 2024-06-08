@@ -472,6 +472,8 @@ namespace SpooninDrawer.States.Splash
                         RemoveScreen();
                         ChangeScreen(new RemapControlsScreen(MenuFont, new Vector2(_menuArrow.Width / 2, _menuArrow.Height / 3), InputManager.GetInputDetector(), _displayResolution));
                         ChangeScreen(new RemapControlDoneScreen(MenuFont, new Vector2(_graphicsDevice.Viewport.Width, _graphicsDevice.Viewport.Height), InputManager.GetInputDetector()));
+                        data.KeyboardControls = InputManager.GetInputDetector().GetKeyboardControls();
+                        data.MouseControls = InputManager.GetInputDetector().GetMouseControls();
                     }
                     if (cmd is SplashInputCommand.RemapControlDuplicate)
                     {
@@ -489,6 +491,7 @@ namespace SpooninDrawer.States.Splash
                     }
                     if (cmd is SplashInputCommand.GameSelect)
                     {
+                        settingsDataManager.SaveSettingsData();
                         if (!devState)
                         {
                             SwitchState(new GameplayState(_displayResolution, _soundManager));
@@ -519,6 +522,7 @@ namespace SpooninDrawer.States.Splash
                     }
                     if (cmd is SplashInputCommand.ExitSelect)
                     {
+                        settingsDataManager.SaveSettingsData();
                         NotifyEvent(new BaseGameStateEvent.GameQuit());
                         GameplayState gameState = (GameplayState)StoredState;
                         gameState?.returnToTitle(_displayResolution);

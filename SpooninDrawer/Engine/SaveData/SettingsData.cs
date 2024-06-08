@@ -42,5 +42,6 @@ namespace SpooninDrawer.Engine.SaveData
                 new ActionKey(Keys.C, Actions.OpenMenu),
                 new ActionKey(Keys.P, Actions.Pause)
             };
+
     }
 }

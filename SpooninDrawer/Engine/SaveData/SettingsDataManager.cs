@@ -33,7 +33,13 @@ namespace SpooninDrawer.Engine.SaveData
 
         public void CreateFile()
         {
-            using (StreamWriter sw = new StreamWriter(SettingsTextFileName))
+            SaveSettingsData();
+
+        }
+        public void SaveSettingsData()
+        {
+            FileStream fs = File.Open(SettingsTextFileName, FileMode.Create);
+            using (StreamWriter sw = new StreamWriter(fs))
             {
                 sw.WriteLine(ScreenSettingsText + SettingsDelimiterText + data.ScreenSettingsValue);
 
