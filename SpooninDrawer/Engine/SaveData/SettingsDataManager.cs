@@ -60,7 +60,7 @@ namespace SpooninDrawer.Engine.SaveData
                 }
             }
         }
-        public void LoadSettingsData(SettingsData data)
+        public SettingsData LoadSettingsData(SettingsData data)
         {
             if (File.Exists(SettingsTextFileName))
             {
@@ -131,6 +131,7 @@ namespace SpooninDrawer.Engine.SaveData
                     }
                 }
             }
+            return data;
         }
         public bool DoesSettingsDataTextExist()
         {

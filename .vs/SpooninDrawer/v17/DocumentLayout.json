@@ -11,24 +11,28 @@
       "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\states\\splash\\splashstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\engine\\input\\inputdetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\engine\\input\\inputdetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\engine\\savedata\\settingsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\engine\\savedata\\settingsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\screens\\settingsscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\screens\\settingsscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\engine\\savedata\\settingsdatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\engine\\savedata\\settingsdatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\screens\\settingsscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\screens\\settingsscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\screens\\settingsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\screens\\settingsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\engine\\states\\basegamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\engine\\states\\basegamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\engine\\input\\inputdetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\engine\\input\\inputdetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\engine\\savedata\\settingsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\engine\\savedata\\settingsdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\spoonindrawer\\content\\rstrings.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
@@ -52,7 +56,7 @@
               "RelativeDocumentMoniker": "SpooninDrawer\\notes.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\notes.cs",
               "RelativeToolTip": "SpooninDrawer\\notes.cs",
-              "ViewState": "AQIAAFUBAAAAAAAAAAAAAFsBAAATAAAA",
+              "ViewState": "AQIAAFUBAAAAAAAAAAAAAHUBAABqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-09T00:39:30.306Z",
               "IsPinned": true,
@@ -61,19 +65,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "SettingsManager.cs",
+              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Screens\\SettingsManager.cs",
+              "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Screens\\SettingsManager.cs",
+              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Screens\\SettingsManager.cs",
+              "RelativeToolTip": "SpooninDrawer\\Objects\\Screens\\SettingsManager.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAABUAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T03:36:56.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "SettingsDataManager.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Engine\\SaveData\\SettingsDataManager.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\Engine\\SaveData\\SettingsDataManager.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Engine\\SaveData\\SettingsDataManager.cs",
               "RelativeToolTip": "SpooninDrawer\\Engine\\SaveData\\SettingsDataManager.cs",
-              "ViewState": "AQIAAGkAAAAAAAAAAAAAAI0AAAAAAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAIUAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-05T01:23:10.592Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "SettingsData.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Engine\\SaveData\\SettingsData.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\Engine\\SaveData\\SettingsData.cs",
@@ -81,12 +98,11 @@
               "RelativeToolTip": "SpooninDrawer\\Engine\\SaveData\\SettingsData.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAqwC8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T01:20:38.555Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-05T01:20:38.555Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "BaseGameState.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Engine\\States\\BaseGameState.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\Engine\\States\\BaseGameState.cs",
@@ -94,11 +110,12 @@
               "RelativeToolTip": "SpooninDrawer\\Engine\\States\\BaseGameState.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T03:12:05.966Z"
+              "WhenOpened": "2024-06-02T03:12:05.966Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "SettingsScreen.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Screens\\SettingsScreen.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Screens\\SettingsScreen.cs",
@@ -106,11 +123,12 @@
               "RelativeToolTip": "SpooninDrawer\\Objects\\Screens\\SettingsScreen.cs",
               "ViewState": "AQIAADsAAAAAAAAAAAAAAAMAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T21:05:26.181Z"
+              "WhenOpened": "2024-05-27T21:05:26.181Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "InputDetector.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Engine\\Input\\InputDetector.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\Engine\\Input\\InputDetector.cs",
@@ -129,14 +147,14 @@
               "RelativeDocumentMoniker": "SpooninDrawer\\States\\Splash\\SplashState.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\States\\Splash\\SplashState.cs",
               "RelativeToolTip": "SpooninDrawer\\States\\Splash\\SplashState.cs",
-              "ViewState": "AQIAAH4CAAAAAAAAAAAAAKICAAAAAAAA",
+              "ViewState": "AQIAAI8BAAAAAAAAAAAAAJ4BAABWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-16T03:20:34.928Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "RStrings.resx",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Content\\RStrings.resx",
               "RelativeDocumentMoniker": "SpooninDrawer\\Content\\RStrings.resx",

@@ -59,6 +59,7 @@ namespace SpooninDrawer.States.Splash
         private const string Soundtrack1 = "Music/FutureAmbient_3";
         private const string Soundtrack2 = "Music/FutureAmbient_4";
 
+        SettingsManager settingsManager;
         SettingsDataManager settingsDataManager;
         SettingsData data;
 
@@ -86,10 +87,11 @@ namespace SpooninDrawer.States.Splash
         public override void LoadContent(ContentManager content)
         {
             data = new SettingsData();
-            settingsDataManager = new SettingsDataManager(data);
+            settingsDataManager = new SettingsDataManager(data);            
             if (!settingsDataManager.DoesSettingsDataTextExist())
                 settingsDataManager.CreateFile();
-            settingsDataManager.LoadSettingsData(data);
+            data = settingsDataManager.LoadSettingsData(data);
+            settingsManager = new SettingsManager(data, _graphics);
             _soundManager.UnloadAllSound();
             MenuFont = LoadFont(MenuFontString);
             ScreenStack = new Stack<iBaseScreen>();
@@ -420,21 +422,7 @@ namespace SpooninDrawer.States.Splash
                     }
                     if (cmd is SplashInputCommand.SetBorderlessScreen)
                     {
-                        _graphics.IsFullScreen = true;
-                        if (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width == 1920 || GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height == 1080)
-                        {
-                            _displayResolution = Resolution.x1080;
-                            _graphics.PreferredBackBufferWidth = 1920;
-                            _graphics.PreferredBackBufferHeight = 1080;
-                        }
-                        else if (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width == 1280 || GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height == 720)
-                        {
-                            _displayResolution = Resolution.x720;
-                            _graphics.PreferredBackBufferWidth = 1280;
-                            _graphics.PreferredBackBufferHeight = 720;
-                        }
-                        _graphics.HardwareModeSwitch = false;
-                        _graphics.ApplyChanges();
+                        settingsManager.SetBorderlessScreen(_displayResolution);
                         data.ScreenSettingsValue = SettingsDataManager.BorderlessText;
                     }
                     if (cmd is SplashInputCommand.SetResolution1080)

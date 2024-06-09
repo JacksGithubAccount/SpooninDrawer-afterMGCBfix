@@ -1,4 +1,4 @@
-[ScreenSettings]:Window
+[ScreenSettings]:Borderless
 [Resolution]:x1080
 [VolumeBGM]:0.5
 [VolumeSE]:0.5
@@ -15,7 +15,7 @@ Keyboard:OpenMenu:C
 Keyboard:Pause:P
 Mouse:Confirm:LeftClick
 Mouse:Cancel:RightClick
-Mouse:OpenMenu:MiddleClick
+Mouse:OpenMenu:None
 Mouse:MoveUp:ScrollUp
 Mouse:MoveDown:ScrollDown
 Mouse:MoveLeft:None

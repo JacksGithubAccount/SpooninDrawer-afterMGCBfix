@@ -370,7 +370,8 @@ namespace SpooninDrawer
          *-passed most of the info to the Settings data, need to figure how to pass remap data. May need to pass entire thing anyways
          *6/7/2024
          *-Passed entire controls and added method to save setting data and set saving to changing game state and exiting game
-         *
+         *6/8/2024
+         *-created manager class to handle settings change to help with loading settings from file on boot
          *
          */
     }
