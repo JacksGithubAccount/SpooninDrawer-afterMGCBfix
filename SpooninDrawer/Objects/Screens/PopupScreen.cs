@@ -79,11 +79,11 @@ namespace SpooninDrawer.Objects.Screens
             if (doesScreenNeedButtons)
             {
                 hasButtons = true;
-                ButtonWidth = 50;
-                ButtonHeight = 25;
+                ButtonWidth = 175;
+                ButtonHeight = 40;
                 CreateRectangles(menuLocationArrayX, menuLocationArrayY);
-                ButtonRectangles[0][0].ReadOnly = true;
-                ButtonRectangles[0][1].ReadOnly = true;
+                SetRectangletoReadOnly(ButtonRectangles[0][0]);
+                SetRectangletoReadOnly(ButtonRectangles[0][1]);
             }
         }
         public iBaseScreen Initialize()

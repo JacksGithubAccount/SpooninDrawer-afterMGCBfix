@@ -55,5 +55,11 @@ namespace SpooninDrawer.Engine.Objects
                 }                
             }
         }
+        protected void SetRectangletoReadOnly(SplashRectangle rectangle)
+        {
+            rectangle.ReadOnly = true;
+            rectangle.Rectangle.Height = 0;
+            rectangle.Rectangle.Width = 0;
+        }
     }
 }

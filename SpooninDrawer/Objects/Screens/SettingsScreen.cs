@@ -143,8 +143,8 @@ namespace SpooninDrawer.Objects.Screens
                 k++;
             }
             hasButtons = true;
-            ButtonWidth = 50;
-            ButtonHeight = 25;
+            ButtonWidth = 175;
+            ButtonHeight = 40;
             CreateRectangles(menuLocationArrayX, menuLocationArrayY, menuNavigatorXCap);
             ButtonRectangles[3][2] = new SplashRectangle(new Rectangle(585, 410, 305, 20), false, true, false);
             ButtonRectangles[4][2] = new SplashRectangle(new Rectangle(585, 460, 305, 20), false, true, false);

@@ -36,8 +36,8 @@ namespace SpooninDrawer.Objects.Screens
             menuNavigatorXCap = new int[1] { 1 };
             menuNavigatorYCap = 0;
             hasButtons = true;
-            ButtonWidth = 50;
-            ButtonHeight = 25;
+            ButtonWidth = 150;
+            ButtonHeight = 40;
             CreateRectangles(menuLocationArrayX, menuLocationArrayY);
         }
 

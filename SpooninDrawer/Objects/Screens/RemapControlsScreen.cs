@@ -139,12 +139,12 @@ namespace SpooninDrawer.Objects.Screens
                 i++;
             }
             hasButtons = true;
-            ButtonWidth = 50;
-            ButtonHeight = 25;
+            ButtonWidth = 160;
+            ButtonHeight = 40;
             CreateRectangles(menuLocationArrayX, menuLocationArrayY, new int[9] { 2, 2, 2, 2, 2, 2, 2, 2, 2 }, new int[3] { menuNavigatorYCap + 1, menuNavigatorYCap, menuNavigatorYCap });
             for (int b = 0; b < menuNavigatorYCap; b++)
             {
-                ButtonRectangles[b][0].ReadOnly = true;
+                SetRectangletoReadOnly(ButtonRectangles[b][0]);
             }
         }
 
