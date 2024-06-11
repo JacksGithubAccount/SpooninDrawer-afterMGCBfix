@@ -372,6 +372,10 @@ namespace SpooninDrawer
          *-Passed entire controls and added method to save setting data and set saving to changing game state and exiting game
          *6/8/2024
          *-created manager class to handle settings change to help with loading settings from file on boot
+         *6/9/2024
+         *-Settings are now loaded based on settings data text file
+         *-will need to adjust boxes for clicking to cover words now
+         *
          *
          */
     }

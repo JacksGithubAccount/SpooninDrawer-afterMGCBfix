@@ -100,6 +100,14 @@ namespace SpooninDrawer.Engine.Input
         {
             return mouseControls;
         }
+        public void SetMouseControls(List<ActionClick> mouseControls)
+        {
+            this.mouseControls = mouseControls;
+        }
+        public void SetKeyboardControls(List<ActionKey> keyboardControls)
+        {
+            this.keyboardControls = keyboardControls;
+        }
         public List<ActionKey> GetKeyboardControls()
         {
             return keyboardControls;

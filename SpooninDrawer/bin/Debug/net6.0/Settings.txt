@@ -1,7 +1,7 @@
-[ScreenSettings]:Borderless
+[ScreenSettings]:Window
 [Resolution]:x1080
-[VolumeBGM]:0.5
-[VolumeSE]:0.5
+[VolumeBGM]:0.053333335
+[VolumeSE]:0
 [Controls]:
 Keyboard:MoveLeft:A
 Keyboard:MoveRight:D

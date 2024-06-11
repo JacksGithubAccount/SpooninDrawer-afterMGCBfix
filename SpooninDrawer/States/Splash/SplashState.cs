@@ -87,7 +87,7 @@ namespace SpooninDrawer.States.Splash
         public override void LoadContent(ContentManager content)
         {
             data = new SettingsData();
-            settingsDataManager = new SettingsDataManager(data);            
+            settingsDataManager = new SettingsDataManager(data);
             if (!settingsDataManager.DoesSettingsDataTextExist())
                 settingsDataManager.CreateFile();
             data = settingsDataManager.LoadSettingsData(data);
@@ -119,6 +119,16 @@ namespace SpooninDrawer.States.Splash
 
             popupPosition = new Vector2(_graphicsDevice.Viewport.Width / 3, _graphicsDevice.Viewport.Height / 3);
             popupScreen = new PopupScreen(MenuFont, popupPosition);
+
+            //loads in data based on settings data i.e. from previous sessions
+            _displayResolution = data.ResolutionValue;
+            settingsManager.SetResolution(_displayResolution);
+            ReloadAllScreens();
+            settingsManager.SetScreenSettings(data.ScreenSettingsValue);
+            _soundManager.ChangeVolumeBGM(data.VolumeBGMValue);
+            _soundManager.ChangeVolumeSE(data.VolumeSEValue);
+            InputManager.GetInputDetector().SetMouseControls(data.MouseControls);
+            InputManager.GetInputDetector().SetKeyboardControls(data.KeyboardControls);
         }
         public void ChangeScreen(iBaseScreen screen)
         {
@@ -350,9 +360,12 @@ namespace SpooninDrawer.States.Splash
                     catch { /*do nothing*/}
                     data.VolumeSEValue = settingsScreen.GetVolume(volumeType);
                 }
-
+            }
+            else
+            {
 
             }
+
         }
         public void ResumeGameState()
         {
@@ -409,37 +422,30 @@ namespace SpooninDrawer.States.Splash
                     }
                     if (cmd is SplashInputCommand.SetFullScreen)
                     {
-                        _graphics.IsFullScreen = true;
-                        _graphics.HardwareModeSwitch = true;
-                        _graphics.ApplyChanges();
+                        settingsManager.SetScreenSettings(SettingsDataManager.FullScreenText);
                         data.ScreenSettingsValue = SettingsDataManager.FullScreenText;
                     }
                     if (cmd is SplashInputCommand.SetWindowScreen)
                     {
-                        _graphics.IsFullScreen = false;
-                        _graphics.ApplyChanges();
+                        settingsManager.SetScreenSettings(SettingsDataManager.WindowText);
                         data.ScreenSettingsValue = SettingsDataManager.WindowText;
                     }
                     if (cmd is SplashInputCommand.SetBorderlessScreen)
                     {
-                        settingsManager.SetBorderlessScreen(_displayResolution);
+                        settingsManager.SetScreenSettings(SettingsDataManager.BorderlessText);
                         data.ScreenSettingsValue = SettingsDataManager.BorderlessText;
                     }
                     if (cmd is SplashInputCommand.SetResolution1080)
                     {
                         _displayResolution = Resolution.x1080;
-                        _graphics.PreferredBackBufferWidth = 1920;
-                        _graphics.PreferredBackBufferHeight = 1080;
-                        _graphics.ApplyChanges();
+                        settingsManager.SetResolution(_displayResolution);
                         ReloadAllScreens();
                         data.ResolutionValue = _displayResolution;
                     }
                     if (cmd is SplashInputCommand.SetResolution720)
                     {
                         _displayResolution = Resolution.x720;
-                        _graphics.PreferredBackBufferWidth = 1280;
-                        _graphics.PreferredBackBufferHeight = 720;
-                        _graphics.ApplyChanges();
+                        settingsManager.SetResolution(_displayResolution);
                         ReloadAllScreens();
                         data.ResolutionValue = _displayResolution;
                     }
