@@ -176,7 +176,7 @@ namespace SpooninDrawer.States.Splash
                     {
                         string commandState = splashState.GetCommandStateforMouse();
                         screenTransition = true;
-                        FindConfirm(commandState, commands);
+                        //FindConfirm(commandState, commands);
 
                         switch (commandState)
                         {

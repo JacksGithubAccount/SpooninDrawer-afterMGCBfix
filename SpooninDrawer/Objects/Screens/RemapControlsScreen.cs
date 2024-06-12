@@ -68,7 +68,7 @@ namespace SpooninDrawer.Objects.Screens
                 screenTexture = "Menu/RemapControlsScreen720";
             }
 
-            menuLocationArrayX = new int[3] { 15, 125, 300 };
+            menuLocationArrayX = new int[3] { 15, 200, 375 };
             menuLocationArrayY = new int[9] { 150, 200, 250, 300, 350, 400, 450, 500, 550 };
             menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1;

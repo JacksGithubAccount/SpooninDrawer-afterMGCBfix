@@ -375,7 +375,11 @@ namespace SpooninDrawer
          *6/9/2024
          *-Settings are now loaded based on settings data text file
          *-will need to adjust boxes for clicking to cover words now
-         *
+         *9/10/2024
+         *-fixed boxes to cover words, need to fix position for remap screen as words overlap arrow
+         *9/11/2024
+         *-fixed issue where holdiing mouse click made it click through screens by disabling holding clicks for actions that it wasn't needed
+         *-fixed remap arrow overlapping issue
          *
          */
     }
