@@ -380,6 +380,15 @@ namespace SpooninDrawer
          *9/11/2024
          *-fixed issue where holdiing mouse click made it click through screens by disabling holding clicks for actions that it wasn't needed
          *-fixed remap arrow overlapping issue
+         *9/12/2024
+         *-Adding input for gamepad, so far added action button and input detector version for gamepad buttons
+         *9/13/2024
+         *-added extension to gamepadstate for more methods
+         *9/14/2024
+         *-finished adding gamepad to code, no gamepads available at the moment to test. Next to add text to remap screen
+         *
+         *
+         *
          *
          */
     }

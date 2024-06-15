@@ -602,6 +602,10 @@ namespace SpooninDrawer.States.Splash
         {
             return currentScreen.GetMenuCommand(mousePositionHandler.GetScreenPosition());
         }
+        public string GetCommandStateforButton()
+        {
+            return GetCommandStateforKey();
+        }
         private void KeepArrowinBound(ref int currentArrowPosition, int maxArrowPosition)
         {
             if (currentArrowPosition > maxArrowPosition)

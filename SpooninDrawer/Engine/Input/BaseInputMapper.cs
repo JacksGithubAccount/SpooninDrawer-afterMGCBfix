@@ -15,6 +15,9 @@ namespace SpooninDrawer.Engine.Input
         public MouseState currentMouseState;
         public MouseState previousMouseState;
 
+        public GamePadState currentGamePadState;
+        public GamePadState previousGamePadState;
+
         public InputDetector inputDetector;
         public void SetInputDetector(InputDetector inputDetector)
         {

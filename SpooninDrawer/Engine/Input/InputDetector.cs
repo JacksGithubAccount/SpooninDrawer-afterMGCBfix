@@ -47,11 +47,14 @@ namespace SpooninDrawer.Engine.Input
         private List<ActionKey> actionKeys;
         private List<ActionClick> mouseControls;
         private List<ActionClick> actionClicks;
+        private List<ActionButton> buttonControls;
+        private List<ActionButton> actionButtons;
 
         //handling remap
         private List<Actions> remapTempActionHolder;
         private List<Keys> remapTempKeyHolder;
         private List<Click> remapTempClickHolder;
+        private List<Buttons> remapTempButtonHolder;
 
         public InputDetector()
         {
@@ -62,7 +65,9 @@ namespace SpooninDrawer.Engine.Input
             //player input is added to this list which is then checked when an action is called and removed when player is no longer inputting that input
             actionKeys = new List<ActionKey>();
             actionClicks = new List<ActionClick>();
+            actionButtons = new List<ActionButton>();
 
+            //contains the controls for  player input
             mouseControls = new List<ActionClick>
             {
                 new ActionClick(Click.LeftClick, Actions.Confirm),
@@ -77,7 +82,6 @@ namespace SpooninDrawer.Engine.Input
                 new ActionClick(Click.None, Actions.OpenMenu),
                 new ActionClick(Click.None, Actions.Pause)
             };
-            //contains the controls for  player input
             keyboardControls = new List<ActionKey>
             {
                 new ActionKey(Keys.A, Actions.MoveLeft),
@@ -91,10 +95,24 @@ namespace SpooninDrawer.Engine.Input
                 new ActionKey(Keys.C, Actions.OpenMenu),
                 new ActionKey(Keys.P, Actions.Pause)
             };
+            buttonControls = new List<ActionButton>
+            {
+                new ActionButton(Buttons.LeftThumbstickLeft, Actions.MoveLeft),
+                new ActionButton(Buttons.LeftThumbstickRight, Actions.MoveRight),
+                new ActionButton(Buttons.LeftThumbstickUp, Actions.MoveUp),
+                new ActionButton(Buttons.LeftThumbstickDown, Actions.MoveDown),
+                new ActionButton(Buttons.A, Actions.Confirm),
+                new ActionButton(Buttons.A, Actions.Interact),
+                new ActionButton(Buttons.B, Actions.Cancel),
+                new ActionButton(Buttons.RightShoulder, Actions.Attack),
+                new ActionButton(Buttons.X, Actions.OpenMenu),
+                new ActionButton(Buttons.Y, Actions.Pause)
+            };
 
             remapTempActionHolder = new List<Actions>();
             remapTempClickHolder = new List<Click>();
             remapTempKeyHolder = new List<Keys>();
+            remapTempButtonHolder = new List<Buttons>();
         }
         public List<ActionClick> GetMouseControls()
         {
@@ -111,6 +129,14 @@ namespace SpooninDrawer.Engine.Input
         public List<ActionKey> GetKeyboardControls()
         {
             return keyboardControls;
+        }
+        public List<ActionButton> GetButtonControls()
+        {
+            return buttonControls;
+        }
+        public void SetButtonControls(List<ActionButton> buttonControls)
+        {
+            this.buttonControls = buttonControls;
         }
         public Actions DoesKeyExistinControls(Keys keyToCheck, Actions actionToRemap)
         {
@@ -172,6 +198,37 @@ namespace SpooninDrawer.Engine.Input
             else
                 return actionToRemap;
         }
+
+        public Actions DoesButtonExistinControls(Buttons buttonToCheck, Actions actionToRemap)
+        {
+            Actions crossAction = Actions.NoInput;
+            if (buttonControls.Exists(x => x.button == buttonToCheck))
+            {
+                List<ActionButton> checkAButton = buttonControls.FindAll(x => x.button == buttonToCheck);
+                if (checkAButton.Count >= 1)
+                {
+                    if (checkAButton.Exists(x => x.action == Actions.Confirm) && actionToRemap == Actions.Cancel)
+                    {
+                        return Actions.Confirm;
+                    }
+                    else if (checkAButton.Exists(x => x.action == Actions.Cancel) && actionToRemap == Actions.Confirm)
+                    {
+                        return Actions.Cancel;
+                    }
+                    else
+                    {
+                        checkAButton.RemoveAll(x => x.action == Actions.Cancel && x.action == Actions.Confirm);
+                        if (checkAButton.Count >= 1)
+                        {
+                            crossAction = checkAButton[0].action;
+                        }
+                    }
+                }
+                return crossAction;
+            }
+            else
+                return actionToRemap;
+        }
         public bool IsAnyButtonInputTyped(InputType inputType)
         {
             return actionKeys.Exists(x => x.type == inputType);
@@ -184,6 +241,10 @@ namespace SpooninDrawer.Engine.Input
         {
             mouseControls.Find(x => x.action == selectedAction).setClick(remappedClick);
         }
+        public void RemapButton(Buttons remappedButton, Actions selectedAction)
+        {
+            buttonControls.Find(x => x.action == selectedAction).setButton(remappedButton);
+        }
         public void HoldRemap(Click remapClick, Actions selectedAction)
         {
             remapTempClickHolder.Add(remapClick);
@@ -192,6 +253,11 @@ namespace SpooninDrawer.Engine.Input
         public void HoldRemap(Keys remapKey, Actions selectedAction)
         {
             remapTempKeyHolder.Add(remapKey);
+            remapTempActionHolder.Add(selectedAction);
+        }
+        public void HoldRemap(Buttons remapButton, Actions selectedAction)
+        {
+            remapTempButtonHolder.Add(remapButton);
             remapTempActionHolder.Add(selectedAction);
         }
         public void ConfirmRemap()
@@ -210,8 +276,16 @@ namespace SpooninDrawer.Engine.Input
                     RemapKey(remapTempKeyHolder[i], remapTempActionHolder[i]);
                 }
             }
+            else if (remapTempButtonHolder.Count > 0)
+            {
+                for (int i = 0; i < remapTempButtonHolder.Count; i++)
+                {
+                    RemapButton(remapTempButtonHolder[i], remapTempActionHolder[i]);
+                }
+            }
             remapTempKeyHolder.Clear();
             remapTempClickHolder.Clear();
+            remapTempButtonHolder.Clear();
             remapTempActionHolder.Clear();
         }
         public Keys getKeyforAction(Actions selectedAction)
@@ -221,6 +295,10 @@ namespace SpooninDrawer.Engine.Input
         public Click getClickforAction(Actions selectedAction)
         {
             return mouseControls.Find(x => x.action == selectedAction).click;
+        }
+        public Buttons getButtonforAction(Actions selectedAction)
+        {
+            return buttonControls.Find(x => x.action == selectedAction).button;
         }
         public Actions getActionforClick(Click selectedClick)
         {
@@ -232,6 +310,15 @@ namespace SpooninDrawer.Engine.Input
         public bool IsActionPressedforKey(Actions selectedAction)
         {
             if (actionKeys.Exists(x => x.action == selectedAction))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        public bool IsActionPressedforButton(Actions selectedAction)
+        {
+            if (actionButtons.Exists(x => x.action == selectedAction))
             {
                 return true;
             }
@@ -274,7 +361,17 @@ namespace SpooninDrawer.Engine.Input
             else
                 return false;
         }
-
+        public bool IsActioninputtedbyTypeforButton(Actions selectedAction, InputType inputType)
+        {
+            ActionButton actionCheck = new ActionButton(buttonControls.Find(x => x.action == selectedAction));
+            actionCheck.type = inputType;
+            if (actionButtons.Exists(x => x.action == selectedAction && x.type == inputType))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
         public void resetKeystoDefault()
         {
             RemapKey(Keys.Left, Actions.MoveLeft);
@@ -292,6 +389,22 @@ namespace SpooninDrawer.Engine.Input
             RemapClick(Click.MiddleClick, Actions.OpenMenu);
             RemapClick(Click.ScrollUp, Actions.MoveUp);
             RemapClick(Click.ScrollDown, Actions.MoveDown);
+            RemapClick(Click.None, Actions.MoveLeft);
+            RemapClick(Click.None, Actions.MoveRight);
+            RemapClick(Click.None, Actions.Interact);
+            RemapClick(Click.None, Actions.Attack);
+            RemapClick(Click.None, Actions.OpenMenu);
+            RemapClick(Click.None, Actions.Pause);
+            RemapButton(Buttons.LeftThumbstickLeft, Actions.MoveLeft);
+            RemapButton(Buttons.LeftThumbstickRight, Actions.MoveRight);
+            RemapButton(Buttons.LeftThumbstickUp, Actions.MoveUp);
+            RemapButton(Buttons.LeftThumbstickDown, Actions.MoveDown);
+            RemapButton(Buttons.A, Actions.Confirm);
+            RemapButton(Buttons.A, Actions.Interact);
+            RemapButton(Buttons.B, Actions.Cancel);
+            RemapButton(Buttons.RightShoulder, Actions.Attack);
+            RemapButton(Buttons.X, Actions.OpenMenu);
+            RemapButton(Buttons.Y, Actions.Pause);
         }
 
         public void PressButton(KeyboardState keyState, Actions action)
@@ -397,6 +510,58 @@ namespace SpooninDrawer.Engine.Input
                 }
             }
         }
+
+        public void PressGamePadButton(GamePadState gamePadState, Actions action)
+        {
+            Buttons checkButton = buttonControls.Find(x => x.action == action).button;
+            ActionButton tempActionButton = new ActionButton(buttonControls.Find(x => x.action == action));
+
+            if (gamePadState.IsButtonDown(checkButton) && oldGamePadState.IsButtonDown(checkButton))
+            {
+                tempActionButton.type = InputType.Hold;
+                if (!actionButtons.Exists(x => x.action == action && x.type == InputType.Hold))
+                {
+                    actionButtons.Add(tempActionButton);
+                }
+            }
+            else
+            {
+                if (actionButtons.Exists(x => x.action == action && x.type == InputType.Hold))
+                {
+                    actionButtons.RemoveAll(x => x.action == action && x.type == InputType.Hold);
+                }
+            }
+            if (gamePadState.IsButtonDown(checkButton) && oldGamePadState.IsButtonUp(checkButton))
+            {
+                tempActionButton.type = InputType.Press;
+                if (!actionButtons.Contains(tempActionButton))
+                {
+                    actionButtons.Add(tempActionButton);
+                }
+            }
+            else
+            {
+                if (actionButtons.Exists(x => x.action == action && x.type == InputType.Press))
+                {
+                    actionButtons.RemoveAll(x => x.action == action && x.type == InputType.Press);
+                }
+            }
+            if (gamePadState.IsButtonUp(checkButton) && oldGamePadState.IsButtonDown(checkButton))
+            {
+                tempActionButton.type = InputType.Release;
+                if (!actionButtons.Exists(x => x.action == action && x.type == InputType.Release))
+                {
+                    actionButtons.Add(tempActionButton);
+                }
+            }
+            else
+            {
+                if (actionButtons.Exists(x => x.action == action && x.type == InputType.Release))
+                {
+                    actionButtons.RemoveAll(x => x.action == action && x.type == InputType.Release);
+                }
+            }
+        }
         public void SetOldKeyboardState(KeyboardState keyboardState)
         {
             oldKeyboardState = keyboardState;
@@ -404,6 +569,10 @@ namespace SpooninDrawer.Engine.Input
         public void SetOldMouseState(MouseState mouseState)
         {
             oldMouseState = mouseState;
+        }
+        public void SetOldGamePadState(GamePadState gamePadState)
+        {
+            oldGamePadState = gamePadState;
         }
         public void update(KeyboardState keyState)
         {
@@ -423,6 +592,15 @@ namespace SpooninDrawer.Engine.Input
 
 
             oldMouseState = mouseState;
+        }
+        public void update(GamePadState gamePadState)
+        {
+            for (int c = 0; c < buttonControls.Count; c++)
+            {
+                PressGamePadButton(gamePadState, buttonControls[c].action);
+            }
+
+            oldGamePadState = gamePadState;
         }
     }
 }

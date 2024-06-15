@@ -194,7 +194,80 @@ namespace SpooninDrawer.States.Splash
                     commands.Add(new BackSelect());
                 }
             }
+            return commands;
+        }
 
+        public override IEnumerable<BaseInputCommand> GetGamePadState(GamePadState state)
+        {
+            previousGamePadState = currentGamePadState;
+            inputDetector.update(previousGamePadState);
+            currentGamePadState = state;
+            var commands = new List<SplashInputCommand>();
+
+
+            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.Confirm, InputType.Release) && !screenTransition)
+            {
+                string commandState = splashState.GetCommandStateforButton();
+                screenTransition = true;
+                FindConfirm(commandState, commands);
+
+
+            }
+            if (RemapChecker && currentGamePadState.GetPressedButtonCount() == 0 && previousGamePadState.GetPressedButtonCount() != 0 && !screenTransition && remapDevice == InputDevice.Gamepad)
+            {
+                screenTransition = true;
+                Buttons inputButton = previousGamePadState.GetPressedButtons()[0];
+                Actions duplicateRemapActions = inputDetector.DoesButtonExistinControls(inputButton, RemapActionHolder);
+                //if key is used for another action, this if swaps the keys for the two actions
+                if (duplicateRemapActions != RemapActionHolder)
+                {
+                    remapDuplicatePopup = true;
+                    Buttons switchingButton = inputDetector.getButtonforAction(RemapActionHolder);
+                    splashState.ChangePopupDescriptionText(inputButton.ToString() + " is already mapped to " + duplicateRemapActions.ToString());
+                    commands.Add(new RemapControlDuplicate());
+                    inputDetector.HoldRemap(switchingButton, duplicateRemapActions);
+                    inputDetector.HoldRemap(inputButton, RemapActionHolder);
+                }
+                if (!remapDuplicatePopup)
+                {
+                    commands.Add(new RemapControlDone());
+                    inputDetector.RemapButton(inputButton, RemapActionHolder);
+
+                }
+                RemapChecker = false;
+            }
+            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.Cancel, InputType.Press))
+            {
+                commands.Add(new BackSelect());
+            }
+            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.MoveUp, InputType.Press))
+            {
+                commands.Add(new MenuMoveUp());
+            }
+            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.MoveDown, InputType.Press))
+            {
+                commands.Add(new MenuMoveDown());
+            }
+            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.MoveLeft, InputType.Press))
+            {
+                commands.Add(new MenuMoveLeft());
+            }
+            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.MoveRight, InputType.Press))
+            {
+                commands.Add(new MenuMoveRight());
+            }
+            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.MoveLeft, InputType.Hold))
+            {
+                commands.Add(new MenuHoldLeft());
+            }
+            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.MoveRight, InputType.Hold))
+            {
+                commands.Add(new MenuHoldRight());
+            }
+            if (currentGamePadState.GetPressedButtonCount() == 0 && previousGamePadState.GetPressedButtonCount() == 0)
+            {
+                screenTransition = false;
+            }
             return commands;
         }
         private bool isKeyPressed(Keys key)
