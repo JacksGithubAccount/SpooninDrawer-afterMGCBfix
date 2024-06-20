@@ -70,6 +70,15 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Command.
+        /// </summary>
+        internal static string ControlCommand {
+            get {
+                return ResourceManager.GetString("ControlCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm.
         /// </summary>
         internal static string ControlConfirm {
@@ -79,11 +88,29 @@ namespace SpooninDrawer.Content {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Controller.
+        /// </summary>
+        internal static string ControlController {
+            get {
+                return ResourceManager.GetString("ControlController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Move Down.
         /// </summary>
         internal static string ControlDown {
             get {
                 return ResourceManager.GetString("ControlDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keyboard.
+        /// </summary>
+        internal static string ControlKeyboard {
+            get {
+                return ResourceManager.GetString("ControlKeyboard", resourceCulture);
             }
         }
         
@@ -111,6 +138,15 @@ namespace SpooninDrawer.Content {
         internal static string ControlMiddleClick {
             get {
                 return ResourceManager.GetString("ControlMiddleClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mouse.
+        /// </summary>
+        internal static string ControlMouse {
+            get {
+                return ResourceManager.GetString("ControlMouse", resourceCulture);
             }
         }
         
