@@ -388,7 +388,8 @@ namespace SpooninDrawer
          *-finished adding gamepad to code, no gamepads available at the moment to test. Next to add text to remap screen
          *6/16/2024
          *-Added text for the gamepad controls to the remapscreen. no controllers to test atm.
-         *
+         *6/20/2024
+         *-next part is adding gameplay
          *
          *
          */

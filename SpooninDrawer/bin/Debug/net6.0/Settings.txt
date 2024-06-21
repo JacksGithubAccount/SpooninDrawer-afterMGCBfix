@@ -1,7 +1,7 @@
 [ScreenSettings]:Window
 [Resolution]:x1080
-[VolumeBGM]:0.053333335
-[VolumeSE]:0
+[VolumeBGM]:0.05666667
+[VolumeSE]:0.10666667
 [Controls]:
 Keyboard:MoveLeft:A
 Keyboard:MoveRight:D
