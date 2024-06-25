@@ -9,6 +9,6 @@ namespace SpooninDrawer.Objects.Gameplay
 {
     public class OverworldItem : BaseGameObject
     {
-        InventoryItem inventoryItem;
+        //InventoryItem inventoryItem;
     }
 }
