@@ -17,9 +17,9 @@ namespace SpooninDrawer.Objects.Gameplay
     }
     public class InventoryItem
     {
-        private int id;
-        private string name;
-        private ItemType type;
-        private string description;
+        public int id { get; set; }
+        public string name { get; set; }
+        public ItemType type { get; set; }
+        public string description { get; set; }
     }
 }
