@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,16 @@ namespace SpooninDrawer.Objects.Gameplay
         OverworldItem overworldItem;
         public ItemManager()
         {
-            inventoryItem.id = 0;
-            inventoryItem.name = "Spoon";
-            inventoryItem.description = "Spoon";
-            inventoryItem.type = ItemType.KeyItem;
+            inventoryItem.ID = 0;
+            inventoryItem.Name = "Spoon";
+            inventoryItem.Description = "Spoon";
+            inventoryItem.Type = ItemType.KeyItem;
+            inventoryItem.TexturePath = "insert path here";
 
         }
-        public void LoadContent(ContentManager content)
+        public void LoadContent(ContentManager content, InventoryItem item)
         {
-
+            item.Texture2D = content.Load<Texture2D>(item.TexturePath);
         }
         public void LoadOverworldItem(OverworldItem item)
         {

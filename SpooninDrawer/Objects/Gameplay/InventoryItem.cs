@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,13 @@ namespace SpooninDrawer.Objects.Gameplay
         Armor,
         Accessories
     }
-    public class InventoryItem
+    public interface InventoryItem
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public ItemType type { get; set; }
-        public string description { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public ItemType Type { get; set; }
+        public string Description { get; set; }
+        public string TexturePath { get; set; }
+        public Texture2D Texture2D { get; set; }
     }
 }

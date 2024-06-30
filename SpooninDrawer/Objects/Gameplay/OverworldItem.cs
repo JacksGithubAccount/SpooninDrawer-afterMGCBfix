@@ -11,7 +11,7 @@ namespace SpooninDrawer.Objects.Gameplay
     public class OverworldItem : BaseGameObject
     {
         //InventoryItem inventoryItem;
-        public OverworldItem(Texture2D texture) : base(texture) { }
+        //public OverworldItem(Texture2D texture):base(texture) { }
 
     }
 }
