@@ -10,23 +10,21 @@ namespace SpooninDrawer.Objects.Gameplay
 {
     public class ItemManager
     {
-        InventoryItem inventoryItem;
-        OverworldItem overworldItem;
+        Item item;
         public ItemManager()
         {
-            inventoryItem.ID = 0;
-            inventoryItem.Name = "Spoon";
-            inventoryItem.Description = "Spoon";
-            inventoryItem.Type = ItemType.KeyItem;
-            inventoryItem.TexturePath = "insert path here";
+            item.ID = 0;
+            item.Name = "Spoon";
+            item.Description = "Spoon";
+            item.Type = ItemType.KeyItem;
+            item.InventoryTexturePath = "Content/Items/Spoon";
+            item.OverworldTexturePath = item.InventoryTexturePath;
 
         }
-        public void LoadContent(ContentManager content, InventoryItem item)
+        public void LoadContent(ContentManager content, Item item)
         {
-            item.Texture2D = content.Load<Texture2D>(item.TexturePath);
-        }
-        public void LoadOverworldItem(OverworldItem item)
-        {
+            item.InventoryTexture2D = content.Load<Texture2D>(item.InventoryTexturePath);
+            item.OverworldTexture2D = content.Load<Texture2D>(item.OverworldTexturePath);
 
         }
     }
