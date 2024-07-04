@@ -27,7 +27,7 @@ using SpooninDrawer.States.Splash;
 using MonoGame.Extended.Screens;
 using SpooninDrawer.Objects.Screens;
 using SpooninDrawer.Engine.Sound;
-
+using SpooninDrawer.Objects.Gameplay;
 
 namespace SpooninDrawer.Engine.States.Gameplay
 {
@@ -91,6 +91,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private List<MapTileCollider> colliders;
         private TilemapManager _tilemapManager;
 
+        public Player player1;
+        private ItemManager itemManager;
+        
+
         private OrthographicCamera _camera;
 
         private BaseGameState menuGameState;
@@ -100,6 +104,12 @@ namespace SpooninDrawer.Engine.States.Gameplay
         {
             _displayResolution = resolution;
             _soundManager = soundManager;
+        }
+        public override void Initialize(ContentManager contentManager, GameWindow window, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager)
+        {
+            base.Initialize(contentManager, window, graphicsDevice, graphicsDeviceManager);
+            player1 = new Player();
+            itemManager = new ItemManager();
         }
         public override void LoadContent(ContentManager content)
         {
@@ -151,6 +161,9 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var track1 = LoadSound(Soundtrack1).CreateInstance();
             var track2 = LoadSound(Soundtrack2).CreateInstance();
             _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
+
+            itemManager.LoadContent(content);
+            AddGameObject(itemManager.GetItem());
 
             ResetGame();
         }
@@ -283,6 +296,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
             }, () =>
             {
                 _playerSprite.makeMoveAgainfromCollision();
+            });
+            var playerInteractableCollisionDetector = new AABBCollisionDetector<BaseGameObject, PlayerSprite>(_interactableGameObjects);
+            playerInteractableCollisionDetector.DetectCollisions(_playerSprite, (interactable, player) =>
+            {
+
             });
         }
 

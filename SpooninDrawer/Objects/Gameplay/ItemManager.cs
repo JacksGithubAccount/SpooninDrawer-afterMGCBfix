@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -13,19 +14,37 @@ namespace SpooninDrawer.Objects.Gameplay
         Item item;
         public ItemManager()
         {
-            item.ID = 0;
-            item.Name = "Spoon";
-            item.Description = "Spoon";
-            item.Type = ItemType.KeyItem;
-            item.InventoryTexturePath = "Content/Items/Spoon";
+            item = new Item(0, "Spoon", ItemType.KeyItem, "It's a spoon");
+            item.InventoryTexturePath = "Items/spoon";
             item.OverworldTexturePath = item.InventoryTexturePath;
+            item.OverworldPosition = new Vector2(120, 120);
+            item.Interactable = true;
+            item.Activate();
+            item.zIndex = 5;
 
         }
-        public void LoadContent(ContentManager content, Item item)
+        public void LoadContent(ContentManager content)
         {
             item.InventoryTexture2D = content.Load<Texture2D>(item.InventoryTexturePath);
             item.OverworldTexture2D = content.Load<Texture2D>(item.OverworldTexturePath);
+            item.AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(item.OverworldPosition.X, item.OverworldPosition.Y), item.Width, item.Height));
 
+        }
+        public void AddToInventory(Item item, int amount, Player player)
+        {
+            if (player.Inventory.Exists(x => (x.item == item)))
+            {
+                player.Inventory.Find(x => (x.item == item)).quantity += amount;
+            }
+            else
+            {
+                player.Inventory.Add(new ItemSlot(item, amount));
+            }
+
+        }
+        public Item GetItem()
+        {
+            return item;
         }
     }
 }

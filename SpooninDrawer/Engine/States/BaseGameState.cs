@@ -34,6 +34,7 @@ namespace SpooninDrawer.Engine.States
         public Texture2D blankTexture;
 
         private readonly List<BaseGameObject> _gameObjects = new List<BaseGameObject>();
+        protected readonly List<BaseGameObject> _interactableGameObjects = new List<BaseGameObject>();
 
         protected InputManager InputManager { get; set; }
 
@@ -48,7 +49,7 @@ namespace SpooninDrawer.Engine.States
             SetInputManager();
             blankTexture = contentManager.Load<Texture2D>(BlankTexture);
         }
-        public void Initialize(ContentManager contentManager, GameWindow window, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager)
+        public virtual void Initialize(ContentManager contentManager, GameWindow window, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager)
         {
             _contentManager = contentManager;
             _graphicsDevice = graphicsDevice;
@@ -129,6 +130,10 @@ namespace SpooninDrawer.Engine.States
         protected void AddGameObject(BaseGameObject gameObject)
         {
             _gameObjects.Add(gameObject);
+            if (gameObject.Interactable)
+            {
+                _interactableGameObjects.Add(gameObject);
+            }
         }
 
         protected bool isGameObjectExist(BaseGameObject gameObject)
@@ -159,6 +164,10 @@ namespace SpooninDrawer.Engine.States
         protected void RemoveGameObject(BaseGameObject gameObject)
         {
             _gameObjects.Remove(gameObject);
+            if (gameObject.Interactable) 
+            { 
+                _interactableGameObjects.Remove(gameObject);
+            }
         }
 
         public virtual void Render(SpriteBatch spriteBatch)

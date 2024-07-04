@@ -52,7 +52,16 @@ namespace SpooninDrawer.Engine.Objects
                 collisionUnhandler();
             }
         }
-
+        public void DetectCollisions(A activeObject, Action<P,A> collisionHandler)
+        {
+            foreach (var passiveObject in _passiveObjects)
+            {
+                if (DetectCollision(passiveObject, activeObject))
+                {
+                    collisionHandler(passiveObject, activeObject);
+                }
+            }
+        }
         /// <summary>
         /// Detect all collisions and call a handler where a passive object *hits* an active object
         /// </summary>

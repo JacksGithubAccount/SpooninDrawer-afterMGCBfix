@@ -24,6 +24,7 @@ namespace SpooninDrawer.Engine.Objects
 
         public bool Destroyed { get; private set; }
         public bool Active { get; protected set; }
+        public bool Interactable { get; set; }
         public float Angle { get; set; }
         public Vector2 Direction { get; set; }
 
@@ -71,6 +72,7 @@ namespace SpooninDrawer.Engine.Objects
             Angle = 0.0f;
             Direction = new Vector2(0, 0);
             Position = Vector2.One;
+            Interactable = false;
         }
 
         public virtual void OnNotify(BaseGameStateEvent gameEvent) { }

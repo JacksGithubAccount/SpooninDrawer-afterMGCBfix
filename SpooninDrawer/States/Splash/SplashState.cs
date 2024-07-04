@@ -84,6 +84,10 @@ namespace SpooninDrawer.States.Splash
             StoredState = BeforeState;
             _soundManager = soundManager;
         }
+        public override void Initialize(ContentManager contentManager, GameWindow window, GraphicsDevice graphicsDevice, GraphicsDeviceManager graphicsDeviceManager)
+        {
+            base.Initialize(contentManager, window, graphicsDevice, graphicsDeviceManager);
+        }
         public override void LoadContent(ContentManager content)
         {
             data = new SettingsData();

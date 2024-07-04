@@ -183,9 +183,7 @@ namespace SpooninDrawer.Objects
         {
             _movingUp = false;
             _movingDown = true;
-            //_currentAnimation = _turnRightAnimation;
-            //_rightToCenterAnimation.Reset();
-            //_turnLeftAnimation.Reset();
+
             if (!_stopDown)
             {
                 _MoveDirection.Y += PlayerSpeed;
@@ -196,10 +194,8 @@ namespace SpooninDrawer.Objects
             if(!Collided.Contains(MapTile.GetRectangle()))
                 Collided.Add(MapTile.GetRectangle());
             Engine.Objects.BoundingBox tempBB = BoundingBoxes[0];
-            //PlayerSpeed = 0;
             Vector2 newPosition = new Vector2(Position.X, Position.Y);
-            //foreach (var maptilecollided in Collided)
-            //{                 
+              
                 foreach (var bb in BoundingBoxes)
                 {
                     if (bb.CollidesWith(MapTile.BoundingBoxes[0]))
@@ -213,8 +209,6 @@ namespace SpooninDrawer.Objects
                     if (MapTile.IsCollide(LookLeftRect))
                     {
                         _stopLeft = true;
-                        //if (tempBB.Position.X < MapTile.BoundingBoxes[0].Rectangle.Right)
-                        //    newPosition.X = MapTile.BoundingBoxes[0].Rectangle.Right + (Position.X - tempBB.Position.X);
                     }
                     else if (!LookLeftRect.Intersects(Collided))
                     _stopLeft = false;
@@ -225,8 +219,6 @@ namespace SpooninDrawer.Objects
                     if (MapTile.IsCollide(LookRightRect))
                     {
                         _stopRight = true;
-                        //if (tempBB.Position.X + tempBB.Width > MapTile.BoundingBoxes[0].Rectangle.Left)
-                        //newPosition.X = MapTile.BoundingBoxes[0].Rectangle.Left - tempBB.Width;
                     }
                     else if(!LookRightRect.Intersects(Collided))
                         _stopRight = false;
@@ -237,8 +229,6 @@ namespace SpooninDrawer.Objects
                     if (MapTile.IsCollide(LookUpRect))
                     {
                         _stopUp = true;
-                        //if (Position.Y < MapTile.BoundingBoxes[0].Rectangle.Bottom)
-                        //   newPosition.Y = MapTile.BoundingBoxes[0].Rectangle.Bottom;
                     }
                     else if (!LookUpRect.Intersects(Collided))
                         _stopUp = false;
@@ -249,12 +239,9 @@ namespace SpooninDrawer.Objects
                     if (MapTile.IsCollide(LookDownRect))
                     {
                         _stopDown = true;
-                        //if (Position.Y + Height > MapTile.BoundingBoxes[0].Rectangle.Top)
-                        //newPosition.Y = MapTile.BoundingBoxes[0].Rectangle.Top - Height;
                     }
                     else if (!LookDownRect.Intersects(Collided))
                         _stopDown = false;
-                //}
 
             }
             Position = newPosition;

@@ -402,6 +402,10 @@ namespace SpooninDrawer
          *-more item
          *7/1/2024
          *-more item, added player and inventory
+         *7/2/2024
+         *-reworked some item added more to player
+         *7/3/2024
+         *-added spoon to draw, but is not displaying. Fixed by activating object. Added collision to spoon, adding interact text when colliding
          *
          */
     }
