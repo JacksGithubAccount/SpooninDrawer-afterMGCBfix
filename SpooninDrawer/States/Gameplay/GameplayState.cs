@@ -45,7 +45,6 @@ namespace SpooninDrawer.Engine.States.Gameplay
         //rivate const string ExplosionTexture = "Sprites/explosion";
 
 
-
         private const string TextFont = "Fonts/Lives";
         private const string GameOverFont = "Fonts/GameOver";
 
@@ -81,6 +80,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         private const string StatsFont = "Fonts/Stats";
         private StatsObject _statsText;
+        private GameplayText InteractText;
 
         TmxMap _map;
         Texture2D _tileSet;
@@ -109,7 +109,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         {
             base.Initialize(contentManager, window, graphicsDevice, graphicsDeviceManager);
             player1 = new Player();
-            itemManager = new ItemManager();
+            itemManager = new ItemManager();            
         }
         public override void LoadContent(ContentManager content)
         {
@@ -164,6 +164,9 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
             itemManager.LoadContent(content);
             AddGameObject(itemManager.GetItem());
+
+            var font = LoadFont(TextFont);
+            InteractText = new GameplayText(font, "Interact");
 
             ResetGame();
         }
