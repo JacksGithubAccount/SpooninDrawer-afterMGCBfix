@@ -45,7 +45,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         //rivate const string ExplosionTexture = "Sprites/explosion";
 
 
-        private const string TextFont = "Fonts/Lives";
+        private const string TextFont = "Fonts/TestText";
         private const string GameOverFont = "Fonts/GameOver";
 
         private const string BulletSound = "Sounds/bullet";
@@ -81,6 +81,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private const string StatsFont = "Fonts/Stats";
         private StatsObject _statsText;
         private GameplayText InteractText;
+        private InteractablePopupBox InteractPopupBox;
 
         TmxMap _map;
         Texture2D _tileSet;
@@ -93,7 +94,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         public Player player1;
         private ItemManager itemManager;
-        
+
 
         private OrthographicCamera _camera;
 
@@ -109,7 +110,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         {
             base.Initialize(contentManager, window, graphicsDevice, graphicsDeviceManager);
             player1 = new Player();
-            itemManager = new ItemManager();            
+            itemManager = new ItemManager();
         }
         public override void LoadContent(ContentManager content)
         {
@@ -167,6 +168,13 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
             var font = LoadFont(TextFont);
             InteractText = new GameplayText(font, "Interact");
+            InteractText.zIndex = 13;
+            InteractText.Deactivate();
+            InteractPopupBox = new InteractablePopupBox(InteractText, _playerSprite.Position + new Vector2(100, 100), LoadTexture("Menu/InteractPopupBox"));
+            AddGameObject(InteractPopupBox);
+            AddGameObject(InteractText);
+            InteractPopupBox.zIndex = 12;
+            InteractPopupBox.Deactivate();
 
             ResetGame();
         }
@@ -303,7 +311,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var playerInteractableCollisionDetector = new AABBCollisionDetector<BaseGameObject, PlayerSprite>(_interactableGameObjects);
             playerInteractableCollisionDetector.DetectCollisions(_playerSprite, (interactable, player) =>
             {
-
+                InteractPopupBox.ActivatePopupBox();
+            }, () =>
+            {
+                InteractPopupBox.DeactivatePopupBox();
             });
         }
 

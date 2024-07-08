@@ -407,7 +407,10 @@ namespace SpooninDrawer
          *7/3/2024
          *-added spoon to draw, but is not displaying. Fixed by activating object. Added collision to spoon, adding interact text when colliding
          *7/4/2024
-         *-
+         *-added pop up box for interact
+         *7/5/2024
+         *-drew popup + text and made appear when collding with interactable item, need to tie to character position or camera
+         *
          *
          */
     }

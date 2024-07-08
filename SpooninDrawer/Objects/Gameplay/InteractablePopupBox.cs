@@ -12,10 +12,38 @@ namespace SpooninDrawer.Objects.Gameplay
 {
     public class InteractablePopupBox : BaseGameObject
     {
-        public GameplayText GameplayText {  get; set; }
+        public GameplayText GameplayText { get; set; }
         public string Text { get { return GameplayText.Text; } set { GameplayText.Text = value; } }
         public Vector2 TextPosition { get { return GameplayText.Position; } set { GameplayText.Position = value; } }
-        public Vector2 BoxPosition { get { return Position; } set { Position = value;  } }
+        public Vector2 BoxPosition { get { return Position; } set { Position = value; } }
         public Texture2D BoxTexture { get { return _texture; } set { _texture = value; } }
+        public const string TexturePath = "Menu/InteractPopupBox";
+
+        public InteractablePopupBox(GameplayText text, Vector2 boxPosition, Texture2D boxTexture)
+        {
+            GameplayText = text;
+            BoxPosition = boxPosition;
+            BoxTexture = boxTexture;
+            TextPosition = boxPosition + new Vector2(10, 10);
+        }
+        public void ActivatePopupBox()
+        {
+            GameplayText.Activate();
+            Activate();
+        }
+        public void ActivatePopupBox(string text)
+        {
+            Text = text;
+            ActivatePopupBox();
+        }
+        public void DeactivatePopupBox()
+        {
+            GameplayText.Deactivate();
+            Deactivate();
+        }
+        public void ChangeText(string text)
+        {
+            Text = text;
+        }
     }
 }
