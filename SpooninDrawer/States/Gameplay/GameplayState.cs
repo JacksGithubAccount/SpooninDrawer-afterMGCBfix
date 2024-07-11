@@ -312,9 +312,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
             playerInteractableCollisionDetector.DetectCollisions(_playerSprite, (interactable, player) =>
             {
                 InteractPopupBox.ActivatePopupBox();
+                itemManager.AddInteractableItem(interactable);
             }, () =>
             {
                 InteractPopupBox.DeactivatePopupBox();
+                itemManager.ClearInteractables();
             });
         }
 

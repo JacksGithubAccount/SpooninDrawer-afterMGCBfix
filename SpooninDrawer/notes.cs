@@ -410,6 +410,8 @@ namespace SpooninDrawer
          *-added pop up box for interact
          *7/5/2024
          *-drew popup + text and made appear when collding with interactable item, need to tie to character position or camera
+         *7/10/2024
+         *-added way to store collided items
          *
          *
          */

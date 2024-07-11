@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SpooninDrawer.Engine.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace SpooninDrawer.Objects.Gameplay
     public class ItemManager
     {
         Item item;
+        List<Item> InteractableItems;
+        Item tempItem;
         public ItemManager()
         {
             item = new Item(0, "Spoon", ItemType.KeyItem, "It's a spoon");
@@ -21,6 +24,7 @@ namespace SpooninDrawer.Objects.Gameplay
             item.Interactable = true;
             item.Activate();
             item.zIndex = 5;
+            InteractableItems = new List<Item>();
 
         }
         public void LoadContent(ContentManager content)
@@ -45,6 +49,28 @@ namespace SpooninDrawer.Objects.Gameplay
         public Item GetItem()
         {
             return item;
+        }
+        public void AddInteractableItem(Item item)
+        {
+            if(!InteractableItems.Contains(item))
+                InteractableItems.Add(item);
+        }
+        public void AddInteractableItem(BaseGameObject item)
+        {
+            try
+            {
+                if (!InteractableItems.Contains((Item)item))
+                    InteractableItems.Add((Item)item);
+            }catch { }         
+        }
+        public void RemoveInteractableItem(Item item)
+        {
+            InteractableItems.Remove(item);
+        }
+        public void ClearInteractables()
+        {
+
+            InteractableItems.Clear();
         }
     }
 }
