@@ -412,6 +412,8 @@ namespace SpooninDrawer
          *-drew popup + text and made appear when collding with interactable item, need to tie to character position or camera
          *7/10/2024
          *-added way to store collided items
+         *7/11/2024
+         *-need to find to add item to inventory
          *
          *
          */
