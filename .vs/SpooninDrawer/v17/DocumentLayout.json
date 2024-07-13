@@ -15,6 +15,10 @@
       "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\gameplay\\itemmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\states\\gameplay\\gameplayinputcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\states\\gameplay\\gameplayinputcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\engine\\states\\basegamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\engine\\states\\basegamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -29,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\gameplay\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\gameplay\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\states\\gameplay\\gameplayinputcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\states\\gameplay\\gameplayinputcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\gameplay\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -72,7 +72,7 @@
               "RelativeDocumentMoniker": "SpooninDrawer\\notes.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\notes.cs",
               "RelativeToolTip": "SpooninDrawer\\notes.cs",
-              "ViewState": "AQIAAH0BAAAAAAAAAAAAAJ8BAAAwAAAA",
+              "ViewState": "AQIAAIcBAAAAAAAAAAAAAKEBAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-09T00:39:30.306Z",
               "IsPinned": true,
@@ -80,7 +80,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\Player.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Gameplay\\Player.cs",
@@ -88,12 +88,11 @@
               "RelativeToolTip": "SpooninDrawer\\Objects\\Gameplay\\Player.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-12T02:52:38.426Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-12T02:52:38.426Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "GameplayInputCommand.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\States\\Gameplay\\GameplayInputCommand.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\States\\Gameplay\\GameplayInputCommand.cs",
@@ -106,7 +105,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "InteractablePopupBox.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\InteractablePopupBox.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Gameplay\\InteractablePopupBox.cs",
@@ -114,12 +113,11 @@
               "RelativeToolTip": "SpooninDrawer\\Objects\\Gameplay\\InteractablePopupBox.cs",
               "ViewState": "AQIAABMAAAAAAAAAAAAcwCAAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-04T01:38:50.917Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-04T01:38:50.917Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AABBCollisionDetector.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Engine\\Objects\\AABBCollisionDetector.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\Engine\\Objects\\AABBCollisionDetector.cs",
@@ -127,12 +125,11 @@
               "RelativeToolTip": "SpooninDrawer\\Engine\\Objects\\AABBCollisionDetector.cs",
               "ViewState": "AQIAAB0AAAAAAAAAAAAqwDcAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-04T00:29:11.679Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-04T00:29:11.679Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "BaseGameState.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Engine\\States\\BaseGameState.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\Engine\\States\\BaseGameState.cs",
@@ -140,8 +137,7 @@
               "RelativeToolTip": "SpooninDrawer\\Engine\\States\\BaseGameState.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAAACQAAABIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T20:55:09.622Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-03T20:55:09.622Z"
             },
             {
               "$type": "Document",
@@ -151,7 +147,7 @@
               "RelativeDocumentMoniker": "SpooninDrawer\\States\\Gameplay\\GameplayState.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\States\\Gameplay\\GameplayState.cs",
               "RelativeToolTip": "SpooninDrawer\\States\\Gameplay\\GameplayState.cs",
-              "ViewState": "AQIAANIAAAAAAAAAAAAQwO4AAAAAAAAA",
+              "ViewState": "AQIAAN0AAAAAAAAAAAAAAO4AAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-21T02:20:43.339Z",
               "EditorCaption": ""
@@ -176,7 +172,7 @@
               "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Gameplay\\ItemManager.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\ItemManager.cs",
               "RelativeToolTip": "SpooninDrawer\\Objects\\Gameplay\\ItemManager.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAgwCQAAAAiAAAA",
+              "ViewState": "AQIAACAAAAAAAAAAAAAgwDUAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-23T03:45:41.941Z",
               "EditorCaption": ""

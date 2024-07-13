@@ -414,6 +414,9 @@ namespace SpooninDrawer
          *-added way to store collided items
          *7/11/2024
          *-need to find to add item to inventory
+         *7/12/2024
+         *-added to inventory need to test
+         *
          *
          *
          */

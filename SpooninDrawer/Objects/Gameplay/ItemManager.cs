@@ -46,6 +46,18 @@ namespace SpooninDrawer.Objects.Gameplay
             }
 
         }
+        public void AddToInventory(Player player)
+        {
+            Item tempItem = InteractableItems[0];
+            if (player.Inventory.Exists(x => (x.item == tempItem)))
+            {
+                player.Inventory.Find(x => (x.item == tempItem)).quantity += 1;
+            }
+            else
+            {
+                player.Inventory.Add(new ItemSlot(tempItem, 1));
+            }
+        }
         public Item GetItem()
         {
             return item;

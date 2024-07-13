@@ -236,7 +236,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 {
                     if (!itemManager.IsInteractableEmpty())
                     {
-
+                        itemManager.AddToInventory(player1);
                     }
                 }
             });
