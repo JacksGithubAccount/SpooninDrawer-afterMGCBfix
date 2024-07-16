@@ -80,8 +80,9 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         private const string StatsFont = "Fonts/Stats";
         private StatsObject _statsText;
-        private GameplayText InteractText;
-        private InteractablePopupBox InteractPopupBox;
+        private PopupManager PopupManager;
+        //private GameplayText InteractText;
+        //private InteractablePopupBox InteractPopupBox;
 
         TmxMap _map;
         Texture2D _tileSet;
@@ -167,14 +168,17 @@ namespace SpooninDrawer.Engine.States.Gameplay
             AddGameObject(itemManager.GetItem());
 
             var font = LoadFont(TextFont);
-            InteractText = new GameplayText(font, "Interact");
-            InteractText.zIndex = 13;
-            InteractText.Deactivate();
-            InteractPopupBox = new InteractablePopupBox(InteractText, _playerSprite.Position + new Vector2(100, 100), LoadTexture("Menu/InteractPopupBox"));
-            AddGameObject(InteractPopupBox);
-            AddGameObject(InteractText);
-            InteractPopupBox.zIndex = 12;
-            InteractPopupBox.Deactivate();
+            PopupManager = new PopupManager(font, _playerSprite.Position);
+            PopupManager.InteractableItemPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
+            AddGameObject(PopupManager.InteractableItemPopupBox);
+            //InteractText = new GameplayText(font, "Interact");
+            //InteractText.zIndex = 13;
+            //InteractText.Deactivate();
+            //InteractPopupBox = new InteractablePopupBox(InteractText, _playerSprite.Position + new Vector2(100, 100), LoadTexture("Menu/InteractPopupBox"));
+            //AddGameObject(InteractPopupBox);
+            //AddGameObject(InteractText);
+            //InteractPopupBox.zIndex = 12;
+            //InteractPopupBox.Deactivate();
 
             ResetGame();
         }
@@ -232,7 +236,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     //mc action
                     NotifyEvent(new GameplayEvents.PlayerTest());
                 }
-                if(cmd is GameplayInputCommand.PlayerInteract  && !_playerDead)
+                if (cmd is GameplayInputCommand.PlayerInteract && !_playerDead)
                 {
                     if (!itemManager.IsInteractableEmpty())
                     {
@@ -281,10 +285,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.3f);
             }
             //draws colliders for map
-            foreach (var box in colliders)
+            /*foreach (var box in colliders)
             {
                 spriteBatch.Draw(_tileSet, box.GetRectangle(), Color.Purple);
-            }
+            }*/
 
             if (menuActivate)
             {
@@ -318,11 +322,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var playerInteractableCollisionDetector = new AABBCollisionDetector<BaseGameObject, PlayerSprite>(_interactableGameObjects);
             playerInteractableCollisionDetector.DetectCollisions(_playerSprite, (interactable, player) =>
             {
-                InteractPopupBox.ActivatePopupBox();
+                PopupManager.InteractableItemPopupBox.Activate();
                 itemManager.AddInteractableItem(interactable);
             }, () =>
             {
-                InteractPopupBox.DeactivatePopupBox();
+                PopupManager.InteractableItemPopupBox.Deactivate();
                 itemManager.ClearInteractables();
             });
         }

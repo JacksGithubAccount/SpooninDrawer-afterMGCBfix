@@ -26,20 +26,22 @@ namespace SpooninDrawer.Objects.Gameplay
             BoxTexture = boxTexture;
             TextPosition = boxPosition + new Vector2(10, 10);
         }
-        public void ActivatePopupBox()
-        {
-            GameplayText.Activate();
-            Activate();
-        }
+        public InteractablePopupBox(GameplayText text, Vector2 boxPosition) : this(text, boxPosition, null) { }
+
         public void ActivatePopupBox(string text)
         {
             Text = text;
-            ActivatePopupBox();
+            Activate();
         }
-        public void DeactivatePopupBox()
+        public override void Activate()
         {
-            GameplayText.Deactivate();
-            Deactivate();
+            base.Activate();
+            GameplayText.Activate();
+        }
+        public override void Deactivate()
+        {
+            base.Deactivate();
+            GameplayText.Deactivate();            
         }
         public void ChangeText(string text)
         {

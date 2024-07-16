@@ -416,7 +416,8 @@ namespace SpooninDrawer
          *-need to find to add item to inventory
          *7/12/2024
          *-added to inventory need to test
-         *
+         *7/15/2024
+         *-working on manager for popups, working on loading texture
          *
          *
          */
