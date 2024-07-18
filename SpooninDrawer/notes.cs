@@ -418,7 +418,8 @@ namespace SpooninDrawer
          *-added to inventory need to test
          *7/15/2024
          *-working on manager for popups, working on loading texture
-         *
+         *7/16/2024
+         *-made text appear with pop up so no need to add both to game objects
          *
          */
     }

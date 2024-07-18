@@ -171,14 +171,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             PopupManager = new PopupManager(font, _playerSprite.Position);
             PopupManager.InteractableItemPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
             AddGameObject(PopupManager.InteractableItemPopupBox);
-            //InteractText = new GameplayText(font, "Interact");
-            //InteractText.zIndex = 13;
-            //InteractText.Deactivate();
-            //InteractPopupBox = new InteractablePopupBox(InteractText, _playerSprite.Position + new Vector2(100, 100), LoadTexture("Menu/InteractPopupBox"));
-            //AddGameObject(InteractPopupBox);
-            //AddGameObject(InteractText);
-            //InteractPopupBox.zIndex = 12;
-            //InteractPopupBox.Deactivate();
+
 
             ResetGame();
         }

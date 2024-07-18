@@ -47,5 +47,10 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             Text = text;
         }
+        public override void Render(SpriteBatch spriteBatch)
+        {
+            base.Render(spriteBatch);   
+            GameplayText.Render(spriteBatch);
+        }
     }
 }
