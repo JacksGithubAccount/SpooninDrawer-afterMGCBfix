@@ -28,10 +28,11 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public InteractablePopupBox(GameplayText text, Vector2 boxPosition) : this(text, boxPosition, null) { }
 
-        public void ActivatePopupBox(string text)
+        public void Activate(string text)
         {
-            Text = text;
-            Activate();
+            Text = "Added " + text + " to inventory";
+            base.Activate();
+            GameplayText.Activate();
         }
         public override void Activate()
         {

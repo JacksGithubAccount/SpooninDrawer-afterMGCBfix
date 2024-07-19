@@ -164,9 +164,12 @@ namespace SpooninDrawer.Engine.States
         protected void RemoveGameObject(BaseGameObject gameObject)
         {
             _gameObjects.Remove(gameObject);
-            if (gameObject.Interactable) 
-            { 
-                _interactableGameObjects.Remove(gameObject);
+            if (gameObject != null)
+            {
+                if (gameObject.Interactable)
+                {
+                    _interactableGameObjects.Remove(gameObject);
+                }
             }
         }
 

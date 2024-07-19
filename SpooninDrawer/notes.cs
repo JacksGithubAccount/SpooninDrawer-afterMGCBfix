@@ -420,6 +420,10 @@ namespace SpooninDrawer
          *-working on manager for popups, working on loading texture
          *7/16/2024
          *-made text appear with pop up so no need to add both to game objects
+         *7/17/2024
+         *-text in settings was hidden, turns out they need to be activated. Going into remap throws null, added checker for null
+         *-need to confirm if add to inventory works
+         *
          *
          */
     }

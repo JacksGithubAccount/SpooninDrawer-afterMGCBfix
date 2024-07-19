@@ -18,7 +18,7 @@ namespace SpooninDrawer.Engine.Objects
         public BaseTextObject() { }
         public BaseTextObject(SpriteFont font)
         {
-            _font = font;
+            _font = font;            
         }
 
         public string Text { get; set; }

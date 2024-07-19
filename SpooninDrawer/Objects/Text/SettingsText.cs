@@ -17,6 +17,7 @@ namespace SpooninDrawer.Objects.Text
             Text = text;
             _color = Color.Black;
             Position = new Vector2(0, 0);
+            Activate();
         }
         public SettingsText(SpriteFont font, ref string text)
         {
@@ -24,6 +25,7 @@ namespace SpooninDrawer.Objects.Text
             Text = text;
             _color = Color.Black;
             Position = new Vector2(0, 0);
+            Activate();
         }
         public SettingsText(SpriteFont font, string text, Vector2 position)
         {
@@ -31,6 +33,7 @@ namespace SpooninDrawer.Objects.Text
             Text = text;
             _color = Color.Black;
             Position = position;
+            Activate();
         }
     }
 }

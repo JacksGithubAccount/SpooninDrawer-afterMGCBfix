@@ -229,11 +229,12 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     //mc action
                     NotifyEvent(new GameplayEvents.PlayerTest());
                 }
-                if (cmd is GameplayInputCommand.PlayerInteract && !_playerDead)
+                if (cmd is GameplayInputCommand.PlayerConfirm && !_playerDead)
                 {
                     if (!itemManager.IsInteractableEmpty())
                     {
-                        itemManager.AddToInventory(player1);
+                        var temp = itemManager.AddToInventory(player1);
+                        PopupManager.AddInventoryPopupBox.Activate(temp.ToString());
                     }
                 }
             });

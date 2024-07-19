@@ -39,5 +39,9 @@ namespace SpooninDrawer.Objects.Gameplay
             Type = itemType;
             Description = description;
         }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
