@@ -25,7 +25,7 @@ namespace SpooninDrawer.Objects.Gameplay
             InteractableItemPopupBox.zIndex = 12;
             InteractableItemPopupBox.Deactivate();
 
-            AddInventoryPopupBox = new InteractablePopupBox(new GameplayText(Font, "Interact"), PlayerPosition);
+            AddInventoryPopupBox = new InteractablePopupBox(new GameplayText(Font, "Test"), PlayerPosition);
             AddInventoryPopupBox.GameplayText.zIndex = 13;
             AddInventoryPopupBox.zIndex = 12;
             AddInventoryPopupBox.Deactivate();
@@ -35,7 +35,7 @@ namespace SpooninDrawer.Objects.Gameplay
         private void LoadPopupBox(InteractablePopupBox popupBox)
         {
             //doesnt work
-            popupBox = new InteractablePopupBox(new GameplayText(Font, "Interact"), PlayerPosition + new Vector2(100, 100));
+            popupBox = new InteractablePopupBox(new GameplayText(Font, "Holder"), PlayerPosition + new Vector2(100, 100));
             popupBox.GameplayText.zIndex = 13;
             popupBox.zIndex = 12;
             popupBox.Deactivate();

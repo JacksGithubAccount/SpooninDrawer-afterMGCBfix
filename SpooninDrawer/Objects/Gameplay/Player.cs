@@ -9,5 +9,6 @@ namespace SpooninDrawer.Objects.Gameplay
     public class Player
     {
         public List<ItemSlot> Inventory;
+        public Player() { Inventory = new List<ItemSlot>(); } 
     }
 }

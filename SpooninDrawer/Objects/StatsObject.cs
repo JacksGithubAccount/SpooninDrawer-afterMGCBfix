@@ -26,7 +26,7 @@ namespace SpooninDrawer.Objects
             _font = font;
             NbUpdateCalled = 0;
             NbDrawCalled = 0;
-            
+            Activate();
             
         }
         public void Update(GameTime gameTime)
@@ -62,7 +62,13 @@ namespace SpooninDrawer.Objects
                 MinFPS = FPS;
                 MaxFPS = FPS;
             }
-            Text = $"FPS: {FPS} \n" + $"AvgFPS: {AverageFPS} \n" + $"Running Slowly: {IsRunningSlowly}  \n" + $"Nb Updates: {NbUpdateCalled}  \n" + $"Nb Draws: {NbDrawCalled}" + $"Total Game Time: {gameTime.ElapsedGameTime.TotalSeconds}";
+            Text = $"FPS: {FPS} \n" + 
+                $"AvgFPS: {AverageFPS} \n" + 
+                $"Running Slowly: {IsRunningSlowly}  \n" + 
+                $"Nb Updates: {NbUpdateCalled}  \n" + 
+                $"Nb Draws: {NbDrawCalled}  \n" + 
+                $"Game Time since last update: {gameTime.ElapsedGameTime.TotalSeconds} \n" + 
+                $"Total Game Time: {gameTime.TotalGameTime}";
         }
         public override void Render(SpriteBatch spriteBatch)
         {

@@ -87,7 +87,7 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public bool IsInteractableEmpty()
         {
-            return InteractableItems.Count >= 0;
+            return InteractableItems.Count == 0;
         }
     }
 }

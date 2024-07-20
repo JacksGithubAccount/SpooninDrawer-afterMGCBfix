@@ -80,6 +80,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         private const string StatsFont = "Fonts/Stats";
         private StatsObject _statsText;
+        private GameTime gameTime;
         private PopupManager PopupManager;
         //private GameplayText InteractText;
         //private InteractablePopupBox InteractPopupBox;
@@ -170,7 +171,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var font = LoadFont(TextFont);
             PopupManager = new PopupManager(font, _playerSprite.Position);
             PopupManager.InteractableItemPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
+            PopupManager.AddInventoryPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
             AddGameObject(PopupManager.InteractableItemPopupBox);
+            AddGameObject(PopupManager.AddInventoryPopupBox);
+
 
 
             ResetGame();
@@ -228,9 +232,6 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 {
                     //mc action
                     NotifyEvent(new GameplayEvents.PlayerTest());
-                }
-                if (cmd is GameplayInputCommand.PlayerConfirm && !_playerDead)
-                {
                     if (!itemManager.IsInteractableEmpty())
                     {
                         var temp = itemManager.AddToInventory(player1);
