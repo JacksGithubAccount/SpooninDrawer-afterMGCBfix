@@ -20,17 +20,21 @@ namespace SpooninDrawer.Objects
         public bool IsRunningSlowly { get; set; }
         public int NbUpdateCalled { get; set; }
         public int NbDrawCalled { get; set; }
+        public double GameplayTotalTime { get; set; }
         public StatsObject(SpriteFont font) : base(font)
         {
             Text = "";
             _font = font;
             NbUpdateCalled = 0;
             NbDrawCalled = 0;
+            GameplayTotalTime = 0;
+            zIndex = 99;
             Activate();
             
         }
         public void Update(GameTime gameTime)
-        {            
+        {
+            GameplayTotalTime++;
             NbUpdateCalled++;
             FPS = 1.0f / (float)gameTime.ElapsedGameTime.
            TotalSeconds;
@@ -68,7 +72,8 @@ namespace SpooninDrawer.Objects
                 $"Nb Updates: {NbUpdateCalled}  \n" + 
                 $"Nb Draws: {NbDrawCalled}  \n" + 
                 $"Game Time since last update: {gameTime.ElapsedGameTime.TotalSeconds} \n" + 
-                $"Total Game Time: {gameTime.TotalGameTime}";
+                $"Total Game Time: {gameTime.TotalGameTime} \n" +
+                $"Total Gameplay Time: {GameplayTotalTime} \n"                ;
         }
         public override void Render(SpriteBatch spriteBatch)
         {
