@@ -427,6 +427,9 @@ namespace SpooninDrawer
          *-adding timer to make add to inventory pop up disappear
          *7/21/2024
          *-timer goes too slow, need to adjust
+         *7/24/2024
+         *-trying to get timer to work to make popup disappear
+         *
          *
          */
     }

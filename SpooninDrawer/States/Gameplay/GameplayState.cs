@@ -116,6 +116,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         }
         public override void LoadContent(ContentManager content)
         {
+            gameTime = new GameTime();
             _soundManager.UnloadAllSound();
             if (paused) { paused = false; }
             _debug = true;
@@ -169,7 +170,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             AddGameObject(itemManager.GetItem());
 
             var font = LoadFont(TextFont);
-            PopupManager = new PopupManager(font, _playerSprite.Position);
+            PopupManager = new PopupManager(font, _playerSprite.Position, gameTime);
             PopupManager.InteractableItemPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
             PopupManager.AddInventoryPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
             AddGameObject(PopupManager.InteractableItemPopupBox);
