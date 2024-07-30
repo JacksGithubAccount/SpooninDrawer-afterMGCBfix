@@ -429,6 +429,10 @@ namespace SpooninDrawer
          *-timer goes too slow, need to adjust
          *7/24/2024
          *-trying to get timer to work to make popup disappear
+         *7/29/2024
+         *-got timer to work by passing gametime to activate method
+         *-testing UI positions
+         *
          *
          *
          */

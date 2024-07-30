@@ -28,21 +28,27 @@ namespace SpooninDrawer.States.Dev
         public override void LoadContent(ContentManager content)
         {
             var viewportAdapter = new DefaultViewportAdapter(_graphicsDevice);
-            _camera = new OrthographicCamera(viewportAdapter);
-            _playerSprite = new PlayerSprite(LoadTexture(PlayerFighter), LoadAnimation(PlayerAnimationTurnLeft), LoadAnimation(PlayerAnimationTurnRight), LoadAnimation(PlayerAnimationIdle));
+            //_camera = new OrthographicCamera(viewportAdapter);
+            //_playerSprite = new PlayerSprite(LoadTexture(PlayerFighter), LoadAnimation(PlayerAnimationTurnLeft), LoadAnimation(PlayerAnimationTurnRight), LoadAnimation(PlayerAnimationIdle));
+            var turnLeftAnimation = LoadAnimation(PlayerAnimationTurnLeft);
+            var turnRightAnimation = LoadAnimation(PlayerAnimationTurnRight);
+            var idelAnimation = LoadAnimation(PlayerAnimationIdle);
+            _playerSprite = new PlayerSprite(LoadTexture(PlayerFighter), turnLeftAnimation, turnRightAnimation, idelAnimation);
+            _playerSprite.blank = blankTexture;
             _playerSprite.Position = new Vector2(0, 0);
         }
         public override void Render(SpriteBatch spriteBatch)
         {
-            var transformMatrix = _camera.GetViewMatrix();
-            spriteBatch.Begin(transformMatrix: transformMatrix);
-            _playerSprite.Render(spriteBatch);
-            spriteBatch.End();
+            if(_playerSprite != null)
+                _playerSprite.Render(spriteBatch);
         }
         public override void UpdateGameState(GameTime gameTime)
         {
-            _playerSprite.Update(gameTime);
-            _camera.Position = _playerSprite.Position - _camera.Origin;
+            if (_playerSprite != null && _camera != null)
+            {
+                _playerSprite.Update(gameTime);
+                _camera.Position = _playerSprite.Position - _camera.Origin;
+            }
         }
         private void KeepPlayerInBounds()
         {
@@ -85,25 +91,25 @@ namespace SpooninDrawer.States.Dev
 
                 if (cmd is GameplayInputCommand.PlayerMoveLeft)
                 {
-                    _playerSprite.MoveLeft();
+                    //_playerSprite.MoveLeft();
                     KeepPlayerInBounds();
                 }
 
                 if (cmd is GameplayInputCommand.PlayerMoveRight)
                 {
-                    _playerSprite.MoveRight();
+                    //_playerSprite.MoveRight();
                     KeepPlayerInBounds();
                 }
 
                 if (cmd is GameplayInputCommand.PlayerMoveUp)
                 {
-                    _playerSprite.MoveUp();
+                    //_playerSprite.MoveUp();
                     KeepPlayerInBounds();
                 }
 
                 if (cmd is GameplayInputCommand.PlayerMoveDown)
                 {
-                    _playerSprite.MoveDown();
+                    //_playerSprite.MoveDown();
                     KeepPlayerInBounds();
                 }
 

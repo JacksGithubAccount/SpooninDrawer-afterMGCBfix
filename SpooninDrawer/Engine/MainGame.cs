@@ -6,6 +6,7 @@ using SpooninDrawer.Engine.States.Gameplay;
 using SpooninDrawer.Objects;
 using SpooninDrawer.Objects.Screens;
 using SpooninDrawer.States;
+using SpooninDrawer.States.Dev;
 using SpooninDrawer.States.Splash;
 using System;
 
@@ -18,6 +19,7 @@ namespace SpooninDrawer.Engine
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteBatch testSpriteBatch;
 
         private RenderTarget2D _renderTarget;
         private Rectangle _renderScaleRectangle;
@@ -27,6 +29,7 @@ namespace SpooninDrawer.Engine
         private float _designedResolutionAspectRatio;
 
         private BaseGameState _firstGameState;
+        private BaseGameState _testGameState;
 
         private int targetFPS = 60;
 
@@ -39,6 +42,7 @@ namespace SpooninDrawer.Engine
             _DesignedResolutionWidth = width;
             _DesignedResolutionHeight = height;
             _designedResolutionAspectRatio = width / (float)height;
+            _testGameState = new TestCameraState();
         }
 
         /// <summary>
@@ -63,7 +67,7 @@ namespace SpooninDrawer.Engine
                 SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.DiscardContents);
 
             _renderScaleRectangle = GetScaleRectangle();
-
+            //_testGameState.Initialize(Content, Window, GraphicsDevice, graphics);
             base.Initialize();
         }
 
@@ -104,8 +108,11 @@ namespace SpooninDrawer.Engine
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            testSpriteBatch = new SpriteBatch(GraphicsDevice);
 
 
+
+            //_testGameState.LoadContent(Content);
             SwitchGameState(_firstGameState);
             //CallGameState(_menuGameState);
             menuStateBool = false;
@@ -159,6 +166,7 @@ namespace SpooninDrawer.Engine
         {
             //_currentGameState.HandleInput(gameTime);
             _currentGameState.Update(gameTime);
+            _testGameState.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -190,9 +198,12 @@ namespace SpooninDrawer.Engine
             }
             else
                 spriteBatch.Begin();
-
+            //testSpriteBatch.Begin();
+            
             _currentGameState.Render(spriteBatch);
+            //_testGameState.Render(testSpriteBatch);
             spriteBatch.End();
+            //testSpriteBatch.End();
 
             // Now render the scaled content
             graphics.GraphicsDevice.SetRenderTarget(null);
