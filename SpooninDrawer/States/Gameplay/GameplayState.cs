@@ -170,7 +170,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             AddGameObject(itemManager.GetItem());
 
             var font = LoadFont(TextFont);
-            PopupManager = new PopupManager(font, _playerSprite.Position);
+            PopupManager = new PopupManager(font, _playerSprite.Position, _camera);
             PopupManager.InteractableItemPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
             PopupManager.AddInventoryPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
             AddGameObject(PopupManager.InteractableItemPopupBox);
@@ -251,7 +251,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 _tiledMapRenderer.Update(gameTime);
                 _playerSprite.Update(gameTime);
                 _camera.Position = _playerSprite.Position - _camera.Origin;
-
+                PopupManager.Update(gameTime, _camera);
                 DetectCollisions();
             }
             if (_debug)

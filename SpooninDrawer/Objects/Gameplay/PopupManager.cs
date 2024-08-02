@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
+using MonoGame.Extended;
 
 namespace SpooninDrawer.Objects.Gameplay
 {
@@ -17,16 +19,19 @@ namespace SpooninDrawer.Objects.Gameplay
         private Vector2 PlayerPosition;
         private GameTime gameTime;
 
-        public PopupManager(SpriteFont font, Vector2 playerPosition)
+
+
+        public PopupManager(SpriteFont font, Vector2 playerPosition, OrthographicCamera camera)
         {
             Font = font;
             PlayerPosition = playerPosition;
+            
             InteractableItemPopupBox = new InteractablePopupBox(new GameplayText(Font, "Interact"), PlayerPosition + new Vector2(100, 100));
             InteractableItemPopupBox.GameplayText.zIndex = 13;
             InteractableItemPopupBox.zIndex = 12;
             InteractableItemPopupBox.Deactivate();
-
-            AddInventoryPopupBox = new InteractablePopupBox(new GameplayText(Font, "Test"), PlayerPosition);
+            
+            AddInventoryPopupBox = new InteractablePopupBox(new GameplayText(Font, "Test"), new Vector2(camera.Position.X, camera.Position.Y));
             AddInventoryPopupBox.GameplayText.zIndex = 13;
             AddInventoryPopupBox.zIndex = 12;
             AddInventoryPopupBox.Deactivate();
@@ -40,6 +45,10 @@ namespace SpooninDrawer.Objects.Gameplay
             popupBox.GameplayText.zIndex = 13;
             popupBox.zIndex = 12;
             popupBox.Deactivate();
+        }
+        public void Update(GameTime gameTime, OrthographicCamera camera)
+        {
+            AddInventoryPopupBox.Position = new Vector2(camera.Position.X, camera.Position.Y);
         }
     }
 }

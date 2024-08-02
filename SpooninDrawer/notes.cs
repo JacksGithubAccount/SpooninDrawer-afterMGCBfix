@@ -432,6 +432,8 @@ namespace SpooninDrawer
          *7/29/2024
          *-got timer to work by passing gametime to activate method
          *-testing UI positions
+         *8/1/2024
+         *-got popup box to move with screen, now need to make text move and also all the update stuff to updates
          *
          *
          *
