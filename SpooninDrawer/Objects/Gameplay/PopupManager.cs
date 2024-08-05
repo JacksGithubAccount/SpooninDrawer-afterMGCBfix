@@ -15,9 +15,9 @@ namespace SpooninDrawer.Objects.Gameplay
     {
         public InteractablePopupBox InteractableItemPopupBox;
         public InteractablePopupBox AddInventoryPopupBox;
+        private List<InteractablePopupBox> AddInventoryPopupBoxes;
         private SpriteFont Font;
         private Vector2 PlayerPosition;
-        private GameTime gameTime;
 
 
 
@@ -25,30 +25,42 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             Font = font;
             PlayerPosition = playerPosition;
-            
+            AddInventoryPopupBoxes = new List<InteractablePopupBox>();
+
             InteractableItemPopupBox = new InteractablePopupBox(new GameplayText(Font, "Interact"), PlayerPosition + new Vector2(100, 100));
             InteractableItemPopupBox.GameplayText.zIndex = 13;
             InteractableItemPopupBox.zIndex = 12;
             InteractableItemPopupBox.Deactivate();
             
-            AddInventoryPopupBox = new InteractablePopupBox(new GameplayText(Font, "Test"), new Vector2(camera.Position.X, camera.Position.Y));
+            AddInventoryPopupBox = new InteractablePopupBox(new GameplayText(Font, "Test"), new Vector2(camera.BoundingRectangle.Width / 2, camera.Position.Y));
             AddInventoryPopupBox.GameplayText.zIndex = 13;
             AddInventoryPopupBox.zIndex = 12;
             AddInventoryPopupBox.Deactivate();
 
-
         }
         private void LoadPopupBox(InteractablePopupBox popupBox)
         {
-            //doesnt work
+            /*doesnt work
             popupBox = new InteractablePopupBox(new GameplayText(Font, "Holder"), PlayerPosition + new Vector2(100, 100));
             popupBox.GameplayText.zIndex = 13;
             popupBox.zIndex = 12;
-            popupBox.Deactivate();
+            popupBox.Deactivate();*/
+        }
+        public void ActivateAddInventoryPopupBox(string ItemName, GameTime gameTime)
+        {            
+            AddInventoryPopupBox.FadeAwayPopup = true;
+            AddInventoryPopupBox.PopupTime = gameTime.TotalGameTime.TotalSeconds;
+            AddInventoryPopupBox.Activate(ItemName);
         }
         public void Update(GameTime gameTime, OrthographicCamera camera)
         {
-            AddInventoryPopupBox.Position = new Vector2(camera.Position.X, camera.Position.Y);
+            if(AddInventoryPopupBox.Active)
+                AddInventoryPopupBox.Position = new Vector2(camera.Position.X, camera.Center.Y);
+
+            if (AddInventoryPopupBox.FadeAwayPopup & gameTime.TotalGameTime.TotalSeconds > AddInventoryPopupBox.PopupTime + AddInventoryPopupBox.FadeAwayTime)
+            {
+                AddInventoryPopupBox.Deactivate();
+            }
         }
     }
 }

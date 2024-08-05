@@ -434,7 +434,9 @@ namespace SpooninDrawer
          *-testing UI positions
          *8/1/2024
          *-got popup box to move with screen, now need to make text move and also all the update stuff to updates
-         *
+         *8/4/2024
+         *-linked text position to box position and changed positions to appear center left. Moved code for updating from the popup box to the manager
+         *-next is to account for multiple popup boxes
          *
          *
          */

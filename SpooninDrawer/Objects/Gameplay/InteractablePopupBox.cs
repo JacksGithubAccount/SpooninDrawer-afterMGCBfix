@@ -14,14 +14,30 @@ namespace SpooninDrawer.Objects.Gameplay
     {
         public GameplayText GameplayText { get; set; }
         public string Text { get { return GameplayText.Text; } set { GameplayText.Text = value; } }
-        public Vector2 TextPosition { get { return GameplayText.Position; } set { GameplayText.Position = value; } }
-        public Vector2 BoxPosition { get { return Position; } set { Position = value; } }
+        private Vector2 TextPosition { get { return GameplayText.Position; } set { GameplayText.Position = value; } }
+        private Vector2 BoxPosition { get { return Position; } set { Position = value; } }
+        public override Vector2 Position
+        {
+            get { return _position; }
+            set
+            {
+                var deltaX = value.X - _position.X;
+                var deltaY = value.Y - _position.Y;
+                _position = value;
+                if(GameplayText != null)
+                    GameplayText.Position = value;
+                foreach (var bb in _boundingBoxes)
+                {
+                    bb.Position = new Vector2(bb.Position.X + deltaX, bb.Position.Y + deltaY);
+                }
+            }
+        }
+
         public Texture2D BoxTexture { get { return _texture; } set { _texture = value; } }
         public const string TexturePath = "Menu/InteractPopupBox";
         public double FadeAwayTime = 3;
-        private double PopupTime = 0;
-        private bool FadeAwayPopup = false;
-        private GameTime gameTime;
+        public double PopupTime = 0;
+        public bool FadeAwayPopup = false;
 
         public InteractablePopupBox(GameplayText text, Vector2 boxPosition, Texture2D boxTexture)
         {
@@ -29,7 +45,6 @@ namespace SpooninDrawer.Objects.Gameplay
             BoxPosition = boxPosition;
             BoxTexture = boxTexture;
             TextPosition = boxPosition + new Vector2(10, 10);
-            gameTime = new GameTime();
         }
         public InteractablePopupBox(GameplayText text, Vector2 boxPosition) : this(text, boxPosition, null) { }
 
@@ -40,10 +55,8 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void Activate(string text, GameTime gameTime)
         {
-            FadeAwayPopup = true;
-            PopupTime = gameTime.TotalGameTime.TotalSeconds;
-            this.gameTime = gameTime;
-            Text = "Added " + text + " to inventory" + PopupTime;
+            FadeAwayPopup = true;            
+            Text = "Added " + text + " to inventory";
             Activate();
         }
         public override void Activate()
@@ -65,10 +78,7 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             base.Render(spriteBatch);   
             GameplayText.Render(spriteBatch);
-            if (FadeAwayPopup & gameTime.TotalGameTime.TotalSeconds > PopupTime + FadeAwayTime) 
-            { 
-                Deactivate();
-            }
+
         }
     }
 }
