@@ -32,6 +32,7 @@ namespace SpooninDrawer.Objects.Gameplay
                 }
             }
         }
+        //public new int zIndex { get { return zIndex; } set { zIndex = value; GameplayText.zIndex = value + 1; } }
 
         public Texture2D BoxTexture { get { return _texture; } set { _texture = value; } }
         public const string TexturePath = "Menu/InteractPopupBox";
@@ -53,11 +54,10 @@ namespace SpooninDrawer.Objects.Gameplay
             Text = "Added " + text + " to inventory";
             Activate();
         }
-        public void Activate(string text, GameTime gameTime)
+        public void Activate(string text, bool IsFadeAway)
         {
-            FadeAwayPopup = true;            
-            Text = "Added " + text + " to inventory";
-            Activate();
+            FadeAwayPopup = IsFadeAway;            
+            Activate(text);
         }
         public override void Activate()
         {

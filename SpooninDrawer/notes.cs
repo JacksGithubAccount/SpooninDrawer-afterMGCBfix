@@ -437,7 +437,8 @@ namespace SpooninDrawer
          *8/4/2024
          *-linked text position to box position and changed positions to appear center left. Moved code for updating from the popup box to the manager
          *-next is to account for multiple popup boxes
-         *
+         *8/5/2024
+         *-created list, but object in list isn't being added to game object list, may have to object pool
          *
          */
     }
