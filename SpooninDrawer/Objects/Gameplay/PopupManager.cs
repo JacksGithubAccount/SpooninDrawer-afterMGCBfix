@@ -16,6 +16,9 @@ namespace SpooninDrawer.Objects.Gameplay
     {
         public InteractablePopupBox InteractableItemPopupBox;
         public InteractablePopupBox AddInventoryPopupBox;
+        private Texture2D InteractableTexture;
+        private Texture2D AddInventoryTexture;
+
         private List<InteractablePopupBox> AddInventoryPopupBoxes;
         private SpriteFont Font;
         private Vector2 PlayerPosition;
@@ -39,20 +42,50 @@ namespace SpooninDrawer.Objects.Gameplay
             AddInventoryPopupBox.Deactivate();
 
         }
+        public void SetPopupBoxTextures(Texture2D interactable, Texture2D addInventory)
+        {
+            InteractableTexture = interactable;
+            AddInventoryTexture = addInventory;
+        }
         private InteractablePopupBox CreatePopupBox(string ItemName)
         {
-            InteractablePopupBox popupBox = new InteractablePopupBox(new GameplayText(Font, "Holder"), new Vector2(100, 100));
+            InteractablePopupBox popupBox = new InteractablePopupBox(new GameplayText(Font, "Holder"), new Vector2(100, 100), AddInventoryTexture);
             popupBox.GameplayText.zIndex = 13;
             popupBox.zIndex = 12;
             popupBox.Deactivate();
             return popupBox;
         }
-        public void ActivateAddInventoryPopupBox(string ItemName, GameTime gameTime)
+        public InteractablePopupBox ActivateAddInventoryPopupBox(string ItemName, GameTime gameTime)
         {
-            InteractablePopupBox popupBox = CreatePopupBox(ItemName);
-            popupBox.PopupTime = gameTime.TotalGameTime.TotalSeconds;
-            popupBox.Activate(ItemName, true);
-            AddInventoryPopupBoxes.Add(popupBox);
+            if (AddInventoryPopupBoxes.Count < 10)
+            {
+                InteractablePopupBox popupBox = CreatePopupBox(ItemName);
+                popupBox.PopupTime = gameTime.TotalGameTime.TotalSeconds;
+                popupBox.Activate(ItemName, true);
+                AddInventoryPopupBoxes.Add(popupBox);
+                return popupBox;
+            }
+            else
+            {
+                InteractablePopupBox popupBox = AddInventoryPopupBoxes.Find((x => x.Active == false));
+                if(popupBox != null)
+                {
+                    popupBox.Activate(ItemName);
+                }
+                else
+                {
+                    popupBox = AddInventoryPopupBoxes.First();
+                    foreach (var item in AddInventoryPopupBoxes)
+                    {
+                        if(popupBox.PopupTime > item.PopupTime)
+                        {
+                            popupBox = item;
+                        }
+                    }
+                }
+                return popupBox;
+            }
+            
         }
         public void DeactivateAddInventoryPopupBox(InteractablePopupBox popupBox)
         {

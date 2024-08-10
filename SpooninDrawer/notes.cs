@@ -439,6 +439,9 @@ namespace SpooninDrawer
          *-next is to account for multiple popup boxes
          *8/5/2024
          *-created list, but object in list isn't being added to game object list, may have to object pool
+         *8/9/2024
+         *-found that new popups in list isn't being added to game objects. Added and texture not loading. Fixed by loading needed texture and passing to manager
+         *-made it so max of 10 add inventory popups after that it grabs oldest popup and overwrites that. Next is to make positions work 
          *
          */
     }

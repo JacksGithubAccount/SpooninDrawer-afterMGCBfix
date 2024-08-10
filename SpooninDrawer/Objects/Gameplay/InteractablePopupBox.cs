@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SpooninDrawer.Engine.Objects;
 using SpooninDrawer.Objects.Text;
@@ -25,7 +26,7 @@ namespace SpooninDrawer.Objects.Gameplay
                 var deltaY = value.Y - _position.Y;
                 _position = value;
                 if(GameplayText != null)
-                    GameplayText.Position = value;
+                    GameplayText.Position = value + new Vector2(5,5);
                 foreach (var bb in _boundingBoxes)
                 {
                     bb.Position = new Vector2(bb.Position.X + deltaX, bb.Position.Y + deltaY);
@@ -40,14 +41,15 @@ namespace SpooninDrawer.Objects.Gameplay
         public double PopupTime = 0;
         public bool FadeAwayPopup = false;
 
-        public InteractablePopupBox(GameplayText text, Vector2 boxPosition, Texture2D boxTexture)
+
+        public InteractablePopupBox(GameplayText text, Vector2 position, Texture2D boxTexture)
         {
             GameplayText = text;
-            BoxPosition = boxPosition;
+            Position = position;
             BoxTexture = boxTexture;
-            TextPosition = boxPosition + new Vector2(10, 10);
+            //TextPosition = boxPosition + new Vector2(10, 10);
         }
-        public InteractablePopupBox(GameplayText text, Vector2 boxPosition) : this(text, boxPosition, null) { }
+        public InteractablePopupBox(GameplayText text, Vector2 position) : this(text, position, null) { }
 
         public void Activate(string text)
         {
@@ -74,6 +76,7 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             Text = text;
         }
+
         public override void Render(SpriteBatch spriteBatch)
         {
             base.Render(spriteBatch);   
