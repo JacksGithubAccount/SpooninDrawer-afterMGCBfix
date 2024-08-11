@@ -78,7 +78,8 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void RemoveInteractableItem(Item item)
         {
-            InteractableItems.Remove(item);
+            item.Deactivate();
+            InteractableItems.Remove(item);            
         }
         public void ClearInteractables()
         {

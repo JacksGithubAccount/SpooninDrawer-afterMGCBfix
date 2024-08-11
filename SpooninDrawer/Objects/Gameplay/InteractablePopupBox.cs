@@ -15,18 +15,19 @@ namespace SpooninDrawer.Objects.Gameplay
     {
         public GameplayText GameplayText { get; set; }
         public string Text { get { return GameplayText.Text; } set { GameplayText.Text = value; } }
+        public Vector2 MovePopupBoxUp = new Vector2(0, 0);
         private Vector2 TextPosition { get { return GameplayText.Position; } set { GameplayText.Position = value; } }
         private Vector2 BoxPosition { get { return Position; } set { Position = value; } }
         public override Vector2 Position
         {
-            get { return _position; }
+            get { return Position; }
             set
             {
                 var deltaX = value.X - _position.X;
                 var deltaY = value.Y - _position.Y;
-                _position = value;
+                _position = value + MovePopupBoxUp;
                 if(GameplayText != null)
-                    GameplayText.Position = value + new Vector2(5,5);
+                    GameplayText.Position = value + new Vector2(5,5) + MovePopupBoxUp;
                 foreach (var bb in _boundingBoxes)
                 {
                     bb.Position = new Vector2(bb.Position.X + deltaX, bb.Position.Y + deltaY);
@@ -40,6 +41,7 @@ namespace SpooninDrawer.Objects.Gameplay
         public double FadeAwayTime = 3;
         public double PopupTime = 0;
         public bool FadeAwayPopup = false;
+        
 
 
         public InteractablePopupBox(GameplayText text, Vector2 position, Texture2D boxTexture)

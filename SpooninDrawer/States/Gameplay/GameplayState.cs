@@ -236,9 +236,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     NotifyEvent(new GameplayEvents.PlayerTest());
                     if (!itemManager.IsInteractableEmpty())
                     {
-                        var temp = itemManager.AddToInventory(player1);
-                        //PopupManager.AddInventoryPopupBox.Activate(temp.ToString(), gameTime);
+                        Item temp = itemManager.AddToInventory(player1);
                         AddGameObject(PopupManager.ActivateAddInventoryPopupBox(temp.ToString(), gameTime));
+                        itemManager.RemoveInteractableItem(temp);
+                        RemoveGameObject(temp);
                     }
                 }
             });

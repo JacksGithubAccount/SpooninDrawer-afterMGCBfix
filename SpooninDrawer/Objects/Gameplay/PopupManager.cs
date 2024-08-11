@@ -22,7 +22,6 @@ namespace SpooninDrawer.Objects.Gameplay
         private List<InteractablePopupBox> AddInventoryPopupBoxes;
         private SpriteFont Font;
         private Vector2 PlayerPosition;
-        
 
 
         public PopupManager(SpriteFont font, Vector2 playerPosition, OrthographicCamera camera)
@@ -63,6 +62,15 @@ namespace SpooninDrawer.Objects.Gameplay
                 popupBox.PopupTime = gameTime.TotalGameTime.TotalSeconds;
                 popupBox.Activate(ItemName, true);
                 AddInventoryPopupBoxes.Add(popupBox);
+                if (AddInventoryPopupBoxes.Count > 1)
+                {
+                    int MovePopupBoxUp = -50 * (AddInventoryPopupBoxes.Count - 1);
+                    foreach (var item in AddInventoryPopupBoxes)
+                    {
+                        item.MovePopupBoxUp = new Vector2(0, MovePopupBoxUp);
+                        MovePopupBoxUp = MovePopupBoxUp + 50;
+                    }
+                    }
                 return popupBox;
             }
             else
@@ -75,12 +83,17 @@ namespace SpooninDrawer.Objects.Gameplay
                 else
                 {
                     popupBox = AddInventoryPopupBoxes.First();
+                    int MovePopupBoxUp = -50 * (AddInventoryPopupBoxes.Count - 1);
                     foreach (var item in AddInventoryPopupBoxes)
                     {
                         if(popupBox.PopupTime > item.PopupTime)
                         {
                             popupBox = item;
-                        }
+                            AddInventoryPopupBoxes.Remove(item);
+                            AddInventoryPopupBoxes.Add(popupBox);
+                        }                        
+                        item.MovePopupBoxUp = new Vector2(0, MovePopupBoxUp);
+                        MovePopupBoxUp = MovePopupBoxUp + 50;
                     }
                 }
                 return popupBox;
