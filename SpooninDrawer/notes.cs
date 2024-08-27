@@ -448,6 +448,8 @@ namespace SpooninDrawer
          *-next is drawer?
          *8/25/2024
          *-adding drawer
+         *8/26/2024
+         *-more drawer, also instead of a texture2d, drawer may need to be a sprite sheet since it'll need animation for opening
          *
          */
     }
