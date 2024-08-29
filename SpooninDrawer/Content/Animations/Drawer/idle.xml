@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+ <Asset Type="Engine2D.PipelineExtensions.AnimationData">
+ <AnimationSpeed>3</AnimationSpeed>
+ <IsLooping>false</IsLooping>
+ <Frames>
+ <Item>
+ <X>0</X>
+ <Y>0</Y>
+ <CellWidth>116</CellWidth>
+ <CellHeight>152</CellHeight>
+ </Item>
+  </Frames>
+ </Asset>
+</XnaContent>
