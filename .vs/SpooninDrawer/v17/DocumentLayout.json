@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\notes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\notes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\gameplay\\interactableoverworldobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\gameplay\\interactableoverworldobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\gameplay\\interactableoverworldobjectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\gameplay\\interactableoverworldobjectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,32 +19,16 @@
       "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\states\\gameplay\\gameplaystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\gameplay\\interactableoverworldobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\gameplay\\interactableoverworldobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\collidablegameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\collidablegameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\engine\\objects\\basegameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\engine\\objects\\basegameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\playersprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\playersprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\notes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\notes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\gameplay\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\gameplay\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\text\\settingstext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\text\\settingstext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\engine\\maingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\engine\\maingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\gameplay\\popupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\gameplay\\popupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,120 +38,99 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "notes.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\notes.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\notes.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\notes.cs",
               "RelativeToolTip": "SpooninDrawer\\notes.cs",
-              "ViewState": "AQIAAKQBAAAAAAAAAAAAAMMBAACAAAAA",
+              "ViewState": "AQIAAKgBAAAAAAAAAAAAAMgBAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-09T00:39:30.306Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
+              "Title": "CollidableGameObject.cs",
+              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\CollidableGameObject.cs",
+              "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\CollidableGameObject.cs",
+              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\CollidableGameObject.cs",
+              "RelativeToolTip": "SpooninDrawer\\Objects\\CollidableGameObject.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAiwBMAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-30T02:58:58.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BaseGameObject.cs",
+              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Engine\\Objects\\BaseGameObject.cs",
+              "RelativeDocumentMoniker": "SpooninDrawer\\Engine\\Objects\\BaseGameObject.cs",
+              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Engine\\Objects\\BaseGameObject.cs",
+              "RelativeToolTip": "SpooninDrawer\\Engine\\Objects\\BaseGameObject.cs",
+              "ViewState": "AQIAAHEAAAAAAAAAAAA5wH4AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-30T02:41:48.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "PlayerSprite.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\PlayerSprite.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\PlayerSprite.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\PlayerSprite.cs",
               "RelativeToolTip": "SpooninDrawer\\Objects\\PlayerSprite.cs",
-              "ViewState": "AQIAADUAAAAAAAAAAAAUwEUAAAAPAAAA",
+              "ViewState": "AQIAALwAAAAAAAAAAAAqwL8AAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-29T01:57:49.707Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "InteractableOverworldObjectManager.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\InteractableOverworldObjectManager.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Gameplay\\InteractableOverworldObjectManager.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\InteractableOverworldObjectManager.cs",
               "RelativeToolTip": "SpooninDrawer\\Objects\\Gameplay\\InteractableOverworldObjectManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAFAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-26T03:08:29.209Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "InteractableOverworldObject.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\InteractableOverworldObject.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Gameplay\\InteractableOverworldObject.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\InteractableOverworldObject.cs",
               "RelativeToolTip": "SpooninDrawer\\Objects\\Gameplay\\InteractableOverworldObject.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAABkAAABDAAAA",
+              "ViewState": "AQIAABgAAAAAAAAAAAASwC0AAAD7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-26T02:33:58.339Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MainGame.cs",
-              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Engine\\MainGame.cs",
-              "RelativeDocumentMoniker": "SpooninDrawer\\Engine\\MainGame.cs",
-              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Engine\\MainGame.cs",
-              "RelativeToolTip": "SpooninDrawer\\Engine\\MainGame.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAkwBwAAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T00:39:51.717Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "SettingsText.cs",
-              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Text\\SettingsText.cs",
-              "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Text\\SettingsText.cs",
-              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Text\\SettingsText.cs",
-              "RelativeToolTip": "SpooninDrawer\\Objects\\Text\\SettingsText.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABMAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T03:09:33.772Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Item.cs",
-              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\Item.cs",
-              "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Gameplay\\Item.cs",
-              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\Item.cs",
-              "RelativeToolTip": "SpooninDrawer\\Objects\\Gameplay\\Item.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAQwCUAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-11T03:30:08.045Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "GameplayState.cs",
               "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\States\\Gameplay\\GameplayState.cs",
               "RelativeDocumentMoniker": "SpooninDrawer\\States\\Gameplay\\GameplayState.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\States\\Gameplay\\GameplayState.cs",
               "RelativeToolTip": "SpooninDrawer\\States\\Gameplay\\GameplayState.cs",
-              "ViewState": "AQIAAHwAAAAAAAAAAAAQwIsAAAAxAAAA",
+              "ViewState": "AQIAAHcAAAAAAAAAAAAAAIcAAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-21T02:20:43.339Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "PopupManager.cs",
-              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\PopupManager.cs",
-              "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Gameplay\\PopupManager.cs",
-              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\PopupManager.cs",
-              "RelativeToolTip": "SpooninDrawer\\Objects\\Gameplay\\PopupManager.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAswBgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T02:50:44.503Z"
             }
           ]
         }

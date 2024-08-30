@@ -226,3 +226,5 @@ C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\n
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\obj\Debug\net6.0\SpooninD.CA482F7B.Up2Date
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Items\spoon.xnb
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Menu\InteractPopupBox.xnb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Animations\Drawer\idle.xnb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Sprites\Animations\DrawerSpriteSheet.xnb

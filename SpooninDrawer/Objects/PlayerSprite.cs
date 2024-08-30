@@ -189,7 +189,7 @@ namespace SpooninDrawer.Objects
                 _MoveDirection.Y += PlayerSpeed;
             }
         }
-        public void HandleMapCollision(MapTileCollider MapTile)
+        public void HandleMapCollision(CollidableGameObject MapTile)
         {
             if(!Collided.Contains(MapTile.GetRectangle()))
                 Collided.Add(MapTile.GetRectangle());

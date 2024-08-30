@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects
 {
-    public class MapTileCollider : BaseGameObject
+    public class CollidableGameObject : BaseGameObject
     {
         private int BBPosX;
         private int BBPosY;
@@ -17,7 +17,7 @@ namespace SpooninDrawer.Objects
 
         private Rectangle _rectangle;
 
-        public MapTileCollider(Rectangle rect)
+        public CollidableGameObject(Rectangle rect)
         {
             _rectangle = rect;
             BBPosX = rect.X; BBPosY = rect.Y;

@@ -91,12 +91,12 @@ namespace SpooninDrawer.Engine.States.Gameplay
         TiledMapTile _tiledMapTile;
         TiledMapRenderer _tiledMapRenderer;
         TiledMapLayer _tiledMapLayer;
-        private List<MapTileCollider> colliders;
+        private List<CollidableGameObject> colliders;
         private TilemapManager _tilemapManager;
 
         public Player player1;
         private ItemManager itemManager;
-
+        private InteractableOverworldObjectManager InteractableOverworldObjectManager;
 
         private OrthographicCamera _camera;
 
@@ -113,6 +113,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             base.Initialize(contentManager, window, graphicsDevice, graphicsDeviceManager);
             player1 = new Player();
             itemManager = new ItemManager();
+            InteractableOverworldObjectManager = new InteractableOverworldObjectManager();
         }
         public override void LoadContent(ContentManager content)
         {
@@ -121,7 +122,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             if (paused) { paused = false; }
             _debug = true;
             //_explosionTexture = LoadTexture(ExplosionTexture);
-            
+
             _map = new TmxMap("Content/TiledMaps/testain.tmx");
             _tileSet = content.Load<Texture2D>(TilesetTest + "_0"); // TilesetTest + "_1" + _map.Tilesets[0].Name.ToString() "Content/TileSets/incrediblybadmspainttileset.png"
             int tileWidth = _map.Tilesets[0].TileWidth;
@@ -131,10 +132,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
             _tiledMap = LoadTiledMap(TiledMapTest);
             _tiledMapRenderer = GetTiledMapRenderer(_tiledMap);
             _tiledMapLayer = _tiledMap.GetLayer("Collision");
-            colliders = new List<MapTileCollider>();
+            colliders = new List<CollidableGameObject>();
             foreach (var o in _map.ObjectGroups["Collision"].Objects)
             {
-                colliders.Add(new MapTileCollider(new Rectangle((int)o.X, (int)o.Y, (int)o.Width, (int)o.Height)));
+                colliders.Add(new CollidableGameObject(new Rectangle((int)o.X, (int)o.Y, (int)o.Width, (int)o.Height)));
             }
 
             var turnLeftAnimation = LoadAnimation(PlayerAnimationTurnLeft);
@@ -169,6 +170,9 @@ namespace SpooninDrawer.Engine.States.Gameplay
             itemManager.LoadContent(content);
             AddGameObject(itemManager.GetItem());
 
+            InteractableOverworldObjectManager.LoadContent(content);
+            colliders.Add(InteractableOverworldObjectManager.Drawer);
+
             var font = LoadFont(TextFont);
             PopupManager = new PopupManager(font, _playerSprite.Position, _camera);
             PopupManager.InteractableItemPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
@@ -177,7 +181,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             AddGameObject(PopupManager.InteractableItemPopupBox);
             AddGameObject(PopupManager.AddInventoryPopupBox);
 
-            
+
 
             ResetGame();
         }
@@ -254,6 +258,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 _tiledMapRenderer.Update(gameTime);
                 _playerSprite.Update(gameTime);
                 _camera.Position = _playerSprite.Position - _camera.Origin;
+                InteractableOverworldObjectManager.Update(gameTime);
                 PopupManager.Update(gameTime, _camera);
                 DetectCollisions();
             }
@@ -275,6 +280,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
             base.Render(spriteBatch);
 
             _playerSprite.Render(spriteBatch);
+
+            InteractableOverworldObjectManager.Render(spriteBatch);
 
             if (_gameOver)
             {
@@ -310,7 +317,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         private void DetectCollisions()
         {
-            var playerMapCollisionDetector = new AABBCollisionDetector<MapTileCollider, PlayerSprite>(colliders);
+            var playerMapCollisionDetector = new AABBCollisionDetector<CollidableGameObject, PlayerSprite>(colliders);
             playerMapCollisionDetector.DetectCollisions(_playerSprite, (mapTile, player) =>
             {
                 _playerSprite.HandleMapCollision(mapTile);

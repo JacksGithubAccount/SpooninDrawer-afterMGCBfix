@@ -450,7 +450,11 @@ namespace SpooninDrawer
          *-adding drawer
          *8/26/2024
          *-more drawer, also instead of a texture2d, drawer may need to be a sprite sheet since it'll need animation for opening
-         *
+         *8/28/2024
+         *-implementing more to make spritesheet work
+         *8/29/2024
+         *-will need facing directions in case object is direction specific, ie cannot be opened from this side
+         *-can render drawer and implemented as collidable object
          */
     }
 }
