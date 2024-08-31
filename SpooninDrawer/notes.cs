@@ -455,6 +455,8 @@ namespace SpooninDrawer
          *8/29/2024
          *-will need facing directions in case object is direction specific, ie cannot be opened from this side
          *-can render drawer and implemented as collidable object
+         *8/30/2024
+         *-moving collision code to collidable object
          */
     }
 }

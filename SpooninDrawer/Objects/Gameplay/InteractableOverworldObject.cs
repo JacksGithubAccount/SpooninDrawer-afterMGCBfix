@@ -20,11 +20,6 @@ namespace SpooninDrawer.Objects.Gameplay
         public string Name { get; set; }
         public string TexturePath { get; set; }
 
-        private const int BB1PosX = 29;
-        private const int BB1PosY = 2;
-        private const int BB1Width = 57;
-        private const int BB1Height = 147;
-
         private Animation IdleAnimation = new Animation(false);
         private Animation InteractAnimation = new Animation(false);
         private Animation FinishAnimation = new Animation(false);
@@ -34,7 +29,7 @@ namespace SpooninDrawer.Objects.Gameplay
         private const int AnimationCellHeight = 152;
 
         private Animation _currentAnimation;
-        private Rectangle _idleRectangle;
+        private Rectangle _idleRectangle => _rectangle;
 
         private bool Up = false;
         private bool Down = false;
@@ -43,9 +38,9 @@ namespace SpooninDrawer.Objects.Gameplay
 
         public bool Collidable;
 
-        public InteractableOverworldObject(int ID, string Name, string texturePath, Texture2D texture, AnimationData idle, AnimationData interact, AnimationData finish, AnimationData end):base(new Rectangle(0,0, AnimationCellWidth, AnimationCellHeight))
+        public InteractableOverworldObject(int ID, string Name, string texturePath, Texture2D texture, AnimationData idle, AnimationData interact, AnimationData finish, AnimationData end) : base(new Rectangle(0, 0, AnimationCellWidth, AnimationCellHeight))
         {
-            AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BB1PosX, BB1PosY), BB1Width, BB1Height));
+            AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BBPosX, BBPosY), BBWidth, BBHeight));
             _texture = texture;
             this.ID = ID;
             this.Name = Name;
@@ -56,14 +51,18 @@ namespace SpooninDrawer.Objects.Gameplay
             EndingAnimation = new Animation(end);
             _currentAnimation = IdleAnimation;
         }
-        public void Interact() { }
-        public void Update(GameTime gametime) 
+        public void Interact() { _currentAnimation = InteractAnimation; }
+        public void Update(GameTime gametime)
         {
             if (_currentAnimation != null)
             {
                 _currentAnimation.Update(gametime);
             }
-        } 
+        }
+        public void SetInteractableDirections(bool up, bool down, bool left, bool right)
+        {
+            Up = up; Down = down; Left = left; Right = right;
+        }
         public override void Render(SpriteBatch spriteBatch)
         {
             if (Active)

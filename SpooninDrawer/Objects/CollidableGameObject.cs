@@ -10,12 +10,12 @@ namespace SpooninDrawer.Objects
 {
     public class CollidableGameObject : BaseGameObject
     {
-        private int BBPosX;
-        private int BBPosY;
-        private int BBWidth;
-        private int BBHeight;
+        protected int BBPosX;
+        protected int BBPosY;
+        protected int BBWidth;
+        protected int BBHeight;
 
-        private Rectangle _rectangle;
+        protected Rectangle _rectangle;
 
         public CollidableGameObject(Rectangle rect)
         {
@@ -45,6 +45,6 @@ namespace SpooninDrawer.Objects
         {
             return _rectangle.Intersects(rectangle);
         }
-        
+
     }
 }
