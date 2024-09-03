@@ -457,6 +457,8 @@ namespace SpooninDrawer
          *-can render drawer and implemented as collidable object
          *8/30/2024
          *-moving collision code to collidable object
+         *9/2/2024
+         *-attempting interact based on direction
          */
     }
 }

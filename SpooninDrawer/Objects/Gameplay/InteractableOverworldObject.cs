@@ -63,6 +63,13 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             Up = up; Down = down; Left = left; Right = right;
         }
+        public void Interact(Vector2 Direction, Action Interaction)
+        {
+            if(Direction.X>0 && Left)
+            {
+                Interaction();
+            }
+        }
         public override void Render(SpriteBatch spriteBatch)
         {
             if (Active)
