@@ -459,6 +459,8 @@ namespace SpooninDrawer
          *-moving collision code to collidable object
          *9/2/2024
          *-attempting interact based on direction
+         *9/3/2024
+         *-more directional interaction
          */
     }
 }

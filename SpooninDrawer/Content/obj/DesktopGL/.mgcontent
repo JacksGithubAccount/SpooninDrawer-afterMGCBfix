@@ -5,6 +5,7 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Animations/Drawer/idle.xml</File>
+    <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Animations/Drawer/Interact.xml</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Animations/Player/idle.xml</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Animations/Player/left_walk.xml</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Animations/Player/right_walk.xml</File>
@@ -47,6 +48,7 @@
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/TileSets/incrediblybadmspainttileset.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

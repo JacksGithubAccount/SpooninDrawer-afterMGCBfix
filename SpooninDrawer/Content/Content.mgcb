@@ -21,6 +21,11 @@
 /processor:PassThroughProcessor
 /build:Animations/Drawer/idle.xml
 
+#begin Animations/Drawer/Interact.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Animations/Drawer/Interact.xml
+
 #begin Animations/Player/idle.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor

@@ -18,6 +18,7 @@ namespace SpooninDrawer.Objects.Gameplay
         private const string DrawerTexturePath = "Sprites/Animations/DrawerSpriteSheet";
 
         private const string DrawerAnimationIdle = "Animations/Drawer/idle";
+        private const string DrawerAnimationInteract = "Animations/Drawer/Interact";
         public InteractableOverworldObjectManager()
         {
 
@@ -25,11 +26,16 @@ namespace SpooninDrawer.Objects.Gameplay
         public void LoadContent(ContentManager content)
         {
             var DrawerIdleAnim = content.Load<AnimationData>(DrawerAnimationIdle);
-            Drawer = new InteractableOverworldObject(1, "Drawer", DrawerTexturePath, content.Load<Texture2D>(DrawerTexturePath), DrawerIdleAnim, DrawerIdleAnim, DrawerIdleAnim, DrawerIdleAnim);
+            var DrawerInteractAnim = content.Load<AnimationData>(DrawerAnimationInteract);
+            Drawer = new InteractableOverworldObject(1, "Drawer", DrawerTexturePath, content.Load<Texture2D>(DrawerTexturePath), DrawerIdleAnim, DrawerInteractAnim, DrawerIdleAnim, DrawerIdleAnim);
             Drawer.Position = new Vector2(0, 0);
             Drawer.zIndex = 99;
             Drawer.Collidable = true;
             Drawer.Activate();
+        }
+        public void DrawerInteract(Vector2 InteracterDirection)
+        {
+            Drawer.Interact(InteracterDirection, () => { Drawer.Interact(); });
         }
         public void Update(GameTime gametime)
         {
