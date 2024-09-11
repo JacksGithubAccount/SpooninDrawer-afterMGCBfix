@@ -35,7 +35,8 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void DrawerInteract(Vector2 InteracterDirection)
         {
-            Drawer.Interact(InteracterDirection, () => { Drawer.Interact(); });
+            Drawer.setInteractions(() => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); });
+            //Drawer.Interact(InteracterDirection, () => { Drawer.Interact(); });
         }
         public void Update(GameTime gametime)
         {

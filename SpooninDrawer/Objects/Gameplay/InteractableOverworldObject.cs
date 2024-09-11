@@ -36,6 +36,11 @@ namespace SpooninDrawer.Objects.Gameplay
         private bool Left = false;
         private bool Right = false;
 
+        private Action InteractUp;
+        private Action InteractDown;
+        private Action InteractLeft;
+        private Action InteractRight;
+
         public bool Collidable;
 
         public InteractableOverworldObject(int ID, string Name, string texturePath, Texture2D texture, AnimationData idle, AnimationData interact, AnimationData finish, AnimationData end) : base(new Rectangle(0, 0, AnimationCellWidth, AnimationCellHeight))
@@ -63,11 +68,18 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             Up = up; Down = down; Left = left; Right = right;
         }
-        public void Interact(Vector2 Direction, Action Interaction)
+        public void setInteractions(Action Up, Action Down, Action Left, Action Right)
+        {
+            InteractUp = Up; 
+            InteractDown = Down;
+            InteractLeft = Left; 
+            InteractRight = Right;
+        }
+        public void Interact(Vector2 Direction)
         {
             if(Direction.X>0 && Left)
             {
-                Interaction();
+                //Interaction();
             }
         }
         public override void Render(SpriteBatch spriteBatch)
