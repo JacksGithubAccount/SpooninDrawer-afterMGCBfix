@@ -82,6 +82,18 @@ namespace SpooninDrawer.Objects.Gameplay
                 //Interaction();
             }
         }
+        public void InteractOpen()
+        {
+
+        }
+        public void InteractDoesNotOpen()
+        {
+
+        }
+        public void InteractClose()
+        {
+
+        }
         public override void Render(SpriteBatch spriteBatch)
         {
             if (Active)
