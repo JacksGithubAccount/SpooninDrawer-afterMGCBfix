@@ -70,21 +70,21 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void setInteractions(Action Up, Action Down, Action Left, Action Right)
         {
-            InteractUp = Up; 
+            InteractUp = Up;
             InteractDown = Down;
-            InteractLeft = Left; 
+            InteractLeft = Left;
             InteractRight = Right;
         }
         public void Interact(Vector2 Direction)
         {
-            if(Direction.X>0 && Left)
+            if (Direction.X > 0 && Left)
             {
                 //Interaction();
             }
         }
         public void InteractOpen()
         {
-
+            _currentAnimation = InteractAnimation;
         }
         public void InteractDoesNotOpen()
         {
@@ -92,7 +92,7 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void InteractClose()
         {
-
+            _currentAnimation = EndingAnimation;
         }
         public override void Render(SpriteBatch spriteBatch)
         {
