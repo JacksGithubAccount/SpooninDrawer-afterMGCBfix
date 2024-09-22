@@ -465,7 +465,10 @@ namespace SpooninDrawer
          *-messing with actions
          *9/16/2024
          *-will need new collision to detect interactable objects
-         *
+         *9/19/2024
+         *-Added to game object list to make interactable, but disable doesn't work to remove interactable and collidable
+         *9/20/2024
+         *-Added checks in collision to run if interacable or collidable, updated activate as well
          *
          */
     }

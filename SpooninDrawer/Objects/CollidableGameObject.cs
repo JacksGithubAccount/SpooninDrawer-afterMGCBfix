@@ -17,12 +17,15 @@ namespace SpooninDrawer.Objects
 
         protected Rectangle _rectangle;
 
+        public bool Collidable;
+
         public CollidableGameObject(Rectangle rect)
         {
             _rectangle = rect;
             BBPosX = rect.X; BBPosY = rect.Y;
             BBWidth = rect.Width;
             BBHeight = rect.Height;
+            Collidable = true;
             AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BBPosX, BBPosY), BBWidth, BBHeight));
         }
         public Rectangle GetRectangle()

@@ -41,8 +41,6 @@ namespace SpooninDrawer.Objects.Gameplay
         private Action InteractLeft;
         private Action InteractRight;
 
-        public bool Collidable;
-
         public InteractableOverworldObject(int ID, string Name, string texturePath, Texture2D texture, AnimationData idle, AnimationData interact, AnimationData finish, AnimationData end) : base(new Rectangle(0, 0, AnimationCellWidth, AnimationCellHeight))
         {
             AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BBPosX, BBPosY), BBWidth, BBHeight));
@@ -55,6 +53,7 @@ namespace SpooninDrawer.Objects.Gameplay
             FinishAnimation = new Animation(finish);
             EndingAnimation = new Animation(end);
             _currentAnimation = IdleAnimation;
+            Interactable = true;
         }
         public void Interact() { _currentAnimation = InteractAnimation; }
         public void Update(GameTime gametime)
@@ -93,6 +92,18 @@ namespace SpooninDrawer.Objects.Gameplay
         public void InteractClose()
         {
             _currentAnimation = EndingAnimation;
+        }
+        public override void Activate()
+        {
+            Interactable = true;
+            Collidable = true;
+            Active = true;
+        }
+        public override void Deactivate()
+        {
+            Interactable = false;
+            Collidable = false;
+            Active = false;
         }
         public override void Render(SpriteBatch spriteBatch)
         {

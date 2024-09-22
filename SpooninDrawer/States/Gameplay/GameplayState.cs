@@ -172,6 +172,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
             InteractableOverworldObjectManager.LoadContent(content);
             colliders.Add(InteractableOverworldObjectManager.Drawer);
+            AddGameObject(InteractableOverworldObjectManager.Drawer);
+            //InteractableOverworldObjectManager.Drawer.Deactivate();
 
             var font = LoadFont(TextFont);
             PopupManager = new PopupManager(font, _playerSprite.Position, _camera);
@@ -320,7 +322,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var playerMapCollisionDetector = new AABBCollisionDetector<CollidableGameObject, PlayerSprite>(colliders);
             playerMapCollisionDetector.DetectCollisions(_playerSprite, (mapTile, player) =>
             {
-                _playerSprite.HandleMapCollision(mapTile);
+                if (mapTile.Collidable)
+                    _playerSprite.HandleMapCollision(mapTile);
             }, () =>
             {
                 _playerSprite.makeMoveAgainfromCollision();
@@ -328,8 +331,14 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var playerInteractableCollisionDetector = new AABBCollisionDetector<BaseGameObject, PlayerSprite>(_interactableGameObjects);
             playerInteractableCollisionDetector.DetectCollisions(_playerSprite, (interactable, player) =>
             {
-                PopupManager.InteractableItemPopupBox.Activate();
-                itemManager.AddInteractableItem(interactable);
+                if (interactable.Interactable)
+                {
+                    PopupManager.InteractableItemPopupBox.Activate();
+                    if (interactable.GetType() == typeof(Item))
+                        itemManager.AddInteractableItem(interactable);
+                    if (interactable.GetType() == typeof(InteractableOverworldObject))
+
+                }
             }, () =>
             {
                 PopupManager.InteractableItemPopupBox.Deactivate();
