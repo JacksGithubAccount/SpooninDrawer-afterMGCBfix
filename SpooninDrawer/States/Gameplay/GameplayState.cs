@@ -247,6 +247,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
                         itemManager.RemoveInteractableItem(temp);
                         RemoveGameObject(temp);
                     }
+                    else if (!InteractableOverworldObjectManager.IsInteractableEmpty())
+                    {
+
+                    }
                 }
             });
         }
@@ -337,6 +341,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     if (interactable.GetType() == typeof(Item))
                         itemManager.AddInteractableItem(interactable);
                     if (interactable.GetType() == typeof(InteractableOverworldObject))
+                        InteractableOverworldObjectManager.AddInteractableOverworldObject(interactable);
 
                 }
             }, () =>

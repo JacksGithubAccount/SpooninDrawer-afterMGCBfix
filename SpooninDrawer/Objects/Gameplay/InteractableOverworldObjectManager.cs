@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SpooninDrawer.Engine.Objects;
 using SpooninDrawer.Engine.Objects.Animations;
 using System;
 using System.Collections.Generic;
@@ -31,12 +32,41 @@ namespace SpooninDrawer.Objects.Gameplay
             Drawer.Position = new Vector2(0, 0);
             Drawer.zIndex = 99;
             Drawer.Collidable = true;
+            Drawer.Interactable = true;
             Drawer.Activate();
         }
         public void DrawerInteract(Vector2 InteracterDirection)
         {
             Drawer.setInteractions(() => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); });
             //Drawer.Interact(InteracterDirection, () => { Drawer.Interact(); });
+        }
+        public void AddInteractableOverworldObject(InteractableOverworldObject interactableOverworldObject)
+        {
+            if (!interactableOverworldObjects.Contains(interactableOverworldObject))
+                interactableOverworldObjects.Add(interactableOverworldObject);
+        }
+        public void AddInteractableOverworldObject(BaseGameObject interactableOverworldObject)
+        {
+            try
+            {
+                if (!interactableOverworldObjects.Contains((InteractableOverworldObject)interactableOverworldObject))
+                    interactableOverworldObjects.Add((InteractableOverworldObject)interactableOverworldObject);
+            }
+            catch { }
+        }
+        public void RemoveInteractableItem(InteractableOverworldObject interactableOverworldObject)
+        {
+            interactableOverworldObject.Deactivate();
+            interactableOverworldObjects.Remove(interactableOverworldObject);
+        }
+        public void ClearInteractables()
+        {
+
+            interactableOverworldObjects.Clear();
+        }
+        public bool IsInteractableEmpty()
+        {
+            return interactableOverworldObjects.Count == 0;
         }
         public void Update(GameTime gametime)
         {
