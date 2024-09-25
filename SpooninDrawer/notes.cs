@@ -471,6 +471,8 @@ namespace SpooninDrawer
          *-Added checks in collision to run if interacable or collidable, updated activate as well
          *9/23/2024
          *-Added more manager to handle multiple objects
+         *9/24/2024
+         *-combined the item and overworld manager since they serve similar functions and the list needs to be one list to handle interactions
          *
          */
     }

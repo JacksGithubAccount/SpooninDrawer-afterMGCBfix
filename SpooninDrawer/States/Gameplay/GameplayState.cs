@@ -95,8 +95,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private TilemapManager _tilemapManager;
 
         public Player player1;
-        private ItemManager itemManager;
-        private InteractableOverworldObjectManager InteractableOverworldObjectManager;
+        private InteractableManager interactableManager;
 
         private OrthographicCamera _camera;
 
@@ -112,8 +111,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         {
             base.Initialize(contentManager, window, graphicsDevice, graphicsDeviceManager);
             player1 = new Player();
-            itemManager = new ItemManager();
-            InteractableOverworldObjectManager = new InteractableOverworldObjectManager();
+            interactableManager = new InteractableManager();
         }
         public override void LoadContent(ContentManager content)
         {
@@ -167,13 +165,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var track2 = LoadSound(Soundtrack2).CreateInstance();
             _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
 
-            itemManager.LoadContent(content);
-            AddGameObject(itemManager.GetItem());
-
-            InteractableOverworldObjectManager.LoadContent(content);
-            colliders.Add(InteractableOverworldObjectManager.Drawer);
-            AddGameObject(InteractableOverworldObjectManager.Drawer);
-            //InteractableOverworldObjectManager.Drawer.Deactivate();
+            interactableManager.LoadContent(content);
+            AddGameObject(interactableManager.GetItem());
+            colliders.Add(interactableManager.Drawer);
+            AddGameObject(interactableManager.Drawer);
 
             var font = LoadFont(TextFont);
             PopupManager = new PopupManager(font, _playerSprite.Position, _camera);
@@ -240,16 +235,18 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 {
                     //mc action
                     NotifyEvent(new GameplayEvents.PlayerTest());
-                    if (!itemManager.IsInteractableEmpty())
+                    if (!interactableManager.IsInteractableEmpty())
                     {
-                        Item temp = itemManager.AddToInventory(player1);
-                        AddGameObject(PopupManager.ActivateAddInventoryPopupBox(temp.ToString(), gameTime));
-                        itemManager.RemoveInteractableItem(temp);
-                        RemoveGameObject(temp);
-                    }
-                    else if (!InteractableOverworldObjectManager.IsInteractableEmpty())
-                    {
+                        if (interactableManager.GetInteractable().GetType() == typeof(Item))
+                        {
+                            Item temp = interactableManager.AddToInventory(player1);
+                            AddGameObject(PopupManager.ActivateAddInventoryPopupBox(temp.ToString(), gameTime));
+                            interactableManager.RemoveInteractableItem(temp);
+                            RemoveGameObject(temp);
+                        }else if (interactableManager.GetInteractable().GetType() == typeof(InteractableOverworldObject))
+                        {
 
+                        }
                     }
                 }
             });
@@ -264,7 +261,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 _tiledMapRenderer.Update(gameTime);
                 _playerSprite.Update(gameTime);
                 _camera.Position = _playerSprite.Position - _camera.Origin;
-                InteractableOverworldObjectManager.Update(gameTime);
+                interactableManager.Update(gameTime);
                 PopupManager.Update(gameTime, _camera);
                 DetectCollisions();
             }
@@ -287,7 +284,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
             _playerSprite.Render(spriteBatch);
 
-            InteractableOverworldObjectManager.Render(spriteBatch);
+            interactableManager.Render(spriteBatch);
 
             if (_gameOver)
             {
@@ -338,16 +335,12 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 if (interactable.Interactable)
                 {
                     PopupManager.InteractableItemPopupBox.Activate();
-                    if (interactable.GetType() == typeof(Item))
-                        itemManager.AddInteractableItem(interactable);
-                    if (interactable.GetType() == typeof(InteractableOverworldObject))
-                        InteractableOverworldObjectManager.AddInteractableOverworldObject(interactable);
-
+                    interactableManager.AddInteractableItem(interactable);
                 }
             }, () =>
             {
                 PopupManager.InteractableItemPopupBox.Deactivate();
-                itemManager.ClearInteractables();
+                interactableManager.ClearInteractables();
             });
         }
 
