@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Gameplay
 {
+    enum ObjectDirection
+    {
+        Up, Down, Left, Right, None
+    }
     public class InteractableManager
     {
         Item item;
@@ -89,7 +93,8 @@ namespace SpooninDrawer.Objects.Gameplay
             if (!IsInteractableEmpty())
             {
                 return InteractableItems[0];
-            }else
+            }
+            else
                 return null;
         }
         public void AddInteractableItem(BaseGameObject item)
@@ -102,7 +107,8 @@ namespace SpooninDrawer.Objects.Gameplay
                         InteractableItems.Add((Item)item);
                 }
                 catch { }
-            } else if(item.GetType() == typeof(InteractableOverworldObject))
+            }
+            else if (item.GetType() == typeof(InteractableOverworldObject))
             {
                 if (!InteractableItems.Contains((InteractableOverworldObject)item))
                     InteractableItems.Add((InteractableOverworldObject)item);
@@ -111,7 +117,7 @@ namespace SpooninDrawer.Objects.Gameplay
         public void RemoveInteractableItem(BaseGameObject item)
         {
             item.Deactivate();
-            InteractableItems.Remove(item);            
+            InteractableItems.Remove(item);
         }
         public void ClearInteractables()
         {
@@ -122,11 +128,44 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             return InteractableItems.Count == 0;
         }
-        public void InteractWithObject(Vector2 InteracterDirection)
+        public void InteractWithObject(Vector2 InteracterPosition)
         {
+            ObjectDirection objectDirection = GetInteractionDirection(InteracterPosition);
             var temp = (InteractableOverworldObject)InteractableItems[0];
             temp.setInteractions(() => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); });
             //Drawer.Interact(InteracterDirection, () => { Drawer.Interact(); });
+        }
+        private ObjectDirection GetInteractionDirection(Vector2 InteractorPosition)
+        {
+            if (InteractorPosition.X > InteractableItems[0].Position.X && InteractorPosition.X < InteractableItems[0].Position.X + InteractableItems[0].Width)
+            {
+                if (InteractorPosition.Y < InteractableItems[0].Position.Y)
+                {
+                    //above
+                    return ObjectDirection.Up;
+                }
+                else if (InteractorPosition.Y > InteractableItems[0].Position.Y + InteractableItems[0].Height)
+                {
+                    //below
+                    return ObjectDirection.Down;
+                }
+
+            }
+            else if (InteractorPosition.Y > InteractableItems[0].Position.Y && InteractorPosition.Y < InteractableItems[0].Position.Y + InteractableItems[0].Height)
+            {
+                if (InteractorPosition.X < InteractableItems[0].Position.X)
+                {
+                    //left
+                    return ObjectDirection.Left;
+                }
+                else if (InteractorPosition.X > InteractableItems[0].Position.X + InteractableItems[0].Width)
+                {
+                    //right
+                    return ObjectDirection.Right;
+                }
+            }
+
+            return ObjectDirection.None;
         }
         public void Update(GameTime gametime)
         {

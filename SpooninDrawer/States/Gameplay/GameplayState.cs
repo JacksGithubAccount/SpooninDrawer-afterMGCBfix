@@ -243,9 +243,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
                             AddGameObject(PopupManager.ActivateAddInventoryPopupBox(temp.ToString(), gameTime));
                             interactableManager.RemoveInteractableItem(temp);
                             RemoveGameObject(temp);
-                        }else if (interactableManager.GetInteractable().GetType() == typeof(InteractableOverworldObject))
+                        }
+                        else if (interactableManager.GetInteractable().GetType() == typeof(InteractableOverworldObject))
                         {
-
+                            interactableManager.InteractWithObject(_playerSprite.Position);
                         }
                     }
                 }

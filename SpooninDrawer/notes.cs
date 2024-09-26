@@ -473,6 +473,8 @@ namespace SpooninDrawer
          *-Added more manager to handle multiple objects
          *9/24/2024
          *-combined the item and overworld manager since they serve similar functions and the list needs to be one list to handle interactions
+         *9/25/2024
+         *-added interaction directions for objects
          *
          */
     }
