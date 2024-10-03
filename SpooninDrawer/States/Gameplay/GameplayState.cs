@@ -246,7 +246,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                         }
                         else if (interactableManager.GetInteractable().GetType() == typeof(InteractableOverworldObject))
                         {
-                            interactableManager.InteractWithObject(_playerSprite.Position);
+                            interactableManager.InteractWithObject(_playerSprite.CenterPosition);
                         }
                     }
                 }

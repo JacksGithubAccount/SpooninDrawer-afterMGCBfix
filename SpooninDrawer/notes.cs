@@ -474,7 +474,13 @@ namespace SpooninDrawer
          *9/24/2024
          *-combined the item and overworld manager since they serve similar functions and the list needs to be one list to handle interactions
          *9/25/2024
-         *-added interaction directions for objects
+         *-added interaction direction for objects
+         *9/26/2024
+         *-added direction for interaction, also made direction detection tighter, still needs more work though
+         *-now to get the animation to play
+         *10/1/2024
+         *-it was playing animation, the draw for bounding box was over the animation, also animation repeats. Moving drawer doesn't cause boundingbox to follow, turns out position already calcuated for bounding boxes
+         *-
          *
          */
     }

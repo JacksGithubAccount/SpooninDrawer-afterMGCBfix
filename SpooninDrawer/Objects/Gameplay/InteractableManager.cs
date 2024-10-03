@@ -47,8 +47,8 @@ namespace SpooninDrawer.Objects.Gameplay
 
             var DrawerIdleAnim = content.Load<AnimationData>(DrawerAnimationIdle);
             var DrawerInteractAnim = content.Load<AnimationData>(DrawerAnimationInteract);
-            Drawer = new InteractableOverworldObject(1, "Drawer", DrawerTexturePath, content.Load<Texture2D>(DrawerTexturePath), DrawerIdleAnim, DrawerInteractAnim, DrawerIdleAnim, DrawerIdleAnim);
-            Drawer.Position = new Vector2(0, 0);
+            Drawer = new InteractableOverworldObject(1, "Drawer", DrawerTexturePath, content.Load<Texture2D>(DrawerTexturePath), new Vector2(200, 200), DrawerIdleAnim, DrawerInteractAnim, DrawerIdleAnim, DrawerIdleAnim);
+            Drawer.setInteractions(() => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); });
             Drawer.zIndex = 99;
             Drawer.Collidable = true;
             Drawer.Interactable = true;
@@ -132,8 +132,11 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             ObjectDirection objectDirection = GetInteractionDirection(InteracterPosition);
             var temp = (InteractableOverworldObject)InteractableItems[0];
-            temp.setInteractions(() => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); });
             //Drawer.Interact(InteracterDirection, () => { Drawer.Interact(); });
+            if (objectDirection == ObjectDirection.Down)
+            {
+                temp.Interact();
+            }
         }
         private ObjectDirection GetInteractionDirection(Vector2 InteractorPosition)
         {

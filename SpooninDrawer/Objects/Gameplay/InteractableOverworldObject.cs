@@ -28,6 +28,9 @@ namespace SpooninDrawer.Objects.Gameplay
         private const int AnimationCellWidth = 116;
         private const int AnimationCellHeight = 152;
 
+        public override int Height => AnimationCellHeight;
+        public override int Width => AnimationCellWidth;
+
         private Animation _currentAnimation;
         private Rectangle _idleRectangle => _rectangle;
 
@@ -41,9 +44,10 @@ namespace SpooninDrawer.Objects.Gameplay
         private Action InteractLeft;
         private Action InteractRight;
 
-        public InteractableOverworldObject(int ID, string Name, string texturePath, Texture2D texture, AnimationData idle, AnimationData interact, AnimationData finish, AnimationData end) : base(new Rectangle(0, 0, AnimationCellWidth, AnimationCellHeight))
+        public InteractableOverworldObject(int ID, string Name, string texturePath, Texture2D texture, Vector2 initialPosition, AnimationData idle, AnimationData interact, AnimationData finish, AnimationData end)
+            : base(new Rectangle(0, 0, AnimationCellWidth, AnimationCellHeight))
         {
-            AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BBPosX, BBPosY), BBWidth, BBHeight));
+            //AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BBPosX, BBPosY), BBWidth, BBHeight));
             _texture = texture;
             this.ID = ID;
             this.Name = Name;
@@ -53,9 +57,10 @@ namespace SpooninDrawer.Objects.Gameplay
             FinishAnimation = new Animation(finish);
             EndingAnimation = new Animation(end);
             _currentAnimation = IdleAnimation;
+            Position = initialPosition;
             Interactable = true;
         }
-        public void Interact() { _currentAnimation = InteractAnimation; }
+
         public void Update(GameTime gametime)
         {
             if (_currentAnimation != null)
@@ -74,12 +79,10 @@ namespace SpooninDrawer.Objects.Gameplay
             InteractLeft = Left;
             InteractRight = Right;
         }
-        public void Interact(Vector2 Direction)
+        public void Interact()
         {
-            if (Direction.X > 0 && Left)
-            {
-                //Interaction();
-            }
+            _currentAnimation = InteractAnimation;
+            InteractAnimation.Reset();
         }
         public void InteractOpen()
         {
