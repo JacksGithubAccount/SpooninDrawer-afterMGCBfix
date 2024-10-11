@@ -479,8 +479,11 @@ namespace SpooninDrawer
          *-added direction for interaction, also made direction detection tighter, still needs more work though
          *-now to get the animation to play
          *10/1/2024
-         *-it was playing animation, the draw for bounding box was over the animation, also animation repeats. Moving drawer doesn't cause boundingbox to follow, turns out position already calcuated for bounding boxes
-         *-
+         *-it was playing animation, the draw for bounding box was over the animation, also animation repeats. Moving drawer doesn't cause boundingbox to follow. Fixed, turns out position already calcuated for bounding boxes
+         *10/3/2024
+         *-Fixed collision not working, turns out the position handling only affects position, not bounding box, will need to override 
+         *10/9/2024
+         *-fixing position handling
          *
          */
     }

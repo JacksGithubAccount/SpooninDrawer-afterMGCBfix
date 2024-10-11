@@ -14,6 +14,21 @@ namespace SpooninDrawer.Objects
         protected int BBPosY;
         protected int BBWidth;
         protected int BBHeight;
+        public override Vector2 Position
+        {
+            get { return _position; }
+            set
+            {
+                //var deltaX = value.X - _position.X;
+                //var deltaY = value.Y - _position.Y;
+                _position = value;
+
+                foreach (var bb in _boundingBoxes)
+                {
+                    //bb.Position = new Vector2(bb.Position.X + deltaX, bb.Position.Y + deltaY);
+                }
+            }
+        }
 
         protected Rectangle _rectangle;
 

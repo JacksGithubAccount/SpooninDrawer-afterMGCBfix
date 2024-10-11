@@ -45,7 +45,7 @@ namespace SpooninDrawer.Objects.Gameplay
         private Action InteractRight;
 
         public InteractableOverworldObject(int ID, string Name, string texturePath, Texture2D texture, Vector2 initialPosition, AnimationData idle, AnimationData interact, AnimationData finish, AnimationData end)
-            : base(new Rectangle(0, 0, AnimationCellWidth, AnimationCellHeight))
+            : base(new Rectangle((int)initialPosition.X, (int)initialPosition.Y, AnimationCellWidth, AnimationCellHeight))
         {
             //AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BBPosX, BBPosY), BBWidth, BBHeight));
             _texture = texture;
@@ -58,6 +58,7 @@ namespace SpooninDrawer.Objects.Gameplay
             EndingAnimation = new Animation(end);
             _currentAnimation = IdleAnimation;
             Position = initialPosition;
+
             Interactable = true;
         }
 
