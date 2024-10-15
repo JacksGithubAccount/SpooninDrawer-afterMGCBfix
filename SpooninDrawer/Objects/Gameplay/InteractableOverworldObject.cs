@@ -45,7 +45,7 @@ namespace SpooninDrawer.Objects.Gameplay
         private Action InteractRight;
 
         public InteractableOverworldObject(int ID, string Name, string texturePath, Texture2D texture, Vector2 initialPosition, AnimationData idle, AnimationData interact, AnimationData finish, AnimationData end)
-            : base(new Rectangle((int)initialPosition.X, (int)initialPosition.Y, AnimationCellWidth, AnimationCellHeight))
+            : base(new Rectangle(0, 0, AnimationCellWidth, AnimationCellHeight))
         {
             //AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BBPosX, BBPosY), BBWidth, BBHeight));
             _texture = texture;
@@ -126,7 +126,7 @@ namespace SpooninDrawer.Objects.Gameplay
                 spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
                 foreach (var box in BoundingBoxes)
                 {
-                    spriteBatch.Draw(_texture, box.Position, box.Rectangle, Color.Red);
+                    //spriteBatch.Draw(_texture, box.Position, box.Rectangle, Color.Red);
                 }
             }
         }

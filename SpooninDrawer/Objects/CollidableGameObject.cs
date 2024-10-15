@@ -19,13 +19,15 @@ namespace SpooninDrawer.Objects
             get { return _position; }
             set
             {
-                //var deltaX = value.X - _position.X;
-                //var deltaY = value.Y - _position.Y;
+                var deltaX = value.X - _position.X;
+                var deltaY = value.Y - _position.Y;
                 _position = value;
 
                 foreach (var bb in _boundingBoxes)
                 {
-                    //bb.Position = new Vector2(bb.Position.X + deltaX, bb.Position.Y + deltaY);
+                    bb.Position = new Vector2(bb.Position.X + deltaX + 1, bb.Position.Y + deltaY + 1);
+                    BBPosX = (int)bb.Position.X; BBPosY = (int)bb.Position.Y;
+                    _rectangle = bb.Rectangle;
                 }
             }
         }

@@ -484,6 +484,9 @@ namespace SpooninDrawer
          *-Fixed collision not working, turns out the position handling only affects position, not bounding box, will need to override 
          *10/9/2024
          *-fixing position handling
+         *10/14/2024
+         *-fixed the positioning issue, turns out it's the rect that's used to check collision and that wasnt updating
+         *-need to fix animation looping of drawer
          *
          */
     }

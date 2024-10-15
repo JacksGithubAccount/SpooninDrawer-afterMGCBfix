@@ -58,8 +58,8 @@ namespace SpooninDrawer.Objects
 
         public bool _MustStop = false;
         public Vector2 _MoveDirection;
-        public float startingPositionX = 25.0f;
-        public float startingPositionY = 25.0f;
+        public float startingPositionX = 44.0f;
+        public float startingPositionY = 44.0f;
 
         public List<Rectangle> Collided;
 
