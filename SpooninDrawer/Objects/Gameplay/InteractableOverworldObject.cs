@@ -44,6 +44,8 @@ namespace SpooninDrawer.Objects.Gameplay
         private Action InteractLeft;
         private Action InteractRight;
 
+        private string Description;
+
         public InteractableOverworldObject(int ID, string Name, string texturePath, Texture2D texture, Vector2 initialPosition, AnimationData idle, AnimationData interact, AnimationData finish, AnimationData end)
             : base(new Rectangle(0, 0, AnimationCellWidth, AnimationCellHeight))
         {
@@ -82,8 +84,15 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void Interact()
         {
-            _currentAnimation = InteractAnimation;
-            InteractAnimation.Reset();
+            if (_currentAnimation != InteractAnimation)
+            {
+                _currentAnimation = InteractAnimation;
+                _currentAnimation.NoLoop();
+                InteractAnimation.Reset();
+            }else if(_currentAnimation == InteractAnimation)
+            {
+
+            }
         }
         public void InteractOpen()
         {

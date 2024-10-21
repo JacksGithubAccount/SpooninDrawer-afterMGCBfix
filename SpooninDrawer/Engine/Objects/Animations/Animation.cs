@@ -114,5 +114,9 @@ namespace SpooninDrawer.Engine.Objects.Animations
         {
             _isLoop = true;
         }
+        public void NoLoop()
+        {
+            _isLoop = false;
+        }
     }
 }

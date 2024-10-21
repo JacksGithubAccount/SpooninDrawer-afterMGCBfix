@@ -487,7 +487,9 @@ namespace SpooninDrawer
          *10/14/2024
          *-fixed the positioning issue, turns out it's the rect that's used to check collision and that wasnt updating
          *-need to fix animation looping of drawer
-         *
+         *10/20/2024
+         *-Fixed looping issue, it's supposed to not loop by default, but it was. Added method to unloop and called that
+         *-restarts loop on interact, added check on animation change. now to add spoon in drawer
          */
     }
 }
