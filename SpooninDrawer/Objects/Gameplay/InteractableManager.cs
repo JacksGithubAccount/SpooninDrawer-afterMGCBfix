@@ -17,7 +17,7 @@ namespace SpooninDrawer.Objects.Gameplay
     }
     public class InteractableManager
     {
-        Item item;
+        public Item Spoon;
         List<BaseGameObject> InteractableItems;
         Item tempItem;
 
@@ -29,21 +29,21 @@ namespace SpooninDrawer.Objects.Gameplay
 
         public InteractableManager()
         {
-            item = new Item(0, "Spoon", ItemType.KeyItem, "It's a spoon");
-            item.InventoryTexturePath = "Items/spoon";
-            item.OverworldTexturePath = item.InventoryTexturePath;
-            item.OverworldPosition = new Vector2(120, 120);
-            item.Interactable = true;
-            item.Activate();
-            item.zIndex = 5;
+            Spoon = new Item(0, "Spoon", ItemType.KeyItem, "It's a spoon");
+            Spoon.InventoryTexturePath = "Items/spoon";
+            Spoon.OverworldTexturePath = Spoon.InventoryTexturePath;
+            Spoon.OverworldPosition = new Vector2(120, 120);
+            Spoon.Interactable = true;
+            Spoon.Activate();
+            Spoon.zIndex = 5;
             InteractableItems = new List<BaseGameObject>();
 
         }
         public void LoadContent(ContentManager content)
         {
-            item.InventoryTexture2D = content.Load<Texture2D>(item.InventoryTexturePath);
-            item.OverworldTexture2D = content.Load<Texture2D>(item.OverworldTexturePath);
-            item.AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(item.OverworldPosition.X, item.OverworldPosition.Y), item.Width, item.Height));
+            Spoon.InventoryTexture2D = content.Load<Texture2D>(Spoon.InventoryTexturePath);
+            Spoon.OverworldTexture2D = content.Load<Texture2D>(Spoon.OverworldTexturePath);
+            Spoon.AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(Spoon.OverworldPosition.X, Spoon.OverworldPosition.Y), Spoon.Width, Spoon.Height));
 
             var DrawerIdleAnim = content.Load<AnimationData>(DrawerAnimationIdle);
             var DrawerInteractAnim = content.Load<AnimationData>(DrawerAnimationInteract);
@@ -86,7 +86,7 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public Item GetItem()
         {
-            return item;
+            return Spoon;
         }
         public BaseGameObject GetInteractable()
         {

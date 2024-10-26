@@ -48,8 +48,7 @@ namespace SpooninDrawer.Objects.Gameplay
 
         public InteractableOverworldObject(int ID, string Name, string texturePath, Texture2D texture, Vector2 initialPosition, AnimationData idle, AnimationData interact, AnimationData finish, AnimationData end)
             : base(new Rectangle(0, 0, AnimationCellWidth, AnimationCellHeight))
-        {
-            //AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BBPosX, BBPosY), BBWidth, BBHeight));
+        {            
             _texture = texture;
             this.ID = ID;
             this.Name = Name;

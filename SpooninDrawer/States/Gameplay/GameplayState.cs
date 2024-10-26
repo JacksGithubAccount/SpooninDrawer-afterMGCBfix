@@ -239,6 +239,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     {
                         if (interactableManager.GetInteractable().GetType() == typeof(Item))
                         {
+                            //adds top most item to inventory
                             Item temp = interactableManager.AddToInventory(player1);
                             AddGameObject(PopupManager.ActivateAddInventoryPopupBox(temp.ToString(), gameTime));
                             interactableManager.RemoveInteractableItem(temp);
@@ -246,7 +247,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
                         }
                         else if (interactableManager.GetInteractable().GetType() == typeof(InteractableOverworldObject))
                         {
-                            interactableManager.InteractWithObject(_playerSprite.CenterPosition);
+                            //drawer and spoon check
+                            if (interactableManager.GetInteractable() == interactableManager.Drawer && player1.Inventory.Exists(x => x.item == interactableManager.Spoon))
+                            {
+                                interactableManager.InteractWithObject(_playerSprite.CenterPosition);
+                            }
                         }
                     }
                 }
