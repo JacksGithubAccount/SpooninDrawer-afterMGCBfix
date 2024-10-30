@@ -492,6 +492,8 @@ namespace SpooninDrawer
          *-restarts loop on interact, added check on animation change. now to add spoon in drawer
          *10/25/2024
          *-added check for spoon when interacting drawer, now to make it only check after drawer is open
+         *10/29/2024
+         *-May need to add states to interactable object?
          *
          */
     }
