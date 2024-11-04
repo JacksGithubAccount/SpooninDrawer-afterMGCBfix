@@ -247,10 +247,15 @@ namespace SpooninDrawer.Engine.States.Gameplay
                         }
                         else if (interactableManager.GetInteractable().GetType() == typeof(InteractableOverworldObject))
                         {
-                            //drawer and spoon check
-                            if (interactableManager.GetInteractable() == interactableManager.Drawer && player1.Inventory.Exists(x => x.item == interactableManager.Spoon))
+                            InteractableOverworldObject holder = (InteractableOverworldObject)interactableManager.GetInteractable();
+                            if (holder.State[0]) 
                             {
                                 interactableManager.InteractWithObject(_playerSprite.CenterPosition);
+                            }
+                            //drawer and spoon check
+                            if (holder == interactableManager.Drawer && player1.Inventory.Exists(x => x.item == interactableManager.Spoon))
+                            {
+                                
                             }
                         }
                     }

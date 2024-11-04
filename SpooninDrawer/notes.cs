@@ -494,6 +494,10 @@ namespace SpooninDrawer
          *-added check for spoon when interacting drawer, now to make it only check after drawer is open
          *10/29/2024
          *-May need to add states to interactable object?
+         *10/30/2024
+         *-Added states
+         *11/3/2024
+         *-moved drawer opening to state check 0, now to add dialog box?
          *
          */
     }

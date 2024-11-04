@@ -46,7 +46,7 @@ namespace SpooninDrawer.Objects.Gameplay
 
         private string Description;
 
-        bool[] State { get; }
+        public bool[] State { get; }
 
         public InteractableOverworldObject(int ID, string Name, string texturePath, Texture2D texture, Vector2 initialPosition, AnimationData idle, AnimationData interact, AnimationData finish, AnimationData end)
             : base(new Rectangle(0, 0, AnimationCellWidth, AnimationCellHeight))
@@ -92,7 +92,10 @@ namespace SpooninDrawer.Objects.Gameplay
                 _currentAnimation = InteractAnimation;
                 _currentAnimation.NoLoop();
                 InteractAnimation.Reset();
-            }else if(_currentAnimation == InteractAnimation)
+                State[0] = false;
+                State[1] = true;
+            }
+            else if (_currentAnimation == InteractAnimation && State[2])
             {
 
             }

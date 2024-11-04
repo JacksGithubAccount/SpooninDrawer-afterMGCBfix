@@ -132,9 +132,13 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             ObjectDirection objectDirection = GetInteractionDirection(InteracterPosition);
             var temp = (InteractableOverworldObject)InteractableItems[0];
-            if (objectDirection == ObjectDirection.Down)
+            if (objectDirection == ObjectDirection.Down && temp.State[0])
             {
                 temp.Interact();
+            }
+            if (temp.State[1])
+            {
+
             }
         }
         private ObjectDirection GetInteractionDirection(Vector2 InteractorPosition)
