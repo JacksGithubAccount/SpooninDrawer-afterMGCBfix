@@ -9,8 +9,15 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Screens
 {
-    public class DialogScreen: iBaseScreen
+    public class DialogScreen: BaseScreenwithButtons, iBaseScreen
     {
+        enum titleCommands
+        {
+            Next,
+            Auto,
+            Log,
+            Skip
+        }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
         public int[] menuLocationArrayY { get; }
@@ -19,10 +26,24 @@ namespace SpooninDrawer.Objects.Screens
         public Vector2 Position { get; set; }
         public BaseTextObject[,] ScreenText { get; set; }
         public bool hasButtons { get; }
+        private SpriteFont spriteFont;
 
         public DialogScreen(SpriteFont font)
         {
 
+        }
+        public iBaseScreen Initialize()
+        {
+            return new PopupScreen(spriteFont, Position);
+        }
+        public iBaseScreen Initialize(Resolution resolution)
+        {
+            return Initialize();
+        }
+        public string GetMenuCommand(int x, int y)
+        {
+            var holder = (titleCommands)x;
+            return holder.ToString();
         }
     }
 }
