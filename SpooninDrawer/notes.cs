@@ -500,6 +500,9 @@ namespace SpooninDrawer
          *-moved drawer opening to state check 0, now to add dialog box?
          *11/12/2024
          *-implementing dialog, will need buttons for log/auto/etc
+         *11/14/2024
+         *-added asset for dialog box
+         *
          */
     }
 }
