@@ -502,7 +502,8 @@ namespace SpooninDrawer
          *-implementing dialog, will need buttons for log/auto/etc
          *11/14/2024
          *-added asset for dialog box
-         *
+         *11/20/2024
+         *-added more dialog box stuff, need to test
          */
     }
 }

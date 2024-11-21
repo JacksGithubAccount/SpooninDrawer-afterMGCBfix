@@ -235,6 +235,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 {
                     //mc action
                     NotifyEvent(new GameplayEvents.PlayerTest());
+
+
                     if (!interactableManager.IsInteractableEmpty())
                     {
                         if (interactableManager.GetInteractable().GetType() == typeof(Item))

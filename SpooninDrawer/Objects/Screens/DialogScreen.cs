@@ -28,9 +28,17 @@ namespace SpooninDrawer.Objects.Screens
         public bool hasButtons { get; }
         private SpriteFont spriteFont;
 
-        public DialogScreen(SpriteFont font)
+        public DialogScreen(SpriteFont font, Vector2 position, bool doesScreenNeedButtons)
         {
+            spriteFont = font;
+            Position = position;
 
+
+
+            if (doesScreenNeedButtons)
+            {
+                hasButtons = true;
+            }
         }
         public iBaseScreen Initialize()
         {
