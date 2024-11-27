@@ -16,6 +16,7 @@ namespace SpooninDrawer.Objects.Gameplay
     {
         public InteractablePopupBox InteractableItemPopupBox;
         public InteractablePopupBox AddInventoryPopupBox;
+        public DialogBox DialogBox;
         private Texture2D InteractableTexture;
         private Texture2D AddInventoryTexture;
 

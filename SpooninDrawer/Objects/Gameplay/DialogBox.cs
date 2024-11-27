@@ -1,15 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SpooninDrawer.Engine.Objects;
+using SpooninDrawer.Objects.Screens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpooninDrawer.Objects.Screens
+namespace SpooninDrawer.Objects.Gameplay
 {
-    public class DialogScreen: BaseScreenwithButtons, iBaseScreen
+    public class DialogBox : BaseScreenwithButtons, iBaseScreen
     {
         enum titleCommands
         {
@@ -27,26 +28,30 @@ namespace SpooninDrawer.Objects.Screens
         public BaseTextObject[,] ScreenText { get; set; }
         public bool hasButtons { get; }
         private SpriteFont spriteFont;
+        private Resolution DisplayResolution;
 
-        public DialogScreen(SpriteFont font, Vector2 position, bool doesScreenNeedButtons)
+        public DialogBox(SpriteFont font, Vector2 position, Resolution resolution, bool doesScreenNeedButtons)
         {
+            DisplayResolution = resolution;
             spriteFont = font;
             Position = position;
 
-
+            if (DisplayResolution == Resolution.x1080)
+            { 
+            
+            }
 
             if (doesScreenNeedButtons)
             {
                 hasButtons = true;
             }
         }
-        public iBaseScreen Initialize()
+        public void Initialize()
         {
-            return new PopupScreen(spriteFont, Position);
         }
-        public iBaseScreen Initialize(Resolution resolution)
+        public void Initialize(Resolution resolution)
         {
-            return Initialize();
+            DisplayResolution = resolution;
         }
         public string GetMenuCommand(int x, int y)
         {
