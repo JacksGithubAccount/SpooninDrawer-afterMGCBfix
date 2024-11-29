@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Gameplay
 {
-    public class DialogBox : BaseScreenwithButtons, iBaseScreen
+    public class DialogBox : BaseScreenwithButtons, BaseGameObject, iBaseScreen
     {
         enum titleCommands
         {
@@ -37,8 +37,14 @@ namespace SpooninDrawer.Objects.Gameplay
             Position = position;
 
             if (DisplayResolution == Resolution.x1080)
-            { 
-            
+            {
+                screenTexture = "Menu/DialogBox1080";
+
+                //button locations
+            }
+            else if(DisplayResolution == Resolution.x720)
+            {
+                screenTexture = "Menu/DialogBox720";
             }
 
             if (doesScreenNeedButtons)
