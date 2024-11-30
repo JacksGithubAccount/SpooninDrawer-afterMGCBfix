@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SpooninDrawer.Engine.Objects;
 using SpooninDrawer.Objects.Screens;
+using SpooninDrawer.Objects.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Gameplay
 {
-    public class DialogBox : BaseScreenwithButtons, BaseGameObject, iBaseScreen
+    public class DialogBox : BaseGameObject, iBaseScreen
     {
         enum titleCommands
         {
@@ -19,37 +20,54 @@ namespace SpooninDrawer.Objects.Gameplay
             Log,
             Skip
         }
-        public string screenTexture { get; }
-        public int[] menuLocationArrayX { get; }
-        public int[] menuLocationArrayY { get; }
-        public int[] menuNavigatorXCap { get; }
-        public int menuNavigatorYCap { get; }
-        public Vector2 Position { get; set; }
-        public BaseTextObject[,] ScreenText { get; set; }
-        public bool hasButtons { get; }
-        private SpriteFont spriteFont;
+        public GameplayText GameplayText { get; set; }
+        public string Text { get { return GameplayText.Text; } set { GameplayText.Text = value; } }
+        public Vector2 MovePopupBoxUp = new Vector2(0, 0);
+        private Vector2 TextPosition { get { return GameplayText.Position; } set { GameplayText.Position = value; } }
+        private Vector2 BoxPosition { get { return Position; } set { Position = value; } }
         private Resolution DisplayResolution;
 
-        public DialogBox(SpriteFont font, Vector2 position, Resolution resolution, bool doesScreenNeedButtons)
+        public override Vector2 Position
+        {
+            get { return Position; }
+            set
+            {
+                var deltaX = value.X - _position.X;
+                var deltaY = value.Y - _position.Y;
+                _position = value + MovePopupBoxUp;
+                if (GameplayText != null)
+                    GameplayText.Position = value + new Vector2(5, 5) + MovePopupBoxUp;
+                foreach (var bb in _boundingBoxes)
+                {
+                    bb.Position = new Vector2(bb.Position.X + deltaX, bb.Position.Y + deltaY);
+                }
+            }
+        }
+
+        public Texture2D BoxTexture { get { return _texture; } set { _texture = value; } }
+        public const string TexturePath1080 = "Menu/DialogBox1080";
+        public const string TexturePath720 = "Menu/DialogBox720";
+        public string TexturePath;
+        public double FadeAwayTime = 3;
+        public double PopupTime = 0;
+        public bool FadeAwayPopup = false;
+
+        public DialogBox(GameplayText text, Vector2 position, Texture2D boxTexture, Resolution resolution)
         {
             DisplayResolution = resolution;
-            spriteFont = font;
+            GameplayText = text;
             Position = position;
+            BoxTexture = boxTexture;
 
             if (DisplayResolution == Resolution.x1080)
             {
-                screenTexture = "Menu/DialogBox1080";
+                TexturePath = TexturePath1080;
 
                 //button locations
             }
             else if(DisplayResolution == Resolution.x720)
             {
-                screenTexture = "Menu/DialogBox720";
-            }
-
-            if (doesScreenNeedButtons)
-            {
-                hasButtons = true;
+                TexturePath = TexturePath720;
             }
         }
         public void Initialize()
@@ -59,10 +77,10 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             DisplayResolution = resolution;
         }
-        public string GetMenuCommand(int x, int y)
+        public override void Render(SpriteBatch spriteBatch)
         {
-            var holder = (titleCommands)x;
-            return holder.ToString();
+            base.Render(spriteBatch);
+            GameplayText.Render(spriteBatch);
+
         }
     }
-}

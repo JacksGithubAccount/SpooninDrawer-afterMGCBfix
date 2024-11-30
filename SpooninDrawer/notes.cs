@@ -506,6 +506,9 @@ namespace SpooninDrawer
          *-added more dialog box stuff, need to test
          *11/28/2024
          *-dialog box was created with wrong base, will need to fix
+         *11/29/2024
+         *-mimiced popupbox, maybe need to abstract?
+         *
          */
     }
 }

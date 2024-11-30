@@ -60,7 +60,7 @@
               "RelativeDocumentMoniker": "SpooninDrawer\\notes.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\notes.cs",
               "RelativeToolTip": "SpooninDrawer\\notes.cs",
-              "ViewState": "AQIAAN8BAAAAAAAAAAAAAPsBAABDAAAA",
+              "ViewState": "AQIAAN8BAAAAAAAAAAAAAP0BAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-09T00:39:30.306Z",
               "IsPinned": true,
@@ -76,8 +76,7 @@
               "RelativeToolTip": "SpooninDrawer\\Objects\\Screens\\MenuScreen.cs",
               "ViewState": "AQIAACMAAAAAAAAAAAAAwCQAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-27T04:42:54.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-27T04:42:54.781Z"
             },
             {
               "$type": "Document",
@@ -87,7 +86,7 @@
               "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Gameplay\\DialogBox.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\DialogBox.cs",
               "RelativeToolTip": "SpooninDrawer\\Objects\\Gameplay\\DialogBox.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAYwAwAAAA0AAAA",
+              "ViewState": "AQIAADEAAAAAAAAAAAAmwDkAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-04T04:16:02.675Z",
               "EditorCaption": ""
@@ -100,7 +99,7 @@
               "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Gameplay\\InteractablePopupBox.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\InteractablePopupBox.cs",
               "RelativeToolTip": "SpooninDrawer\\Objects\\Gameplay\\InteractablePopupBox.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAAwDcAAAAIAAAA",
+              "ViewState": "AQIAABwAAAAAAAAAAAAcwC4AAABdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-27T04:16:56.77Z",
               "EditorCaption": ""
