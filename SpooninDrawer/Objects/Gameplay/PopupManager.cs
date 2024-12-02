@@ -25,7 +25,7 @@ namespace SpooninDrawer.Objects.Gameplay
         private Vector2 PlayerPosition;
 
 
-        public PopupManager(SpriteFont font, Vector2 playerPosition, OrthographicCamera camera)
+        public PopupManager(SpriteFont font, Vector2 playerPosition, OrthographicCamera camera, Resolution resolution)
         {
             Font = font;
             PlayerPosition = playerPosition;
@@ -40,6 +40,12 @@ namespace SpooninDrawer.Objects.Gameplay
             AddInventoryPopupBox.GameplayText.zIndex = 13;
             AddInventoryPopupBox.zIndex = 12;
             AddInventoryPopupBox.Deactivate();
+
+            DialogBox = new DialogBox(new GameplayText(Font, "Interact"), PlayerPosition + new Vector2(100, 100), resolution);
+            DialogBox.GameplayText.zIndex = 13;
+            DialogBox.zIndex = 12;
+            DialogBox.Deactivate();
+            DialogBox.Activate();
 
         }
         public void SetPopupBoxTextures(Texture2D interactable, Texture2D addInventory)

@@ -508,6 +508,8 @@ namespace SpooninDrawer
          *-dialog box was created with wrong base, will need to fix
          *11/29/2024
          *-mimiced popupbox, maybe need to abstract?
+         *12/1/2024
+         *-Dialog box displays, need to fix position and text
          *
          */
     }

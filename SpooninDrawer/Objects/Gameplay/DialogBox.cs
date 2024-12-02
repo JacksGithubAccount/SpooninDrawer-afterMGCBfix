@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Gameplay
 {
-    public class DialogBox : BaseGameObject, iBaseScreen
+    public class DialogBox : BaseGameObject
     {
         enum titleCommands
         {
@@ -65,22 +65,42 @@ namespace SpooninDrawer.Objects.Gameplay
 
                 //button locations
             }
-            else if(DisplayResolution == Resolution.x720)
+            else if (DisplayResolution == Resolution.x720)
             {
                 TexturePath = TexturePath720;
             }
         }
-        public void Initialize()
+        public DialogBox(GameplayText text, Vector2 position, Resolution resolution) : this(text, position, null, resolution) { }
+
+        public void Activate(string text)
         {
+            Text = "Added " + text + " to inventory";
+            Activate();
         }
-        public void Initialize(Resolution resolution)
+        public void Activate(string text, bool IsFadeAway)
         {
-            DisplayResolution = resolution;
+            FadeAwayPopup = IsFadeAway;
+            Activate(text);
+        }
+        public override void Activate()
+        {
+            base.Activate();
+            GameplayText.Activate();
+        }
+        public override void Deactivate()
+        {
+            FadeAwayPopup = false;
+            base.Deactivate();
+            GameplayText.Deactivate();
+        }
+        public void ChangeText(string text)
+        {
+            Text = text;
         }
         public override void Render(SpriteBatch spriteBatch)
         {
             base.Render(spriteBatch);
             GameplayText.Render(spriteBatch);
-
         }
     }
+}
