@@ -510,6 +510,8 @@ namespace SpooninDrawer
          *-mimiced popupbox, maybe need to abstract?
          *12/1/2024
          *-Dialog box displays, need to fix position and text
+         *12/2/2024
+         *-Fixed box to camera, but need to find to fix to correct position
          *
          */
     }

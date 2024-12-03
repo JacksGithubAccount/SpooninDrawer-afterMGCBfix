@@ -60,7 +60,7 @@
               "RelativeDocumentMoniker": "SpooninDrawer\\notes.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\notes.cs",
               "RelativeToolTip": "SpooninDrawer\\notes.cs",
-              "ViewState": "AQIAAN8BAAAAAAAAAAAAAP8BAAA0AAAA",
+              "ViewState": "AQIAAN8BAAAAAAAAAAAAAAECAABLAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-09T00:39:30.306Z",
               "IsPinned": true,
@@ -101,8 +101,7 @@
               "RelativeToolTip": "SpooninDrawer\\Objects\\Gameplay\\InteractablePopupBox.cs",
               "ViewState": "AQIAACUAAAAAAAAAAAAhwC8AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-27T04:16:56.77Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-27T04:16:56.77Z"
             },
             {
               "$type": "Document",
@@ -112,7 +111,7 @@
               "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Gameplay\\PopupManager.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\PopupManager.cs",
               "RelativeToolTip": "SpooninDrawer\\Objects\\Gameplay\\PopupManager.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAIAwwC8AAAAhAAAA",
+              "ViewState": "AQIAAG0AAAAAAAAAAAAvwIQAAABTAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-27T03:43:03.575Z",
               "EditorCaption": ""

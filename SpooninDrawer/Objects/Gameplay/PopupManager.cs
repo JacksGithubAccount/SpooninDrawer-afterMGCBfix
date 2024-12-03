@@ -41,7 +41,7 @@ namespace SpooninDrawer.Objects.Gameplay
             AddInventoryPopupBox.zIndex = 12;
             AddInventoryPopupBox.Deactivate();
 
-            DialogBox = new DialogBox(new GameplayText(Font, "Interact"), PlayerPosition + new Vector2(100, 100), resolution);
+            DialogBox = new DialogBox(new GameplayText(Font, "Interact"), new Vector2(camera.BoundingRectangle.Width / 2, camera.Position.Y), resolution);
             DialogBox.GameplayText.zIndex = 13;
             DialogBox.zIndex = 12;
             DialogBox.Deactivate();
@@ -119,6 +119,7 @@ namespace SpooninDrawer.Objects.Gameplay
                 if (popupBox.Active)
                 {
                     popupBox.Position = new Vector2(camera.Position.X, camera.Center.Y);
+                    
 
                     if (popupBox.FadeAwayPopup & gameTime.TotalGameTime.TotalSeconds > popupBox.PopupTime + popupBox.FadeAwayTime)
                     {
@@ -126,6 +127,10 @@ namespace SpooninDrawer.Objects.Gameplay
                         break;
                     }
                 }
+            }
+            if (DialogBox.Active)
+            {
+                DialogBox.Position = new Vector2(camera.Position.X, camera.Center.Y);
             }
         }
     }
