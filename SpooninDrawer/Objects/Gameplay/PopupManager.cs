@@ -130,7 +130,7 @@ namespace SpooninDrawer.Objects.Gameplay
             }
             if (DialogBox.Active)
             {
-                DialogBox.Position = new Vector2(camera.Position.X, camera.Center.Y);
+                DialogBox.Position = new Vector2(camera.Position.X, camera.Center.Y + (camera.Center.Y - camera.Position.Y) - DialogBox.Height);
             }
         }
     }

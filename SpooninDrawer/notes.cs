@@ -512,6 +512,8 @@ namespace SpooninDrawer
          *-Dialog box displays, need to fix position and text
          *12/2/2024
          *-Fixed box to camera, but need to find to fix to correct position
+         *12/4/2024
+         *-figured out how to position the dialogbox at bottom
          *
          */
     }
