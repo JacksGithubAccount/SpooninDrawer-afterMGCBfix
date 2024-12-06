@@ -514,7 +514,8 @@ namespace SpooninDrawer
          *-Fixed box to camera, but need to find to fix to correct position
          *12/4/2024
          *-figured out how to position the dialogbox at bottom
-         *
+         *12/5/2024
+         *-wrote a wordwrapper class to war text in dialog box, but it's' missing the last word
          */
     }
 }
