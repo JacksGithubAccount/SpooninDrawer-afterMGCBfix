@@ -516,6 +516,8 @@ namespace SpooninDrawer
          *-figured out how to position the dialogbox at bottom
          *12/5/2024
          *-wrote a wordwrapper class to war text in dialog box, but it's' missing the last word
+         *12/6/2024
+         *-finshed wordwrapper, now to make the text appear over time?
          */
     }
 }

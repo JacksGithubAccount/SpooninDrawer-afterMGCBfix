@@ -10,7 +10,7 @@ namespace SpooninDrawer.Statics
     {
         public static List<string> WordWrap(string text, int lengthToWrapAround)
         {
-            int indexof;
+            int indexof = 0;
             int indexOfHolder = 0;
             string holdertext;            
             int nextLengthToWrapAround = 0;
@@ -18,12 +18,18 @@ namespace SpooninDrawer.Statics
             int indexfinder = 0;
 
             for (int i = 1; nextLengthToWrapAround < text.Length; i++)
-            {               
+            {
                 indexfinder = lengthToWrapAround * i;
                 if (indexfinder > text.Length)
+                {
                     indexfinder = text.Length;
-                indexof = text.LastIndexOf(" ", indexfinder);
-                holdertext = text.Substring(indexOfHolder, indexof - indexOfHolder);
+                    holdertext = text.Substring(indexOfHolder, indexfinder - indexOfHolder);
+                }
+                else
+                {
+                    indexof = text.LastIndexOf(" ", indexfinder);
+                    holdertext = text.Substring(indexOfHolder, indexof - indexOfHolder);
+                }
                 WrappedText.Add(holdertext);
 
                 indexOfHolder = indexof;
