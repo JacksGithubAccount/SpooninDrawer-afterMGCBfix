@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Gameplay
@@ -103,9 +104,24 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             List<string> WrappedText = WordWrapper.WordWrap(text, WordWrapLength);
             Text = "";
-            foreach (string WrappedTextItem in WrappedText) {
-                Text += WrappedTextItem + "\n";
+            foreach (string WrappedTextItem in WrappedText) 
+            {
+                for (int i = 0; i < WrappedTextItem.Length; i++)
+                {
+                    Text += WrappedTextItem.ElementAt(i);
+                    if (i == WrappedTextItem.Length - 1)
+                    {
+                        Text += "\n";
+                    }
+                    
+
+                }
+                //Text += WrappedTextItem + "\n";
             }
+        }
+        public void Update()
+        {
+
         }
         public override void Render(SpriteBatch spriteBatch)
         {

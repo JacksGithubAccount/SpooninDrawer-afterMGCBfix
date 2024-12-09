@@ -518,6 +518,9 @@ namespace SpooninDrawer
          *-wrote a wordwrapper class to war text in dialog box, but it's' missing the last word
          *12/6/2024
          *-finshed wordwrapper, now to make the text appear over time?
+         *12/8/2024
+         *-maybe for loop or somehow incorporate into update
+         *
          */
     }
 }
