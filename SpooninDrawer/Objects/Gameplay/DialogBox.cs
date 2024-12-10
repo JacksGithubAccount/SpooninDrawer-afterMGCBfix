@@ -24,6 +24,9 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public GameplayText GameplayText { get; set; }
         public string Text { get { return GameplayText.Text; } set { GameplayText.Text = value; } }
+        private string TextToDisplay;
+        private bool IsDisplayText = false;
+        private int TextDisplayPositionInString = 0;
         public List<string> TextLog;
         public Vector2 MovePopupBoxUp = new Vector2(0, 0);
         private Vector2 TextPosition { get { return GameplayText.Position; } set { GameplayText.Position = value; } }
@@ -101,27 +104,28 @@ namespace SpooninDrawer.Objects.Gameplay
             GameplayText.Deactivate();
         }
         public void ChangeText(string text)
-        {
+        {            
             List<string> WrappedText = WordWrapper.WordWrap(text, WordWrapLength);
             Text = "";
             foreach (string WrappedTextItem in WrappedText) 
             {
-                for (int i = 0; i < WrappedTextItem.Length; i++)
+                /*for (int i = 0; i < WrappedTextItem.Length; i++)
                 {
                     Text += WrappedTextItem.ElementAt(i);
                     if (i == WrappedTextItem.Length - 1)
                     {
                         Text += "\n";
-                    }
-                    
-
-                }
-                //Text += WrappedTextItem + "\n";
+                    }                 
+                }*/
+                TextToDisplay += WrappedTextItem + "\n";
+                IsDisplayText = true;
             }
         }
         public void Update()
         {
-
+            if (IsDisplayText) {
+                
+            }
         }
         public override void Render(SpriteBatch spriteBatch)
         {
