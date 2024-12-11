@@ -520,6 +520,8 @@ namespace SpooninDrawer
          *-finshed wordwrapper, now to make the text appear over time?
          *12/8/2024
          *-maybe for loop or somehow incorporate into update
+         *12/10/2024
+         *-calling to update made it work, speed works too now
          *
          */
     }

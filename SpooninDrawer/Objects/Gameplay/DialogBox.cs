@@ -27,6 +27,8 @@ namespace SpooninDrawer.Objects.Gameplay
         private string TextToDisplay;
         private bool IsDisplayText = false;
         private int TextDisplayPositionInString = 0;
+        private float TextDisplaySpeed = 2;
+        private float TextDisplaySpeedHolder = 0;
         public List<string> TextLog;
         public Vector2 MovePopupBoxUp = new Vector2(0, 0);
         private Vector2 TextPosition { get { return GameplayText.Position; } set { GameplayText.Position = value; } }
@@ -109,22 +111,35 @@ namespace SpooninDrawer.Objects.Gameplay
             Text = "";
             foreach (string WrappedTextItem in WrappedText) 
             {
-                /*for (int i = 0; i < WrappedTextItem.Length; i++)
-                {
-                    Text += WrappedTextItem.ElementAt(i);
-                    if (i == WrappedTextItem.Length - 1)
-                    {
-                        Text += "\n";
-                    }                 
-                }*/
                 TextToDisplay += WrappedTextItem + "\n";
                 IsDisplayText = true;
             }
         }
         public void Update()
         {
+            //controls text display
             if (IsDisplayText) {
-                
+                if (TextDisplaySpeed >= 1)
+                {
+                    for (int i = 0; i < TextDisplaySpeed; i++)
+                    {
+                        if(TextDisplayPositionInString + i < TextToDisplay.Length - 1)
+                            Text += TextToDisplay.ElementAt(TextDisplayPositionInString + i);
+                    }
+                }
+                else
+                {
+                    if (TextDisplaySpeedHolder % 1 == 0)
+                    {
+                        Text += TextToDisplay.ElementAt(TextDisplayPositionInString);
+                    }
+                }
+                //checks for out of bounds position in string
+                if (TextToDisplay.Length - 1 != TextDisplayPositionInString)
+                {
+                    TextDisplaySpeedHolder += TextDisplaySpeed;
+                    TextDisplayPositionInString = (int)TextDisplaySpeedHolder;
+                }
             }
         }
         public override void Render(SpriteBatch spriteBatch)
