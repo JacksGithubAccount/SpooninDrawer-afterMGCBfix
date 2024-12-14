@@ -515,14 +515,15 @@ namespace SpooninDrawer
          *12/4/2024
          *-figured out how to position the dialogbox at bottom
          *12/5/2024
-         *-wrote a wordwrapper class to war text in dialog box, but it's' missing the last word
+         *-wrote a wordwrapper class to war text in dialog box, but it's missing the last word
          *12/6/2024
          *-finshed wordwrapper, now to make the text appear over time?
          *12/8/2024
          *-maybe for loop or somehow incorporate into update
          *12/10/2024
          *-calling to update made it work, speed works too now
-         *
+         *12/13/2024
+         *-may need to add a dialog state to let dialog continue
          */
     }
 }

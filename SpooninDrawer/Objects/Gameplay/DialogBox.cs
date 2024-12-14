@@ -106,14 +106,21 @@ namespace SpooninDrawer.Objects.Gameplay
             GameplayText.Deactivate();
         }
         public void ChangeText(string text)
-        {            
-            List<string> WrappedText = WordWrapper.WordWrap(text, WordWrapLength);
-            Text = "";
+        {
+            ResetDialogBox();
+            List<string> WrappedText = WordWrapper.WordWrap(text, WordWrapLength);            
             foreach (string WrappedTextItem in WrappedText) 
             {
                 TextToDisplay += WrappedTextItem + "\n";
                 IsDisplayText = true;
             }
+        }
+        private void ResetDialogBox()
+        {
+            TextToDisplay = "";
+            Text = "";
+            TextDisplayPositionInString = 0;
+            TextDisplaySpeedHolder = 0;
         }
         public void Update()
         {
