@@ -102,6 +102,9 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private BaseGameState menuGameState;
         public bool menuActivate = false;
 
+        private bool isMainGameState;
+        private bool isDialogState;
+
         public GameplayState(Resolution resolution, SoundManager soundManager)
         {
             _displayResolution = resolution;
@@ -188,6 +191,14 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         public override void HandleInput(GameTime gameTime)
         {
+            if (isMainGameState)
+            {
+
+            }
+            if (isDialogState)
+            {
+
+            }
             InputManager.GetCommands(cmd =>
             {
                 if (cmd is GameplayInputCommand.GameExit)
