@@ -31,6 +31,11 @@ using SpooninDrawer.Objects.Gameplay;
 
 namespace SpooninDrawer.Engine.States.Gameplay
 {
+    public enum GameplayStateStates
+    {
+        MainGameState,
+        DialogState
+    }
     public class GameplayState : BaseGameState
     {
         private const float CAMERA_SPEED = 10.0f;
@@ -402,7 +407,19 @@ namespace SpooninDrawer.Engine.States.Gameplay
             _soundManager.UnloadAllSound();
             SwitchState(new SplashState(_displayResolution));
         }
-
+        private void ChangeGameStateState(GameplayStateStates gameplayStateState)
+        {
+            isMainGameState = false;
+            isDialogState = false;
+            if (gameplayStateState == GameplayStateStates.MainGameState)
+            {
+                isMainGameState = true;
+            }
+            else if (gameplayStateState == GameplayStateStates.DialogState)
+            {
+                isDialogState = true;
+            }
+        }
         private List<T> CleanObjects<T>(List<T> objectList) where T : BaseGameObject
         {
             List<T> listOfItemsToKeep = new List<T>();
