@@ -120,6 +120,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             base.Initialize(contentManager, window, graphicsDevice, graphicsDeviceManager);
             player1 = new Player();
             interactableManager = new InteractableManager();
+            ChangeGameStateState(GameplayStateStates.MainGameState);
         }
         public override void LoadContent(ContentManager content)
         {
@@ -212,8 +213,12 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 }
                 if (cmd is GameplayInputCommand.PlayerOpenMenu)
                 {
-                    paused = !paused;
-                    menuActivate = true;
+                    if (isMainGameState)
+                    {
+                        paused = !paused;
+                        menuActivate = true;
+                    }
+                    
                 }
                 if (cmd is GameplayInputCommand.Pause)
                 {
@@ -222,63 +227,91 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
                 if (cmd is GameplayInputCommand.PlayerMoveLeft && !_playerDead)
                 {
-                    _playerSprite.MoveLeft();
-                    KeepPlayerInBounds();
+                    if (isMainGameState)
+                    {
+                        _playerSprite.MoveLeft();
+                        KeepPlayerInBounds();
+                    }
+                    
                 }
 
                 if (cmd is GameplayInputCommand.PlayerMoveRight && !_playerDead)
                 {
-                    _playerSprite.MoveRight();
-                    KeepPlayerInBounds();
+                    if (isMainGameState)
+                    {
+                        _playerSprite.MoveRight();
+                        KeepPlayerInBounds();
+                    }
+                    
                 }
 
                 if (cmd is GameplayInputCommand.PlayerMoveUp && !_playerDead)
                 {
-                    _playerSprite.MoveUp();
-                    KeepPlayerInBounds();
+                    if (isMainGameState)
+                    {
+                        _playerSprite.MoveUp();
+                        KeepPlayerInBounds();
+                    }
+                    
                 }
 
                 if (cmd is GameplayInputCommand.PlayerMoveDown && !_playerDead)
                 {
-                    _playerSprite.MoveDown();
-                    KeepPlayerInBounds();
+                    if (isMainGameState)
+                    {
+                        _playerSprite.MoveDown();
+                        KeepPlayerInBounds();
+                    }
+                    
                 }
 
                 if (cmd is GameplayInputCommand.PlayerStopsMoving && !_playerDead)
                 {
-                    _playerSprite.StopMoving();
+                    if (isMainGameState)
+                    {
+                        _playerSprite.StopMoving();
+                    }
+                    
                 }
 
                 if (cmd is GameplayInputCommand.PlayerAction && !_playerDead)
                 {
-                    //mc action
-                    NotifyEvent(new GameplayEvents.PlayerTest());
-
-
-                    if (!interactableManager.IsInteractableEmpty())
+                    if (isMainGameState)
                     {
-                        if (interactableManager.GetInteractable().GetType() == typeof(Item))
+                        //mc action
+                        NotifyEvent(new GameplayEvents.PlayerTest());
+
+
+                        if (!interactableManager.IsInteractableEmpty())
                         {
-                            //adds top most item to inventory
-                            Item temp = interactableManager.AddToInventory(player1);
-                            AddGameObject(PopupManager.ActivateAddInventoryPopupBox(temp.ToString(), gameTime));
-                            interactableManager.RemoveInteractableItem(temp);
-                            RemoveGameObject(temp);
-                        }
-                        else if (interactableManager.GetInteractable().GetType() == typeof(InteractableOverworldObject))
-                        {
-                            InteractableOverworldObject holder = (InteractableOverworldObject)interactableManager.GetInteractable();
-                            if (holder.State[0]) 
+                            if (interactableManager.GetInteractable().GetType() == typeof(Item))
                             {
-                                interactableManager.InteractWithObject(_playerSprite.CenterPosition);
+                                //adds top most item to inventory
+                                Item temp = interactableManager.AddToInventory(player1);
+                                AddGameObject(PopupManager.ActivateAddInventoryPopupBox(temp.ToString(), gameTime));
+                                interactableManager.RemoveInteractableItem(temp);
+                                RemoveGameObject(temp);
                             }
-                            //drawer and spoon check
-                            if (holder == interactableManager.Drawer && player1.Inventory.Exists(x => x.item == interactableManager.Spoon))
+                            else if (interactableManager.GetInteractable().GetType() == typeof(InteractableOverworldObject))
                             {
-                                
+                                InteractableOverworldObject holder = (InteractableOverworldObject)interactableManager.GetInteractable();
+                                if (holder.State[0])
+                                {
+                                    interactableManager.InteractWithObject(_playerSprite.CenterPosition);
+                                }
+                                //drawer and spoon check
+                                if (holder == interactableManager.Drawer && player1.Inventory.Exists(x => x.item == interactableManager.Spoon))
+                                {
+
+                                }
                             }
                         }
                     }
+                    if (isDialogState)
+                    {
+
+                    }
+                    
                 }
             });
         }

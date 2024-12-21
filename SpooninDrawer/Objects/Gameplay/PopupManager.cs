@@ -45,7 +45,6 @@ namespace SpooninDrawer.Objects.Gameplay
             DialogBox.GameplayText.zIndex = 13;
             DialogBox.zIndex = 12;
             DialogBox.Deactivate();
-            DialogBox.Activate();
 
         }
         public void SetPopupBoxTextures(Texture2D interactable, Texture2D addInventory)
