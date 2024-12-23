@@ -28,6 +28,7 @@ using MonoGame.Extended.Screens;
 using SpooninDrawer.Objects.Screens;
 using SpooninDrawer.Engine.Sound;
 using SpooninDrawer.Objects.Gameplay;
+using SpooninDrawer.Statics;
 
 namespace SpooninDrawer.Engine.States.Gameplay
 {
@@ -298,6 +299,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
                                 if (holder.State[0])
                                 {
                                     interactableManager.InteractWithObject(_playerSprite.CenterPosition);
+                                    //tyest
+                                    PopupManager.ActivateDialogBox(StoredDialog.glasses);
                                 }
                                 //drawer and spoon check
                                 if (holder == interactableManager.Drawer && player1.Inventory.Exists(x => x.item == interactableManager.Spoon))

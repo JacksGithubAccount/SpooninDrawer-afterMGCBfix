@@ -60,6 +60,11 @@ namespace SpooninDrawer.Objects.Gameplay
             popupBox.Deactivate();
             return popupBox;
         }
+        public void ActivateDialogBox(string text)
+        {
+            DialogBox.ChangeText(text);
+            DialogBox.Activate();
+        }
         public InteractablePopupBox ActivateAddInventoryPopupBox(string ItemName, GameTime gameTime)
         {
             if (AddInventoryPopupBoxes.Count < 10)

@@ -524,6 +524,9 @@ namespace SpooninDrawer
          *-calling to update made it work, speed works too now
          *12/13/2024
          *-may need to add a dialog state to let dialog continue
+         *12/22/2024
+         *-added static to store dialog, for now
+         *
          */
     }
 }
