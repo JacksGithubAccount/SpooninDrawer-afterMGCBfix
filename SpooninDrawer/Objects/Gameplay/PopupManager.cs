@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using MonoGame.Extended;
 using SpooninDrawer.Engine.Objects;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SpooninDrawer.Objects.Gameplay
 {
@@ -62,9 +63,28 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void ActivateDialogBox(string text)
         {
+            ChangeDialogDisplayTextSpeedNormal();
             DialogBox.ChangeText(text);
             DialogBox.Activate();
         }
+        public void DeactivateDialogBox()
+        {
+            DialogBox.ChangeText("");
+            DialogBox.Deactivate();            
+        }
+        public void ChangeDialogDisplayTextSpeedFast()
+        {
+            DialogBox.ChangeDisplayTextSpeed(DialogBox.DisplaySpeedFast);
+        }
+        public void ChangeDialogDisplayTextSpeedNormal()
+        {
+            DialogBox.ChangeDisplayTextSpeed(DialogBox.DisplaySpeedNormal);
+        }
+        public void ChangeDialogDisplayTextSpeedSlow()
+        {
+            DialogBox.ChangeDisplayTextSpeed(DialogBox.DisplaySpeedSlow);
+        }
+
         public InteractablePopupBox ActivateAddInventoryPopupBox(string ItemName, GameTime gameTime)
         {
             if (AddInventoryPopupBoxes.Count < 10)

@@ -26,9 +26,15 @@ namespace SpooninDrawer.Objects.Gameplay
         public string Text { get { return GameplayText.Text; } set { GameplayText.Text = value; } }
         private string TextToDisplay;
         private bool IsDisplayText = false;
+
         private int TextDisplayPositionInString = 0;
         private float TextDisplaySpeed = 2;
         private float TextDisplaySpeedHolder = 0;
+
+        public const float DisplaySpeedNormal = 1;
+        public const float DisplaySpeedSlow = 0.5f;
+        public const float DisplaySpeedFast = 3;
+
         public List<string> TextLog;
         public Vector2 MovePopupBoxUp = new Vector2(0, 0);
         private Vector2 TextPosition { get { return GameplayText.Position; } set { GameplayText.Position = value; } }
@@ -115,12 +121,29 @@ namespace SpooninDrawer.Objects.Gameplay
                 IsDisplayText = true;
             }
         }
+        public void ChangeDisplayTextSpeed(float speed)
+        {
+            TextDisplaySpeed = speed;
+        }
+        
         private void ResetDialogBox()
         {
             TextToDisplay = "";
             Text = "";
             TextDisplayPositionInString = 0;
             TextDisplaySpeedHolder = 0;
+        }
+        public bool IsTextFinishDisplay()
+        {
+            if(TextDisplayPositionInString >= TextToDisplay.Length)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
         public void Update()
         {

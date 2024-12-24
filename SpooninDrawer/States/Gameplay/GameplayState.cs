@@ -298,21 +298,30 @@ namespace SpooninDrawer.Engine.States.Gameplay
                                 InteractableOverworldObject holder = (InteractableOverworldObject)interactableManager.GetInteractable();
                                 if (holder.State[0])
                                 {
-                                    interactableManager.InteractWithObject(_playerSprite.CenterPosition);
-                                    //tyest
-                                    PopupManager.ActivateDialogBox(StoredDialog.glasses);
+                                    interactableManager.InteractWithObject(_playerSprite.CenterPosition);                                    
                                 }
                                 //drawer and spoon check
                                 if (holder == interactableManager.Drawer && player1.Inventory.Exists(x => x.item == interactableManager.Spoon))
                                 {
 
                                 }
+                                //tyest
+                                PopupManager.ActivateDialogBox(StoredDialog.glasses);
+                                ChangeGameStateState(GameplayStateStates.DialogState);                                
                             }
                         }
                     }
-                    if (isDialogState)
+                    else if (isDialogState)
                     {
-
+                        if (!PopupManager.DialogBox.IsTextFinishDisplay())
+                        {
+                            PopupManager.ChangeDialogDisplayTextSpeedFast();
+                        }
+                        else
+                        {
+                            PopupManager.DeactivateDialogBox();
+                            ChangeGameStateState(GameplayStateStates.MainGameState);
+                        }
                     }
                     
                 }

@@ -497,7 +497,7 @@ namespace SpooninDrawer
          *10/30/2024
          *-Added states
          *11/3/2024
-         *-moved drawer opening to state check 0, now to add dialog box?
+         *-moved drawer opening to state check 0, now to add dialog box
          *11/12/2024
          *-implementing dialog, will need buttons for log/auto/etc
          *11/14/2024
@@ -517,7 +517,7 @@ namespace SpooninDrawer
          *12/5/2024
          *-wrote a wordwrapper class to war text in dialog box, but it's missing the last word
          *12/6/2024
-         *-finshed wordwrapper, now to make the text appear over time?
+         *-finshed wordwrapper, now to make the text appear over time
          *12/8/2024
          *-maybe for loop or somehow incorporate into update
          *12/10/2024
@@ -526,6 +526,10 @@ namespace SpooninDrawer
          *-may need to add a dialog state to let dialog continue
          *12/22/2024
          *-added static to store dialog, for now
+         *12/23/2024
+         *-added changing speed on action in mid dialog, closing dialog box at end of text display. next is continuing dialog
+         *
+         *
          *
          */
     }
