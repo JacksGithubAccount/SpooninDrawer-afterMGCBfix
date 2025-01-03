@@ -25,6 +25,7 @@ namespace SpooninDrawer.Objects.Gameplay
         private SpriteFont Font;
         private Vector2 PlayerPosition;
 
+        private int DialogContinuingTexts = 0;
 
         public PopupManager(SpriteFont font, Vector2 playerPosition, OrthographicCamera camera, Resolution resolution)
         {

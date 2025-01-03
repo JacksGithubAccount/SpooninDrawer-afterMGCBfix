@@ -528,7 +528,8 @@ namespace SpooninDrawer
          *-added static to store dialog, for now
          *12/23/2024
          *-added changing speed on action in mid dialog, closing dialog box at end of text display. next is continuing dialog
-         *
+         *1/2/2024
+         *-adding punctuation wrap to allow sentence separation for text display
          *
          *
          */

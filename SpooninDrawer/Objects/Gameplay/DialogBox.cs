@@ -33,7 +33,7 @@ namespace SpooninDrawer.Objects.Gameplay
 
         public const float DisplaySpeedNormal = 1;
         public const float DisplaySpeedSlow = 0.5f;
-        public const float DisplaySpeedFast = 3;
+        public const float DisplaySpeedFast = 5;
 
         public List<string> TextLog;
         public Vector2 MovePopupBoxUp = new Vector2(0, 0);
@@ -120,6 +120,14 @@ namespace SpooninDrawer.Objects.Gameplay
                 TextToDisplay += WrappedTextItem + "\n";
                 IsDisplayText = true;
             }
+        }
+        private void WrapTextBySentence(string text)
+        {
+
+        }
+        public void ContinueText()
+        {
+
         }
         public void ChangeDisplayTextSpeed(float speed)
         {

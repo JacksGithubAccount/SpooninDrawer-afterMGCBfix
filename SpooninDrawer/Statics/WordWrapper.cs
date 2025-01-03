@@ -38,6 +38,10 @@ namespace SpooninDrawer.Statics
             return WrappedText; 
         
         }
+        public static List<string> WordWrapByPunctuation(string text, char punctuation) 
+        { 
+
+        }
 
     }
 }
