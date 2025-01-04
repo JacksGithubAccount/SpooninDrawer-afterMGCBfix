@@ -39,8 +39,24 @@ namespace SpooninDrawer.Statics
         
         }
         public static List<string> WordWrapByPunctuation(string text, char punctuation) 
-        { 
+        {
+            int indexof = 0;
+            int indexOfHolder = 0;
+            string holdertext;
+            int nextLengthToWrapAround = 0;
+            List<string> WrappedText = new List<string>();
+            int indexfinder = 0;
 
+            for (int i = 1; nextLengthToWrapAround < text.Length; i++)
+            {
+                indexof = text.LastIndexOf(punctuation, indexfinder);
+                holdertext = text.Substring(indexOfHolder, indexof - indexOfHolder);
+
+                indexOfHolder = indexof;
+                nextLengthToWrapAround += indexof;
+            }
+
+                return WrappedText;
         }
 
     }
