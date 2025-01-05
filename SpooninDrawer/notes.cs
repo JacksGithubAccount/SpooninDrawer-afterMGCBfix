@@ -530,7 +530,8 @@ namespace SpooninDrawer
          *-added changing speed on action in mid dialog, closing dialog box at end of text display. next is continuing dialog
          *1/2/2024
          *-adding punctuation wrap to allow sentence separation for text display
-         *
+         *1/3/2024
+         *-attempting test at displaying dialog in a row, but previous text isn't clearing
          *
          */
     }

@@ -26,6 +26,9 @@ namespace SpooninDrawer.Objects.Gameplay
         public string Text { get { return GameplayText.Text; } set { GameplayText.Text = value; } }
         private string TextToDisplay;
         private bool IsDisplayText = false;
+        private List<string> WrappedText;
+        private int NextDialogBoxCount = 0;
+        private bool IsNextDialogBox = false;
 
         private int TextDisplayPositionInString = 0;
         private float TextDisplaySpeed = 2;
@@ -114,12 +117,26 @@ namespace SpooninDrawer.Objects.Gameplay
         public void ChangeText(string text)
         {
             ResetDialogBox();
-            List<string> WrappedText = WordWrapper.WordWrap(text, WordWrapLength);            
-            foreach (string WrappedTextItem in WrappedText) 
+            NextDialogBoxCount = 0;
+            WrappedText = WordWrapper.WordWrap(text, WordWrapLength);
+            if (WrappedText.Count > 0)
+            {
+                TextToDisplay = WrappedText[NextDialogBoxCount];
+                IsDisplayText = true;
+                if (WrappedText.Count > 1) 
+                {
+                    IsNextDialogBox = true;
+                }
+            }
+            /*foreach (string WrappedTextItem in WrappedText) 
             {
                 TextToDisplay += WrappedTextItem + "\n";
                 IsDisplayText = true;
-            }
+            }*/
+        }
+        public bool IsThereNextDialogBox()
+        {
+            return IsNextDialogBox;
         }
         private void WrapTextBySentence(string text)
         {
@@ -127,7 +144,14 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void ContinueText()
         {
-
+            ResetDialogBox();
+            NextDialogBoxCount++;
+            TextToDisplay = WrappedText[NextDialogBoxCount];
+            IsDisplayText = true;
+            if (WrappedText.Count == NextDialogBoxCount)
+            {
+                IsNextDialogBox = false;
+            }
         }
         public void ChangeDisplayTextSpeed(float speed)
         {
@@ -140,6 +164,7 @@ namespace SpooninDrawer.Objects.Gameplay
             Text = "";
             TextDisplayPositionInString = 0;
             TextDisplaySpeedHolder = 0;
+            IsDisplayText = false;
         }
         public bool IsTextFinishDisplay()
         {

@@ -319,8 +319,15 @@ namespace SpooninDrawer.Engine.States.Gameplay
                         }
                         else
                         {
-                            PopupManager.DeactivateDialogBox();
-                            ChangeGameStateState(GameplayStateStates.MainGameState);
+                            if (PopupManager.DialogBox.IsThereNextDialogBox())
+                            {
+                                PopupManager.DialogBox.ContinueText();
+                            }
+                            else
+                            {
+                                PopupManager.DeactivateDialogBox();
+                                ChangeGameStateState(GameplayStateStates.MainGameState);
+                            }
                         }
                     }
                     
