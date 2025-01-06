@@ -532,6 +532,8 @@ namespace SpooninDrawer
          *-adding punctuation wrap to allow sentence separation for text display
          *1/3/2024
          *-attempting test at displaying dialog in a row, but previous text isn't clearing
+         *1/4/2024
+         *-continuous dialog boxes now work, now for text line limits
          *
          */
     }

@@ -134,10 +134,7 @@ namespace SpooninDrawer.Objects.Gameplay
                 IsDisplayText = true;
             }*/
         }
-        public bool IsThereNextDialogBox()
-        {
-            return IsNextDialogBox;
-        }
+        
         private void WrapTextBySentence(string text)
         {
 
@@ -148,7 +145,7 @@ namespace SpooninDrawer.Objects.Gameplay
             NextDialogBoxCount++;
             TextToDisplay = WrappedText[NextDialogBoxCount];
             IsDisplayText = true;
-            if (WrappedText.Count == NextDialogBoxCount)
+            if (WrappedText.Count - 1 == NextDialogBoxCount)
             {
                 IsNextDialogBox = false;
             }
@@ -164,6 +161,7 @@ namespace SpooninDrawer.Objects.Gameplay
             Text = "";
             TextDisplayPositionInString = 0;
             TextDisplaySpeedHolder = 0;
+            ChangeDisplayTextSpeed(DisplaySpeedNormal);
             IsDisplayText = false;
         }
         public bool IsTextFinishDisplay()
@@ -176,7 +174,10 @@ namespace SpooninDrawer.Objects.Gameplay
             {
                 return false;
             }
-
+        }
+        public bool IsThereNextDialogBox()
+        {
+            return IsNextDialogBox;
         }
         public void Update()
         {
@@ -186,7 +187,8 @@ namespace SpooninDrawer.Objects.Gameplay
                 {
                     for (int i = 0; i < TextDisplaySpeed; i++)
                     {
-                        if(TextDisplayPositionInString + i < TextToDisplay.Length - 1)
+                        //second part of if makes sure the last letter is printed
+                        if(TextDisplayPositionInString + i <= TextToDisplay.Length - 1 && Text.Length != TextToDisplay.Length)
                             Text += TextToDisplay.ElementAt(TextDisplayPositionInString + i);
                     }
                 }
@@ -198,7 +200,7 @@ namespace SpooninDrawer.Objects.Gameplay
                     }
                 }
                 //checks for out of bounds position in string
-                if (TextToDisplay.Length - 1 != TextDisplayPositionInString)
+                if (TextToDisplay.Length != TextDisplayPositionInString)
                 {
                     TextDisplaySpeedHolder += TextDisplaySpeed;
                     TextDisplayPositionInString = (int)TextDisplaySpeedHolder;
