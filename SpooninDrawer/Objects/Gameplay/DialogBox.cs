@@ -27,8 +27,9 @@ namespace SpooninDrawer.Objects.Gameplay
         private string TextToDisplay;
         private bool IsDisplayText = false;
         private List<string> WrappedText;
-        private int NextDialogBoxCount = 0;
+        private int NextDialogLineCount = 0;
         private bool IsNextDialogBox = false;
+        private const int LinesInDialogBox = 3;
 
         private int TextDisplayPositionInString = 0;
         private float TextDisplaySpeed = 2;
@@ -117,24 +118,32 @@ namespace SpooninDrawer.Objects.Gameplay
         public void ChangeText(string text)
         {
             ResetDialogBox();
-            NextDialogBoxCount = 0;
+            NextDialogLineCount = 0;
             WrappedText = WordWrapper.WordWrap(text, WordWrapLength);
-            if (WrappedText.Count > 0)
+            FitTextInBox();
+            IsDisplayText = true;
+            if (WrappedText.Count > 3)
             {
-                TextToDisplay = WrappedText[NextDialogBoxCount];
-                IsDisplayText = true;
-                if (WrappedText.Count > 1) 
+                IsNextDialogBox = true;
+            }
+        }
+        //fit three lines max in dialog box
+        private void FitTextInBox()
+        {
+            if (WrappedText.Count >= LinesInDialogBox)
+            {
+                TextToDisplay = WrappedText[NextDialogLineCount] + "\n" + WrappedText[NextDialogLineCount + 1] + "\n" + WrappedText[NextDialogLineCount + 2];
+                NextDialogLineCount += LinesInDialogBox;
+            }
+            else
+            {
+                foreach (string WrappedTextItem in WrappedText)
                 {
-                    IsNextDialogBox = true;
+                    TextToDisplay += WrappedTextItem + "\n";
+                    NextDialogLineCount++;
                 }
             }
-            /*foreach (string WrappedTextItem in WrappedText) 
-            {
-                TextToDisplay += WrappedTextItem + "\n";
-                IsDisplayText = true;
-            }*/
         }
-        
         private void WrapTextBySentence(string text)
         {
 
@@ -142,10 +151,9 @@ namespace SpooninDrawer.Objects.Gameplay
         public void ContinueText()
         {
             ResetDialogBox();
-            NextDialogBoxCount++;
-            TextToDisplay = WrappedText[NextDialogBoxCount];
+            FitTextInBox();
             IsDisplayText = true;
-            if (WrappedText.Count - 1 == NextDialogBoxCount)
+            if (WrappedText.Count - 1 <= NextDialogLineCount)
             {
                 IsNextDialogBox = false;
             }

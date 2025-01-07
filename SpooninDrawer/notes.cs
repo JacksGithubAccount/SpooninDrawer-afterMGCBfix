@@ -534,7 +534,8 @@ namespace SpooninDrawer
          *-attempting test at displaying dialog in a row, but previous text isn't clearing
          *1/4/2024
          *-continuous dialog boxes now work, now for text line limits
-         *
+         *1/5/2024
+         *-set lines of text to 3
          */
     }
 }
