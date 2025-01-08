@@ -158,6 +158,17 @@ namespace SpooninDrawer.Objects.Gameplay
                 IsNextDialogBox = false;
             }
         }
+        //use following methods to manually change speed, theres consts for speed, also default speed is 1.0f
+        public void ChangeText(string text, float speed)
+        {
+            ChangeText(text);
+            ChangeDisplayTextSpeed(speed);
+        }        
+        public void ContinueText(float speed)
+        {
+            ContinueText();
+            ChangeDisplayTextSpeed(speed);
+        }
         public void ChangeDisplayTextSpeed(float speed)
         {
             TextDisplaySpeed = speed;

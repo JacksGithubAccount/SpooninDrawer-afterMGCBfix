@@ -536,6 +536,8 @@ namespace SpooninDrawer
          *-continuous dialog boxes now work, now for text line limits
          *1/5/2024
          *-set lines of text to 3
+         *1/6/2024
+         *added dialog box speed control when adding text, next is user speaking
          */
     }
 }
