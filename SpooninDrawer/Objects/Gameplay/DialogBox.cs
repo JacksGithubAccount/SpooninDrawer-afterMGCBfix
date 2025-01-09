@@ -23,6 +23,7 @@ namespace SpooninDrawer.Objects.Gameplay
             Skip
         }
         public GameplayText GameplayText { get; set; }
+        private string Speaker = "";
         public string Text { get { return GameplayText.Text; } set { GameplayText.Text = value; } }
         private string TextToDisplay;
         private bool IsDisplayText = false;
@@ -119,6 +120,10 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             ResetDialogBox();
             NextDialogLineCount = 0;
+            if (text.Length > 0)
+            {
+                Speaker = text.Remove(0, text.IndexOf("::"));
+            }
             WrappedText = WordWrapper.WordWrap(text, WordWrapLength);
             FitTextInBox();
             IsDisplayText = true;

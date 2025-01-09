@@ -537,7 +537,9 @@ namespace SpooninDrawer
          *1/5/2024
          *-set lines of text to 3
          *1/6/2024
-         *added dialog box speed control when adding text, next is user speaking
+         *-added dialog box speed control when adding text, next is user speaking
+         *1/8/2024
+         *-working on speaker, may need dictionary
          */
     }
 }
