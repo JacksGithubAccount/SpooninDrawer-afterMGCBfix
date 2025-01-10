@@ -23,7 +23,10 @@ namespace SpooninDrawer.Objects.Gameplay
             Skip
         }
         public GameplayText GameplayText { get; set; }
-        private string Speaker = "";
+        private GameplayText SpeakerGameplayText { get; set; }
+        private GameplayText SpeakerSubtitleGameplayText { get; set; }
+        private string SpeakerText { get { return SpeakerGameplayText.Text; } set { SpeakerGameplayText.Text = value; } }
+        private string SpeakerSubtitleText { get { return SpeakerSubtitleGameplayText.Text; } set { SpeakerSubtitleGameplayText.Text = value; } }
         public string Text { get { return GameplayText.Text; } set { GameplayText.Text = value; } }
         private string TextToDisplay;
         private bool IsDisplayText = false;
@@ -43,6 +46,8 @@ namespace SpooninDrawer.Objects.Gameplay
         public List<string> TextLog;
         public Vector2 MovePopupBoxUp = new Vector2(0, 0);
         private Vector2 TextPosition { get { return GameplayText.Position; } set { GameplayText.Position = value; } }
+        private Vector2 SpeakerPosition { get { return SpeakerGameplayText.Position; } set { SpeakerGameplayText.Position = value; } }
+        private Vector2 SpeakerSubtitlePosition { get { return SpeakerSubtitleGameplayText.Position; } set { SpeakerSubtitleGameplayText.Position = value; } }
         private Vector2 BoxPosition { get { return Position; } set { Position = value; } }
         private Resolution DisplayResolution;
 
@@ -55,7 +60,11 @@ namespace SpooninDrawer.Objects.Gameplay
                 var deltaY = value.Y - _position.Y;
                 _position = value + MovePopupBoxUp;
                 if (GameplayText != null)
-                    GameplayText.Position = value + new Vector2(25, 25) + MovePopupBoxUp;
+                {
+                    TextPosition = value + new Vector2(25, 75) + MovePopupBoxUp;
+                    SpeakerPosition = value + new Vector2(25, 25) + MovePopupBoxUp;
+                    SpeakerSubtitlePosition = value + new Vector2(50, 25) + MovePopupBoxUp;
+                }
                 foreach (var bb in _boundingBoxes)
                 {
                     bb.Position = new Vector2(bb.Position.X + deltaX, bb.Position.Y + deltaY);
@@ -72,18 +81,18 @@ namespace SpooninDrawer.Objects.Gameplay
         public bool FadeAwayPopup = false;
         private const int WordWrapLength = 183;
 
-        public DialogBox(GameplayText text, Vector2 position, Texture2D boxTexture, Resolution resolution)
+        public DialogBox(GameplayText text,, Vector2 position, Texture2D boxTexture, Resolution resolution)
         {
             DisplayResolution = resolution;
             GameplayText = text;
+            SpeakerGameplayText = text;
+            SpeakerSubtitleGameplayText = text;
             Position = position;
             BoxTexture = boxTexture;
 
             if (DisplayResolution == Resolution.x1080)
             {
                 TexturePath = TexturePath1080;
-
-                //button locations
             }
             else if (DisplayResolution == Resolution.x720)
             {
@@ -91,7 +100,6 @@ namespace SpooninDrawer.Objects.Gameplay
             }
             
             Text = "";
-            ChangeText(Text);
         }
         public DialogBox(GameplayText text, Vector2 position, Resolution resolution) : this(text, position, null, resolution) { }
 
@@ -120,12 +128,14 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             ResetDialogBox();
             NextDialogLineCount = 0;
-            if (text.Length > 0)
+            if (text.Count() > 0)
             {
-                Speaker = text.Remove(0, text.IndexOf("::"));
+                string[] textSplitted = text.Split("::");
+                SpeakerText = textSplitted[0];
+                SpeakerSubtitleText = "";
+                WrappedText = WordWrapper.WordWrap(textSplitted[1], WordWrapLength);
+                FitTextInBox();
             }
-            WrappedText = WordWrapper.WordWrap(text, WordWrapLength);
-            FitTextInBox();
             IsDisplayText = true;
             if (WrappedText.Count > 3)
             {
@@ -179,7 +189,7 @@ namespace SpooninDrawer.Objects.Gameplay
             TextDisplaySpeed = speed;
         }
         
-        private void ResetDialogBox()
+        public void ResetDialogBox()
         {
             TextToDisplay = "";
             Text = "";
@@ -235,6 +245,8 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             base.Render(spriteBatch);
             GameplayText.Render(spriteBatch);
+            SpeakerGameplayText.Render(spriteBatch);
+            //SpeakerSubtitleGameplayText.Render(spriteBatch);
         }
     }
 }

@@ -70,7 +70,7 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void DeactivateDialogBox()
         {
-            DialogBox.ChangeText("");
+            DialogBox.ResetDialogBox();
             DialogBox.Deactivate();            
         }
         public void ChangeDialogDisplayTextSpeedFast()

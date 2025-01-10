@@ -540,6 +540,8 @@ namespace SpooninDrawer
          *-added dialog box speed control when adding text, next is user speaking
          *1/8/2024
          *-working on speaker, may need dictionary
+         *1/9/2024
+         *-need to add separate gameplaytext for speaker to make it independant from text and to get it to display
          */
     }
 }
