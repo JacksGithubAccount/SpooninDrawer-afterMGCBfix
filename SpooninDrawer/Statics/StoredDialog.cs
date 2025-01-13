@@ -8,7 +8,7 @@ namespace SpooninDrawer.Statics
 {
     static class StoredDialog
     {
-        public static string glasses = "Speaker:: Glasses are really versatile. First, you can have glasses-wearing girls take them off and suddenly become beautiful, " +
+        public static string glasses = "Fubuki::Speaker::Glasses Fanatic::Subtitle:: Glasses are really versatile. First, you can have glasses-wearing girls take them off and suddenly become beautiful, " +
             "or have girls wearing glasses flashing those cute grins, or have girls stealing the protagonist's glasses and putting them on like, " +
             "\"Haha, got your glasses!\" That's just way too cute! Also, boys with glasses! I really like when their glasses have that suspicious looking " +
             "gleam, and it's amazing how it can look really cool or just be a joke. I really like how it can fulfill all those abstract needs. Being able " +

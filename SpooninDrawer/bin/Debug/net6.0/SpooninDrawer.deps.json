@@ -147,7 +147,10 @@
       },
       "Engine2DPipelineExtensions/1.0.0": {
         "runtime": {
-          "Engine2DPipelineExtensions.dll": {}
+          "Engine2DPipelineExtensions.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

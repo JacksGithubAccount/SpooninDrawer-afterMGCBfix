@@ -81,12 +81,12 @@ namespace SpooninDrawer.Objects.Gameplay
         public bool FadeAwayPopup = false;
         private const int WordWrapLength = 183;
 
-        public DialogBox(GameplayText text,, Vector2 position, Texture2D boxTexture, Resolution resolution)
+        public DialogBox(GameplayText dialogtext, GameplayText speakernametext, GameplayText speakersubtitletext, Vector2 position, Texture2D boxTexture, Resolution resolution)
         {
             DisplayResolution = resolution;
-            GameplayText = text;
-            SpeakerGameplayText = text;
-            SpeakerSubtitleGameplayText = text;
+            GameplayText = dialogtext;
+            SpeakerGameplayText = speakernametext;
+            SpeakerSubtitleGameplayText = speakersubtitletext;
             Position = position;
             BoxTexture = boxTexture;
 
@@ -101,7 +101,7 @@ namespace SpooninDrawer.Objects.Gameplay
             
             Text = "";
         }
-        public DialogBox(GameplayText text, Vector2 position, Resolution resolution) : this(text, position, null, resolution) { }
+        public DialogBox(GameplayText dialogtext, GameplayText speakernametext, GameplayText speakersubtitletext, Vector2 position, Resolution resolution) : this(dialogtext,speakernametext,speakersubtitletext, position, null, resolution) { }
 
         public void Activate(string text)
         {
@@ -117,12 +117,16 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             base.Activate();
             GameplayText.Activate();
+            SpeakerGameplayText.Activate();
+            SpeakerSubtitleGameplayText.Activate();
         }
         public override void Deactivate()
         {
             FadeAwayPopup = false;
             base.Deactivate();
             GameplayText.Deactivate();
+            SpeakerGameplayText.Deactivate();
+            SpeakerSubtitleGameplayText.Deactivate();  
         }
         public void ChangeText(string text)
         {
@@ -130,9 +134,12 @@ namespace SpooninDrawer.Objects.Gameplay
             NextDialogLineCount = 0;
             if (text.Count() > 0)
             {
-                string[] textSplitted = text.Split("::");
+                string[] textSplitted = text.Split("::Speaker::");
                 SpeakerText = textSplitted[0];
-                SpeakerSubtitleText = "";
+                textSplitted = textSplitted[1].Split("::Subtitle::");
+                SpeakerSubtitleText = textSplitted[0];
+                Vector2 positionHolder = SpeakerGameplayText.Position;
+                SpeakerSubtitleGameplayText.Position = new Vector2(SpeakerGameplayText.Text.Length * 50, positionHolder.Y);.
                 WrappedText = WordWrapper.WordWrap(textSplitted[1], WordWrapLength);
                 FitTextInBox();
             }
@@ -246,7 +253,7 @@ namespace SpooninDrawer.Objects.Gameplay
             base.Render(spriteBatch);
             GameplayText.Render(spriteBatch);
             SpeakerGameplayText.Render(spriteBatch);
-            //SpeakerSubtitleGameplayText.Render(spriteBatch);
+            SpeakerSubtitleGameplayText.Render(spriteBatch);
         }
     }
 }

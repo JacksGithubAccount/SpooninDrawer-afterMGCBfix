@@ -542,6 +542,8 @@ namespace SpooninDrawer
          *-working on speaker, may need dictionary
          *1/9/2024
          *-need to add separate gameplaytext for speaker to make it independant from text and to get it to display
+         *1/13/2024
+         *-need to size text and change position after initialization
          */
     }
 }

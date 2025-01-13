@@ -22,6 +22,10 @@ namespace SpooninDrawer.Engine.Objects
         }
 
         public string Text { get; set; }
+        public virtual void ChangeTextSize(int size)
+        {
+            
+        }
 
         public override void Render(SpriteBatch spriteBatch)
         {
