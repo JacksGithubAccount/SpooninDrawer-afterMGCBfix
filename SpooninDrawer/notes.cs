@@ -544,6 +544,12 @@ namespace SpooninDrawer
          *-need to add separate gameplaytext for speaker to make it independant from text and to get it to display
          *1/13/2024
          *-need to size text and change position after initialization
+         *1/14/2024
+         *-size can't change after initialization, will need multiple fonts to handle size changes
+         *-position of speaker subtitle done, spritefont has a measure string method which returns pixel size of the text
+         *
+         *
+         *
          */
     }
 }

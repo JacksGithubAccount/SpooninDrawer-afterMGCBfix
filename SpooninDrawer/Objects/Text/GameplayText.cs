@@ -32,5 +32,6 @@ namespace SpooninDrawer.Objects.Text
             _color = Color.Black;
             Position = position;
         }
+        
     }
 }

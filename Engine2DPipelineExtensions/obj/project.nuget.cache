@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "WTMWOyijmFM=",
+  "dgSpecHash": "Zk6yluepqYc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\PC\\Documents\\GitHub\\SpooninDrawer-afterMGCBfix\\Engine2DPipelineExtensions\\Engine2DPipelineExtensions.csproj",
+  "projectFilePath": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\Engine2DPipelineExtensions\\Engine2DPipelineExtensions.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\PC\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\PC\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
-    "C:\\Users\\PC\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\jckzh\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\jckzh\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }

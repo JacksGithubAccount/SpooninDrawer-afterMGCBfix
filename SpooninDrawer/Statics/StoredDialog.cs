@@ -16,5 +16,7 @@ namespace SpooninDrawer.Statics
             "glasses, or the thick frame glasses, everything! It's like you're enjoying all these kinds of glasses at a buffet. I really want Luna to try " +
             "some on or Marine to try some on to replace her eyepatch. We really need glasses to become a thing in hololive and start selling them for " +
             "HoloComi. Don't. You. Think. We. Really. Need. To. Officially. Give. Everyone. Glasses?";
+        public static string bigChungus = "Fubuki::Speaker::Glasses Fanatic::Subtitle::quantum chicken soup grass big chungus";
+
     }
 }

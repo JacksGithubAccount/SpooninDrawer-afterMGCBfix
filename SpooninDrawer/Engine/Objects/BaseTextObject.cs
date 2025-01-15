@@ -22,10 +22,6 @@ namespace SpooninDrawer.Engine.Objects
         }
 
         public string Text { get; set; }
-        public virtual void ChangeTextSize(int size)
-        {
-            
-        }
 
         public override void Render(SpriteBatch spriteBatch)
         {
@@ -34,6 +30,10 @@ namespace SpooninDrawer.Engine.Objects
                 return;
             }
             spriteBatch.DrawString(_font, Text, _position, _color);
+        }
+        public virtual Vector2 MeasureString()
+        {
+            return _font.MeasureString(Text);
         }
     }
 }

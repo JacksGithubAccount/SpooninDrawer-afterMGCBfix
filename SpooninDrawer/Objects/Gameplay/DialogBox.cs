@@ -47,6 +47,7 @@ namespace SpooninDrawer.Objects.Gameplay
         public Vector2 MovePopupBoxUp = new Vector2(0, 0);
         private Vector2 TextPosition { get { return GameplayText.Position; } set { GameplayText.Position = value; } }
         private Vector2 SpeakerPosition { get { return SpeakerGameplayText.Position; } set { SpeakerGameplayText.Position = value; } }
+        private Vector2 SpeakerStringMeasured;
         private Vector2 SpeakerSubtitlePosition { get { return SpeakerSubtitleGameplayText.Position; } set { SpeakerSubtitleGameplayText.Position = value; } }
         private Vector2 BoxPosition { get { return Position; } set { Position = value; } }
         private Resolution DisplayResolution;
@@ -63,7 +64,8 @@ namespace SpooninDrawer.Objects.Gameplay
                 {
                     TextPosition = value + new Vector2(25, 75) + MovePopupBoxUp;
                     SpeakerPosition = value + new Vector2(25, 25) + MovePopupBoxUp;
-                    SpeakerSubtitlePosition = value + new Vector2(50, 25) + MovePopupBoxUp;
+                    SpeakerStringMeasured = SpeakerGameplayText.MeasureString();
+                    SpeakerSubtitleGameplayText.Position = value + new Vector2(SpeakerStringMeasured.X + 50, 25) + MovePopupBoxUp;
                 }
                 foreach (var bb in _boundingBoxes)
                 {
@@ -138,8 +140,8 @@ namespace SpooninDrawer.Objects.Gameplay
                 SpeakerText = textSplitted[0];
                 textSplitted = textSplitted[1].Split("::Subtitle::");
                 SpeakerSubtitleText = textSplitted[0];
-                Vector2 positionHolder = SpeakerGameplayText.Position;
-                SpeakerSubtitleGameplayText.Position = new Vector2(SpeakerGameplayText.Text.Length * 50, positionHolder.Y);.
+                SpeakerStringMeasured = SpeakerGameplayText.MeasureString();
+                SpeakerSubtitleGameplayText.Position = new Vector2(SpeakerStringMeasured.X + 10, SpeakerSubtitleGameplayText.Position.Y);
                 WrappedText = WordWrapper.WordWrap(textSplitted[1], WordWrapLength);
                 FitTextInBox();
             }
