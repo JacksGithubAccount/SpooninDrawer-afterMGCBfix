@@ -547,6 +547,8 @@ namespace SpooninDrawer
          *1/14/2024
          *-size can't change after initialization, will need multiple fonts to handle size changes
          *-position of speaker subtitle done, spritefont has a measure string method which returns pixel size of the text
+         *1/15/2024
+         *-added placeholder for continuing dialog
          *
          *
          *

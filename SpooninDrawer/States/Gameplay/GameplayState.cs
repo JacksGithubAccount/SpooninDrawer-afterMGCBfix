@@ -307,12 +307,12 @@ namespace SpooninDrawer.Engine.States.Gameplay
                                 }
                                 //tyest
                                 PopupManager.ActivateDialogBox(StoredDialog.glasses);
-                                ChangeGameStateState(GameplayStateStates.DialogState);                                
+                                ChangeGameStateState(GameplayStateStates.DialogState);                             
                             }
                         }
                     }
                     else if (isDialogState)
-                    {
+                    {                         
                         if (!PopupManager.DialogBox.IsTextFinishDisplay())
                         {
                             PopupManager.ChangeDialogDisplayTextSpeedFast();
@@ -322,6 +322,10 @@ namespace SpooninDrawer.Engine.States.Gameplay
                             if (PopupManager.DialogBox.IsThereNextDialogBox())
                             {
                                 PopupManager.DialogBox.ContinueText();
+                            }else if (!StoredDialog.bigChungusBool)
+                            {
+                                PopupManager.ActivateDialogBox(StoredDialog.bigChungus);
+                                StoredDialog.bigChungusBool = true;
                             }
                             else
                             {
