@@ -29,13 +29,15 @@ using SpooninDrawer.Objects.Screens;
 using SpooninDrawer.Engine.Sound;
 using SpooninDrawer.Objects.Gameplay;
 using SpooninDrawer.Statics;
+using System.Runtime.Serialization.Formatters;
 
 namespace SpooninDrawer.Engine.States.Gameplay
 {
     public enum GameplayStateStates
     {
         MainGameState,
-        DialogState
+        DialogState,
+        SpooninDrawerState
     }
     public class GameplayState : BaseGameState
     {
@@ -110,6 +112,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         private bool isMainGameState;
         private bool isDialogState;
+        private bool isSpooninDrawerState = false;
 
         public GameplayState(Resolution resolution, SoundManager soundManager)
         {
@@ -303,7 +306,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                                 //drawer and spoon check
                                 if (holder == interactableManager.Drawer && player1.Inventory.Exists(x => x.item == interactableManager.Spoon))
                                 {
-
+                                    ChangeGameStateState(GameplayStateStates.SpooninDrawerState);
                                 }
                                 //tyest
                                 PopupManager.ActivateDialogBox(StoredDialog.glasses);
@@ -467,6 +470,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         {
             isMainGameState = false;
             isDialogState = false;
+            isSpooninDrawerState = false;
             if (gameplayStateState == GameplayStateStates.MainGameState)
             {
                 isMainGameState = true;
@@ -474,6 +478,9 @@ namespace SpooninDrawer.Engine.States.Gameplay
             else if (gameplayStateState == GameplayStateStates.DialogState)
             {
                 isDialogState = true;
+            } else if (gameplayStateState == GameplayStateStates.SpooninDrawerState) 
+            {
+                isSpooninDrawerState = true;
             }
         }
         private List<T> CleanObjects<T>(List<T> objectList) where T : BaseGameObject
