@@ -551,7 +551,8 @@ namespace SpooninDrawer
          *-added placeholder for continuing dialog
          *1/16/2024
          *-started on minigame
-         *
+         *1/18/2024
+         *-working on drawers, will make left and right hand separate as well
          *
          */
     }
