@@ -553,6 +553,8 @@ namespace SpooninDrawer
          *-started on minigame
          *1/18/2024
          *-working on drawers, will make left and right hand separate as well
+         *1/19/2024
+         *-finished 3 drawers, want 2 more. Added them to display, need to center on player
          *
          */
     }

@@ -90,8 +90,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private StatsObject _statsText;
         private GameTime gameTime;
         private PopupManager PopupManager;
-        //private GameplayText InteractText;
-        //private InteractablePopupBox InteractPopupBox;
+        
+        private MinigameManager MinigameManager;
 
         TmxMap _map;
         Texture2D _tileSet;
@@ -193,6 +193,12 @@ namespace SpooninDrawer.Engine.States.Gameplay
             AddGameObject(PopupManager.AddInventoryPopupBox);
             AddGameObject(PopupManager.DialogBox);
 
+            MinigameManager = new MinigameManager(_playerSprite.Position, _camera, _displayResolution);
+            foreach (var item in MinigameManager.DrawerFrames)
+            {
+                item.SetTexture(LoadTexture(item.TexturePath));
+                AddGameObject(item);
+            }
 
 
             ResetGame();
@@ -306,11 +312,15 @@ namespace SpooninDrawer.Engine.States.Gameplay
                                 //drawer and spoon check
                                 if (holder == interactableManager.Drawer && player1.Inventory.Exists(x => x.item == interactableManager.Spoon))
                                 {
-                                    ChangeGameStateState(GameplayStateStates.SpooninDrawerState);
+                                    MinigameManager.Activate();
+                                    //ChangeGameStateState(GameplayStateStates.SpooninDrawerState);
                                 }
-                                //tyest
-                                PopupManager.ActivateDialogBox(StoredDialog.glasses);
-                                ChangeGameStateState(GameplayStateStates.DialogState);                             
+                                else 
+                                {
+                                    //tyest
+                                    PopupManager.ActivateDialogBox(StoredDialog.glasses);
+                                    ChangeGameStateState(GameplayStateStates.DialogState); 
+                                }                             
                             }
                         }
                     }
