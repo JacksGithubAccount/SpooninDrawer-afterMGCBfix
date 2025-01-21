@@ -555,6 +555,8 @@ namespace SpooninDrawer
          *-working on drawers, will make left and right hand separate as well
          *1/19/2024
          *-finished 3 drawers, want 2 more. Added them to display, need to center on player
+         *1/20/2025
+         *-finished adding drawers, centered them, made go frame by frame, next is player and randomise control
          *
          */
     }

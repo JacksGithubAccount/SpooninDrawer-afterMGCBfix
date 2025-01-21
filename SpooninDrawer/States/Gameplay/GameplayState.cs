@@ -110,9 +110,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private BaseGameState menuGameState;
         public bool menuActivate = false;
 
-        private bool isMainGameState;
-        private bool isDialogState;
-        private bool isSpooninDrawerState = false;
+        private GameplayStateStates CurrentGameplayStateStates;
 
         public GameplayState(Resolution resolution, SoundManager soundManager)
         {
@@ -207,149 +205,193 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         public override void HandleInput(GameTime gameTime)
         {
-            if (isMainGameState)
+            if (CurrentGameplayStateStates != GameplayStateStates.SpooninDrawerState)
             {
-
-            }
-            if (isDialogState)
-            {
-
-            }
-            InputManager.GetCommands(cmd =>
-            {
-                if (cmd is GameplayInputCommand.GameExit)
+                InputManager.GetCommands(cmd =>
                 {
-                    NotifyEvent(new BaseGameStateEvent.GameQuit());
-                }
-                if (cmd is GameplayInputCommand.PlayerOpenMenu)
-                {
-                    if (isMainGameState)
+                    if (cmd is GameplayInputCommand.GameExit)
+                    {
+                        NotifyEvent(new BaseGameStateEvent.GameQuit());
+                    }
+                    if (cmd is GameplayInputCommand.PlayerOpenMenu)
+                    {
+                        if (CurrentGameplayStateStates == GameplayStateStates.MainGameState)
+                        {
+                            paused = !paused;
+                            menuActivate = true;
+                        }
+
+                    }
+                    if (cmd is GameplayInputCommand.Pause)
                     {
                         paused = !paused;
-                        menuActivate = true;
                     }
-                    
-                }
-                if (cmd is GameplayInputCommand.Pause)
-                {
-                    paused = !paused;
-                }
 
-                if (cmd is GameplayInputCommand.PlayerMoveLeft && !_playerDead)
-                {
-                    if (isMainGameState)
+                    if (cmd is GameplayInputCommand.PlayerMoveLeft && !_playerDead)
                     {
-                        _playerSprite.MoveLeft();
-                        KeepPlayerInBounds();
-                    }
-                    
-                }
-
-                if (cmd is GameplayInputCommand.PlayerMoveRight && !_playerDead)
-                {
-                    if (isMainGameState)
-                    {
-                        _playerSprite.MoveRight();
-                        KeepPlayerInBounds();
-                    }
-                    
-                }
-
-                if (cmd is GameplayInputCommand.PlayerMoveUp && !_playerDead)
-                {
-                    if (isMainGameState)
-                    {
-                        _playerSprite.MoveUp();
-                        KeepPlayerInBounds();
-                    }
-                    
-                }
-
-                if (cmd is GameplayInputCommand.PlayerMoveDown && !_playerDead)
-                {
-                    if (isMainGameState)
-                    {
-                        _playerSprite.MoveDown();
-                        KeepPlayerInBounds();
-                    }
-                    
-                }
-
-                if (cmd is GameplayInputCommand.PlayerStopsMoving && !_playerDead)
-                {
-                    if (isMainGameState)
-                    {
-                        _playerSprite.StopMoving();
-                    }
-                    
-                }
-
-                if (cmd is GameplayInputCommand.PlayerAction && !_playerDead)
-                {
-                    if (isMainGameState)
-                    {
-                        //mc action
-                        NotifyEvent(new GameplayEvents.PlayerTest());
-
-
-                        if (!interactableManager.IsInteractableEmpty())
+                        if (CurrentGameplayStateStates == GameplayStateStates.MainGameState)
                         {
-                            if (interactableManager.GetInteractable().GetType() == typeof(Item))
+                            _playerSprite.MoveLeft();
+                            KeepPlayerInBounds();
+                        }
+
+                    }
+
+                    if (cmd is GameplayInputCommand.PlayerMoveRight && !_playerDead)
+                    {
+                        if (CurrentGameplayStateStates == GameplayStateStates.MainGameState)
+                        {
+                            _playerSprite.MoveRight();
+                            KeepPlayerInBounds();
+                        }
+
+                    }
+
+                    if (cmd is GameplayInputCommand.PlayerMoveUp && !_playerDead)
+                    {
+                        if (CurrentGameplayStateStates == GameplayStateStates.MainGameState)
+                        {
+                            _playerSprite.MoveUp();
+                            KeepPlayerInBounds();
+                        }
+
+                    }
+
+                    if (cmd is GameplayInputCommand.PlayerMoveDown && !_playerDead)
+                    {
+                        if (CurrentGameplayStateStates == GameplayStateStates.MainGameState)
+                        {
+                            _playerSprite.MoveDown();
+                            KeepPlayerInBounds();
+                        }
+
+                    }
+
+                    if (cmd is GameplayInputCommand.PlayerStopsMoving && !_playerDead)
+                    {
+                        if (CurrentGameplayStateStates == GameplayStateStates.MainGameState)
+                        {
+                            _playerSprite.StopMoving();
+                        }
+
+                    }
+
+                    if (cmd is GameplayInputCommand.PlayerAction && !_playerDead)
+                    {
+                        if (CurrentGameplayStateStates == GameplayStateStates.MainGameState)
+                        {
+                            //mc action
+                            NotifyEvent(new GameplayEvents.PlayerTest());
+
+
+                            if (!interactableManager.IsInteractableEmpty())
                             {
-                                //adds top most item to inventory
-                                Item temp = interactableManager.AddToInventory(player1);
-                                AddGameObject(PopupManager.ActivateAddInventoryPopupBox(temp.ToString(), gameTime));
-                                interactableManager.RemoveInteractableItem(temp);
-                                RemoveGameObject(temp);
-                            }
-                            else if (interactableManager.GetInteractable().GetType() == typeof(InteractableOverworldObject))
-                            {
-                                InteractableOverworldObject holder = (InteractableOverworldObject)interactableManager.GetInteractable();
-                                if (holder.State[0])
+                                if (interactableManager.GetInteractable().GetType() == typeof(Item))
                                 {
-                                    interactableManager.InteractWithObject(_playerSprite.CenterPosition);                                    
+                                    //adds top most item to inventory
+                                    Item temp = interactableManager.AddToInventory(player1);
+                                    AddGameObject(PopupManager.ActivateAddInventoryPopupBox(temp.ToString(), gameTime));
+                                    interactableManager.RemoveInteractableItem(temp);
+                                    RemoveGameObject(temp);
                                 }
-                                //drawer and spoon check
-                                if (holder == interactableManager.Drawer && player1.Inventory.Exists(x => x.item == interactableManager.Spoon))
+                                else if (interactableManager.GetInteractable().GetType() == typeof(InteractableOverworldObject))
                                 {
-                                    MinigameManager.Activate();
-                                    //ChangeGameStateState(GameplayStateStates.SpooninDrawerState);
+                                    InteractableOverworldObject holder = (InteractableOverworldObject)interactableManager.GetInteractable();
+                                    if (holder.State[0])
+                                    {
+                                        interactableManager.InteractWithObject(_playerSprite.CenterPosition);
+                                    }
+                                    //drawer and spoon check
+                                    if (holder == interactableManager.Drawer && player1.Inventory.Exists(x => x.item == interactableManager.Spoon))
+                                    {
+                                        MinigameManager.StartDrawerFrame();
+                                        ChangeGameStateState(GameplayStateStates.SpooninDrawerState);
+                                    }
+                                    else
+                                    {
+                                        //tyest
+                                        PopupManager.ActivateDialogBox(StoredDialog.glasses);
+                                        ChangeGameStateState(GameplayStateStates.DialogState);
+                                    }
                                 }
-                                else 
-                                {
-                                    //tyest
-                                    PopupManager.ActivateDialogBox(StoredDialog.glasses);
-                                    ChangeGameStateState(GameplayStateStates.DialogState); 
-                                }                             
                             }
                         }
-                    }
-                    else if (isDialogState)
-                    {                         
-                        if (!PopupManager.DialogBox.IsTextFinishDisplay())
+                        else if (CurrentGameplayStateStates == GameplayStateStates.DialogState)
                         {
-                            PopupManager.ChangeDialogDisplayTextSpeedFast();
-                        }
-                        else
-                        {
-                            if (PopupManager.DialogBox.IsThereNextDialogBox())
+                            if (!PopupManager.DialogBox.IsTextFinishDisplay())
                             {
-                                PopupManager.DialogBox.ContinueText();
-                            }else if (!StoredDialog.bigChungusBool)
-                            {
-                                PopupManager.ActivateDialogBox(StoredDialog.bigChungus);
-                                StoredDialog.bigChungusBool = true;
+                                PopupManager.ChangeDialogDisplayTextSpeedFast();
                             }
                             else
                             {
-                                PopupManager.DeactivateDialogBox();
-                                ChangeGameStateState(GameplayStateStates.MainGameState);
+                                if (PopupManager.DialogBox.IsThereNextDialogBox())
+                                {
+                                    PopupManager.DialogBox.ContinueText();
+                                }
+                                else if (!StoredDialog.bigChungusBool)
+                                {
+                                    PopupManager.ActivateDialogBox(StoredDialog.bigChungus);
+                                    StoredDialog.bigChungusBool = true;
+                                }
+                                else
+                                {
+                                    PopupManager.DeactivateDialogBox();
+                                    ChangeGameStateState(GameplayStateStates.MainGameState);
+                                }
                             }
                         }
+
                     }
-                    
-                }
-            });
+                });
+            }
+            else if (CurrentGameplayStateStates == GameplayStateStates.SpooninDrawerState)
+            {
+                InputManager.GetCommands(cmd =>
+                {
+                    if (cmd is GameplayInputCommand.GameExit)
+                    {
+                        NotifyEvent(new BaseGameStateEvent.GameQuit());
+                    }
+                    if (cmd is GameplayInputCommand.PlayerOpenMenu)
+                    {
+                        MinigameManager.Deactivate();
+                        ChangeGameStateState(GameplayStateStates.MainGameState);
+                    }
+                    if (cmd is GameplayInputCommand.Pause)
+                    {
+                        paused = !paused;
+                    }
+
+                    if (cmd is GameplayInputCommand.PlayerMoveLeft && !_playerDead)
+                    {
+
+                    }
+                    if (cmd is GameplayInputCommand.PlayerMoveRight && !_playerDead)
+                    {
+
+                    }
+                    if (cmd is GameplayInputCommand.PlayerMoveUp && !_playerDead)
+                    {
+
+                    }
+                    if (cmd is GameplayInputCommand.PlayerMoveDown && !_playerDead)
+                    {
+
+                    }
+                    if (cmd is GameplayInputCommand.PlayerStopsMoving && !_playerDead)
+                    {
+
+                    }
+                    if (cmd is GameplayInputCommand.PlayerAction && !_playerDead)
+                    {
+                        MinigameManager.ForewardDrawerFrame();
+                    }
+                    if (cmd is GameplayInputCommand.PlayerCancel && !_playerDead)
+                    {
+                        MinigameManager.BackwardDrawerFrame();
+                    }
+                });
+            }
         }
 
         public override void UpdateGameState(GameTime gameTime)
@@ -478,20 +520,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         }
         private void ChangeGameStateState(GameplayStateStates gameplayStateState)
         {
-            isMainGameState = false;
-            isDialogState = false;
-            isSpooninDrawerState = false;
-            if (gameplayStateState == GameplayStateStates.MainGameState)
-            {
-                isMainGameState = true;
-            }
-            else if (gameplayStateState == GameplayStateStates.DialogState)
-            {
-                isDialogState = true;
-            } else if (gameplayStateState == GameplayStateStates.SpooninDrawerState) 
-            {
-                isSpooninDrawerState = true;
-            }
+            CurrentGameplayStateStates = gameplayStateState;
         }
         private List<T> CleanObjects<T>(List<T> objectList) where T : BaseGameObject
         {

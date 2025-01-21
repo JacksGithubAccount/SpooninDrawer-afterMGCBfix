@@ -302,6 +302,30 @@
 /processorParam:TextureFormat=Color
 /build:Menu/VolumeBarFill.png
 
+#begin Minigame/SpooninDrawer/drawer01080.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Minigame/SpooninDrawer/drawer01080.png
+
+#begin Minigame/SpooninDrawer/drawer0720.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Minigame/SpooninDrawer/drawer0720.png
+
 #begin Minigame/SpooninDrawer/drawer11080.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -313,6 +337,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/drawer11080.png
+
+#begin Minigame/SpooninDrawer/drawer1720.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Minigame/SpooninDrawer/drawer1720.png
 
 #begin Minigame/SpooninDrawer/drawer21080.png
 /importer:TextureImporter
@@ -326,7 +362,7 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/drawer21080.png
 
-#begin Minigame/SpooninDrawer/drawer31080 .png
+#begin Minigame/SpooninDrawer/drawer2720.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -336,7 +372,31 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/drawer31080 .png
+/build:Minigame/SpooninDrawer/drawer2720.png
+
+#begin Minigame/SpooninDrawer/drawer31080.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Minigame/SpooninDrawer/drawer31080.png
+
+#begin Minigame/SpooninDrawer/drawer3720.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Minigame/SpooninDrawer/drawer3720.png
 
 #begin Minigame/SpooninDrawer/drawer41080.png
 /importer:TextureImporter
@@ -350,7 +410,7 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/drawer41080.png
 
-#begin Minigame/SpooninDrawer/one720.png
+#begin Minigame/SpooninDrawer/drawer4720.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -360,7 +420,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/one720.png
+/build:Minigame/SpooninDrawer/drawer4720.png
 
 #begin music/FutureAmbient_1.wav
 /importer:WavImporter

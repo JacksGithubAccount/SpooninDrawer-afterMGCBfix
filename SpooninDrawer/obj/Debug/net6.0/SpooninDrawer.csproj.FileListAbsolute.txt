@@ -323,6 +323,11 @@ C:\Users\PC\Documents\GitHub\SpooninDrawer-afterMGCBfix\SpooninDrawer\obj\Debug\
 C:\Users\PC\Documents\GitHub\SpooninDrawer-afterMGCBfix\SpooninDrawer\obj\Debug\net6.0\ref\SpooninDrawer.dll
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Minigame\SpooninDrawer\drawer11080.xnb
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Minigame\SpooninDrawer\drawer21080.xnb
-C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Minigame\SpooninDrawer\drawer31080 .xnb
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Minigame\SpooninDrawer\drawer41080.xnb
-C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Minigame\SpooninDrawer\one720.xnb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Minigame\SpooninDrawer\drawer31080.xnb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Minigame\SpooninDrawer\drawer01080.xnb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Minigame\SpooninDrawer\drawer0720.xnb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Minigame\SpooninDrawer\drawer1720.xnb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Minigame\SpooninDrawer\drawer2720.xnb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Minigame\SpooninDrawer\drawer3720.xnb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\Minigame\SpooninDrawer\drawer4720.xnb
