@@ -4,6 +4,8 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Sprites/Animations/PlayerSpriteSheet - Copy.png</File>
+    <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Sprites/Animations/PlayerSpriteSheet.png</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Animations/Drawer/idle.xml</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Animations/Drawer/Interact.xml</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Animations/Player/idle.xml</File>
@@ -51,8 +53,6 @@
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/sounds/empty.wav</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Sprites/Animations/blank.png</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Sprites/Animations/DrawerSpriteSheet.png</File>
-    <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Sprites/Animations/PlayerSpriteSheet - Copy.png</File>
-    <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Sprites/Animations/PlayerSpriteSheet.png</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/TiledMaps/testain.tmx</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/TiledMaps/testts.tsx</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/TileSets/hilight.png</File>
@@ -62,57 +62,6 @@
   <DestFiles>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
     <File>sounds/beep.wav</File>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

@@ -29,7 +29,7 @@ namespace SpooninDrawer.Objects.Gameplay
                 drawer.Deactivate();
             }
         }
-        public void RandomDrawerFrame()
+        public void TrueRandomDrawerFrame()
         {
             Random rng = new Random();
             int rngesus = rng.Next(0,DrawerFrames.Count);
@@ -44,6 +44,15 @@ namespace SpooninDrawer.Objects.Gameplay
                     DrawerFrames[i].Deactivate();
                 }
             }
+        }
+        public void RandomDrawerFrame()
+        {
+            Random rngesus = new Random();
+            int rng = rngesus.Next(0, 2);
+            if (rng == 0)
+                ForewardDrawerFrame();
+            else if (rng == 1)
+                BackwardDrawerFrame();
         }
         public void StartDrawerFrame()
         {

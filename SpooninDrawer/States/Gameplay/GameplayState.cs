@@ -345,9 +345,9 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 });
             }
             else if (CurrentGameplayStateStates == GameplayStateStates.SpooninDrawerState)
-            {
+            {                
                 InputManager.GetCommands(cmd =>
-                {
+                {                        
                     if (cmd is GameplayInputCommand.GameExit)
                     {
                         NotifyEvent(new BaseGameStateEvent.GameQuit());
@@ -384,11 +384,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     }
                     if (cmd is GameplayInputCommand.PlayerAction && !_playerDead)
                     {
-                        MinigameManager.ForewardDrawerFrame();
+                        MinigameManager.RandomDrawerFrame();
                     }
                     if (cmd is GameplayInputCommand.PlayerCancel && !_playerDead)
                     {
-                        MinigameManager.BackwardDrawerFrame();
+                        MinigameManager.RandomDrawerFrame();
                     }
                 });
             }

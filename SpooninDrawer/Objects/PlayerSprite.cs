@@ -287,12 +287,12 @@ namespace SpooninDrawer.Objects
             spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
             foreach (var box in BoundingBoxes)
             {
-                spriteBatch.Draw(_texture, box.Position, box.Rectangle, Color.Red);
+                //spriteBatch.Draw(_texture, box.Position, box.Rectangle, Color.Red);
             }
-            spriteBatch.Draw(blank, LookLeftRect, Color.Blue);
-            spriteBatch.Draw(blank, LookRightRect, Color.Blue);
-            spriteBatch.Draw(blank, LookUpRect, Color.Blue);
-            spriteBatch.Draw(blank, LookDownRect, Color.Blue);
+            //spriteBatch.Draw(blank, LookLeftRect, Color.Blue);
+           // spriteBatch.Draw(blank, LookRightRect, Color.Blue);
+            //spriteBatch.Draw(blank, LookUpRect, Color.Blue);
+            //spriteBatch.Draw(blank, LookDownRect, Color.Blue);
             //spriteBatch.Draw(_texture, _MoveDirection, new Rectangle((int)Position.X, (int)Position.Y, (int)_MoveDirection.X, (int)_MoveDirection.Y), Color.Red);
         }
     }

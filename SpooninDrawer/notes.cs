@@ -557,6 +557,8 @@ namespace SpooninDrawer
          *-finished 3 drawers, want 2 more. Added them to display, need to center on player
          *1/20/2025
          *-finished adding drawers, centered them, made go frame by frame, next is player and randomise control
+         *1/21/2025
+         *-Added random control, kind of. May re-use old sprite or replicate in current system
          *
          */
     }
