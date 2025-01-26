@@ -10,30 +10,6 @@
  <CellWidth>116</CellWidth>
  <CellHeight>152</CellHeight>
  </Item>
- <Item>
- <X>116</X>
- <Y>0</Y>
- <CellWidth>116</CellWidth>
- <CellHeight>152</CellHeight>
- </Item>
- <Item>
- <X>232</X>
- <Y>0</Y>
- <CellWidth>116</CellWidth>
- <CellHeight>152</CellHeight>
- </Item>
- <Item>
- <X>348</X>
- <Y>0</Y>
- <CellWidth>116</CellWidth>
- <CellHeight>152</CellHeight>
- </Item>
- <Item>
- <X>464</X>
- <Y>0</Y>
- <CellWidth>116</CellWidth>
- <CellHeight>152</CellHeight>
- </Item>
  </Frames>
  </Asset>
 </XnaContent>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Animations/Player/idle.xml</SourceFile>
-  <SourceTime>2024-02-02T23:26:15-05:00</SourceTime>
+  <SourceTime>2025-01-25T22:07:18.9107542-05:00</SourceTime>
   <DestFile>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/bin/DesktopGL/Animations/Player/idle.xnb</DestFile>
-  <DestTime>2025-01-20T18:55:08.0566341-05:00</DestTime>
+  <DestTime>2025-01-25T22:10:09.0246152-05:00</DestTime>
   <Importer>XmlImporter</Importer>
   <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
   <Processor>PassThroughProcessor</Processor>

@@ -44,7 +44,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private const float CAMERA_SPEED = 10.0f;
 
         private const string BackgroundTexture = "Sprites/Barren";
-        private const string PlayerFighter = "Sprites/Animations/PlayerSpriteSheet";
+        private const string PlayerFighter = "Sprites/Animations/PlayerSpriteSheet2";
         private const string PlayerAnimationTurnLeft = "Animations/Player/left_walk";
         private const string PlayerAnimationTurnRight = "Animations/Player/right_walk";
         private const string PlayerAnimationIdle = "Animations/Player/idle";

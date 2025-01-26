@@ -55,6 +55,7 @@ namespace SpooninDrawer.Objects
         private bool _stopRight = false;
         private bool _stopUp = false;
         private bool _stopDown = false;
+        private bool flipAnimationHorizontal = false;
 
         public bool _MustStop = false;
         public Vector2 _MoveDirection;
@@ -144,6 +145,7 @@ namespace SpooninDrawer.Objects
         {
             _movingLeft = true;
             _movingRight = false;
+            flipAnimationHorizontal = true;
             _isIdle = false;
             _currentAnimation = _turnLeftAnimation;
             _leftToCenterAnimation.Reset();
@@ -158,6 +160,7 @@ namespace SpooninDrawer.Objects
         {
             _movingRight = true;
             _movingLeft = false;
+            flipAnimationHorizontal = false;
             _isIdle = false;
             _currentAnimation = _turnRightAnimation;
             _rightToCenterAnimation.Reset();
@@ -284,16 +287,24 @@ namespace SpooninDrawer.Objects
                     sourceRectangle = currentFrame.SourceRectangle;
                 }
             }
-            spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
-            foreach (var box in BoundingBoxes)
+            if (flipAnimationHorizontal)
             {
-                //spriteBatch.Draw(_texture, box.Position, box.Rectangle, Color.Red);
+                var effects = SpriteEffects.FlipHorizontally;
+                spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White, 0f, Vector2.Zero, effects, 1f);
             }
-            //spriteBatch.Draw(blank, LookLeftRect, Color.Blue);
-           // spriteBatch.Draw(blank, LookRightRect, Color.Blue);
-            //spriteBatch.Draw(blank, LookUpRect, Color.Blue);
-            //spriteBatch.Draw(blank, LookDownRect, Color.Blue);
-            //spriteBatch.Draw(_texture, _MoveDirection, new Rectangle((int)Position.X, (int)Position.Y, (int)_MoveDirection.X, (int)_MoveDirection.Y), Color.Red);
+            else
+            {
+                spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
+                foreach (var box in BoundingBoxes)
+                {
+                    //spriteBatch.Draw(_texture, box.Position, box.Rectangle, Color.Red);
+                }
+                //spriteBatch.Draw(blank, LookLeftRect, Color.Blue);
+                // spriteBatch.Draw(blank, LookRightRect, Color.Blue);
+                //spriteBatch.Draw(blank, LookUpRect, Color.Blue);
+                //spriteBatch.Draw(blank, LookDownRect, Color.Blue);
+                //spriteBatch.Draw(_texture, _MoveDirection, new Rectangle((int)Position.X, (int)Position.Y, (int)_MoveDirection.X, (int)_MoveDirection.Y), Color.Red);
+            }
         }
     }
 }

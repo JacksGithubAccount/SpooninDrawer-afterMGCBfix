@@ -559,6 +559,10 @@ namespace SpooninDrawer
          *-finished adding drawers, centered them, made go frame by frame, next is player and randomise control
          *1/21/2025
          *-Added random control, kind of. May re-use old sprite or replicate in current system
+         *1/25/2025
+         *-added new player sprite, adjusted frames for and flip horizontal on left move
+         *
+         *
          *
          */
     }
