@@ -197,6 +197,16 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 item.SetTexture(LoadTexture(item.TexturePath));
                 AddGameObject(item);
             }
+            foreach (var item in MinigameManager.LeftHandFrames)
+            {
+                item.SetTexture(LoadTexture(item.TexturePath));
+                AddGameObject(item);
+            }
+            foreach (var item in MinigameManager.RightHandFrames)
+            {
+                item.SetTexture(LoadTexture(item.TexturePath));
+                AddGameObject(item);
+            }
 
 
             ResetGame();
@@ -354,7 +364,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     }
                     if (cmd is GameplayInputCommand.PlayerOpenMenu)
                     {
-                        MinigameManager.Deactivate();
+                        MinigameManager.DeactivateAll();
                         ChangeGameStateState(GameplayStateStates.MainGameState);
                     }
                     if (cmd is GameplayInputCommand.Pause)

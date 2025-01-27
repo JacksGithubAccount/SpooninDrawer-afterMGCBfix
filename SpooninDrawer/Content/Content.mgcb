@@ -422,6 +422,18 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/drawer4720.png
 
+#begin Minigame/SpooninDrawer/LeftHand1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Minigame/SpooninDrawer/LeftHand1.png
+
 #begin music/FutureAmbient_1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
