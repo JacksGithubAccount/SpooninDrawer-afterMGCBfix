@@ -562,7 +562,9 @@ namespace SpooninDrawer
          *1/25/2025
          *-added new player sprite, adjusted frames for and flip horizontal on left move
          *1/26/2025
-         *-
+         *-added left hand
+         *1/28/2025
+         *-added another left hand
          *
          *
          */

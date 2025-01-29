@@ -22,6 +22,7 @@ namespace SpooninDrawer.Objects.Gameplay
         private int currentRightHandFrame = 0;
         private OrthographicCamera camera;
         public const string LeftHand1 = "Minigame/SpooninDrawer/LeftHand1";
+        public const string LeftHand2 = "Minigame/SpooninDrawer/LeftHand2";
         public MinigameManager(Vector2 playerPosition, OrthographicCamera camera, Resolution resolution)
         {
             this.camera = camera;
@@ -34,8 +35,8 @@ namespace SpooninDrawer.Objects.Gameplay
             LeftHandFrames.Add(new MinigameSplashImage(LeftHand1));
             LeftHandFrames.Add(new MinigameSplashImage(LeftHand1));
             LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand1));
-            LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand1));
-            LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand1));
+            LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand2));
+            LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand2));
             LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand1));
 
             foreach (var drawer in DrawerFrames) {
