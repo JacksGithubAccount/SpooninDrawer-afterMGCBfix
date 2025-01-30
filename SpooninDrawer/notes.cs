@@ -565,6 +565,8 @@ namespace SpooninDrawer
          *-added left hand
          *1/28/2025
          *-added another left hand
+         *1/29/2025
+         *added two more left hands, and offset for hand. Need to implement
          *
          *
          */

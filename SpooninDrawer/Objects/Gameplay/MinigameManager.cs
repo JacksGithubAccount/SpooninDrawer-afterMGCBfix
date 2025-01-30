@@ -23,21 +23,30 @@ namespace SpooninDrawer.Objects.Gameplay
         private OrthographicCamera camera;
         public const string LeftHand1 = "Minigame/SpooninDrawer/LeftHand1";
         public const string LeftHand2 = "Minigame/SpooninDrawer/LeftHand2";
+        public const string LeftHand3 = "Minigame/SpooninDrawer/LeftHand3";
+        public const string LeftHand4 = "Minigame/SpooninDrawer/LeftHand4";
+        private List<Vector2> DrawerOffsetForHand = new List<Vector2>();
         public MinigameManager(Vector2 playerPosition, OrthographicCamera camera, Resolution resolution)
         {
             this.camera = camera;
-            DrawerFrames.Add(new MinigameSplashImage(0, resolution));
-            DrawerFrames.Add(new MinigameSplashImage(1, resolution));
-            DrawerFrames.Add(new MinigameSplashImage(2, resolution));
-            DrawerFrames.Add(new MinigameSplashImage(3, resolution));
-            DrawerFrames.Add(new MinigameSplashImage(4, resolution));
+            DrawerFrames.Add(new MinigameSplashImage(0, resolution));//810,552
+            DrawerFrames.Add(new MinigameSplashImage(1, resolution));//782,664
+            DrawerFrames.Add(new MinigameSplashImage(2, resolution));//777,781
+            DrawerFrames.Add(new MinigameSplashImage(3, resolution));//763,1076
+            DrawerFrames.Add(new MinigameSplashImage(4, resolution));//gone
 
             LeftHandFrames.Add(new MinigameSplashImage(LeftHand1));
             LeftHandFrames.Add(new MinigameSplashImage(LeftHand1));
             LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand1));
             LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand2));
-            LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand2));
-            LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand1));
+            LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand3));
+            LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand4));
+
+            DrawerOffsetForHand.Add(new Vector2(0,0));
+            DrawerOffsetForHand.Add(new Vector2(-28, 110));
+            DrawerOffsetForHand.Add(new Vector2(-5, 117));
+            DrawerOffsetForHand.Add(new Vector2(-17, 295));
+            DrawerOffsetForHand.Add(new Vector2(0, 0));
 
             foreach (var drawer in DrawerFrames) {
                 drawer.zIndex = 15;
