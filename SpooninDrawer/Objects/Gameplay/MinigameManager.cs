@@ -19,12 +19,14 @@ namespace SpooninDrawer.Objects.Gameplay
         public List<MinigameSplashImage> RightHandFrames = new List<MinigameSplashImage>();
         private int currentDrawerFrame = 0;
         private int currentLeftHandFrame = 0;
+        private int currentLeftHandonDrawerFrame = 0;
         private int currentRightHandFrame = 0;
         private OrthographicCamera camera;
         public const string LeftHand1 = "Minigame/SpooninDrawer/LeftHand1";
         public const string LeftHand2 = "Minigame/SpooninDrawer/LeftHand2";
         public const string LeftHand3 = "Minigame/SpooninDrawer/LeftHand3";
         public const string LeftHand4 = "Minigame/SpooninDrawer/LeftHand4";
+        public const string blankTexture = "Minigame/SpooninDrawer/blank";
         private List<Vector2> DrawerOffsetForHand = new List<Vector2>();
         public MinigameManager(Vector2 playerPosition, OrthographicCamera camera, Resolution resolution)
         {
@@ -36,7 +38,7 @@ namespace SpooninDrawer.Objects.Gameplay
             DrawerFrames.Add(new MinigameSplashImage(4, resolution));//gone
 
             LeftHandFrames.Add(new MinigameSplashImage(LeftHand1));
-            LeftHandFrames.Add(new MinigameSplashImage(LeftHand1));
+            LeftHandFrames.Add(new MinigameSplashImage(blankTexture));
             LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand1));
             LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand2));
             LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand3));
@@ -44,8 +46,8 @@ namespace SpooninDrawer.Objects.Gameplay
 
             DrawerOffsetForHand.Add(new Vector2(0,0));
             DrawerOffsetForHand.Add(new Vector2(-28, 110));
-            DrawerOffsetForHand.Add(new Vector2(-5, 117));
-            DrawerOffsetForHand.Add(new Vector2(-17, 295));
+            DrawerOffsetForHand.Add(new Vector2(-33, 227));
+            DrawerOffsetForHand.Add(new Vector2(-50, 522));
             DrawerOffsetForHand.Add(new Vector2(0, 0));
 
             foreach (var drawer in DrawerFrames) {
@@ -53,6 +55,11 @@ namespace SpooninDrawer.Objects.Gameplay
                 drawer.Deactivate();
             }
             foreach (var leftHand in LeftHandFrames)
+            {
+                leftHand.zIndex = 16;
+                leftHand.Deactivate();
+            }
+            foreach (var leftHand in LeftHandonDrawerFrames)
             {
                 leftHand.zIndex = 16;
                 leftHand.Deactivate();
@@ -107,35 +114,43 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void RandomLeftHandFrame()
         {
+
             Random rngesus = new Random();
             int rng = rngesus.Next(0, 2);
+            //if (rng == 0)
+            //{
+            //    BackwardLeftHandFrame();
+            //}
+            //else if (rng == 1)
+            //{
+            ForewardLeftHandFrame();
+            rng = rngesus.Next(0, 2);
             if (rng == 0)
-                ForewardLeftHandFrame();
+            {
+                ForewardDrawerFrame();
+                //hides left hand when drawer is at highest frame
+                if (currentDrawerFrame >= DrawerFrames.Count - 1)
+                {
+                    DeactivateLeftHand();
+                }
+
+            }
             else if (rng == 1)
-                BackwardLeftHandFrame();
+            {
+
+                BackwardDrawerFrame();
+            }
+
+            LeftHandonDrawerFrames[currentLeftHandonDrawerFrame].Position += DrawerOffsetForHand[currentDrawerFrame];
+            //}
         }
         public void RandomLeftHandonDrawerFrame() 
         {
             Random rngesus = new Random();
-            int rng = rngesus.Next(0, LeftHandonDrawerFrames.Count);
+            currentLeftHandonDrawerFrame = rngesus.Next(0, LeftHandonDrawerFrames.Count);
             DeactivateLeftHand();
-            //aligns hand to drawer based on frame
-            switch (currentDrawerFrame)
-            {
-                case 0:
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4: 
-                    break;
-                default:
-                    break;
-            }
-            LeftHandonDrawerFrames[rng].Activate();
+            LeftHandonDrawerFrames[currentLeftHandonDrawerFrame].Activate();
+            RefreshFrame(LeftHandonDrawerFrames[currentLeftHandonDrawerFrame]);
         }
         public void RandomRightHandFrame()
         {
@@ -150,13 +165,16 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             DeactivateDrawer();
             RefreshFrame(DrawerFrames[1]);
+            currentDrawerFrame = 1;
             StartLeftHandFrame();
+            currentLeftHandFrame = 0;
             //StartRightHandFrame();
         }
         public void StartLeftHandFrame()
         {
-            DeactivateLeftHand();
-            RefreshFrame(LeftHandFrames[0]);
+            DeactivateLeftHand();            
+            RefreshFrame(LeftHandFrames[currentLeftHandFrame]);
+            LeftHandFrames[currentLeftHandFrame].Position += DrawerOffsetForHand[currentDrawerFrame];
         }
         public void StartRightHandFrame()
         {
@@ -173,13 +191,11 @@ namespace SpooninDrawer.Objects.Gameplay
         public void ForewardLeftHandFrame()
         {
             DeactivateLeftHand();
-            if (currentLeftHandFrame < LeftHandFrames.Count - 1)
-                currentLeftHandFrame++;
+            if (currentLeftHandFrame < LeftHandFrames.Count - 1) { 
+                currentLeftHandFrame++;}
             else if (currentLeftHandFrame >= LeftHandFrames.Count - 1)
-            {
-                RandomDrawerFrame();
-                RandomLeftHandonDrawerFrame();
-            }
+                RandomLeftHandonDrawerFrame();        
+            
             RefreshFrame(LeftHandFrames[currentLeftHandFrame]);
         }
         public void ForewardRightHandFrame()
@@ -225,10 +241,14 @@ namespace SpooninDrawer.Objects.Gameplay
             {
                 lefthand.Deactivate();
             }
+            DeactivateLeftHandonDrawer();
+        }
+        public void DeactivateLeftHandonDrawer()
+        {
             foreach (var lefties in LeftHandonDrawerFrames)
             {
-            lefties.Deactivate(); 
-            }        
+                lefties.Deactivate();
+            }
         }
         public void DeactivateRightHand()
         {

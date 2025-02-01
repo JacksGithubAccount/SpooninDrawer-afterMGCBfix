@@ -566,8 +566,11 @@ namespace SpooninDrawer
          *1/28/2025
          *-added another left hand
          *1/29/2025
-         *added two more left hands, and offset for hand. Need to implement
-         *
+         *-added two more left hands, and offset for hand. Need to implement
+         *1/30/2025
+         *-positions isnt working for offset, may need to re calc as base or add and subtract as frames moves
+         *1/31/2025
+         *-positions work, however, the second random makes hand deactivate
          *
          */
     }
