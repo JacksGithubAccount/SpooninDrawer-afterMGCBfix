@@ -571,6 +571,8 @@ namespace SpooninDrawer
          *-positions isnt working for offset, may need to re calc as base or add and subtract as frames moves
          *1/31/2025
          *-positions work, however, the second random makes hand deactivate
+         *2/1/2025
+         *-Fixed hand deactivating on second random by removing an else on left hand random
          *
          */
     }

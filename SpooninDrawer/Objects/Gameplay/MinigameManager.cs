@@ -193,7 +193,7 @@ namespace SpooninDrawer.Objects.Gameplay
             DeactivateLeftHand();
             if (currentLeftHandFrame < LeftHandFrames.Count - 1) { 
                 currentLeftHandFrame++;}
-            else if (currentLeftHandFrame >= LeftHandFrames.Count - 1)
+            if (currentLeftHandFrame >= LeftHandFrames.Count - 1)
                 RandomLeftHandonDrawerFrame();        
             
             RefreshFrame(LeftHandFrames[currentLeftHandFrame]);
