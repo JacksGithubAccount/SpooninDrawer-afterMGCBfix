@@ -399,11 +399,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     }
                     if (cmd is GameplayInputCommand.PlayerAction && !_playerDead)
                     {
-                        MinigameManager.RandomLeftHandFrame();
+                        MinigameManager.NextRandomFrame();
                     }
                     if (cmd is GameplayInputCommand.PlayerCancel && !_playerDead)
                     {
-                        MinigameManager.RandomLeftHandFrame();
+                        MinigameManager.NextRandomFrame();
                     }
                 });
             }

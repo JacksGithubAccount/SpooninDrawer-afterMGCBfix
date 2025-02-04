@@ -27,7 +27,8 @@ namespace SpooninDrawer.Objects.Gameplay
         public const string LeftHand3 = "Minigame/SpooninDrawer/LeftHand3";
         public const string LeftHand4 = "Minigame/SpooninDrawer/LeftHand4";
         public const string blankTexture = "Minigame/SpooninDrawer/blank";
-        public const string RightHand1 = "Minigame/SpooninDrawer/LeftHand1";
+        public const string RightHand1 = "Minigame/SpooninDrawer/RightHand1";
+        public const string RightHand2 = "Minigame/SpooninDrawer/RightHand2";
         private List<Vector2> DrawerOffsetForHand = new List<Vector2>();
         public MinigameManager(Vector2 playerPosition, OrthographicCamera camera, Resolution resolution)
         {
@@ -46,6 +47,7 @@ namespace SpooninDrawer.Objects.Gameplay
             LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand4));
 
             RightHandFrames.Add(new MinigameSplashImage(RightHand1));
+            RightHandFrames.Add(new MinigameSplashImage(RightHand2));
 
             DrawerOffsetForHand.Add(new Vector2(0,0));
             DrawerOffsetForHand.Add(new Vector2(-28, 110));
@@ -66,6 +68,11 @@ namespace SpooninDrawer.Objects.Gameplay
             {
                 leftHand.zIndex = 16;
                 leftHand.Deactivate();
+            }
+            foreach (var rightHand in RightHandFrames)
+            {
+                rightHand.zIndex = 16;
+                rightHand.Deactivate();
             }
         }
         private void RefreshFrame(MinigameSplashImage frame)
@@ -169,20 +176,21 @@ namespace SpooninDrawer.Objects.Gameplay
             DeactivateDrawer();
             RefreshFrame(DrawerFrames[1]);
             currentDrawerFrame = 1;
-            StartLeftHandFrame();
-            currentLeftHandFrame = 0;
-            //StartRightHandFrame();
+            StartLeftHandFrame();           
+            StartRightHandFrame();           
         }
         public void StartLeftHandFrame()
         {
-            DeactivateLeftHand();            
+            DeactivateLeftHand();
+            currentLeftHandFrame = 0;
             RefreshFrame(LeftHandFrames[currentLeftHandFrame]);
             LeftHandFrames[currentLeftHandFrame].Position += DrawerOffsetForHand[currentDrawerFrame];
         }
         public void StartRightHandFrame()
         {
             DeactivateRightHand();
-            RefreshFrame(RightHandFrames[0]);
+            currentRightHandFrame = 0;
+            RefreshFrame(RightHandFrames[currentRightHandFrame]);
         }
         public void ForewardDrawerFrame()
         {

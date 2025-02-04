@@ -575,6 +575,8 @@ namespace SpooninDrawer
          *-Fixed hand deactivating on second random by removing an else on left hand random
          *2/2/2025
          *-added one frame for right hand
+         *2/3/2025
+         *-added second frame for right hand and made right draw and random for right hand included
          *
          */
     }
