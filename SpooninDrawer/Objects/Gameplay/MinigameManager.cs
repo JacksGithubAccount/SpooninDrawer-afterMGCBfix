@@ -29,6 +29,8 @@ namespace SpooninDrawer.Objects.Gameplay
         public const string blankTexture = "Minigame/SpooninDrawer/blank";
         public const string RightHand1 = "Minigame/SpooninDrawer/RightHand1";
         public const string RightHand2 = "Minigame/SpooninDrawer/RightHand2";
+        public const string RightHand3 = "Minigame/SpooninDrawer/RightHand3";
+        public const string RightHand4 = "Minigame/SpooninDrawer/RightHand4";
         private List<Vector2> DrawerOffsetForHand = new List<Vector2>();
         public MinigameManager(Vector2 playerPosition, OrthographicCamera camera, Resolution resolution)
         {
@@ -48,6 +50,8 @@ namespace SpooninDrawer.Objects.Gameplay
 
             RightHandFrames.Add(new MinigameSplashImage(RightHand1));
             RightHandFrames.Add(new MinigameSplashImage(RightHand2));
+            RightHandFrames.Add(new MinigameSplashImage(RightHand3));
+            RightHandFrames.Add(new MinigameSplashImage(RightHand4));
 
             DrawerOffsetForHand.Add(new Vector2(0,0));
             DrawerOffsetForHand.Add(new Vector2(-28, 110));

@@ -577,6 +577,10 @@ namespace SpooninDrawer
          *-added one frame for right hand
          *2/3/2025
          *-added second frame for right hand and made right draw and random for right hand included
+         *2/4/2025
+         *-added third frame for right hand
+         *2/5/2025
+         *-added fourth frames for right hand. Will need to add a way to render frames together to allow different zindex
          *
          */
     }
