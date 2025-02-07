@@ -13,15 +13,16 @@ namespace SpooninDrawer.Objects.Gameplay
 {
     public class MinigameManager
     {
-        public List<MinigameSplashImage> DrawerFrames = new List<MinigameSplashImage>();
+        public List<List<MinigameSplashImage>> DrawerFrames = new List<List<MinigameSplashImage>>();
         public List<MinigameSplashImage> LeftHandFrames = new List<MinigameSplashImage>();
         public List<MinigameSplashImage> LeftHandonDrawerFrames = new List<MinigameSplashImage>();
-        public List<MinigameSplashImage> RightHandFrames = new List<MinigameSplashImage>();
+        public List<List<MinigameSplashImage>> RightHandFrames = new List<List<MinigameSplashImage>>();
         private int currentDrawerFrame = 0;
         private int currentLeftHandFrame = 0;
         private int currentLeftHandonDrawerFrame = 0;
         private int currentRightHandFrame = 0;
         private OrthographicCamera camera;
+        public const string DrawerShelf3 = "Minigame/SpooninDrawer/DrawerShelf31080";
         public const string LeftHand1 = "Minigame/SpooninDrawer/LeftHand1";
         public const string LeftHand2 = "Minigame/SpooninDrawer/LeftHand2";
         public const string LeftHand3 = "Minigame/SpooninDrawer/LeftHand3";
@@ -31,15 +32,36 @@ namespace SpooninDrawer.Objects.Gameplay
         public const string RightHand2 = "Minigame/SpooninDrawer/RightHand2";
         public const string RightHand3 = "Minigame/SpooninDrawer/RightHand3";
         public const string RightHand4 = "Minigame/SpooninDrawer/RightHand4";
+        public const string RightArm4 = "Minigame/SpooninDrawer/RightArm4";
+        public const string RightSpoon4 = "Minigame/SpooninDrawer/RightSpoon4";
+
+        private List<MinigameSplashImage> Drawer0List = new List<MinigameSplashImage>();
+        private List<MinigameSplashImage> Drawer1List = new List<MinigameSplashImage>();
+        private List<MinigameSplashImage> Drawer2List = new List<MinigameSplashImage>();
+        private List<MinigameSplashImage> Drawer3List = new List<MinigameSplashImage>();
+        private List<MinigameSplashImage> Drawer4List = new List<MinigameSplashImage>();
+
+        private List<MinigameSplashImage> RightHand1List = new List<MinigameSplashImage>();
+        private List<MinigameSplashImage> RightHand2List = new List<MinigameSplashImage>();
+        private List<MinigameSplashImage> RightHand3List = new List<MinigameSplashImage>();
+        private List<MinigameSplashImage> RightHand4List = new List<MinigameSplashImage>();
+
         private List<Vector2> DrawerOffsetForHand = new List<Vector2>();
         public MinigameManager(Vector2 playerPosition, OrthographicCamera camera, Resolution resolution)
         {
             this.camera = camera;
-            DrawerFrames.Add(new MinigameSplashImage(0, resolution));//810,552
-            DrawerFrames.Add(new MinigameSplashImage(1, resolution));//782,664
-            DrawerFrames.Add(new MinigameSplashImage(2, resolution));//777,781
-            DrawerFrames.Add(new MinigameSplashImage(3, resolution));//763,1076
-            DrawerFrames.Add(new MinigameSplashImage(4, resolution));//gone
+            Drawer0List.Add(new MinigameSplashImage(0, resolution));//810,552
+            Drawer1List.Add(new MinigameSplashImage(1, resolution));//782,664
+            Drawer2List.Add(new MinigameSplashImage(2, resolution));//777,781
+            Drawer3List.Add(new MinigameSplashImage(3, resolution));//763,1076
+            Drawer3List.Add(new MinigameSplashImage(DrawerShelf3));
+            Drawer4List.Add(new MinigameSplashImage(4, resolution));//gone
+
+            DrawerFrames.Add(Drawer0List);
+            DrawerFrames.Add(Drawer1List);
+            DrawerFrames.Add(Drawer2List);
+            DrawerFrames.Add(Drawer3List);
+            DrawerFrames.Add(Drawer4List);
 
             LeftHandFrames.Add(new MinigameSplashImage(LeftHand1));
             LeftHandFrames.Add(new MinigameSplashImage(blankTexture));
@@ -48,10 +70,17 @@ namespace SpooninDrawer.Objects.Gameplay
             LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand3));
             LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand4));
 
-            RightHandFrames.Add(new MinigameSplashImage(RightHand1));
-            RightHandFrames.Add(new MinigameSplashImage(RightHand2));
-            RightHandFrames.Add(new MinigameSplashImage(RightHand3));
-            RightHandFrames.Add(new MinigameSplashImage(RightHand4));
+            RightHand1List.Add(new MinigameSplashImage(RightHand1));
+            RightHand2List.Add(new MinigameSplashImage(RightHand2));
+            RightHand3List.Add(new MinigameSplashImage(RightHand3));
+            RightHand4List.Add(new MinigameSplashImage(RightHand4));
+            RightHand4List.Add(new MinigameSplashImage(RightArm4));
+            RightHand4List.Add(new MinigameSplashImage(RightSpoon4));
+
+            RightHandFrames.Add(RightHand1List);
+            RightHandFrames.Add(RightHand2List);
+            RightHandFrames.Add(RightHand3List);
+            RightHandFrames.Add(RightHand4List);
 
             DrawerOffsetForHand.Add(new Vector2(0,0));
             DrawerOffsetForHand.Add(new Vector2(-28, 110));
@@ -59,25 +88,36 @@ namespace SpooninDrawer.Objects.Gameplay
             DrawerOffsetForHand.Add(new Vector2(-50, 522));
             DrawerOffsetForHand.Add(new Vector2(0, 0));
 
-            foreach (var drawer in DrawerFrames) {
-                drawer.zIndex = 15;
-                drawer.Deactivate();
+            foreach (var frame in DrawerFrames) {
+                foreach (var drawer in frame)
+                {
+                    drawer.zIndex = 15;
+                    drawer.Deactivate();
+                }
             }
+            //makes the drawer front draw in front of hand
+            DrawerFrames[3][1].zIndex = 17;
             foreach (var leftHand in LeftHandFrames)
             {
-                leftHand.zIndex = 16;
+                leftHand.zIndex = 18;
                 leftHand.Deactivate();
             }
             foreach (var leftHand in LeftHandonDrawerFrames)
             {
-                leftHand.zIndex = 16;
+                leftHand.zIndex = 18;
                 leftHand.Deactivate();
             }
-            foreach (var rightHand in RightHandFrames)
+            foreach (var right in RightHandFrames)
             {
-                rightHand.zIndex = 16;
-                rightHand.Deactivate();
+                foreach (var rightHand in right)
+                {
+                    rightHand.zIndex = 18;
+                    rightHand.Deactivate();
+                }
             }
+            //sets spoon to draw over hand
+            RightHand4List[0].zIndex = 15;
+            RightHand4List[2].zIndex = 16;
         }
         private void RefreshFrame(MinigameSplashImage frame)
         {
@@ -89,14 +129,17 @@ namespace SpooninDrawer.Objects.Gameplay
             Random rng = new Random();
             int rngesus = rng.Next(0, DrawerFrames.Count);
             for (int i = 0; i < DrawerFrames.Count; i++) {
-                if (i == rngesus)
+                foreach (var frame in DrawerFrames[i])
                 {
-                    DrawerFrames[i].Position = camera.Position;
-                    DrawerFrames[i].Activate();
-                }
-                else
-                {
-                    DrawerFrames[i].Deactivate();
+                    if (i == rngesus)
+                    {
+                        frame.Position = camera.Position;
+                        frame.Activate();
+                    }
+                    else
+                    {
+                        frame.Deactivate();
+                    }
                 }
             }
         }
@@ -178,7 +221,8 @@ namespace SpooninDrawer.Objects.Gameplay
         public void StartDrawerFrame()
         {
             DeactivateDrawer();
-            RefreshFrame(DrawerFrames[1]);
+            foreach (var drawerFrame in DrawerFrames[1])
+                RefreshFrame(drawerFrame);
             currentDrawerFrame = 1;
             StartLeftHandFrame();           
             StartRightHandFrame();           
@@ -194,14 +238,16 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             DeactivateRightHand();
             currentRightHandFrame = 0;
-            RefreshFrame(RightHandFrames[currentRightHandFrame]);
+            foreach (var frame in RightHandFrames[currentRightHandFrame])
+                RefreshFrame(frame);
         }
         public void ForewardDrawerFrame()
         {
             DeactivateDrawer();
             if(currentDrawerFrame < DrawerFrames.Count - 1) 
                 currentDrawerFrame++;
-            RefreshFrame(DrawerFrames[currentDrawerFrame]);
+            foreach (var frame in DrawerFrames[currentDrawerFrame])
+                RefreshFrame(frame);
         }
         public void ForewardLeftHandFrame()
         {
@@ -218,14 +264,16 @@ namespace SpooninDrawer.Objects.Gameplay
             DeactivateRightHand();
             if (currentRightHandFrame < RightHandFrames.Count - 1)
                 currentRightHandFrame++;
-            RefreshFrame(RightHandFrames[currentRightHandFrame]);
+            foreach (var frame in RightHandFrames[currentRightHandFrame])
+                RefreshFrame(frame);
         }
         public void BackwardDrawerFrame()
         {
             DeactivateDrawer();
             if(currentDrawerFrame > 0)
                 currentDrawerFrame--;
-            RefreshFrame(DrawerFrames[currentDrawerFrame]);
+            foreach (var frame in DrawerFrames[currentDrawerFrame])
+                RefreshFrame(frame);
         }
         public void BackwardLeftHandFrame()
         {
@@ -239,14 +287,16 @@ namespace SpooninDrawer.Objects.Gameplay
             DeactivateRightHand();
             if (currentRightHandFrame > 0)
                 currentRightHandFrame--;
-            RefreshFrame(RightHandFrames[currentRightHandFrame]);
+            foreach (var frame in RightHandFrames[currentRightHandFrame])
+                RefreshFrame(frame);
         }
 
         public void DeactivateDrawer()
         {
-            foreach (var drawer in DrawerFrames)
+            foreach (var frame in DrawerFrames)
             {
-                drawer.Deactivate();
+                foreach(var drawer in frame)
+                    drawer.Deactivate();
             }
 
         }
@@ -267,9 +317,12 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void DeactivateRightHand()
         {
-            foreach (var righthand in RightHandFrames)
+            foreach (var right in RightHandFrames)
             {
-                righthand.Deactivate();
+                foreach (var righthand in right)
+                {
+                    righthand.Deactivate();
+                }                
             }
         }        
             public void DeactivateAll()

@@ -192,10 +192,13 @@ namespace SpooninDrawer.Engine.States.Gameplay
             AddGameObject(PopupManager.DialogBox);
 
             MinigameManager = new MinigameManager(_playerSprite.Position, _camera, _displayResolution);
-            foreach (var item in MinigameManager.DrawerFrames)
+            foreach (var frame in MinigameManager.DrawerFrames)
             {
-                item.SetTexture(LoadTexture(item.TexturePath));
-                AddGameObject(item);
+                foreach (var item in frame)
+                {
+                    item.SetTexture(LoadTexture(item.TexturePath));
+                    AddGameObject(item);
+                }
             }
             foreach (var item in MinigameManager.LeftHandFrames)
             {
@@ -207,10 +210,13 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 item.SetTexture(LoadTexture(item.TexturePath));
                 AddGameObject(item);
             }
-            foreach (var item in MinigameManager.RightHandFrames)
+            foreach (var frame in MinigameManager.RightHandFrames)
             {
-                item.SetTexture(LoadTexture(item.TexturePath));
-                AddGameObject(item);
+                foreach (var item in frame)
+                {
+                    item.SetTexture(LoadTexture(item.TexturePath));
+                    AddGameObject(item);
+                }
             }
 
 

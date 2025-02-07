@@ -581,6 +581,9 @@ namespace SpooninDrawer
          *-added third frame for right hand
          *2/5/2025
          *-added fourth frames for right hand. Will need to add a way to render frames together to allow different zindex
+         *2/6/2025
+         *-added to right hand an drawer to lists and set zindiex so now the arm is above drawer face but hand and spoon is below on 4th frame
+         *
          *
          */
     }
