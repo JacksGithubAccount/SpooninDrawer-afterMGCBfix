@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "SpooninDrawer\\notes.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\notes.cs",
               "RelativeToolTip": "SpooninDrawer\\notes.cs",
-              "ViewState": "AQIAADACAAAAAAAAAAAAAEoCAABXAAAA",
+              "ViewState": "AQIAADACAAAAAAAAAAAAAE8CAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-09T00:39:30.306Z",
               "IsPinned": true,
@@ -100,8 +100,7 @@
               "RelativeToolTip": "SpooninDrawer\\Objects\\Gameplay\\MinigameManager.cs",
               "ViewState": "AQIAAFkAAAAAAAAAAAAvwHkAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-21T00:03:44.828Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-21T00:03:44.828Z"
             },
             {
               "$type": "Document",
@@ -113,8 +112,7 @@
               "RelativeToolTip": "SpooninDrawer\\States\\Gameplay\\GameplayState.cs",
               "ViewState": "AQIAALMAAAAAAAAAAAAAAM4AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T02:20:43.339Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-21T02:20:43.339Z"
             },
             {
               "$type": "Document",

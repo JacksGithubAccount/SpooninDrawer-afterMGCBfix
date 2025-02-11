@@ -578,6 +578,18 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/RightSpoon4.png
 
+#begin Minigame/SpooninDrawer/Spoon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Minigame/SpooninDrawer/Spoon.png
+
 #begin music/FutureAmbient_1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
