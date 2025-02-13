@@ -34,6 +34,8 @@ namespace SpooninDrawer.Objects.Gameplay
         public const string RightHand4 = "Minigame/SpooninDrawer/RightHand4";
         public const string RightArm4 = "Minigame/SpooninDrawer/RightArm4";
         public const string RightSpoon4 = "Minigame/SpooninDrawer/RightSpoon4";
+        public const string Spoon = "Minigame/SpooninDrawer/Spoon";
+        public const string RightHandLeaving = "Minigame/SpooninDrawer/RightHandLeaving";
 
         private List<MinigameSplashImage> Drawer0List = new List<MinigameSplashImage>();
         private List<MinigameSplashImage> Drawer1List = new List<MinigameSplashImage>();
@@ -41,10 +43,13 @@ namespace SpooninDrawer.Objects.Gameplay
         private List<MinigameSplashImage> Drawer3List = new List<MinigameSplashImage>();
         private List<MinigameSplashImage> Drawer4List = new List<MinigameSplashImage>();
 
+        private List<MinigameSplashImage> SpoonList = new List<MinigameSplashImage>();
+
         private List<MinigameSplashImage> RightHand1List = new List<MinigameSplashImage>();
         private List<MinigameSplashImage> RightHand2List = new List<MinigameSplashImage>();
         private List<MinigameSplashImage> RightHand3List = new List<MinigameSplashImage>();
         private List<MinigameSplashImage> RightHand4List = new List<MinigameSplashImage>();
+        private List<MinigameSplashImage> RightHand5List = new List<MinigameSplashImage>();
 
         private List<Vector2> DrawerOffsetForHand = new List<Vector2>();
         public MinigameManager(Vector2 playerPosition, OrthographicCamera camera, Resolution resolution)
@@ -70,12 +75,15 @@ namespace SpooninDrawer.Objects.Gameplay
             LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand3));
             LeftHandonDrawerFrames.Add(new MinigameSplashImage(LeftHand4));
 
+            SpoonList.Add(new MinigameSplashImage(Spoon));
+
             RightHand1List.Add(new MinigameSplashImage(RightHand1));
             RightHand2List.Add(new MinigameSplashImage(RightHand2));
             RightHand3List.Add(new MinigameSplashImage(RightHand3));
             RightHand4List.Add(new MinigameSplashImage(RightHand4));
             RightHand4List.Add(new MinigameSplashImage(RightArm4));
             RightHand4List.Add(new MinigameSplashImage(RightSpoon4));
+            RightHand5List.Add(new MinigameSplashImage(RightHandLeaving));
 
             RightHandFrames.Add(RightHand1List);
             RightHandFrames.Add(RightHand2List);

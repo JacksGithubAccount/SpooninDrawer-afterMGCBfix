@@ -585,6 +585,11 @@ namespace SpooninDrawer
          *-added to right hand an drawer to lists and set zindex so now the arm is above drawer face but hand and spoon is below on 4th frame
          *2/9/2025
          *-added right hand open to drop spoon, next is to  move hand out and close drawer
+         *2/11/2025
+         *-added spoon by itself
+         *2/12/2025
+         *-added right hand leaving
+         *
          *
          */
     }
