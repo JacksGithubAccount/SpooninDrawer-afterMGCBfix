@@ -17,6 +17,7 @@ namespace SpooninDrawer.Objects.Gameplay
         public List<MinigameSplashImage> LeftHandFrames = new List<MinigameSplashImage>();
         public List<MinigameSplashImage> LeftHandonDrawerFrames = new List<MinigameSplashImage>();
         public List<List<MinigameSplashImage>> RightHandFrames = new List<List<MinigameSplashImage>>();
+        public List<MinigameSplashImage> SpoonList = new List<MinigameSplashImage>();
         private int currentDrawerFrame = 0;
         private int currentLeftHandFrame = 0;
         private int currentLeftHandonDrawerFrame = 0;
@@ -42,8 +43,7 @@ namespace SpooninDrawer.Objects.Gameplay
         private List<MinigameSplashImage> Drawer2List = new List<MinigameSplashImage>();
         private List<MinigameSplashImage> Drawer3List = new List<MinigameSplashImage>();
         private List<MinigameSplashImage> Drawer4List = new List<MinigameSplashImage>();
-
-        private List<MinigameSplashImage> SpoonList = new List<MinigameSplashImage>();
+        
 
         private List<MinigameSplashImage> RightHand1List = new List<MinigameSplashImage>();
         private List<MinigameSplashImage> RightHand2List = new List<MinigameSplashImage>();
@@ -52,6 +52,8 @@ namespace SpooninDrawer.Objects.Gameplay
         private List<MinigameSplashImage> RightHand5List = new List<MinigameSplashImage>();
 
         private List<Vector2> DrawerOffsetForHand = new List<Vector2>();
+
+        private bool SpoonDropped = false;
         public MinigameManager(Vector2 playerPosition, OrthographicCamera camera, Resolution resolution)
         {
             this.camera = camera;
@@ -89,6 +91,7 @@ namespace SpooninDrawer.Objects.Gameplay
             RightHandFrames.Add(RightHand2List);
             RightHandFrames.Add(RightHand3List);
             RightHandFrames.Add(RightHand4List);
+            RightHandFrames.Add(RightHand5List);
 
             DrawerOffsetForHand.Add(new Vector2(0,0));
             DrawerOffsetForHand.Add(new Vector2(-28, 110));
@@ -126,11 +129,23 @@ namespace SpooninDrawer.Objects.Gameplay
             //sets spoon to draw over hand
             RightHand4List[0].zIndex = 15;
             RightHand4List[2].zIndex = 16;
+            foreach(var spoon in SpoonList)
+            {
+                spoon.zIndex = 16;
+                spoon.Deactivate();
+            }
         }
         private void RefreshFrame(MinigameSplashImage frame)
         {
             frame.Position = camera.Position;
             frame.Activate();
+        }
+        private void RefreshFrame(List<MinigameSplashImage> frameList)
+        {
+            foreach (var frame in frameList)
+            {
+                RefreshFrame(frame);
+            }
         }
         public void TrueRandomDrawerFrame()
         {
@@ -256,6 +271,8 @@ namespace SpooninDrawer.Objects.Gameplay
                 currentDrawerFrame++;
             foreach (var frame in DrawerFrames[currentDrawerFrame])
                 RefreshFrame(frame);
+            if (currentDrawerFrame == 2 || currentDrawerFrame == 4)
+                DeactivateSpoon();
         }
         public void ForewardLeftHandFrame()
         {
@@ -274,6 +291,11 @@ namespace SpooninDrawer.Objects.Gameplay
                 currentRightHandFrame++;
             foreach (var frame in RightHandFrames[currentRightHandFrame])
                 RefreshFrame(frame);
+            if(currentRightHandFrame == 4)
+            {
+                RefreshFrame(SpoonList);
+                SpoonDropped = true;
+            }
         }
         public void BackwardDrawerFrame()
         {
@@ -282,6 +304,12 @@ namespace SpooninDrawer.Objects.Gameplay
                 currentDrawerFrame--;
             foreach (var frame in DrawerFrames[currentDrawerFrame])
                 RefreshFrame(frame);
+            if(currentDrawerFrame == 2 || currentDrawerFrame == 4)
+                DeactivateSpoon();
+            if(currentDrawerFrame == 1 && SpoonDropped)
+            {
+                //spoon is in drawer
+            }
         }
         public void BackwardLeftHandFrame()
         {
@@ -297,6 +325,11 @@ namespace SpooninDrawer.Objects.Gameplay
                 currentRightHandFrame--;
             foreach (var frame in RightHandFrames[currentRightHandFrame])
                 RefreshFrame(frame);
+            if (currentRightHandFrame == 3 && currentDrawerFrame == 3)
+            {
+                DeactivateSpoon();
+                SpoonDropped = false;
+            }
         }
 
         public void DeactivateDrawer()
@@ -332,12 +365,20 @@ namespace SpooninDrawer.Objects.Gameplay
                     righthand.Deactivate();
                 }                
             }
-        }        
+        }   
+        public void DeactivateSpoon()
+        {
+            foreach(var spoon in SpoonList)
+            {
+                spoon.Deactivate();
+            }
+        }
             public void DeactivateAll()
         {
             DeactivateDrawer();
             DeactivateLeftHand();
             DeactivateRightHand();
+            DeactivateSpoon();
         }
     }
 }

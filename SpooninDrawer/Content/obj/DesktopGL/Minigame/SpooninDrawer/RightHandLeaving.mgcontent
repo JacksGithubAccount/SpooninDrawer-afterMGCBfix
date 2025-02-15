@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Minigame/SpooninDrawer/RightHandLeaving.png</SourceFile>
-  <SourceTime>2025-02-12T22:51:24.2597252-05:00</SourceTime>
+  <SourceTime>2025-02-14T22:19:42.8323285-05:00</SourceTime>
   <DestFile>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/bin/DesktopGL/Minigame/SpooninDrawer/RightHandLeaving.xnb</DestFile>
-  <DestTime>2025-02-12T23:01:55.8791686-05:00</DestTime>
+  <DestTime>2025-02-14T22:20:33.1416573-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

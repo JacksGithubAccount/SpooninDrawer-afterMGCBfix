@@ -218,6 +218,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     AddGameObject(item);
                 }
             }
+            foreach (var item in MinigameManager.SpoonList)
+            {
+                    item.SetTexture(LoadTexture(item.TexturePath));
+                    AddGameObject(item);
+            }
 
 
             ResetGame();

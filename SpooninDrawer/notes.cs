@@ -589,6 +589,8 @@ namespace SpooninDrawer
          *-added spoon by itself
          *2/12/2025
          *-added right hand leaving
+         *2/14/2025
+         *-implemented those two into the game and added checks for spoon in drawer
          *
          *
          */
