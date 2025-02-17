@@ -380,12 +380,13 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     }
                     if (cmd is GameplayInputCommand.PlayerOpenMenu)
                     {
-                        MinigameManager.DeactivateAll();
-                        ChangeGameStateState(GameplayStateStates.MainGameState);
+                        MinigameManager.ForewardRightHandFrame();
                     }
                     if (cmd is GameplayInputCommand.Pause)
                     {
                         paused = !paused;
+                        MinigameManager.DeactivateAll();
+                        ChangeGameStateState(GameplayStateStates.MainGameState);
                     }
 
                     if (cmd is GameplayInputCommand.PlayerMoveLeft && !_playerDead)
@@ -410,11 +411,17 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     }
                     if (cmd is GameplayInputCommand.PlayerAction && !_playerDead)
                     {
-                        MinigameManager.NextRandomFrame();
+                        //MinigameManager.NextRandomFrame();
+                        MinigameManager.ForewardDrawerFrame();
                     }
                     if (cmd is GameplayInputCommand.PlayerCancel && !_playerDead)
                     {
-                        MinigameManager.NextRandomFrame();
+                        //MinigameManager.NextRandomFrame();
+                        MinigameManager.BackwardDrawerFrame();
+                    }
+                    if (cmd is GameplayInputCommand.PlayerV && !_playerDead)
+                    {
+                        MinigameManager.BackwardRightHandFrame();
                     }
                 });
             }

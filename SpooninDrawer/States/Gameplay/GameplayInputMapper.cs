@@ -46,6 +46,10 @@ namespace SpooninDrawer.States.Gameplay
             {
                 commands.Add(new GameplayInputCommand.PlayerCancel());
             }
+            if (inputDetector.IsActioninputtedbyTypeforKey(Actions.V, InputType.Press))
+            {
+                commands.Add(new GameplayInputCommand.PlayerV());
+            }
             if (inputDetector.IsActionPressedforKey(Actions.MoveRight))
             {
                 commands.Add(new GameplayInputCommand.PlayerMoveRight());

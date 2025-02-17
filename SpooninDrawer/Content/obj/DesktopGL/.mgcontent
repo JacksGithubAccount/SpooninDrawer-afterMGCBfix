@@ -4,9 +4,9 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Minigame/SpooninDrawer/RightHand4Open.png</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Minigame/SpooninDrawer/Spoon.png</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Minigame/SpooninDrawer/RightHandLeaving.png</File>
-    <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Minigame/SpooninDrawer/RightHand4Open.png</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Animations/Drawer/idle.xml</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Animations/Drawer/Interact.xml</File>
     <File>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Animations/Player/idle.xml</File>

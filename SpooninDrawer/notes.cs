@@ -591,7 +591,8 @@ namespace SpooninDrawer
          *-added right hand leaving
          *2/14/2025
          *-implemented those two into the game and added checks for spoon in drawer
-         *
+         *2/16/2025
+         *-added checks for right hand when spoon has been an havent been dropped
          *
          */
     }

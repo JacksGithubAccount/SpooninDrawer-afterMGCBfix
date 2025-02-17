@@ -35,6 +35,7 @@ namespace SpooninDrawer.Objects.Gameplay
         public const string RightHand4 = "Minigame/SpooninDrawer/RightHand4";
         public const string RightArm4 = "Minigame/SpooninDrawer/RightArm4";
         public const string RightSpoon4 = "Minigame/SpooninDrawer/RightSpoon4";
+        public const string RightHand4Open = "Minigame/SpooninDrawer/RightHand4Open";
         public const string Spoon = "Minigame/SpooninDrawer/Spoon";
         public const string RightHandLeaving = "Minigame/SpooninDrawer/RightHandLeaving";
 
@@ -50,6 +51,7 @@ namespace SpooninDrawer.Objects.Gameplay
         private List<MinigameSplashImage> RightHand3List = new List<MinigameSplashImage>();
         private List<MinigameSplashImage> RightHand4List = new List<MinigameSplashImage>();
         private List<MinigameSplashImage> RightHand5List = new List<MinigameSplashImage>();
+        private List<MinigameSplashImage> RightHand6List = new List<MinigameSplashImage>();
 
         private List<Vector2> DrawerOffsetForHand = new List<Vector2>();
 
@@ -85,13 +87,16 @@ namespace SpooninDrawer.Objects.Gameplay
             RightHand4List.Add(new MinigameSplashImage(RightHand4));
             RightHand4List.Add(new MinigameSplashImage(RightArm4));
             RightHand4List.Add(new MinigameSplashImage(RightSpoon4));
-            RightHand5List.Add(new MinigameSplashImage(RightHandLeaving));
+            RightHand5List.Add(new MinigameSplashImage(RightHand4Open));
+            RightHand5List.Add(new MinigameSplashImage(RightArm4));
+            RightHand6List.Add(new MinigameSplashImage(RightHandLeaving));
 
             RightHandFrames.Add(RightHand1List);
             RightHandFrames.Add(RightHand2List);
             RightHandFrames.Add(RightHand3List);
             RightHandFrames.Add(RightHand4List);
             RightHandFrames.Add(RightHand5List);
+            RightHandFrames.Add(RightHand6List);
 
             DrawerOffsetForHand.Add(new Vector2(0,0));
             DrawerOffsetForHand.Add(new Vector2(-28, 110));
@@ -129,7 +134,8 @@ namespace SpooninDrawer.Objects.Gameplay
             //sets spoon to draw over hand
             RightHand4List[0].zIndex = 15;
             RightHand4List[2].zIndex = 16;
-            foreach(var spoon in SpoonList)
+            RightHand5List[0].zIndex = 15;
+            foreach (var spoon in SpoonList)
             {
                 spoon.zIndex = 16;
                 spoon.Deactivate();
@@ -288,7 +294,16 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             DeactivateRightHand();
             if (currentRightHandFrame < RightHandFrames.Count - 1)
-                currentRightHandFrame++;
+            {                
+                if (currentDrawerFrame != 3 && currentRightHandFrame == 3)
+                {
+                    //stops right hand from dropping spoon if drawer isnt open
+                }
+                else
+                {
+                    currentRightHandFrame++;                    
+                }
+            }
             foreach (var frame in RightHandFrames[currentRightHandFrame])
                 RefreshFrame(frame);
             if(currentRightHandFrame == 4)
@@ -322,7 +337,11 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             DeactivateRightHand();
             if (currentRightHandFrame > 0)
-                currentRightHandFrame--;
+            {
+                if (SpoonDropped && currentDrawerFrame != 3 && currentRightHandFrame <= 4) { }
+                else
+                    currentRightHandFrame--;
+            }
             foreach (var frame in RightHandFrames[currentRightHandFrame])
                 RefreshFrame(frame);
             if (currentRightHandFrame == 3 && currentDrawerFrame == 3)

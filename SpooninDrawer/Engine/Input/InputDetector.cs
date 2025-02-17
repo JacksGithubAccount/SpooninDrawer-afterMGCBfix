@@ -23,6 +23,7 @@ namespace SpooninDrawer.Engine.Input
         MoveLeft,
         MoveRight,
         Pause,
+        V,
         NoInput
     }
     public enum InputType
@@ -93,7 +94,9 @@ namespace SpooninDrawer.Engine.Input
                 new ActionKey(Keys.X, Actions.Cancel),
                 new ActionKey(Keys.Z, Actions.Attack),
                 new ActionKey(Keys.C, Actions.OpenMenu),
-                new ActionKey(Keys.P, Actions.Pause)
+                new ActionKey(Keys.P, Actions.Pause),
+                new ActionKey(Keys.V, Actions.V),
+                new ActionKey(Keys.Escape, Actions.OpenMenu)
             };
             buttonControls = new List<ActionButton>
             {
