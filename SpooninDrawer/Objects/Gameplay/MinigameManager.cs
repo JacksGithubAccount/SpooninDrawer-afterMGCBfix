@@ -226,7 +226,10 @@ namespace SpooninDrawer.Objects.Gameplay
 
                 BackwardDrawerFrame();
             }
-
+            if(SpoonDropped && currentDrawerFrame == 3)
+            {
+                RefreshFrame(SpoonList);
+            }
             LeftHandonDrawerFrames[currentLeftHandonDrawerFrame].Position += DrawerOffsetForHand[currentDrawerFrame];
             //}
         }

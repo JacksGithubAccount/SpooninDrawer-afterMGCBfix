@@ -592,7 +592,9 @@ namespace SpooninDrawer
          *2/14/2025
          *-implemented those two into the game and added checks for spoon in drawer
          *2/16/2025
-         *-added checks for right hand when spoon has been an havent been dropped
+         *-added checks for right hand when spoon has been and havent been dropped
+         *2/17/2025
+         *-will need a text bocx to display as the hands moves
          *
          */
     }
