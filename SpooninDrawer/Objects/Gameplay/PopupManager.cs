@@ -17,9 +17,11 @@ namespace SpooninDrawer.Objects.Gameplay
     {
         public InteractablePopupBox InteractableItemPopupBox;
         public InteractablePopupBox AddInventoryPopupBox;
+        public InteractablePopupBox MinigamePopupBox;
         public DialogBox DialogBox;
         private Texture2D InteractableTexture;
         private Texture2D AddInventoryTexture;
+        private Texture2D MinigameTexture;
 
         private List<InteractablePopupBox> AddInventoryPopupBoxes;
         private SpriteFont Font;
@@ -47,12 +49,21 @@ namespace SpooninDrawer.Objects.Gameplay
             DialogBox.GameplayText.zIndex = 13;
             DialogBox.zIndex = 12;
             DialogBox.Deactivate();
+            
 
         }
-        public void SetPopupBoxTextures(Texture2D interactable, Texture2D addInventory)
+        public void SetPopupBoxTextures(Texture2D interactable, Texture2D addInventory, Texture2D minigame)
         {
             InteractableTexture = interactable;
             AddInventoryTexture = addInventory;
+            MinigameTexture = minigame;
+        }
+        public void LoadMinigameBox()
+        {
+            MinigamePopupBox = new InteractablePopupBox(new GameplayText(Font, "Put the spoon in the drawer."), new Vector2(0, 0), MinigameTexture);
+            MinigamePopupBox.GameplayText.zIndex = 20;
+            MinigamePopupBox.zIndex = 19;
+            MinigamePopupBox.Deactivate();
         }
         private InteractablePopupBox CreatePopupBox(string ItemName)
         {

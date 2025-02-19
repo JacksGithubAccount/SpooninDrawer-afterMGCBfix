@@ -595,6 +595,8 @@ namespace SpooninDrawer
          *-added checks for right hand when spoon has been and havent been dropped
          *2/17/2025
          *-will need a text bocx to display as the hands moves
+         *2/18/2025
+         *-loaded in popupbox
          *
          */
     }
