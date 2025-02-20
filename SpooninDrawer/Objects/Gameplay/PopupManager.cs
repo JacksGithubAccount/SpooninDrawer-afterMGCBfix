@@ -60,7 +60,7 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void LoadMinigameBox()
         {
-            MinigamePopupBox = new InteractablePopupBox(new GameplayText(Font, "Put the spoon in the drawer."), new Vector2(0, 0), MinigameTexture);
+            MinigamePopupBox = new InteractablePopupBox(new GameplayText(Font, "Put the spoon in the drawer."), new Vector2(0, 0),MinigameTexture);
             MinigamePopupBox.GameplayText.zIndex = 20;
             MinigamePopupBox.zIndex = 19;
             MinigamePopupBox.Deactivate();
@@ -78,6 +78,13 @@ namespace SpooninDrawer.Objects.Gameplay
             ChangeDialogDisplayTextSpeedNormal();
             DialogBox.ChangeText(text);
             DialogBox.Activate();
+        }
+        public void ActivateMinigameBox(string text, Vector2 position) 
+        { 
+            MinigamePopupBox.Position = position;
+            ChangeDialogDisplayTextSpeedNormal();
+            MinigamePopupBox.ChangeText(text);
+            MinigamePopupBox.Activate();
         }
         public void DeactivateDialogBox()
         {

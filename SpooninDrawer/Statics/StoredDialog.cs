@@ -18,6 +18,7 @@ namespace SpooninDrawer.Statics
             "HoloComi. Don't. You. Think. We. Really. Need. To. Officially. Give. Everyone. Glasses?";
         public static string bigChungus = "Send Help::Speaker::Why::Subtitle::quantum chicken soup grass big chungus";
         public static bool bigChungusBool = false;
+        public static List<string> MinigameStrings = new List<string>{"What the", " Hmm", "Test", "Why", "Big Chungus" }; 
 
     }
 }

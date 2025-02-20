@@ -597,6 +597,8 @@ namespace SpooninDrawer
          *-will need a text bocx to display as the hands moves
          *2/18/2025
          *-loaded in popupbox
+         *2/19/2025
+         *-made popup box appear at random in upper half of screen with text when a button is pressed in minigane. Will need word wrap for interactable, dialog has too many constraints
          *
          */
     }

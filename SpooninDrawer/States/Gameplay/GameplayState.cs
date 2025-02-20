@@ -111,6 +111,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         public bool menuActivate = false;
 
         private GameplayStateStates CurrentGameplayStateStates;
+        Random rngesus = new Random();
 
         public GameplayState(Resolution resolution, SoundManager soundManager)
         {
@@ -415,6 +416,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     {
                         //MinigameManager.NextRandomFrame();
                         MinigameManager.ForewardDrawerFrame();
+                        PopupManager.ActivateMinigameBox(StoredDialog.MinigameStrings[rngesus.Next(0, StoredDialog.MinigameStrings.Count)], new Vector2(rngesus.Next((int)_camera.Position.X,(int)(_camera.Center.X + (_camera.Center.X - _camera.Position.X) - PopupManager.MinigamePopupBox.Width)), rngesus.Next((int)_camera.Position.Y, (int)_camera.Center.Y)));
                     }
                     if (cmd is GameplayInputCommand.PlayerCancel && !_playerDead)
                     {
