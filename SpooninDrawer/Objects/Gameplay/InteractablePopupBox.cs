@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SpooninDrawer.Engine.Objects;
 using SpooninDrawer.Objects.Text;
+using SpooninDrawer.Statics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,16 @@ namespace SpooninDrawer.Objects.Gameplay
     {
         public GameplayText GameplayText { get; set; }
         public string Text { get { return GameplayText.Text; } set { GameplayText.Text = value; } }
+        private string TextToDisplay;
+        private List<string> WrappedText;
         public Vector2 MovePopupBoxUp = new Vector2(0, 0);
         private Vector2 TextPosition { get { return GameplayText.Position; } set { GameplayText.Position = value; } }
         private Vector2 BoxPosition { get { return Position; } set { Position = value; } }
+
+        private int NextDialogLineCount = 0;
+        private bool IsNextDialogBox = false;
+        private const int LinesInDialogBox = 2;
+        private const int WordWrapLength = 23;
         public override Vector2 Position
         {
             get { return Position; }
@@ -76,7 +84,33 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void ChangeText(string text)
         {
+            ResetDialogBox();
             Text = text;
+            WrappedText = WordWrapper.WordWrap(text, WordWrapLength);
+            FitTextInBox();
+        }
+        private void FitTextInBox()
+        {
+            if (WrappedText.Count >= LinesInDialogBox)
+            {
+                Text = WrappedText[NextDialogLineCount] + "\n" + WrappedText[NextDialogLineCount + 1];
+                NextDialogLineCount += LinesInDialogBox;
+            }
+            else
+            {
+                Text = "";
+                foreach (string WrappedTextItem in WrappedText)
+                {
+                    Text += WrappedTextItem + "\n";
+                    NextDialogLineCount++;
+                }
+            }
+        }
+        public void ResetDialogBox()
+        {
+            TextToDisplay = "";
+            Text = "";
+            NextDialogLineCount = 0;
         }
 
         public override void Render(SpriteBatch spriteBatch)
