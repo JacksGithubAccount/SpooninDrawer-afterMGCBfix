@@ -11,8 +11,18 @@ using System.Threading.Tasks;
 
 namespace SpooninDrawer.Objects.Gameplay
 {
+    public enum MinigameState
+    {
+        Normal,
+        DrawerTooIn,
+        DrawerTooOut,
+        ArmInWay,
+        DrawerInWay,
+        SpoonInDrawer
+    }
     public class MinigameManager
     {
+        public MinigameState currentState;
         public List<List<MinigameSplashImage>> DrawerFrames = new List<List<MinigameSplashImage>>();
         public List<MinigameSplashImage> LeftHandFrames = new List<MinigameSplashImage>();
         public List<MinigameSplashImage> LeftHandonDrawerFrames = new List<MinigameSplashImage>();
@@ -58,6 +68,7 @@ namespace SpooninDrawer.Objects.Gameplay
         private bool SpoonDropped = false;
         public MinigameManager(Vector2 playerPosition, OrthographicCamera camera, Resolution resolution)
         {
+            currentState = MinigameState.Normal;
             this.camera = camera;
             Drawer0List.Add(new MinigameSplashImage(0, resolution));//810,552
             Drawer1List.Add(new MinigameSplashImage(1, resolution));//782,664
@@ -278,6 +289,10 @@ namespace SpooninDrawer.Objects.Gameplay
             DeactivateDrawer();
             if(currentDrawerFrame < DrawerFrames.Count - 1) 
                 currentDrawerFrame++;
+            if(currentDrawerFrame == 5)
+                currentState = MinigameState.DrawerTooOut;
+            else if(currentState == MinigameState.DrawerTooOut)
+                currentState = MinigameState.Normal;
             foreach (var frame in DrawerFrames[currentDrawerFrame])
                 RefreshFrame(frame);
             if (currentDrawerFrame == 2 || currentDrawerFrame == 4)

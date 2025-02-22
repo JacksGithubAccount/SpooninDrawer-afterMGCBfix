@@ -601,6 +601,9 @@ namespace SpooninDrawer
          *-made popup box appear at random in upper half of screen with text when a button is pressed in minigane. Will need word wrap for interactable, dialog has too many constraints
          *2/20/2025
          *-added word wrap to interactable, issue it sometimes duplicates the line. Fixed, the text was not cleared before wrapping
+         *2/21/2025
+         *-added states to minigame
+         *
          */
     }
 }
