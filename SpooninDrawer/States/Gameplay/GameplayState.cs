@@ -416,12 +416,60 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     {
                         //MinigameManager.NextRandomFrame();
                         MinigameManager.ForewardDrawerFrame();
-                        PopupManager.ActivateMinigameBox(StoredDialog.MinigameStrings[rngesus.Next(0, StoredDialog.MinigameStrings.Count)], new Vector2(rngesus.Next((int)_camera.Position.X,(int)(_camera.Center.X + (_camera.Center.X - _camera.Position.X) - PopupManager.MinigamePopupBox.Width)), rngesus.Next((int)_camera.Position.Y, (int)_camera.Center.Y)));
+                        string textdisplay = "";
+                        switch (MinigameManager.currentState)
+                        {
+                            case MinigameState.Normal:
+                                textdisplay = StoredDialog.MinigameStrings[rngesus.Next(0, StoredDialog.MinigameStrings.Count)];
+                                break;
+                            case MinigameState.DrawerTooIn:
+                                textdisplay = StoredDialog.DrawerTooIn;
+                                break;
+                            case MinigameState.DrawerTooOut:
+                                textdisplay = StoredDialog.DrawerTooOut;
+                                break;
+                            case MinigameState.ArmInWay:
+                                textdisplay = StoredDialog.ArmStuck;
+                                break;
+                            case MinigameState.DrawerInWay:
+                                textdisplay = StoredDialog.DrawerStuck;
+                                break;
+                            case MinigameState.SpoonInDrawer:
+                                textdisplay = StoredDialog.SpooninDrawer;
+                                break;
+                        }
+                        PopupManager.ActivateMinigameBox(textdisplay, new Vector2(rngesus.Next((int)_camera.Position.X, (int)(_camera.Center.X + (_camera.Center.X - _camera.Position.X) - PopupManager.MinigamePopupBox.Width)), rngesus.Next((int)_camera.Position.Y, (int)_camera.Center.Y)));
+
+
                     }
                     if (cmd is GameplayInputCommand.PlayerCancel && !_playerDead)
                     {
                         //MinigameManager.NextRandomFrame();
                         MinigameManager.BackwardDrawerFrame();
+                        string textdisplay = "";
+                        switch (MinigameManager.currentState)
+                        {
+                            case MinigameState.Normal:
+                                textdisplay = StoredDialog.MinigameStrings[rngesus.Next(0, StoredDialog.MinigameStrings.Count)];
+                                break;
+                            case MinigameState.DrawerTooIn:
+                                textdisplay = StoredDialog.DrawerTooIn;
+                                break;
+                            case MinigameState.DrawerTooOut:
+                                textdisplay = StoredDialog.DrawerTooOut;
+                                break;
+                            case MinigameState.ArmInWay:
+                                textdisplay = StoredDialog.ArmStuck;
+                                break;
+                            case MinigameState.DrawerInWay:
+                                textdisplay = StoredDialog.DrawerStuck;
+                                break;
+                            case MinigameState.SpoonInDrawer:
+                                textdisplay = StoredDialog.SpooninDrawer;
+                                break;
+                        }
+                        PopupManager.ActivateMinigameBox(textdisplay, new Vector2(rngesus.Next((int)_camera.Position.X, (int)(_camera.Center.X + (_camera.Center.X - _camera.Position.X) - PopupManager.MinigamePopupBox.Width)), rngesus.Next((int)_camera.Position.Y, (int)_camera.Center.Y)));
+
                     }
                     if (cmd is GameplayInputCommand.PlayerV && !_playerDead)
                     {

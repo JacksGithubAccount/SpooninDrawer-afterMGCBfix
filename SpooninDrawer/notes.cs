@@ -603,6 +603,8 @@ namespace SpooninDrawer
          *-added word wrap to interactable, issue it sometimes duplicates the line. Fixed, the text was not cleared before wrapping
          *2/21/2025
          *-added states to minigame
+         *2/22/2025
+         *-added the dialog for each state, however the word way is missing when arm is in way
          *
          */
     }

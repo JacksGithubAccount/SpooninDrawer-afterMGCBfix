@@ -287,11 +287,16 @@ namespace SpooninDrawer.Objects.Gameplay
         public void ForewardDrawerFrame()
         {
             DeactivateDrawer();
-            if(currentDrawerFrame < DrawerFrames.Count - 1) 
+            if (currentDrawerFrame == 2 && currentRightHandFrame == 4 || currentDrawerFrame == 2 && currentRightHandFrame == 3)
+                currentState = MinigameState.ArmInWay;
+            else if (currentDrawerFrame < DrawerFrames.Count - 1)
+            {
                 currentDrawerFrame++;
-            if(currentDrawerFrame == 5)
+                currentState = MinigameState.Normal;
+            }
+            if(currentDrawerFrame == 4)
                 currentState = MinigameState.DrawerTooOut;
-            else if(currentState == MinigameState.DrawerTooOut)
+            else if(currentState == MinigameState.DrawerTooIn)
                 currentState = MinigameState.Normal;
             foreach (var frame in DrawerFrames[currentDrawerFrame])
                 RefreshFrame(frame);
@@ -333,8 +338,17 @@ namespace SpooninDrawer.Objects.Gameplay
         public void BackwardDrawerFrame()
         {
             DeactivateDrawer();
-            if(currentDrawerFrame > 0)
+            if (currentDrawerFrame == 3 && currentRightHandFrame == 4 || currentDrawerFrame == 3 && currentRightHandFrame == 3)
+                currentState = MinigameState.DrawerInWay;
+            else if (currentDrawerFrame > 0)
+            {
                 currentDrawerFrame--;
+                currentState = MinigameState.Normal;
+            }
+            if (currentDrawerFrame == 0)
+                currentState = MinigameState.DrawerTooIn;
+            else if (currentState == MinigameState.DrawerTooOut)
+                currentState = MinigameState.Normal;
             foreach (var frame in DrawerFrames[currentDrawerFrame])
                 RefreshFrame(frame);
             if(currentDrawerFrame == 2 || currentDrawerFrame == 4)
@@ -342,6 +356,7 @@ namespace SpooninDrawer.Objects.Gameplay
             if(currentDrawerFrame == 1 && SpoonDropped)
             {
                 //spoon is in drawer
+                currentState = MinigameState.SpoonInDrawer;
             }
         }
         public void BackwardLeftHandFrame()

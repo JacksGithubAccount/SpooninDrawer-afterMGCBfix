@@ -20,10 +20,10 @@ namespace SpooninDrawer.Statics
         public static bool bigChungusBool = false;
         public static List<string> MinigameStrings = new List<string>{"Put the spoon in the drawer", "No, not like that", "You gotta spin it twistways", "Open the drawer first", "Why", "Did you just phase the drawer through your hand", "You're doing it wrong", "What are you doing", "Are you okay?", "This is not good", "Oh boy"};
         public static string ArmStuck = "Your arm is in the way!";
-        public static string DrawerStuck = "The drawer is in the way!";
+        public static string DrawerStuck = "Remove your arm from the drawer first!";
         public static string SpooninDrawer = "The spoon is in the drawer!";
-        public static string DrawerTooIn = "You pushed it too far in!";
-        public static string DrawerTooOut = "You removed the drawer, put it back!";
+        public static string DrawerTooIn = "You pushed the drawer too far in!";
+        public static string DrawerTooOut = "Put the drawer back!";
 
 
     }
