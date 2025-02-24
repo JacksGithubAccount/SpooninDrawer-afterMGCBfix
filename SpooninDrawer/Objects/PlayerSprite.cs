@@ -175,9 +175,13 @@ namespace SpooninDrawer.Objects
         {
             _movingUp = true;
             _movingDown = false;
-            //_currentAnimation = _turnRightAnimation;
-            //_rightToCenterAnimation.Reset();
-            //_turnLeftAnimation.Reset();
+            if (!_movingLeft)
+            {
+                _isIdle = false;
+                _currentAnimation = _turnRightAnimation;
+                _rightToCenterAnimation.Reset();
+                _turnLeftAnimation.Reset();
+            }
             if (!_stopUp)
             {
                 _MoveDirection.Y -= PlayerSpeed;
@@ -188,7 +192,13 @@ namespace SpooninDrawer.Objects
         {
             _movingUp = false;
             _movingDown = true;
-
+            if (!_movingLeft)
+            {
+                _isIdle = false;
+                _currentAnimation = _turnRightAnimation;
+                _rightToCenterAnimation.Reset();
+                _turnLeftAnimation.Reset();
+            }
             if (!_stopDown)
             {
                 _MoveDirection.Y += PlayerSpeed;

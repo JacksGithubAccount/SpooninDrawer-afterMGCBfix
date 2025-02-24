@@ -20,7 +20,7 @@ namespace SpooninDrawer.Statics
             for (int i = 1; nextLengthToWrapAround < text.Length; i++)
             {
                 indexfinder = lengthToWrapAround * i;
-                if (indexfinder > text.Length)
+                if (indexfinder >= text.Length)
                 {
                     indexfinder = text.Length;
                     holdertext = text.Substring(indexOfHolder, indexfinder - indexOfHolder);

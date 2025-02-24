@@ -605,6 +605,10 @@ namespace SpooninDrawer
          *-added states to minigame
          *2/22/2025
          *-added the dialog for each state, however the word way is missing when arm is in way
+         *2/23/2025
+         *-fixed by adding an equal as it went missing when the length of the string matches wrap length exactly
+         *-also fixed no animation playing when player moved up and down
+         *
          *
          */
     }

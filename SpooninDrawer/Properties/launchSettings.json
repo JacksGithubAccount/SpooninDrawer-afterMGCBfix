@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SpooninDrawer": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
