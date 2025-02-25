@@ -608,8 +608,9 @@ namespace SpooninDrawer
          *2/23/2025
          *-fixed by adding an equal as it went missing when the length of the string matches wrap length exactly
          *-also fixed no animation playing when player moved up and down
-         *
-         *
+         *2/24/2025
+         *-may ditch tile map to make a screen background instead that's more fitting for the style of the game
+         *-added background as tile map, is not big enough as moving still shows edges, also non square collisions do not work due to AABB. May remove the side walls to get past this problem
          */
     }
 }

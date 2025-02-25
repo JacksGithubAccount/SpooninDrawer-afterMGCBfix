@@ -49,7 +49,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private const string PlayerAnimationTurnRight = "Animations/Player/right_walk";
         private const string PlayerAnimationIdle = "Animations/Player/idle";
         private const string TiledMapTest = "TiledMaps/testain";
-        private const string TilesetTest = "TiledMaps/incrediblybadmspainttileset";
+        private const string TilesetTest = "TiledMaps/background";
         //rivate const string ExplosionTexture = "Sprites/explosion";
 
 
@@ -133,7 +133,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             _debug = true;
             //_explosionTexture = LoadTexture(ExplosionTexture);
 
-            _map = new TmxMap("Content/TiledMaps/testain.tmx");
+            _map = new TmxMap("Content/TiledMaps/bg.tmx");
             _tileSet = content.Load<Texture2D>(TilesetTest + "_0"); // TilesetTest + "_1" + _map.Tilesets[0].Name.ToString() "Content/TileSets/incrediblybadmspainttileset.png"
             int tileWidth = _map.Tilesets[0].TileWidth;
             int tileHeight = _map.Tilesets[0].TileHeight;

@@ -41,6 +41,18 @@
 /processor:PassThroughProcessor
 /build:Animations/Player/right_walk.xml
 
+#begin background/background.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:background/background.png
+
 #begin Fonts/MenuFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -715,6 +727,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Sprites/Animations/PlayerSpriteSheet2.png
+
+#begin TiledMaps/bg.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:TiledMaps/bg.tmx
+
+#begin TiledMaps/bg.tsx
+/importer:TiledMapTilesetImporter
+/processor:TiledMapTilesetProcessor
+/build:TiledMaps/bg.tsx
 
 #begin TiledMaps/testain.tmx
 /importer:TiledMapImporter
