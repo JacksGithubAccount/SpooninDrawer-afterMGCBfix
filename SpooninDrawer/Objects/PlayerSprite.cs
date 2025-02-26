@@ -59,8 +59,8 @@ namespace SpooninDrawer.Objects
 
         public bool _MustStop = false;
         public Vector2 _MoveDirection;
-        public float startingPositionX = 44.0f;
-        public float startingPositionY = 44.0f;
+        public float startingPositionX = 344.0f;
+        public float startingPositionY = 444.0f;
 
         public List<Rectangle> Collided;
 
@@ -305,15 +305,16 @@ namespace SpooninDrawer.Objects
             else
             {
                 spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
-                foreach (var box in BoundingBoxes)
+                /*foreach (var box in BoundingBoxes)
                 {
-                    //spriteBatch.Draw(_texture, box.Position, box.Rectangle, Color.Red);
+                    spriteBatch.Draw(_texture, box.Position, box.Rectangle, Color.Red);
                 }
-                //spriteBatch.Draw(blank, LookLeftRect, Color.Blue);
-                // spriteBatch.Draw(blank, LookRightRect, Color.Blue);
-                //spriteBatch.Draw(blank, LookUpRect, Color.Blue);
-                //spriteBatch.Draw(blank, LookDownRect, Color.Blue);
-                //spriteBatch.Draw(_texture, _MoveDirection, new Rectangle((int)Position.X, (int)Position.Y, (int)_MoveDirection.X, (int)_MoveDirection.Y), Color.Red);
+                spriteBatch.Draw(blank, LookLeftRect, Color.Blue);
+                 spriteBatch.Draw(blank, LookRightRect, Color.Blue);
+                spriteBatch.Draw(blank, LookUpRect, Color.Blue);
+                spriteBatch.Draw(blank, LookDownRect, Color.Blue);
+                spriteBatch.Draw(_texture, _MoveDirection, new Rectangle((int)Position.X, (int)Position.Y, (int)_MoveDirection.X, (int)_MoveDirection.Y), Color.Red);
+                */
             }
         }
     }

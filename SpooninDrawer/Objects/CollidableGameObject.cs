@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SpooninDrawer.Engine.Objects;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,10 @@ namespace SpooninDrawer.Objects
             Collidable = true;
             AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(BBPosX, BBPosY), BBWidth, BBHeight));
         }
+        public CollidableGameObject(Rectangle rect, Texture2D texture): this(rect)
+        {
+            _texture = texture;
+        }        
         public Rectangle GetRectangle()
         {
             return _rectangle;

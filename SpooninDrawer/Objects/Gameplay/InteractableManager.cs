@@ -27,17 +27,23 @@ namespace SpooninDrawer.Objects.Gameplay
         private const string DrawerAnimationIdle = "Animations/Drawer/idle";
         private const string DrawerAnimationInteract = "Animations/Drawer/Interact";
 
+        public CollidableGameObject Table;
+        public CollidableGameObject Chair1;
+        public CollidableGameObject Chair2;
+
+        private const string TableTexturePath = "background/Table";
+        private const string ChairTexturePath = "background/Chair";
+
         public InteractableManager()
         {
             Spoon = new Item(0, "Spoon", ItemType.KeyItem, "It's a spoon");
             Spoon.InventoryTexturePath = "Items/spoon";
             Spoon.OverworldTexturePath = Spoon.InventoryTexturePath;
-            Spoon.OverworldPosition = new Vector2(120, 120);
+            Spoon.OverworldPosition = new Vector2(420, 520);
             Spoon.Interactable = true;
             Spoon.Activate();
             Spoon.zIndex = 5;
             InteractableItems = new List<BaseGameObject>();
-
         }
         public void LoadContent(ContentManager content)
         {
@@ -47,12 +53,28 @@ namespace SpooninDrawer.Objects.Gameplay
 
             var DrawerIdleAnim = content.Load<AnimationData>(DrawerAnimationIdle);
             var DrawerInteractAnim = content.Load<AnimationData>(DrawerAnimationInteract);
-            Drawer = new InteractableOverworldObject(1, "Drawer", DrawerTexturePath, content.Load<Texture2D>(DrawerTexturePath), new Vector2(200, 200), DrawerIdleAnim, DrawerInteractAnim, DrawerIdleAnim, DrawerIdleAnim);
+            Drawer = new InteractableOverworldObject(1, "Drawer", DrawerTexturePath, content.Load<Texture2D>(DrawerTexturePath), new Vector2(500, 600), DrawerIdleAnim, DrawerInteractAnim, DrawerIdleAnim, DrawerIdleAnim);
             Drawer.setInteractions(() => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); });
-            Drawer.zIndex = 99;
+            Drawer.zIndex = 5;
             Drawer.Collidable = true;
             Drawer.Interactable = true;
             Drawer.Activate();
+
+            Texture2D TableTexture = content.Load<Texture2D>(TableTexturePath);
+            Table = new CollidableGameObject(new Rectangle(50, 150, TableTexture.Width - 125, TableTexture.Height - 175), TableTexture);
+            Table.Position = new Vector2(500, 1000);            
+            Table.zIndex = 5;
+            Table.Activate();
+
+            Texture2D ChairTexture = content.Load<Texture2D>(ChairTexturePath);
+            Chair1 = new CollidableGameObject(new Rectangle(0,0,ChairTexture.Width, ChairTexture.Height), ChairTexture);
+            Chair1.Position = new Vector2(500, 1050);
+            Chair1.zIndex = 4;
+            Chair1.Activate();
+            Chair2 = new CollidableGameObject(new Rectangle(0, 0, ChairTexture.Width, ChairTexture.Height), ChairTexture);
+            Chair2.Position = new Vector2(450, 1200);
+            Chair2.zIndex = 4;
+            Chair2.Activate();
         }
         public void AddToInventory(Item item, int amount, Player player)
         {

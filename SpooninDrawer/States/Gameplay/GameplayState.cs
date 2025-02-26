@@ -133,7 +133,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             _debug = true;
             //_explosionTexture = LoadTexture(ExplosionTexture);
 
-            _map = new TmxMap("Content/TiledMaps/bg.tmx");
+            _map = new TmxMap("Content/TiledMaps/background.tmx");
             _tileSet = content.Load<Texture2D>(TilesetTest + "_0"); // TilesetTest + "_1" + _map.Tilesets[0].Name.ToString() "Content/TileSets/incrediblybadmspainttileset.png"
             int tileWidth = _map.Tilesets[0].TileWidth;
             int tileHeight = _map.Tilesets[0].TileHeight;
@@ -153,6 +153,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var idelAnimation = LoadAnimation(PlayerAnimationIdle);
             _playerSprite = new PlayerSprite(LoadTexture(PlayerFighter), turnLeftAnimation, turnRightAnimation, idelAnimation);
             _playerSprite.blank = blankTexture;
+            _playerSprite.zIndex = 4;
+            AddGameObject(_playerSprite);
 
             var viewportAdapter = new DefaultViewportAdapter(_graphicsDevice);
             _camera = new OrthographicCamera(viewportAdapter);
@@ -181,6 +183,12 @@ namespace SpooninDrawer.Engine.States.Gameplay
             AddGameObject(interactableManager.GetItem());
             colliders.Add(interactableManager.Drawer);
             AddGameObject(interactableManager.Drawer);
+            colliders.Add(interactableManager.Table);
+            AddGameObject(interactableManager.Table);
+            colliders.Add(interactableManager.Chair1);
+            AddGameObject(interactableManager.Chair1);
+            colliders.Add(interactableManager.Chair2);
+            AddGameObject(interactableManager.Chair2);
 
             var font = LoadFont(TextFont);
             PopupManager = new PopupManager(font, _playerSprite.Position, _camera, _displayResolution);
@@ -509,7 +517,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             _tilemapManager.Draw(spriteBatch);
             base.Render(spriteBatch);
 
-            _playerSprite.Render(spriteBatch);
+            //_playerSprite.Render(spriteBatch);
 
             interactableManager.Render(spriteBatch);
 

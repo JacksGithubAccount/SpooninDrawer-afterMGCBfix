@@ -611,6 +611,14 @@ namespace SpooninDrawer
          *2/24/2025
          *-may ditch tile map to make a screen background instead that's more fitting for the style of the game
          *-added background as tile map, is not big enough as moving still shows edges, also non square collisions do not work due to AABB. May remove the side walls to get past this problem
+         *2/25/2025
+         *-fixed background to be a large box.
+         *-added table and chairs as collidable objects. however player keeps getting drawn on top of everything regardless of their zindex
+         *-turns out there was an independant render call outside the zindex renders for player sprite. Removing that call and adding playersprite to game objects fixed issue
+         *-next is to add multiple bounding boxes to table and chairs
+         *
+         *
+         *
          */
     }
 }
