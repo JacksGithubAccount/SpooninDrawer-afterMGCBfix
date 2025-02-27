@@ -68,7 +68,14 @@ namespace SpooninDrawer.Objects
         }
         public bool IsCollide(Rectangle rectangle)
         {
-            return _rectangle.Intersects(rectangle);
+            bool collided = false;
+            foreach(var bb in BoundingBoxes)
+            {
+                collided = bb.Rectangle.Intersects(rectangle);
+                if (collided)
+                    break;
+            }
+            return collided;
         }
 
     }

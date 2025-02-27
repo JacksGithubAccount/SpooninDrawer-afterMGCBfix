@@ -179,7 +179,7 @@ namespace SpooninDrawer.Engine.States
             {
                 if (_debug)
                 {
-                    gameObject.RenderBoundingBoxes(spriteBatch);
+                    //gameObject.RenderBoundingBoxes(spriteBatch);
                 }
 
                 gameObject.Render(spriteBatch);

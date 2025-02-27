@@ -81,7 +81,9 @@ namespace SpooninDrawer.Objects.Gameplay
         public double FadeAwayTime = 3;
         public double PopupTime = 0;
         public bool FadeAwayPopup = false;
-        private const int WordWrapLength = 183;
+        private const int WordWrapLengthx720 = 183;
+        private const int WordWrapLengthx1080 = 274;
+        private int WordWrapLength = 0;
 
         public DialogBox(GameplayText dialogtext, GameplayText speakernametext, GameplayText speakersubtitletext, Vector2 position, Texture2D boxTexture, Resolution resolution) : this(dialogtext, position, boxTexture, resolution)
         {            
@@ -96,10 +98,12 @@ namespace SpooninDrawer.Objects.Gameplay
             if (DisplayResolution == Resolution.x1080)
             {
                 TexturePath = TexturePath1080;
+                WordWrapLength = WordWrapLengthx1080;
             }
             else if (DisplayResolution == Resolution.x720)
             {
                 TexturePath = TexturePath720;
+                WordWrapLength = WordWrapLengthx720;
             }
 
             Text = "";

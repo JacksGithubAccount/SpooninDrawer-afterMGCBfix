@@ -206,16 +206,20 @@ namespace SpooninDrawer.Objects
         }
         public void HandleMapCollision(CollidableGameObject MapTile)
         {
-            if (!Collided.Contains(MapTile.GetRectangle()))
-                Collided.Add(MapTile.GetRectangle());
             Engine.Objects.BoundingBox tempBB = BoundingBoxes[0];
             Vector2 newPosition = new Vector2(Position.X, Position.Y);
 
             foreach (var bb in BoundingBoxes)
             {
-                if (bb.CollidesWith(MapTile.BoundingBoxes[0]))
+                foreach (var MapTileBB in MapTile.BoundingBoxes)
                 {
-                    tempBB = bb;
+                    if (!Collided.Contains(MapTileBB.Rectangle))
+                        Collided.Add(MapTileBB.Rectangle);
+
+                    if (bb.CollidesWith(MapTileBB))
+                    {
+                        tempBB = bb;
+                    }
                 }
             }
             if (_movingLeft)

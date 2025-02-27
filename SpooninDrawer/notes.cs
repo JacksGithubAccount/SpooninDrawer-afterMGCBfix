@@ -616,7 +616,11 @@ namespace SpooninDrawer
          *-added table and chairs as collidable objects. however player keeps getting drawn on top of everything regardless of their zindex
          *-turns out there was an independant render call outside the zindex renders for player sprite. Removing that call and adding playersprite to game objects fixed issue
          *-next is to add multiple bounding boxes to table and chairs
-         *
+         *2/26/2025
+         *-added multiple boxed to table and chairs, but collision didn't work with multiple boxed. Turns out the collision result only handles one box. Is fixed now.
+         *-interact box position is hard coded, fixed by passing player position when activated
+         *-moved spoon and drawer to correct positions and removed borders
+         *-next is fixing dialog for 1080, starting dialog and finishing spoon in drawer
          *
          *
          */

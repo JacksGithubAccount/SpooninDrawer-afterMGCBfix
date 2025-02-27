@@ -86,6 +86,11 @@ namespace SpooninDrawer.Objects.Gameplay
             MinigamePopupBox.ChangeText(text);
             MinigamePopupBox.Activate();
         }
+        public void ActivateInteractPopupBox(Vector2 playerPosition)
+        {
+            InteractableItemPopupBox.Position = playerPosition + new Vector2(100, 0);
+            InteractableItemPopupBox.Activate();
+        }
         public void DeactivateDialogBox()
         {
             DialogBox.ResetDialogBox();

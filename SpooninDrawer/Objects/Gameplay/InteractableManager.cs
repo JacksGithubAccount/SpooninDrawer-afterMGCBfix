@@ -39,10 +39,10 @@ namespace SpooninDrawer.Objects.Gameplay
             Spoon = new Item(0, "Spoon", ItemType.KeyItem, "It's a spoon");
             Spoon.InventoryTexturePath = "Items/spoon";
             Spoon.OverworldTexturePath = Spoon.InventoryTexturePath;
-            Spoon.OverworldPosition = new Vector2(420, 520);
+            Spoon.OverworldPosition = new Vector2(710, 1050);
             Spoon.Interactable = true;
             Spoon.Activate();
-            Spoon.zIndex = 5;
+            Spoon.zIndex = 7;
             InteractableItems = new List<BaseGameObject>();
         }
         public void LoadContent(ContentManager content)
@@ -53,7 +53,7 @@ namespace SpooninDrawer.Objects.Gameplay
 
             var DrawerIdleAnim = content.Load<AnimationData>(DrawerAnimationIdle);
             var DrawerInteractAnim = content.Load<AnimationData>(DrawerAnimationInteract);
-            Drawer = new InteractableOverworldObject(1, "Drawer", DrawerTexturePath, content.Load<Texture2D>(DrawerTexturePath), new Vector2(500, 600), DrawerIdleAnim, DrawerInteractAnim, DrawerIdleAnim, DrawerIdleAnim);
+            Drawer = new InteractableOverworldObject(1, "Drawer", DrawerTexturePath, content.Load<Texture2D>(DrawerTexturePath), new Vector2(2750, 600), DrawerIdleAnim, DrawerInteractAnim, DrawerIdleAnim, DrawerIdleAnim);
             Drawer.setInteractions(() => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); }, () => { Drawer.Interact(); });
             Drawer.zIndex = 5;
             Drawer.Collidable = true;
@@ -61,17 +61,20 @@ namespace SpooninDrawer.Objects.Gameplay
             Drawer.Activate();
 
             Texture2D TableTexture = content.Load<Texture2D>(TableTexturePath);
-            Table = new CollidableGameObject(new Rectangle(50, 150, TableTexture.Width - 125, TableTexture.Height - 175), TableTexture);
+            Table = new CollidableGameObject(new Rectangle(70, 190, 300, 60), TableTexture);
+            Table.AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(50, 250), 230, 220));
             Table.Position = new Vector2(500, 1000);            
             Table.zIndex = 5;
             Table.Activate();
 
             Texture2D ChairTexture = content.Load<Texture2D>(ChairTexturePath);
-            Chair1 = new CollidableGameObject(new Rectangle(0,0,ChairTexture.Width, ChairTexture.Height), ChairTexture);
+            Chair1 = new CollidableGameObject(new Rectangle(22,63,28, 172), ChairTexture);
+            Chair1.AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(22, 185), 113, 50));
             Chair1.Position = new Vector2(500, 1050);
             Chair1.zIndex = 4;
             Chair1.Activate();
-            Chair2 = new CollidableGameObject(new Rectangle(0, 0, ChairTexture.Width, ChairTexture.Height), ChairTexture);
+            Chair2 = new CollidableGameObject(new Rectangle(22, 63, 28, 172), ChairTexture);
+            Chair2.AddBoundingBox(new Engine.Objects.BoundingBox(new Vector2(22, 185), 113, 50));
             Chair2.Position = new Vector2(450, 1200);
             Chair2.zIndex = 4;
             Chair2.Activate();
@@ -201,7 +204,7 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void Render(SpriteBatch spriteBatch)
         {
-            Drawer.Render(spriteBatch);
+            //Drawer.Render(spriteBatch);
         }
     }
 }
