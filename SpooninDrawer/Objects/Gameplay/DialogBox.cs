@@ -163,10 +163,17 @@ namespace SpooninDrawer.Objects.Gameplay
         //fit three lines max in dialog box
         private void FitTextInBox()
         {
-            if (WrappedText.Count >= LinesInDialogBox)
+            if (LinesInDialogBox > NextDialogLineCount && WrappedText.Count >= LinesInDialogBox)
             {
                 TextToDisplay = WrappedText[NextDialogLineCount] + "\n" + WrappedText[NextDialogLineCount + 1] + "\n" + WrappedText[NextDialogLineCount + 2];
                 NextDialogLineCount += LinesInDialogBox;
+            }else if(LinesInDialogBox <= NextDialogLineCount)
+            {
+                for(int i = NextDialogLineCount; i < WrappedText.Count; i++)
+                {
+                    TextToDisplay += WrappedText[i] + "\n";
+                    NextDialogLineCount++;
+                }
             }
             else
             {

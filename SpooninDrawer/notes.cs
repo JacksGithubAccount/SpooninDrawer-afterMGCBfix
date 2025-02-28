@@ -621,7 +621,8 @@ namespace SpooninDrawer
          *-interact box position is hard coded, fixed by passing player position when activated
          *-moved spoon and drawer to correct positions and removed borders
          *-next is fixing dialog for 1080, starting dialog and finishing spoon in drawer
-         *
+         *2/27/2025
+         *-fixed the dialog box for 1080, needed to add condition in if to count for if there are more lines in dialog box than lines of text to display
          *
          */
     }
