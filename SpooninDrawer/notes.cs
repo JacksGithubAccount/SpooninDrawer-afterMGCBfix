@@ -625,6 +625,10 @@ namespace SpooninDrawer
          *-fixed the dialog box for 1080, needed to add condition in if to count for if there are more lines in dialog box than lines of text to display
          *2/28/2025
          *-adding assets for control display
+         *2/29/2025
+         *-added buttons for control display
+         *
+         *
          *
          */
     }
