@@ -627,7 +627,8 @@ namespace SpooninDrawer
          *-adding assets for control display
          *2/29/2025
          *-added buttons for control display
-         *
+         *2/30/2025
+         *-made controls display on bottom of screen for keyboard
          *
          *
          */

@@ -90,7 +90,7 @@ namespace SpooninDrawer.Engine.Input
                 new ActionKey(Keys.W, Actions.MoveUp),
                 new ActionKey(Keys.S, Actions.MoveDown),
                 new ActionKey(Keys.Z, Actions.Confirm),
-                new ActionKey(Keys.Z, Actions.Interact),
+                //new ActionKey(Keys.Z, Actions.Interact),
                 new ActionKey(Keys.X, Actions.Cancel),
                 new ActionKey(Keys.Z, Actions.Attack),
                 new ActionKey(Keys.C, Actions.OpenMenu),

@@ -266,6 +266,18 @@
 /processorParam:TextureFormat=Color
 /build:Menu/Blank.png
 
+#begin Menu/ControlDisplay.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Menu/ControlDisplay.png
+
 #begin Menu/DialogBox1080.png
 /importer:TextureImporter
 /processor:TextureProcessor

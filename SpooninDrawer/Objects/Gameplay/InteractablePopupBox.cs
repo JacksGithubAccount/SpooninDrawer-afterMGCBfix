@@ -89,6 +89,13 @@ namespace SpooninDrawer.Objects.Gameplay
             WrappedText = WordWrapper.WordWrap(text, WordWrapLength);
             FitTextInBox();
         }
+        public void ChangeText(string text, int wordWrapLenth)
+        {
+            ResetDialogBox();
+            Text = text;
+            WrappedText = WordWrapper.WordWrap(text, wordWrapLenth);
+            FitTextInBox();
+        }
         private void FitTextInBox()
         {
             if (WrappedText.Count >= LinesInDialogBox)

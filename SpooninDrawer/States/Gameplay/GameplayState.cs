@@ -194,9 +194,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
             PopupManager = new PopupManager(font, _playerSprite.Position, _camera, _displayResolution);
             PopupManager.InteractableItemPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
             PopupManager.AddInventoryPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
-            PopupManager.SetPopupBoxTextures(LoadTexture("Menu/InteractPopupBox"), LoadTexture("Menu/InteractPopupBox"), LoadTexture("Menu/MinigamePopupBox"));
+            PopupManager.SetPopupBoxTextures(LoadTexture("Menu/InteractPopupBox"), LoadTexture("Menu/InteractPopupBox"), LoadTexture("Menu/MinigamePopupBox"), LoadTexture("Menu/ControlDisplay"));
             PopupManager.LoadMinigameBox();
+            PopupManager.LoadControlDisplayBox(StoredDialog.WriteControlDisplayText(InputManager.GetInputDetector().GetKeyboardControls()));
             PopupManager.DialogBox.BoxTexture = LoadTexture(PopupManager.DialogBox.TexturePath);
+            AddGameObject(PopupManager.ControlDisplayBox);
             AddGameObject(PopupManager.InteractableItemPopupBox);
             AddGameObject(PopupManager.AddInventoryPopupBox);
             AddGameObject(PopupManager.DialogBox);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpooninDrawer.Engine.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,19 @@ namespace SpooninDrawer.Statics
         public static string SpooninDrawer = "The spoon is in the drawer!";
         public static string DrawerTooIn = "You pushed the drawer too far in!";
         public static string DrawerTooOut = "Put the drawer back!";
+
+        public static string ControlDisplayText;
+
+        public static string WriteControlDisplayText(List<ActionKey> keyboardControls)
+        {
+            //ActionKey holder = 
+            foreach (ActionKey key in keyboardControls) 
+            {
+                ControlDisplayText += key.key.ToString() + ": " + key.action.ToString() + "   ";
+            }
+            //ControlDisplayText = keyboardControls.Find(x => x.action == Actions.MoveUp).key.ToString();
+            return ControlDisplayText;
+        }
 
 
     }
