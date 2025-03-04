@@ -48,8 +48,8 @@ namespace SpooninDrawer.Objects.Gameplay
             AddInventoryPopupBox.Deactivate();
 
             DialogBox = new DialogBox(new GameplayText(Font, "DialogBox"), new GameplayText(Font, "Name"), new GameplayText(Font, "subtitle"), new Vector2(camera.BoundingRectangle.Width / 2, camera.Position.Y), resolution);
-            DialogBox.GameplayText.zIndex = 13;
-            DialogBox.zIndex = 12;
+            DialogBox.GameplayText.zIndex = 23;
+            DialogBox.zIndex = 22;
             DialogBox.Deactivate();
 
             

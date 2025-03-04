@@ -19,12 +19,17 @@ namespace SpooninDrawer.Statics
             "HoloComi. Don't. You. Think. We. Really. Need. To. Officially. Give. Everyone. Glasses?";
         public static string bigChungus = "Send Help::Speaker::Why::Subtitle::quantum chicken soup grass big chungus";
         public static bool bigChungusBool = false;
-        public static List<string> MinigameStrings = new List<string>{"Put the spoon in the drawer", "No, not like that", "You gotta spin it twistways", "Open the drawer first", "Why", "Did you just phase the drawer through your hand", "You're doing it wrong", "What are you doing", "Are you okay?", "This is not good", "Oh boy"};
+        public static List<string> MinigameStrings = new List<string>{"Put the spoon in the drawer", "No, not like that", "You gotta spin it twistways", "Open the drawer first", "Why", 
+            "Did you just phase the drawer through your hand", "You're doing it wrong", "What are you doing", "Are you okay?", "This is not good", "Oh boy", "Maybe don't quit your day job", 
+            "The spoon shines", "A thousand years and this is the best we got", "Rainfrog butts", "Remember that one day, you too will die", "Dang, it got bogos binted", "bruh",
+            "Life really is suffering", "This is this and that's that", "The Odyssey had a purpose", "Tell me why", "Needs more jpeg"};
         public static string ArmStuck = "Your arm is in the way!";
         public static string DrawerStuck = "Remove your arm from the drawer first!";
         public static string SpooninDrawer = "The spoon is in the drawer!";
         public static string DrawerTooIn = "You pushed the drawer too far in!";
         public static string DrawerTooOut = "Put the drawer back!";
+
+        public static string SpooninDrawerDialog = "Bob::Speaker::Spoon Guy::Subtitle:: You did it! You put the spoon back in the drawer! Congratulations!";
 
         public static string ControlDisplayText;
 

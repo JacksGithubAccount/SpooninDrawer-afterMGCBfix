@@ -111,6 +111,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         public bool menuActivate = false;
 
         private GameplayStateStates CurrentGameplayStateStates;
+        private GameplayStateStates PreviousGameplayStateStates;
         Random rngesus = new Random();
 
         public GameplayState(Resolution resolution, SoundManager soundManager)
@@ -374,6 +375,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
                                 }
                                 else
                                 {
+                                    if (PreviousGameplayStateStates == GameplayStateStates.SpooninDrawerState)
+                                        MinigameManager.DeactivateAll();
                                     PopupManager.DeactivateDialogBox();
                                     ChangeGameStateState(GameplayStateStates.MainGameState);
                                 }
@@ -394,6 +397,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     if (cmd is GameplayInputCommand.PlayerOpenMenu)
                     {
                         DisplayMinigameDialog();
+                        MinigameManager.BackwardRightHandFrame();
                     }
                     if (cmd is GameplayInputCommand.Pause)
                     {
@@ -412,7 +416,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     }
                     if (cmd is GameplayInputCommand.PlayerMoveUp && !_playerDead)
                     {
-                        
+                        DisplayMinigameDialog();
                     }
                     if (cmd is GameplayInputCommand.PlayerMoveDown && !_playerDead)
                     {
@@ -425,14 +429,17 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     if (cmd is GameplayInputCommand.PlayerAction && !_playerDead)
                     {
                         DisplayMinigameDialog();
+                        //MinigameManager.ForewardDrawerFrame();
                     }
                     if (cmd is GameplayInputCommand.PlayerCancel && !_playerDead)
-                    {                        
+                    {
                         DisplayMinigameDialog();
+                        //MinigameManager.BackwardDrawerFrame();
                     }
                     if (cmd is GameplayInputCommand.PlayerV && !_playerDead)
                     {
                         DisplayMinigameDialog();
+                        //MinigameManager.ForewardRightHandFrame();
                     }
                 });
             }
@@ -460,6 +467,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     break;
                 case MinigameState.SpoonInDrawer:
                     textdisplay = StoredDialog.SpooninDrawer;
+                    PopupManager.ActivateDialogBox(StoredDialog.glasses);
+                    ChangeGameStateState(GameplayStateStates.DialogState);
                     break;
             }
             PopupManager.ActivateMinigameBox(textdisplay, new Vector2(rngesus.Next((int)_camera.Position.X, (int)(_camera.Center.X + (_camera.Center.X - _camera.Position.X) - PopupManager.MinigamePopupBox.Width)), rngesus.Next((int)_camera.Position.Y, (int)_camera.Center.Y)));
@@ -587,6 +596,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         }
         private void ChangeGameStateState(GameplayStateStates gameplayStateState)
         {
+            PreviousGameplayStateStates = CurrentGameplayStateStates;
             CurrentGameplayStateStates = gameplayStateState;
         }
         private List<T> CleanObjects<T>(List<T> objectList) where T : BaseGameObject
