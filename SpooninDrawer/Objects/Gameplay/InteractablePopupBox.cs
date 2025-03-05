@@ -14,7 +14,7 @@ namespace SpooninDrawer.Objects.Gameplay
 {
     public class InteractablePopupBox : BaseGameObject
     {
-        public GameplayText GameplayText { get; set; }
+        public BaseTextObject GameplayText { get; set; }
         public string Text { get { return GameplayText.Text; } set { GameplayText.Text = value; } }
         private string TextToDisplay;
         private List<string> WrappedText;
@@ -52,7 +52,7 @@ namespace SpooninDrawer.Objects.Gameplay
         
 
 
-        public InteractablePopupBox(GameplayText text, Vector2 position, Texture2D boxTexture)
+        public InteractablePopupBox(BaseTextObject text, Vector2 position, Texture2D boxTexture)
         {
             GameplayText = text;
             Position = position;

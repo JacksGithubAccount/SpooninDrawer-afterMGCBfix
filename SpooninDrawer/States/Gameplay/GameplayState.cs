@@ -37,7 +37,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
     {
         MainGameState,
         DialogState,
-        SpooninDrawerState
+        SpooninDrawerState,
+        EndingState
     }
     public class GameplayState : BaseGameState
     {
@@ -195,8 +196,9 @@ namespace SpooninDrawer.Engine.States.Gameplay
             PopupManager = new PopupManager(font, _playerSprite.Position, _camera, _displayResolution);
             PopupManager.InteractableItemPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
             PopupManager.AddInventoryPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
-            PopupManager.SetPopupBoxTextures(LoadTexture("Menu/InteractPopupBox"), LoadTexture("Menu/InteractPopupBox"), LoadTexture("Menu/MinigamePopupBox"), LoadTexture("Menu/ControlDisplay"));
+            PopupManager.SetPopupBoxTextures(LoadTexture("Menu/InteractPopupBox"), LoadTexture("Menu/InteractPopupBox"), LoadTexture("Menu/MinigamePopupBox"), LoadTexture("Menu/ControlDisplay"), LoadTexture("Menu/EmptyScreen"));
             PopupManager.LoadMinigameBox();
+            PopupManager.LoadRollCreditsBox();
             PopupManager.LoadControlDisplayBox(StoredDialog.WriteControlDisplayText(InputManager.GetInputDetector().GetKeyboardControls()));
             PopupManager.DialogBox.BoxTexture = LoadTexture(PopupManager.DialogBox.TexturePath);
             AddGameObject(PopupManager.ControlDisplayBox);
@@ -376,9 +378,17 @@ namespace SpooninDrawer.Engine.States.Gameplay
                                 else
                                 {
                                     if (PreviousGameplayStateStates == GameplayStateStates.SpooninDrawerState)
+                                    {
                                         MinigameManager.DeactivateAll();
+                                        ChangeGameStateState(GameplayStateStates.EndingState);
+                                        PopupManager.ActivateRollCreditsBox(StoredDialog.RollCredits,_camera.Center);
+                                    }
+                                    else
+                                    {
+                                        ChangeGameStateState(GameplayStateStates.MainGameState);
+                                    }
                                     PopupManager.DeactivateDialogBox();
-                                    ChangeGameStateState(GameplayStateStates.MainGameState);
+                                    
                                 }
                             }
                         }
@@ -507,9 +517,9 @@ namespace SpooninDrawer.Engine.States.Gameplay
             if (_gameOver)
             {
                 // draw black rectangle at 30% transparency
-                var screenBoxTexture = GetScreenBoxTexture(spriteBatch.GraphicsDevice);
-                var viewportRectangle = new Rectangle(0, 0, _viewportWidth, _viewportHeight);
-                spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.3f);
+                //var screenBoxTexture = GetScreenBoxTexture(spriteBatch.GraphicsDevice);
+                //var viewportRectangle = new Rectangle(0, 0, _viewportWidth, _viewportHeight);
+                //spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.3f);
             }
             //draws colliders for map
             /*foreach (var box in colliders)
@@ -520,6 +530,13 @@ namespace SpooninDrawer.Engine.States.Gameplay
             if (menuActivate)
             {
                 menuGameState.Render(spriteBatch);
+            }
+            if(CurrentGameplayStateStates == GameplayStateStates.EndingState)
+            {
+                var screenBoxTexture = GetScreenBoxTexture(spriteBatch.GraphicsDevice);
+                var viewportRectangle = new Rectangle(0, 0, _viewportWidth, _viewportHeight);
+                spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.3f);
+                PopupManager.RollCreditsBox.Render(spriteBatch);
             }
 
         }

@@ -19,11 +19,13 @@ namespace SpooninDrawer.Objects.Gameplay
         public InteractablePopupBox AddInventoryPopupBox;
         public InteractablePopupBox MinigamePopupBox;
         public InteractablePopupBox ControlDisplayBox;
+        public InteractablePopupBox RollCreditsBox;
         public DialogBox DialogBox;        
         private Texture2D InteractableTexture;
         private Texture2D AddInventoryTexture;
         private Texture2D MinigameTexture;
         private Texture2D ControlDisplayTexture;
+        private Texture2D RollCreditsTexture;
 
         private List<InteractablePopupBox> AddInventoryPopupBoxes;
         private SpriteFont Font;
@@ -54,12 +56,13 @@ namespace SpooninDrawer.Objects.Gameplay
 
             
         }
-        public void SetPopupBoxTextures(Texture2D interactable, Texture2D addInventory, Texture2D minigame, Texture2D controldisplay)
+        public void SetPopupBoxTextures(Texture2D interactable, Texture2D addInventory, Texture2D minigame, Texture2D controldisplay, Texture2D rollCredits)
         {
             InteractableTexture = interactable;
             AddInventoryTexture = addInventory;
             MinigameTexture = minigame;
             ControlDisplayTexture = controldisplay;
+            RollCreditsTexture = rollCredits;
         }
         public void LoadMinigameBox()
         {
@@ -67,6 +70,13 @@ namespace SpooninDrawer.Objects.Gameplay
             MinigamePopupBox.GameplayText.zIndex = 20;
             MinigamePopupBox.zIndex = 19;
             MinigamePopupBox.Deactivate();
+        }
+        public void LoadRollCreditsBox()
+        {
+            RollCreditsBox = new InteractablePopupBox(new RollCreditsText(Font, "Thank you for playing!"), new Vector2(0, 0), RollCreditsTexture);
+            RollCreditsBox.GameplayText.zIndex = 30;
+            RollCreditsBox.zIndex = 29;
+            RollCreditsBox.Deactivate();
         }
         public void LoadControlDisplayBox(string text) 
         {
@@ -96,11 +106,18 @@ namespace SpooninDrawer.Objects.Gameplay
             MinigamePopupBox.ChangeText(text);
             MinigamePopupBox.Activate();
         }
+        public void ActivateRollCreditsBox(string text, Vector2 position)
+        {
+            RollCreditsBox.Position = position;
+            ChangeDialogDisplayTextSpeedNormal();
+            RollCreditsBox.ChangeText(text);
+            RollCreditsBox.Activate();            
+        }
         public void ActivateInteractPopupBox(Vector2 playerPosition)
         {
             InteractableItemPopupBox.Position = playerPosition + new Vector2(100, 0);
             InteractableItemPopupBox.Activate();
-        }        
+        }       
         public void DeactivateDialogBox()
         {
             DialogBox.ResetDialogBox();
