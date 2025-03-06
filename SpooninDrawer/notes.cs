@@ -631,9 +631,10 @@ namespace SpooninDrawer
          *-made controls display on bottom of screen for keyboard
          *3/3/2025
          *-added ending game state
-         *3/4/2024
+         *3/4/2025
          *-working on rolling credits
-         *
+         *3/5/2025
+         *-fade into credits then roll?
          *
          */
     }
