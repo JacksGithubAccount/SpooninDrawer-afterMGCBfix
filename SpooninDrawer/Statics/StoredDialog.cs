@@ -36,12 +36,10 @@ namespace SpooninDrawer.Statics
 
         public static string WriteControlDisplayText(List<ActionKey> keyboardControls)
         {
-            //ActionKey holder = 
             foreach (ActionKey key in keyboardControls)
             {
                 ControlDisplayText += key.key.ToString() + ": " + key.action.ToString() + "   ";
             }
-            //ControlDisplayText = keyboardControls.Find(x => x.action == Actions.MoveUp).key.ToString();
             return ControlDisplayText;
         }
 

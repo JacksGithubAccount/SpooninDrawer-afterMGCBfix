@@ -635,6 +635,8 @@ namespace SpooninDrawer
          *-working on rolling credits
          *3/5/2025
          *-fade into credits then roll?
+         *3/6/2025
+         *-fade in and rollong is now working
          *
          */
     }

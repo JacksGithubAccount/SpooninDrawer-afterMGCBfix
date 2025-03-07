@@ -534,7 +534,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             if(CurrentGameplayStateStates == GameplayStateStates.EndingState)
             {
                 var screenBoxTexture = GetScreenBoxTexture(spriteBatch.GraphicsDevice);
-                var viewportRectangle = new Rectangle(0, 0, _viewportWidth, _viewportHeight);
+                var viewportRectangle = new Rectangle((int)_camera.Position.X, (int)_camera.Position.Y, _viewportWidth, _viewportHeight);
                 spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.3f);
                 PopupManager.RollCreditsBox.Render(spriteBatch);
             }

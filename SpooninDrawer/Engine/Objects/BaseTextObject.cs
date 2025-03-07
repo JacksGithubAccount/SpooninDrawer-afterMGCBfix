@@ -14,7 +14,7 @@ namespace SpooninDrawer.Engine.Objects
     {
         protected SpriteFont _font;
         protected Color _color = Color.White;
-
+        private float transparency = 1.0f;
         public BaseTextObject() { }
         public BaseTextObject(SpriteFont font)
         {
@@ -29,11 +29,26 @@ namespace SpooninDrawer.Engine.Objects
             {
                 return;
             }
-            spriteBatch.DrawString(_font, Text, _position, _color);
+            spriteBatch.DrawString(_font, Text, _position, _color * transparency);
         }
         public virtual Vector2 MeasureString()
         {
             return _font.MeasureString(Text);
+        }
+        public void SetTransparency(float transparency)
+        {
+            this.transparency = transparency;
+        }
+        public float GetTransparency() { return transparency; }
+        public void TransparencyUp()
+        {
+            if (transparency < 1.0f)
+                transparency += 0.01f;
+        }
+        public void TransparencyDown()
+        {
+            if (transparency > 0.0f)
+                transparency -= 0.01f;
         }
     }
 }

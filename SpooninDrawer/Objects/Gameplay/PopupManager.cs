@@ -30,6 +30,7 @@ namespace SpooninDrawer.Objects.Gameplay
         private List<InteractablePopupBox> AddInventoryPopupBoxes;
         private SpriteFont Font;
         private Vector2 PlayerPosition;
+        private Vector2 RollCreditPositionHolder;
 
         private int DialogContinuingTexts = 0;
 
@@ -111,6 +112,7 @@ namespace SpooninDrawer.Objects.Gameplay
             RollCreditsBox.Position = position;
             ChangeDialogDisplayTextSpeedNormal();
             RollCreditsBox.ChangeText(text);
+            RollCreditsBox.GameplayText.SetTransparency(0.0f);
             RollCreditsBox.Activate();            
         }
         public void ActivateInteractPopupBox(Vector2 playerPosition)
@@ -211,6 +213,19 @@ namespace SpooninDrawer.Objects.Gameplay
             if (ControlDisplayBox.Active)
             {
                 ControlDisplayBox.Position = new Vector2(camera.Position.X, camera.Center.Y + (camera.Center.Y - camera.Position.Y) - ControlDisplayBox.Height);
+            }
+            if (RollCreditsBox.Active)
+            {
+                if (RollCreditsBox.GameplayText.GetTransparency() < 1.0f)
+                {
+                    RollCreditsBox.GameplayText.TransparencyUp();
+                    RollCreditPositionHolder = camera.Center;
+                }
+                else
+                {
+                    RollCreditPositionHolder.Y--;
+                    RollCreditsBox.Position = RollCreditPositionHolder;
+                }
             }
         }
     }
