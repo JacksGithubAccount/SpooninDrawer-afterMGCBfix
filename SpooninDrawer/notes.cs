@@ -637,6 +637,8 @@ namespace SpooninDrawer
          *-fade into credits then roll?
          *3/6/2025
          *-fade in and rollong is now working
+         *3/7/2025
+         *-added credits and increased wrap limit which caused credit not appearing issue
          *
          */
     }

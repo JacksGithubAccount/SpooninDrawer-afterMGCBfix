@@ -20,7 +20,7 @@ namespace SpooninDrawer.Objects.Gameplay
         public InteractablePopupBox MinigamePopupBox;
         public InteractablePopupBox ControlDisplayBox;
         public InteractablePopupBox RollCreditsBox;
-        public DialogBox DialogBox;        
+        public DialogBox DialogBox;
         private Texture2D InteractableTexture;
         private Texture2D AddInventoryTexture;
         private Texture2D MinigameTexture;
@@ -44,7 +44,7 @@ namespace SpooninDrawer.Objects.Gameplay
             InteractableItemPopupBox.GameplayText.zIndex = 13;
             InteractableItemPopupBox.zIndex = 12;
             InteractableItemPopupBox.Deactivate();
-            
+
             AddInventoryPopupBox = new InteractablePopupBox(new GameplayText(Font, "Test"), new Vector2(camera.BoundingRectangle.Width / 2, camera.Position.Y));
             AddInventoryPopupBox.GameplayText.zIndex = 13;
             AddInventoryPopupBox.zIndex = 12;
@@ -55,7 +55,7 @@ namespace SpooninDrawer.Objects.Gameplay
             DialogBox.zIndex = 22;
             DialogBox.Deactivate();
 
-            
+
         }
         public void SetPopupBoxTextures(Texture2D interactable, Texture2D addInventory, Texture2D minigame, Texture2D controldisplay, Texture2D rollCredits)
         {
@@ -67,7 +67,7 @@ namespace SpooninDrawer.Objects.Gameplay
         }
         public void LoadMinigameBox()
         {
-            MinigamePopupBox = new InteractablePopupBox(new GameplayText(Font, "Put the spoon in the drawer."), new Vector2(0, 0),MinigameTexture);
+            MinigamePopupBox = new InteractablePopupBox(new GameplayText(Font, "Put the spoon in the drawer."), new Vector2(0, 0), MinigameTexture);
             MinigamePopupBox.GameplayText.zIndex = 20;
             MinigamePopupBox.zIndex = 19;
             MinigamePopupBox.Deactivate();
@@ -79,7 +79,7 @@ namespace SpooninDrawer.Objects.Gameplay
             RollCreditsBox.zIndex = 29;
             RollCreditsBox.Deactivate();
         }
-        public void LoadControlDisplayBox(string text) 
+        public void LoadControlDisplayBox(string text)
         {
             ControlDisplayBox = new InteractablePopupBox(new GameplayText(Font, text), PlayerPosition + new Vector2(0, 0), ControlDisplayTexture);
             ControlDisplayBox.GameplayText.zIndex = 11;
@@ -100,8 +100,8 @@ namespace SpooninDrawer.Objects.Gameplay
             DialogBox.ChangeText(text);
             DialogBox.Activate();
         }
-        public void ActivateMinigameBox(string text, Vector2 position) 
-        { 
+        public void ActivateMinigameBox(string text, Vector2 position)
+        {
             MinigamePopupBox.Position = position;
             ChangeDialogDisplayTextSpeedNormal();
             MinigamePopupBox.ChangeText(text);
@@ -111,19 +111,19 @@ namespace SpooninDrawer.Objects.Gameplay
         {
             RollCreditsBox.Position = position;
             ChangeDialogDisplayTextSpeedNormal();
-            RollCreditsBox.ChangeText(text);
+            RollCreditsBox.ChangeText(text, 1000);
             RollCreditsBox.GameplayText.SetTransparency(0.0f);
-            RollCreditsBox.Activate();            
+            RollCreditsBox.Activate();
         }
         public void ActivateInteractPopupBox(Vector2 playerPosition)
         {
             InteractableItemPopupBox.Position = playerPosition + new Vector2(100, 0);
             InteractableItemPopupBox.Activate();
-        }       
+        }
         public void DeactivateDialogBox()
         {
             DialogBox.ResetDialogBox();
-            DialogBox.Deactivate();            
+            DialogBox.Deactivate();
         }
         public void ChangeDialogDisplayTextSpeedFast()
         {
@@ -154,13 +154,13 @@ namespace SpooninDrawer.Objects.Gameplay
                         item.MovePopupBoxUp = new Vector2(0, MovePopupBoxUp);
                         MovePopupBoxUp = MovePopupBoxUp + 50;
                     }
-                    }
+                }
                 return popupBox;
             }
             else
             {
                 InteractablePopupBox popupBox = AddInventoryPopupBoxes.Find((x => x.Active == false));
-                if(popupBox != null)
+                if (popupBox != null)
                 {
                     popupBox.Activate(ItemName);
                 }
@@ -170,19 +170,19 @@ namespace SpooninDrawer.Objects.Gameplay
                     int MovePopupBoxUp = -50 * (AddInventoryPopupBoxes.Count - 1);
                     foreach (var item in AddInventoryPopupBoxes)
                     {
-                        if(popupBox.PopupTime > item.PopupTime)
+                        if (popupBox.PopupTime > item.PopupTime)
                         {
                             popupBox = item;
                             AddInventoryPopupBoxes.Remove(item);
                             AddInventoryPopupBoxes.Add(popupBox);
-                        }                        
+                        }
                         item.MovePopupBoxUp = new Vector2(0, MovePopupBoxUp);
                         MovePopupBoxUp = MovePopupBoxUp + 50;
                     }
                 }
                 return popupBox;
             }
-            
+
         }
         public void DeactivateAddInventoryPopupBox(InteractablePopupBox popupBox)
         {
@@ -196,7 +196,7 @@ namespace SpooninDrawer.Objects.Gameplay
                 if (popupBox.Active)
                 {
                     popupBox.Position = new Vector2(camera.Position.X, camera.Center.Y);
-                    
+
 
                     if (popupBox.FadeAwayPopup & gameTime.TotalGameTime.TotalSeconds > popupBox.PopupTime + popupBox.FadeAwayTime)
                     {

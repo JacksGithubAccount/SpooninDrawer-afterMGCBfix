@@ -31,7 +31,12 @@ namespace SpooninDrawer.Statics
         public static string DrawerTooOut = "Put the drawer back!";
 
         public static string SpooninDrawerDialog = "Bob::Speaker::Spoon Weirdo::Subtitle:: You did it! You put the spoon back in the drawer! Now I can finally stop talking!";
-        public static string RollCredits = "Thank you for playing! \n";
+        public static string RollCredits = "Thank you for playing!" + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + "Credits: " + "\n\n\n\n\n\n\n" +
+            "Programming: " + "\n" +
+            "Art: " + "\n" +
+            "Music: " + "\n" +
+            "Sound Effects: " + "\n" +
+            "Third Party: \n Made with: Monogame Framework \n Monogame Extended library \n Tiled Map Editor " + "\n" + "";
         public static string ControlDisplayText;
 
         public static string WriteControlDisplayText(List<ActionKey> keyboardControls)
