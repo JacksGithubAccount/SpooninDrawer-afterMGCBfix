@@ -639,6 +639,8 @@ namespace SpooninDrawer
          *-fade in and rollong is now working
          *3/7/2025
          *-added credits and increased wrap limit which caused credit not appearing issue
+         *3/8/2025
+         *-implementing npc
          *
          */
     }

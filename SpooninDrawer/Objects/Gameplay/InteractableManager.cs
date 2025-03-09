@@ -27,6 +27,10 @@ namespace SpooninDrawer.Objects.Gameplay
         private const string DrawerAnimationIdle = "Animations/Drawer/idle";
         private const string DrawerAnimationInteract = "Animations/Drawer/Interact";
 
+        public InteractableOverworldObject BlueGuyRoy;
+
+        private const string BlueGuyRoyTexturePath = "background/NPC1";
+
         public CollidableGameObject Table;
         public CollidableGameObject Chair1;
         public CollidableGameObject Chair2;
