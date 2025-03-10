@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using MonoGame.Extended;
 using SpooninDrawer.Engine.Objects;
 using static System.Net.Mime.MediaTypeNames;
+using SpooninDrawer.Engine.States.Gameplay;
 
 namespace SpooninDrawer.Objects.Gameplay
 {
@@ -31,8 +32,14 @@ namespace SpooninDrawer.Objects.Gameplay
         private SpriteFont Font;
         private Vector2 PlayerPosition;
         private Vector2 RollCreditPositionHolder;
+        private float RollCreditStartingY = 0;
+        private const float RollCreditYLimit = 1110;
+        private bool RollCreditsFinish = false;
 
         private int DialogContinuingTexts = 0;
+
+        public delegate void RollCreditsFinishDelegate(GameplayStateStates gameplayStateStates);
+        public event RollCreditsFinishDelegate RollCreditsFinishEvent;
 
         public PopupManager(SpriteFont font, Vector2 playerPosition, OrthographicCamera camera, Resolution resolution)
         {
@@ -56,6 +63,10 @@ namespace SpooninDrawer.Objects.Gameplay
             DialogBox.Deactivate();
 
 
+        }
+        public bool IsRollCreditsFinished()
+        {
+            return RollCreditsFinish;
         }
         public void SetPopupBoxTextures(Texture2D interactable, Texture2D addInventory, Texture2D minigame, Texture2D controldisplay, Texture2D rollCredits)
         {
@@ -93,6 +104,13 @@ namespace SpooninDrawer.Objects.Gameplay
             popupBox.zIndex = 12;
             popupBox.Deactivate();
             return popupBox;
+        }
+        private void Notify()
+        {
+            if (this.RollCreditsFinishEvent is not null) 
+            {
+                this.RollCreditsFinishEvent(GameplayStateStates.EndingState);
+            }
         }
         public void ActivateDialogBox(string text)
         {
@@ -223,8 +241,18 @@ namespace SpooninDrawer.Objects.Gameplay
                 }
                 else
                 {
-                    RollCreditPositionHolder.Y--;
-                    RollCreditsBox.Position = RollCreditPositionHolder;
+                    if (RollCreditStartingY == 0)
+                        RollCreditStartingY = RollCreditPositionHolder.Y;
+                    if (RollCreditPositionHolder.Y > RollCreditStartingY - RollCreditYLimit)
+                    {
+                        RollCreditPositionHolder.Y--;
+                        RollCreditsBox.Position = RollCreditPositionHolder;
+                    }
+                    else
+                    {
+                        RollCreditsFinish = true;
+                        Notify();
+                    }
                 }
             }
         }

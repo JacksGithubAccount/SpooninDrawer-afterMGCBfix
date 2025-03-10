@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MonoGame.Extended;
 
 namespace SpooninDrawer.Objects
 {
@@ -31,8 +32,9 @@ namespace SpooninDrawer.Objects
             Activate();
             
         }
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, OrthographicCamera camera)
         {
+            Position = camera.Position;
             CurrentTotalTimeinSeconds = gameTime.TotalGameTime.TotalSeconds;
             NbUpdateCalled++;
             FPS = 1.0f / (float)gameTime.ElapsedGameTime.

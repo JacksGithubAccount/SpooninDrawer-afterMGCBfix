@@ -143,7 +143,7 @@ namespace SpooninDrawer.States.Dev
 
             if (_debug)
             {
-                _statsText.Update(gameTime);
+                //_statsText.Update(gameTime);
             }
             // get rid of bullets and missiles that have gone out of view
         }

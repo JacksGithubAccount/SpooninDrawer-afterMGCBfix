@@ -78,8 +78,8 @@ namespace SpooninDrawer.Engine.Input
                 new ActionClick(Click.None, Actions.MoveDown),
                 new ActionClick(Click.None, Actions.MoveLeft),
                 new ActionClick(Click.None, Actions.MoveRight),
-                new ActionClick(Click.None, Actions.Interact),
-                new ActionClick(Click.None, Actions.Attack),
+                //new ActionClick(Click.None, Actions.Interact),
+                //new ActionClick(Click.None, Actions.Attack),
                 new ActionClick(Click.None, Actions.OpenMenu),
                 new ActionClick(Click.None, Actions.Pause)
             };
@@ -92,7 +92,7 @@ namespace SpooninDrawer.Engine.Input
                 new ActionKey(Keys.Z, Actions.Confirm),
                 //new ActionKey(Keys.Z, Actions.Interact),
                 new ActionKey(Keys.X, Actions.Cancel),
-                new ActionKey(Keys.Z, Actions.Attack),
+                //new ActionKey(Keys.Z, Actions.Attack),
                 new ActionKey(Keys.C, Actions.OpenMenu),
                 new ActionKey(Keys.P, Actions.Pause),
                 new ActionKey(Keys.V, Actions.V),
@@ -105,9 +105,9 @@ namespace SpooninDrawer.Engine.Input
                 new ActionButton(Buttons.LeftThumbstickUp, Actions.MoveUp),
                 new ActionButton(Buttons.LeftThumbstickDown, Actions.MoveDown),
                 new ActionButton(Buttons.A, Actions.Confirm),
-                new ActionButton(Buttons.A, Actions.Interact),
+                //new ActionButton(Buttons.A, Actions.Interact),
                 new ActionButton(Buttons.B, Actions.Cancel),
-                new ActionButton(Buttons.RightShoulder, Actions.Attack),
+                //new ActionButton(Buttons.RightShoulder, Actions.Attack),
                 new ActionButton(Buttons.X, Actions.OpenMenu),
                 new ActionButton(Buttons.Y, Actions.Pause)
             };

@@ -16,6 +16,11 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Animations/BlueGuyRoy/idle.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Animations/BlueGuyRoy/idle.xml
+
 #begin Animations/Drawer/idle.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor

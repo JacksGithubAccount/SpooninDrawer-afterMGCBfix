@@ -30,6 +30,7 @@ namespace SpooninDrawer.Objects.Gameplay
         public InteractableOverworldObject BlueGuyRoy;
 
         private const string BlueGuyRoyTexturePath = "background/NPC1";
+        private const string BlueGuyRoyAnimationIdle = "Animations/BlueGuyRoy/Idle";
 
         public CollidableGameObject Table;
         public CollidableGameObject Chair1;
@@ -63,6 +64,14 @@ namespace SpooninDrawer.Objects.Gameplay
             Drawer.Collidable = true;
             Drawer.Interactable = true;
             Drawer.Activate();
+
+            var BlueGuyRoyIdleAnim = content.Load<AnimationData>(BlueGuyRoyAnimationIdle);
+            BlueGuyRoy = new InteractableOverworldObject(2, "BlueGuyRoy", BlueGuyRoyTexturePath, content.Load<Texture2D>(BlueGuyRoyTexturePath), new Vector2(0750, 600), BlueGuyRoyIdleAnim, BlueGuyRoyIdleAnim, BlueGuyRoyIdleAnim, BlueGuyRoyIdleAnim);
+            BlueGuyRoy.setInteractions(() => { BlueGuyRoy.Interact(); }, () => { BlueGuyRoy.Interact(); }, () => { BlueGuyRoy.SetFlipAnimation(true); }, () => { BlueGuyRoy.SetFlipAnimation(false); });
+            BlueGuyRoy.zIndex = 5;
+            BlueGuyRoy.Collidable = true;
+            BlueGuyRoy.Interactable = true;
+            BlueGuyRoy.Activate();
 
             Texture2D TableTexture = content.Load<Texture2D>(TableTexturePath);
             Table = new CollidableGameObject(new Rectangle(70, 190, 300, 60), TableTexture);
@@ -163,8 +172,21 @@ namespace SpooninDrawer.Objects.Gameplay
             var interactable = (InteractableOverworldObject)InteractableItems[0];
             if (objectDirection == ObjectDirection.Left && interactable.State[0])
             {
-                interactable.Interact();
+                interactable.InteractLeft();
             }
+            else if (objectDirection == ObjectDirection.Right && interactable.State[0])
+            {
+                interactable.InteractRight();
+            }
+            else if (objectDirection == ObjectDirection.Up && interactable.State[0])
+            {
+                interactable.InteractUp();
+            }
+            else if (objectDirection == ObjectDirection.Down && interactable.State[0])
+            {
+                interactable.InteractDown();
+            }
+
             if (interactable.State[1])
             {
 

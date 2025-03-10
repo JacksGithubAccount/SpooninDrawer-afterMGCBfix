@@ -10,6 +10,7 @@ namespace SpooninDrawer.Statics
     static class StoredDialog
     {
         public static string startingDialog = "Bob::Speaker::Spoon Weirdo::Subtitle:: Hey you! Big guy over there! Can you grab that spoon on the table and put it inside the drawer all the way over there on the other side of the room?";
+        public static string blueGuyRoyDialog = "Roy::Speaker::Blue Guy::Subtitle:: Grab the spoon off thje table and put it into the drawer.";
         public static string glasses = "Fubuki::Speaker::Glasses Fanatic::Subtitle:: Glasses are really versatile. First, you can have glasses-wearing girls take them off and suddenly become beautiful, " +
             "or have girls wearing glasses flashing those cute grins, or have girls stealing the protagonist's glasses and putting them on like, " +
             "\"Haha, got your glasses!\" That's just way too cute! Also, boys with glasses! I really like when their glasses have that suspicious looking " +
@@ -31,12 +32,12 @@ namespace SpooninDrawer.Statics
         public static string DrawerTooOut = "Put the drawer back!";
 
         public static string SpooninDrawerDialog = "Bob::Speaker::Spoon Weirdo::Subtitle:: You did it! You put the spoon back in the drawer! Now I can finally stop talking!";
-        public static string RollCredits = "Thank you for playing!" + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + "Credits: " + "\n\n\n\n\n\n\n" +
+        public static string RollCredits = "Congratulations!" + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + "Credits: " + "\n\n\n\n\n\n\n" +
             "Programming: " + "\n" +
             "Art: " + "\n" +
             "Music: " + "\n" +
-            "Sound Effects: " + "\n" +
-            "Third Party: \n Made with: Monogame Framework \n Monogame Extended library \n Tiled Map Editor " + "\n" + "";
+            "Sound Effects: " + "\n\n" +
+            "Third Party: \n\n Made with: Monogame Framework \n Monogame Extended library \n Tiled Map Editor " + "\n\n\n\n\n\n\n" + "Thank you for playing!";
         public static string ControlDisplayText;
 
         public static string WriteControlDisplayText(List<ActionKey> keyboardControls)

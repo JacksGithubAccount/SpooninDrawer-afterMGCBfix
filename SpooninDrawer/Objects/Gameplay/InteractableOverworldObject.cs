@@ -32,6 +32,7 @@ namespace SpooninDrawer.Objects.Gameplay
         public override int Width => AnimationCellWidth;
 
         private Animation _currentAnimation;
+        private bool flipAnimationHorizontal = false;
         private Rectangle _idleRectangle => _rectangle;
 
         private bool Up = false;
@@ -39,10 +40,10 @@ namespace SpooninDrawer.Objects.Gameplay
         private bool Left = false;
         private bool Right = false;
 
-        private Action InteractUp;
-        private Action InteractDown;
-        private Action InteractLeft;
-        private Action InteractRight;
+        public Action InteractUp;
+        public Action InteractDown;
+        public Action InteractLeft;
+        public Action InteractRight;
 
         private string Description;
 
@@ -85,6 +86,10 @@ namespace SpooninDrawer.Objects.Gameplay
             InteractLeft = Left;
             InteractRight = Right;
         }
+        public void SetFlipAnimation(bool flip)
+        {
+            flipAnimationHorizontal = flip;
+        }
         public void Interact()
         {
             if (_currentAnimation != InteractAnimation && State[0])
@@ -99,6 +104,8 @@ namespace SpooninDrawer.Objects.Gameplay
             {
 
             }
+            if (Left)
+                InteractLeft();
         }
         public void InteractOpen()
         {
@@ -138,7 +145,16 @@ namespace SpooninDrawer.Objects.Gameplay
                         sourceRectangle = currentFrame.SourceRectangle;
                     }
                 }
-                spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
+                
+                if (flipAnimationHorizontal)
+                {
+                    var effects = SpriteEffects.FlipHorizontally;
+                    spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White, 0f, Vector2.Zero, effects, 1f);
+                }
+                else
+                {
+                    spriteBatch.Draw(_texture, destinationRectangle, sourceRectangle, Color.White);
+                }
                 foreach (var box in BoundingBoxes)
                 {
                     //spriteBatch.Draw(_texture, box.Position, box.Rectangle, Color.Red);

@@ -641,6 +641,10 @@ namespace SpooninDrawer
          *-added credits and increased wrap limit which caused credit not appearing issue
          *3/8/2025
          *-implementing npc
+         *3/9/2025
+         *-turns out interaction direction wasn't finished. It's finished now. Npc now turns to the direction they are being spoken to
+         *-added beginning dialogbox and starting text
+         *-added event to change gamestatestate on roll credit finishing, but now return to title isn't working
          *
          */
     }

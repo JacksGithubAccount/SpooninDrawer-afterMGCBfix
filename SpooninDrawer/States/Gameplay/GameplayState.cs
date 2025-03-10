@@ -38,6 +38,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         MainGameState,
         DialogState,
         SpooninDrawerState,
+        CreditState,
         EndingState
     }
     public class GameplayState : BaseGameState
@@ -125,7 +126,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             base.Initialize(contentManager, window, graphicsDevice, graphicsDeviceManager);
             player1 = new Player();
             interactableManager = new InteractableManager();
-            ChangeGameStateState(GameplayStateStates.MainGameState);
+            ChangeGameStateState(GameplayStateStates.MainGameState);            
         }
         public override void LoadContent(ContentManager content)
         {
@@ -136,7 +137,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             //_explosionTexture = LoadTexture(ExplosionTexture);
 
             _map = new TmxMap("Content/TiledMaps/background.tmx");
-            _tileSet = content.Load<Texture2D>(TilesetTest + "_0"); // TilesetTest + "_1" + _map.Tilesets[0].Name.ToString() "Content/TileSets/incrediblybadmspainttileset.png"
+            _tileSet = content.Load<Texture2D>(TilesetTest + "_0");
             int tileWidth = _map.Tilesets[0].TileWidth;
             int tileHeight = _map.Tilesets[0].TileHeight;
             int tileSetTilesWide = _tileSet.Width / tileWidth;
@@ -185,6 +186,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
             AddGameObject(interactableManager.GetItem());
             colliders.Add(interactableManager.Drawer);
             AddGameObject(interactableManager.Drawer);
+            colliders.Add(interactableManager.BlueGuyRoy);
+            AddGameObject(interactableManager.BlueGuyRoy);
             colliders.Add(interactableManager.Table);
             AddGameObject(interactableManager.Table);
             colliders.Add(interactableManager.Chair1);
@@ -200,12 +203,13 @@ namespace SpooninDrawer.Engine.States.Gameplay
             PopupManager.LoadMinigameBox();
             PopupManager.LoadRollCreditsBox();
             PopupManager.LoadControlDisplayBox(StoredDialog.WriteControlDisplayText(InputManager.GetInputDetector().GetKeyboardControls()));
-            PopupManager.DialogBox.BoxTexture = LoadTexture(PopupManager.DialogBox.TexturePath);
+            PopupManager.DialogBox.BoxTexture = LoadTexture(PopupManager.DialogBox.TexturePath);            
             AddGameObject(PopupManager.ControlDisplayBox);
             AddGameObject(PopupManager.InteractableItemPopupBox);
             AddGameObject(PopupManager.AddInventoryPopupBox);
             AddGameObject(PopupManager.DialogBox);
             AddGameObject(PopupManager.MinigamePopupBox);
+            PopupManager.RollCreditsFinishEvent += ChangeGameStateState;
 
             MinigameManager = new MinigameManager(_playerSprite.Position, _camera, _displayResolution);
             foreach (var frame in MinigameManager.DrawerFrames)
@@ -242,6 +246,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
 
             ResetGame();
+            PopupManager.ActivateDialogBox(StoredDialog.startingDialog);
+            ChangeGameStateState(GameplayStateStates.DialogState);
         }
         //it's handleinput method but specifically for pause so this doesn't pause when you pause the game
 
@@ -349,10 +355,15 @@ namespace SpooninDrawer.Engine.States.Gameplay
                                         MinigameManager.StartDrawerFrame();
                                         ChangeGameStateState(GameplayStateStates.SpooninDrawerState);
                                     }
-                                    else
+                                    else if (holder == interactableManager.Drawer)
                                     {
                                         //tyest
                                         PopupManager.ActivateDialogBox(StoredDialog.glasses);
+                                        ChangeGameStateState(GameplayStateStates.DialogState);
+                                    }
+                                    else if (holder == interactableManager.BlueGuyRoy)
+                                    {
+                                        PopupManager.ActivateDialogBox(StoredDialog.blueGuyRoyDialog);
                                         ChangeGameStateState(GameplayStateStates.DialogState);
                                     }
                                 }
@@ -370,25 +381,25 @@ namespace SpooninDrawer.Engine.States.Gameplay
                                 {
                                     PopupManager.DialogBox.ContinueText();
                                 }
-                                else if (!StoredDialog.bigChungusBool)
+                                /*else if (!StoredDialog.bigChungusBool)
                                 {
                                     PopupManager.ActivateDialogBox(StoredDialog.bigChungus);
                                     StoredDialog.bigChungusBool = true;
-                                }
+                                }*/
                                 else
                                 {
                                     if (PreviousGameplayStateStates == GameplayStateStates.SpooninDrawerState)
                                     {
                                         MinigameManager.DeactivateAll();
-                                        ChangeGameStateState(GameplayStateStates.EndingState);
-                                        PopupManager.ActivateRollCreditsBox(StoredDialog.RollCredits,_camera.Center);
+                                        ChangeGameStateState(GameplayStateStates.CreditState);
+                                        PopupManager.ActivateRollCreditsBox(StoredDialog.RollCredits, _camera.Center);
                                     }
                                     else
                                     {
                                         ChangeGameStateState(GameplayStateStates.MainGameState);
                                     }
                                     PopupManager.DeactivateDialogBox();
-                                    
+
                                 }
                             }
                         }
@@ -397,9 +408,9 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 });
             }
             else if (CurrentGameplayStateStates == GameplayStateStates.SpooninDrawerState)
-            {                
+            {
                 InputManager.GetCommands(cmd =>
-                {                        
+                {
                     if (cmd is GameplayInputCommand.GameExit)
                     {
                         NotifyEvent(new BaseGameStateEvent.GameQuit());
@@ -418,11 +429,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
                     if (cmd is GameplayInputCommand.PlayerMoveLeft && !_playerDead)
                     {
-                        
+
                     }
                     if (cmd is GameplayInputCommand.PlayerMoveRight && !_playerDead)
                     {
-                        
+
                     }
                     if (cmd is GameplayInputCommand.PlayerMoveUp && !_playerDead)
                     {
@@ -430,11 +441,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     }
                     if (cmd is GameplayInputCommand.PlayerMoveDown && !_playerDead)
                     {
-                        
+
                     }
                     if (cmd is GameplayInputCommand.PlayerStopsMoving && !_playerDead)
                     {
-                        
+
                     }
                     if (cmd is GameplayInputCommand.PlayerAction && !_playerDead)
                     {
@@ -450,6 +461,24 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     {
                         DisplayMinigameDialog();
                         //MinigameManager.ForewardRightHandFrame();
+                    }
+                });
+            }
+            else if (CurrentGameplayStateStates == GameplayStateStates.CreditState)
+            {
+                InputManager.GetCommands(cmd =>
+                {
+
+                });
+            }
+            else if (CurrentGameplayStateStates == GameplayStateStates.EndingState)
+            {
+                InputManager.GetCommands(cmd =>
+                {
+                    if (cmd is GameplayInputCommand.PlayerAction && !_playerDead)
+                    {
+                        //SwitchState(new SplashState(_displayResolution));
+                        this?.returnToTitle(_displayResolution);
                     }
                 });
             }
@@ -486,7 +515,6 @@ namespace SpooninDrawer.Engine.States.Gameplay
         }
         public override void UpdateGameState(GameTime gameTime)
         {
-
             if (!paused)
             {
                 HandleInput(gameTime);
@@ -499,10 +527,9 @@ namespace SpooninDrawer.Engine.States.Gameplay
             }
             if (_debug)
             {
-                _statsText.Update(gameTime);
+                _statsText.Update(gameTime, _camera);
             }
             if (menuActivate) { menuGameState.UpdateGameState(gameTime); }
-            // get rid of bullets and missiles that have gone out of view
         }
         public Matrix getCameraViewMatrix()
         {
@@ -531,11 +558,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
             {
                 menuGameState.Render(spriteBatch);
             }
-            if(CurrentGameplayStateStates == GameplayStateStates.EndingState)
+            if(CurrentGameplayStateStates == GameplayStateStates.CreditState || CurrentGameplayStateStates == GameplayStateStates.EndingState)
             {
                 var screenBoxTexture = GetScreenBoxTexture(spriteBatch.GraphicsDevice);
                 var viewportRectangle = new Rectangle((int)_camera.Position.X, (int)_camera.Position.Y, _viewportWidth, _viewportHeight);
-                spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.3f);
+                spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.7f);
                 PopupManager.RollCreditsBox.Render(spriteBatch);
             }
 
