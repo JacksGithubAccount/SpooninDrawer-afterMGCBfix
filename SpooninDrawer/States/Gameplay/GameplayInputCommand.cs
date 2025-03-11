@@ -23,5 +23,6 @@ namespace SpooninDrawer.States.Gameplay
         public class PlayerNoInput : GameplayInputCommand { }
         public class Pause : GameplayInputCommand { }
         public class PlayerV : GameplayInputCommand { }
+        public class PlayerReturnToTitle : GameplayInputCommand { }
     }
 }

@@ -22,14 +22,14 @@ namespace SpooninDrawer.Objects.Screens
         }
         enum secondColumnCommands
         {
-            RemapSelectConfirm,
-            RemapSelectCancel,
-            RemapSelectUp,
-            RemapSelectDown,
-            RemapSelectLeft,
-            RemapSelectRight,
-            RemapSelectOpenMenu,
-            RemapSelectPause
+            RemapSelectConfirm = 1,
+            RemapSelectCancel = 2,
+            RemapSelectUp = 3,
+            RemapSelectDown = 4,
+            RemapSelectLeft = 5,
+            RemapSelectRight = 6,
+            RemapSelectOpenMenu = 7,
+            RemapSelectPause = 8
         }
         enum thirdColumnCommands
         {

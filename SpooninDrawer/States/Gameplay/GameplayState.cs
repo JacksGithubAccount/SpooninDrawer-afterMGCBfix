@@ -133,7 +133,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             gameTime = new GameTime();
             _soundManager.UnloadAllSound();
             if (paused) { paused = false; }
-            _debug = true;
+            _debug = false;
             //_explosionTexture = LoadTexture(ExplosionTexture);
 
             _map = new TmxMap("Content/TiledMaps/background.tmx");
@@ -253,7 +253,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         public override void HandleInput(GameTime gameTime)
         {
-            if (CurrentGameplayStateStates != GameplayStateStates.SpooninDrawerState)
+            if (CurrentGameplayStateStates == GameplayStateStates.MainGameState || CurrentGameplayStateStates == GameplayStateStates.DialogState)
             {
                 InputManager.GetCommands(cmd =>
                 {
@@ -357,8 +357,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                                     }
                                     else if (holder == interactableManager.Drawer)
                                     {
-                                        //tyest
-                                        PopupManager.ActivateDialogBox(StoredDialog.glasses);
+                                        PopupManager.ActivateDialogBox(StoredDialog.DrawerExamine);
                                         ChangeGameStateState(GameplayStateStates.DialogState);
                                     }
                                     else if (holder == interactableManager.BlueGuyRoy)
@@ -468,17 +467,21 @@ namespace SpooninDrawer.Engine.States.Gameplay
             {
                 InputManager.GetCommands(cmd =>
                 {
+                    if (cmd is GameplayInputCommand.PlayerAction && !_playerDead)
+                    {
 
+                    }
                 });
             }
             else if (CurrentGameplayStateStates == GameplayStateStates.EndingState)
             {
                 InputManager.GetCommands(cmd =>
                 {
-                    if (cmd is GameplayInputCommand.PlayerAction && !_playerDead)
+                    if (cmd is GameplayInputCommand.PlayerReturnToTitle && !_playerDead)
                     {
-                        //SwitchState(new SplashState(_displayResolution));
-                        this?.returnToTitle(_displayResolution);
+                        menuActivate = true;
+                        var v = (SplashState)menuGameState;
+                        v.ReturnToTitle();
                     }
                 });
             }
@@ -506,7 +509,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     break;
                 case MinigameState.SpoonInDrawer:
                     textdisplay = StoredDialog.SpooninDrawer;
-                    PopupManager.ActivateDialogBox(StoredDialog.glasses);
+                    PopupManager.ActivateDialogBox(StoredDialog.SpooninDrawerDialog);
                     ChangeGameStateState(GameplayStateStates.DialogState);
                     break;
             }
@@ -541,30 +544,22 @@ namespace SpooninDrawer.Engine.States.Gameplay
             _tilemapManager.Draw(spriteBatch);
             base.Render(spriteBatch);
 
-            if (_gameOver)
-            {
-                // draw black rectangle at 30% transparency
-                //var screenBoxTexture = GetScreenBoxTexture(spriteBatch.GraphicsDevice);
-                //var viewportRectangle = new Rectangle(0, 0, _viewportWidth, _viewportHeight);
-                //spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.3f);
-            }
             //draws colliders for map
             /*foreach (var box in colliders)
             {
                 spriteBatch.Draw(_tileSet, box.GetRectangle(), Color.Purple);
             }*/
-
-            if (menuActivate)
-            {
-                menuGameState.Render(spriteBatch);
-            }
-            if(CurrentGameplayStateStates == GameplayStateStates.CreditState || CurrentGameplayStateStates == GameplayStateStates.EndingState)
+            if (CurrentGameplayStateStates == GameplayStateStates.CreditState || CurrentGameplayStateStates == GameplayStateStates.EndingState && !menuActivate)
             {
                 var screenBoxTexture = GetScreenBoxTexture(spriteBatch.GraphicsDevice);
                 var viewportRectangle = new Rectangle((int)_camera.Position.X, (int)_camera.Position.Y, _viewportWidth, _viewportHeight);
                 spriteBatch.Draw(screenBoxTexture, viewportRectangle, Color.Black * 0.7f);
                 PopupManager.RollCreditsBox.Render(spriteBatch);
             }
+            if (menuActivate)
+            {
+                menuGameState.Render(spriteBatch);
+            }         
 
         }
 

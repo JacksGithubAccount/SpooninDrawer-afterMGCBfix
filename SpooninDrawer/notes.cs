@@ -636,7 +636,7 @@ namespace SpooninDrawer
          *3/5/2025
          *-fade into credits then roll?
          *3/6/2025
-         *-fade in and rollong is now working
+         *-fade in and rolling is now working
          *3/7/2025
          *-added credits and increased wrap limit which caused credit not appearing issue
          *3/8/2025
@@ -645,6 +645,10 @@ namespace SpooninDrawer
          *-turns out interaction direction wasn't finished. It's finished now. Npc now turns to the direction they are being spoken to
          *-added beginning dialogbox and starting text
          *-added event to change gamestatestate on roll credit finishing, but now return to title isn't working
+         *3/10/2025
+         *-turns out that the handle input had an if that was preventing the credit abd ending controls for working, is fixed now
+         *-
+         *
          *
          */
     }

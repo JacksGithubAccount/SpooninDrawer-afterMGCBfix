@@ -520,10 +520,7 @@ namespace SpooninDrawer.States.Splash
                     }
                     if (cmd is SplashInputCommand.ExitSelect)
                     {
-                        settingsDataManager.SaveSettingsData();
-                        NotifyEvent(new BaseGameStateEvent.GameQuit());
-                        GameplayState gameState = (GameplayState)StoredState;
-                        gameState?.returnToTitle(_displayResolution);
+                        ReturnToTitle();
                     }
                     if (cmd is SplashInputCommand.ResumeSelect)
                     {
@@ -639,6 +636,13 @@ namespace SpooninDrawer.States.Splash
             {
                 KeepArrowinBound(ref currentArrowPositionX, maxArrowPositionX[0]);
             }
+        }
+        public void ReturnToTitle()
+        {
+            settingsDataManager.SaveSettingsData();
+            NotifyEvent(new BaseGameStateEvent.GameQuit());
+            GameplayState gameState = (GameplayState)StoredState;
+            gameState?.returnToTitle(_displayResolution);
         }
         public override void UpdateGameState(GameTime gameTime)
         {

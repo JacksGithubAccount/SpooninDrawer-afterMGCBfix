@@ -239,13 +239,13 @@ namespace SpooninDrawer.Objects.Gameplay
                     RollCreditsBox.GameplayText.TransparencyUp();
                     RollCreditPositionHolder = camera.Center;
                 }
-                else
+                else if (!RollCreditsFinish)
                 {
                     if (RollCreditStartingY == 0)
                         RollCreditStartingY = RollCreditPositionHolder.Y;
                     if (RollCreditPositionHolder.Y > RollCreditStartingY - RollCreditYLimit)
                     {
-                        RollCreditPositionHolder.Y--;
+                        RollCreditPositionHolder.Y-=2;
                         RollCreditsBox.Position = RollCreditPositionHolder;
                     }
                     else

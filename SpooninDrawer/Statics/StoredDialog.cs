@@ -30,6 +30,7 @@ namespace SpooninDrawer.Statics
         public static string SpooninDrawer = "The spoon is in the drawer!";
         public static string DrawerTooIn = "You pushed the drawer too far in!";
         public static string DrawerTooOut = "Put the drawer back!";
+        public static string DrawerExamine = "This is a drawer.";
 
         public static string SpooninDrawerDialog = "Bob::Speaker::Spoon Weirdo::Subtitle:: You did it! You put the spoon back in the drawer! Now I can finally stop talking!";
         public static string RollCredits = "Congratulations!" + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + "Credits: " + "\n\n\n\n\n\n\n" +

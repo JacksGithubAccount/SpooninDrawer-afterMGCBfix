@@ -38,6 +38,10 @@ namespace SpooninDrawer.States.Gameplay
             {
                 commands.Add(new GameplayInputCommand.PlayerAction());
             }
+            if (inputDetector.IsActioninputtedbyTypeforKey(Actions.Confirm, InputType.Release))
+            {
+                commands.Add(new GameplayInputCommand.PlayerReturnToTitle());
+            }
             if (inputDetector.IsActioninputtedbyTypeforKey(Actions.OpenMenu, InputType.Press))
             {
                 commands.Add(new GameplayInputCommand.PlayerOpenMenu());

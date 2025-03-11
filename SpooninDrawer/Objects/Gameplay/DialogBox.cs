@@ -62,10 +62,10 @@ namespace SpooninDrawer.Objects.Gameplay
                 _position = value + MovePopupBoxUp;
                 if (GameplayText != null)
                 {
-                    TextPosition = value + new Vector2(25, 75) + MovePopupBoxUp;
-                    SpeakerPosition = value + new Vector2(25, 25) + MovePopupBoxUp;
+                    TextPosition = value + new Vector2(35, 75) + MovePopupBoxUp;
+                    SpeakerPosition = value + new Vector2(35, 25) + MovePopupBoxUp;
                     SpeakerStringMeasured = SpeakerGameplayText.MeasureString();
-                    SpeakerSubtitleGameplayText.Position = value + new Vector2(SpeakerStringMeasured.X + 50, 25) + MovePopupBoxUp;
+                    SpeakerSubtitleGameplayText.Position = value + new Vector2(SpeakerStringMeasured.X + 60, 25) + MovePopupBoxUp;
                 }
                 foreach (var bb in _boundingBoxes)
                 {
