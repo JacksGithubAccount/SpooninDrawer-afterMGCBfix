@@ -647,7 +647,8 @@ namespace SpooninDrawer
          *-added event to change gamestatestate on roll credit finishing, but now return to title isn't working
          *3/10/2025
          *-turns out that the handle input had an if that was preventing the credit abd ending controls for working, is fixed now
-         *-
+         *3/11/2025
+         *-720 resolution minigame compatability done
          *
          *
          */

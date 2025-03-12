@@ -1,5 +1,5 @@
 [ScreenSettings]:Window
-[Resolution]:x1080
+[Resolution]:x720
 [VolumeBGM]:0.06666666
 [VolumeSE]:0.10666667
 [Controls]:
