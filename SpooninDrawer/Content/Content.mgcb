@@ -535,18 +535,6 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/blank.png
 
-#begin Minigame/SpooninDrawer/blank.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/blank.png
-
 #begin Minigame/SpooninDrawer/drawer01080.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -558,30 +546,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/drawer01080.png
-
-#begin Minigame/SpooninDrawer/drawer01080.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/drawer01080.png
-
-#begin Minigame/SpooninDrawer/drawer0720.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/drawer0720.png
 
 #begin Minigame/SpooninDrawer/drawer0720.png
 /importer:TextureImporter
@@ -607,18 +571,6 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/drawer11080.png
 
-#begin Minigame/SpooninDrawer/drawer11080.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/drawer11080.png
-
 #begin Minigame/SpooninDrawer/drawer1720.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -630,30 +582,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/drawer1720.png
-
-#begin Minigame/SpooninDrawer/drawer1720.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/drawer1720.png
-
-#begin Minigame/SpooninDrawer/drawer21080.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/drawer21080.png
 
 #begin Minigame/SpooninDrawer/drawer21080.png
 /importer:TextureImporter
@@ -679,18 +607,6 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/drawer2720.png
 
-#begin Minigame/SpooninDrawer/drawer2720.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/drawer2720.png
-
 #begin Minigame/SpooninDrawer/drawer31080.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -702,30 +618,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/drawer31080.png
-
-#begin Minigame/SpooninDrawer/drawer31080.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/drawer31080.png
-
-#begin Minigame/SpooninDrawer/drawer3720.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/drawer3720.png
 
 #begin Minigame/SpooninDrawer/drawer3720.png
 /importer:TextureImporter
@@ -751,18 +643,6 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/drawer41080.png
 
-#begin Minigame/SpooninDrawer/drawer41080.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/drawer41080.png
-
 #begin Minigame/SpooninDrawer/drawer4720.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -774,30 +654,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/drawer4720.png
-
-#begin Minigame/SpooninDrawer/drawer4720.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/drawer4720.png
-
-#begin Minigame/SpooninDrawer/drawershelf31080.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/drawershelf31080.png
 
 #begin Minigame/SpooninDrawer/drawershelf31080.png
 /importer:TextureImporter
@@ -835,18 +691,6 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/LeftHand1.png
 
-#begin Minigame/SpooninDrawer/LeftHand1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/LeftHand1.png
-
 #begin Minigame/SpooninDrawer/LeftHand1720.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -858,18 +702,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/LeftHand1720.png
-
-#begin Minigame/SpooninDrawer/LeftHand2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/LeftHand2.png
 
 #begin Minigame/SpooninDrawer/LeftHand2.png
 /importer:TextureImporter
@@ -907,18 +739,6 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/LeftHand3.png
 
-#begin Minigame/SpooninDrawer/LeftHand3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/LeftHand3.png
-
 #begin Minigame/SpooninDrawer/LeftHand3720.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -930,18 +750,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/LeftHand3720.png
-
-#begin Minigame/SpooninDrawer/LeftHand4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/LeftHand4.png
 
 #begin Minigame/SpooninDrawer/LeftHand4.png
 /importer:TextureImporter
@@ -979,18 +787,6 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/RightArm4.png
 
-#begin Minigame/SpooninDrawer/RightArm4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/RightArm4.png
-
 #begin Minigame/SpooninDrawer/RightArm4720.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1002,18 +798,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/RightArm4720.png
-
-#begin Minigame/SpooninDrawer/RightHand1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/RightHand1.png
 
 #begin Minigame/SpooninDrawer/RightHand1.png
 /importer:TextureImporter
@@ -1051,18 +835,6 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/RightHand2.png
 
-#begin Minigame/SpooninDrawer/RightHand2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/RightHand2.png
-
 #begin Minigame/SpooninDrawer/RightHand2720.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1074,18 +846,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/RightHand2720.png
-
-#begin Minigame/SpooninDrawer/RightHand3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/RightHand3.png
 
 #begin Minigame/SpooninDrawer/RightHand3.png
 /importer:TextureImporter
@@ -1123,18 +883,6 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/RightHand4.png
 
-#begin Minigame/SpooninDrawer/RightHand4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/RightHand4.png
-
 #begin Minigame/SpooninDrawer/RightHand4720.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1146,18 +894,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/RightHand4720.png
-
-#begin Minigame/SpooninDrawer/RightHand4Open.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/RightHand4Open.png
 
 #begin Minigame/SpooninDrawer/RightHand4Open.png
 /importer:TextureImporter
@@ -1195,18 +931,6 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/RightHandLeaving.png
 
-#begin Minigame/SpooninDrawer/RightHandLeaving.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/RightHandLeaving.png
-
 #begin Minigame/SpooninDrawer/RightHandLeaving720.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1231,18 +955,6 @@
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/RightSpoon4.png
 
-#begin Minigame/SpooninDrawer/RightSpoon4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/RightSpoon4.png
-
 #begin Minigame/SpooninDrawer/RightSpoon4720.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1254,18 +966,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Minigame/SpooninDrawer/RightSpoon4720.png
-
-#begin Minigame/SpooninDrawer/Spoon.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigame/SpooninDrawer/Spoon.png
 
 #begin Minigame/SpooninDrawer/Spoon.png
 /importer:TextureImporter
@@ -1314,6 +1014,18 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:music/FutureAmbient_4.wav
+
+#begin music/Moonlit_Café - Yosuke Matsuura.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:music/Moonlit_Café - Yosuke Matsuura.mp3
+
+#begin music/Warmth_of_the_Sunset.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:music/Warmth_of_the_Sunset.mp3
 
 #begin sounds/478189__jonnyruss01__beep_soft_2.wav
 /importer:WavImporter

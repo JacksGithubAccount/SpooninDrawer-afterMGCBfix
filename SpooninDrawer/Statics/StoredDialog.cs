@@ -36,7 +36,7 @@ namespace SpooninDrawer.Statics
         public static string RollCredits = "Congratulations!" + "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" + "Credits: " + "\n\n\n\n\n\n\n" +
             "Programming: " + "\n" +
             "Art: " + "\n" +
-            "Music: " + "\n" +
+            "Music: Warmth of the Sunset by https://kazinchu.com/" + "\n" +
             "Sound Effects: " + "\n\n" +
             "Third Party: \n\n Made with: Monogame Framework \n Monogame Extended library \n Tiled Map Editor " + "\n\n\n\n\n\n\n" + "Thank you for playing!";
         public static string ControlDisplayText;

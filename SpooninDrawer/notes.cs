@@ -649,7 +649,9 @@ namespace SpooninDrawer
          *-turns out that the handle input had an if that was preventing the credit abd ending controls for working, is fixed now
          *3/11/2025
          *-720 resolution minigame compatability done
-         *
+         *3/12/2025
+         *-added mouse and gamepad control for gameplaystate
+         *-adding music
          *
          */
     }

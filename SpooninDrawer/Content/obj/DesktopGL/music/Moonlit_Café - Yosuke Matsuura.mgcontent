@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/music/Moonlit_Café - Yosuke Matsuura.mp3</SourceFile>
+  <SourceTime>2025-03-12T22:58:13.3677807-04:00</SourceTime>
+  <DestFile>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/bin/DesktopGL/music/Moonlit_Café - Yosuke Matsuura.xnb</DestFile>
+  <DestTime>2025-03-12T23:17:10.8742553-04:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2022-07-26T07:44:56-04:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/bin/DesktopGL/music/Moonlit_Café - Yosuke Matsuura.ogg</string>
+  </BuildOutput>
+</PipelineBuildEvent>
