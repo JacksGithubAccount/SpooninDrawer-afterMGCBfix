@@ -652,6 +652,10 @@ namespace SpooninDrawer
          *3/12/2025
          *-added mouse and gamepad control for gameplaystate
          *-adding music
+         *3/13/2025
+         *-mp3 files didn't work, had to convert to wav files.
+         *-moving animation broke, gamepad and keyboard were or when detecting non movement. Added checks for gamepad connected and made is and if connected
+         *
          *
          */
     }

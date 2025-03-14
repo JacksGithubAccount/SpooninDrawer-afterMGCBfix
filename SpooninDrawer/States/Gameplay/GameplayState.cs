@@ -30,6 +30,7 @@ using SpooninDrawer.Engine.Sound;
 using SpooninDrawer.Objects.Gameplay;
 using SpooninDrawer.Statics;
 using System.Runtime.Serialization.Formatters;
+using System.Diagnostics;
 
 namespace SpooninDrawer.Engine.States.Gameplay
 {
@@ -61,8 +62,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private const string BulletSound = "Sounds/bullet";
         //private const string MissileSound = "Sounds/missileSound";
 
-        private const string Soundtrack1 = "Music/FutureAmbient_1";
-        private const string Soundtrack2 = "Music/FutureAmbient_2";
+        private const string Soundtrack1 = "Music/Moonlit_Café - Yosuke Matsuura";
+        //private const string Soundtrack2 = "Music/FutureAmbient_2";
 
         private const int StartingPlayerLives = 3;
         private int _playerLives = StartingPlayerLives;
@@ -179,8 +180,9 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
             // load soundtracks into sound manager
             var track1 = LoadSound(Soundtrack1).CreateInstance();
-            var track2 = LoadSound(Soundtrack2).CreateInstance();
-            _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
+            //var track2 = LoadSound(Soundtrack2).CreateInstance();
+            //_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
+            _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1 });
 
             interactableManager.LoadContent(content);
             AddGameObject(interactableManager.GetItem());

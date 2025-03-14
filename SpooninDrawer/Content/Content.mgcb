@@ -1015,17 +1015,17 @@
 /processorParam:Quality=Best
 /build:music/FutureAmbient_4.wav
 
-#begin music/Moonlit_Café - Yosuke Matsuura.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
+#begin music/Moonlit_Café - Yosuke Matsuura.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:music/Moonlit_Café - Yosuke Matsuura.mp3
+/build:music/Moonlit_Café - Yosuke Matsuura.wav
 
-#begin music/Warmth_of_the_Sunset.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
+#begin music/Warmth_of_the_Sunset.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:music/Warmth_of_the_Sunset.mp3
+/build:music/Warmth_of_the_Sunset.wav
 
 #begin sounds/478189__jonnyruss01__beep_soft_2.wav
 /importer:WavImporter

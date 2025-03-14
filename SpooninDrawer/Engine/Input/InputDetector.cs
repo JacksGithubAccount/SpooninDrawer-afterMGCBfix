@@ -109,7 +109,8 @@ namespace SpooninDrawer.Engine.Input
                 new ActionButton(Buttons.B, Actions.Cancel),
                 //new ActionButton(Buttons.RightShoulder, Actions.Attack),
                 new ActionButton(Buttons.X, Actions.OpenMenu),
-                new ActionButton(Buttons.Y, Actions.Pause)
+                new ActionButton(Buttons.Y, Actions.Pause),
+                new ActionButton(Buttons.LeftTrigger, Actions.V)
             };
 
             remapTempActionHolder = new List<Actions>();

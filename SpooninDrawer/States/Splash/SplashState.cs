@@ -25,6 +25,7 @@ using Microsoft.Xna.Framework.Audio;
 using SpooninDrawer.States.Gameplay;
 using static SpooninDrawer.Objects.Screens.SettingsScreen;
 using SpooninDrawer.Engine.SaveData;
+using System.Diagnostics;
 
 namespace SpooninDrawer.States.Splash
 {
@@ -56,8 +57,8 @@ namespace SpooninDrawer.States.Splash
 
         private const string BeepSound = "Sounds/beep";
 
-        private const string Soundtrack1 = "Music/FutureAmbient_3";
-        private const string Soundtrack2 = "Music/FutureAmbient_4";
+        private const string Soundtrack1 = "Music/Warmth_of_the_Sunset";
+        //private const string Soundtrack2 = "Music/FutureAmbient_4";
 
         SettingsManager settingsManager;
         SettingsDataManager settingsDataManager;
@@ -118,8 +119,9 @@ namespace SpooninDrawer.States.Splash
             _soundManager.RegisterSound(new SplashEvents.SplashMoveArrow(), beepSound);
 
             var track1 = LoadSound(Soundtrack1).CreateInstance();
-            var track2 = LoadSound(Soundtrack2).CreateInstance();
-            _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
+            //var track2 = LoadSound(Soundtrack2).CreateInstance();
+            //_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
+            _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1 });
 
             popupPosition = new Vector2(_graphicsDevice.Viewport.Width / 3, _graphicsDevice.Viewport.Height / 3);
             popupScreen = new PopupScreen(MenuFont, popupPosition);

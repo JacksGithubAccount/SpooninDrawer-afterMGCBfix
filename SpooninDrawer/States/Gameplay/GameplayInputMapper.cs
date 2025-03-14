@@ -71,7 +71,11 @@ namespace SpooninDrawer.States.Gameplay
             {
                 commands.Add(new GameplayInputCommand.PlayerMoveDown());
             }
-            if (!inputDetector.IsActionPressedforKey(Actions.MoveRight) && !inputDetector.IsActionPressedforKey(Actions.MoveLeft) && !inputDetector.IsActionPressedforKey(Actions.MoveUp) && !inputDetector.IsActionPressedforKey(Actions.MoveDown))
+            if (!inputDetector.IsActionPressedforKey(Actions.MoveRight) && !inputDetector.IsActionPressedforKey(Actions.MoveLeft) && !inputDetector.IsActionPressedforKey(Actions.MoveUp) && !inputDetector.IsActionPressedforKey(Actions.MoveDown) && !currentGamePadState.IsConnected)
+            {
+                commands.Add(new GameplayInputCommand.PlayerStopsMoving());
+            }else if (!inputDetector.IsActionPressedforKey(Actions.MoveRight) && !inputDetector.IsActionPressedforKey(Actions.MoveLeft) && !inputDetector.IsActionPressedforKey(Actions.MoveUp) && !inputDetector.IsActionPressedforKey(Actions.MoveDown) && 
+                !inputDetector.IsActionPressedforButton(Actions.MoveRight) && !inputDetector.IsActionPressedforButton(Actions.MoveLeft) && !inputDetector.IsActionPressedforButton(Actions.MoveUp) && !inputDetector.IsActionPressedforButton(Actions.MoveDown))
             {
                 commands.Add(new GameplayInputCommand.PlayerStopsMoving());
             }
@@ -104,51 +108,53 @@ namespace SpooninDrawer.States.Gameplay
             inputDetector.update(previousGamePadState);
             currentGamePadState = state;
             var commands = new List<GameplayInputCommand>();
+            if (state.IsConnected)
+            {
 
-
-            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.Confirm, InputType.Press))
-            {
-                commands.Add(new GameplayInputCommand.PlayerAction());
-            }
-            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.Confirm, InputType.Release))
-            {
-                commands.Add(new GameplayInputCommand.PlayerReturnToTitle());
-            }
-            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.OpenMenu, InputType.Press))
-            {
-                commands.Add(new GameplayInputCommand.PlayerOpenMenu());
-            }
-            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.Cancel, InputType.Press))
-            {
-                commands.Add(new GameplayInputCommand.PlayerCancel());
-            }
-            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.V, InputType.Press))
-            {
-                commands.Add(new GameplayInputCommand.PlayerV());
-            }
-            if (inputDetector.IsActionPressedforButton(Actions.MoveRight))
-            {
-                commands.Add(new GameplayInputCommand.PlayerMoveRight());
-            }
-            else if (inputDetector.IsActionPressedforButton(Actions.MoveLeft))
-            {
-                commands.Add(new GameplayInputCommand.PlayerMoveLeft());
-            }
-            if (inputDetector.IsActionPressedforButton(Actions.MoveUp))
-            {
-                commands.Add(new GameplayInputCommand.PlayerMoveUp());
-            }
-            else if (inputDetector.IsActionPressedforButton(Actions.MoveDown))
-            {
-                commands.Add(new GameplayInputCommand.PlayerMoveDown());
-            }
-            if (!inputDetector.IsActionPressedforButton(Actions.MoveRight) && !inputDetector.IsActionPressedforButton(Actions.MoveLeft) && !inputDetector.IsActionPressedforButton(Actions.MoveUp) && !inputDetector.IsActionPressedforButton(Actions.MoveDown))
-            {
-                commands.Add(new GameplayInputCommand.PlayerStopsMoving());
-            }
-            if (inputDetector.IsActioninputtedbyTypeforButton(Actions.Pause, InputType.Press))
-            {
-                commands.Add(new GameplayInputCommand.Pause());
+                if (inputDetector.IsActioninputtedbyTypeforButton(Actions.Confirm, InputType.Press))
+                {
+                    commands.Add(new GameplayInputCommand.PlayerAction());
+                }
+                if (inputDetector.IsActioninputtedbyTypeforButton(Actions.Confirm, InputType.Release))
+                {
+                    commands.Add(new GameplayInputCommand.PlayerReturnToTitle());
+                }
+                if (inputDetector.IsActioninputtedbyTypeforButton(Actions.OpenMenu, InputType.Press))
+                {
+                    commands.Add(new GameplayInputCommand.PlayerOpenMenu());
+                }
+                if (inputDetector.IsActioninputtedbyTypeforButton(Actions.Cancel, InputType.Press))
+                {
+                    commands.Add(new GameplayInputCommand.PlayerCancel());
+                }
+                if (inputDetector.IsActioninputtedbyTypeforButton(Actions.V, InputType.Press))
+                {
+                    commands.Add(new GameplayInputCommand.PlayerV());
+                }
+                if (inputDetector.IsActionPressedforButton(Actions.MoveRight))
+                {
+                    commands.Add(new GameplayInputCommand.PlayerMoveRight());
+                }
+                else if (inputDetector.IsActionPressedforButton(Actions.MoveLeft))
+                {
+                    commands.Add(new GameplayInputCommand.PlayerMoveLeft());
+                }
+                if (inputDetector.IsActionPressedforButton(Actions.MoveUp))
+                {
+                    commands.Add(new GameplayInputCommand.PlayerMoveUp());
+                }
+                else if (inputDetector.IsActionPressedforButton(Actions.MoveDown))
+                {
+                    commands.Add(new GameplayInputCommand.PlayerMoveDown());
+                }
+                //if (!inputDetector.IsActionPressedforButton(Actions.MoveRight) && !inputDetector.IsActionPressedforButton(Actions.MoveLeft) && !inputDetector.IsActionPressedforButton(Actions.MoveUp) && !inputDetector.IsActionPressedforButton(Actions.MoveDown))
+                //{
+                //    commands.Add(new GameplayInputCommand.PlayerStopsMoving());
+                //}
+                if (inputDetector.IsActioninputtedbyTypeforButton(Actions.Pause, InputType.Press))
+                {
+                    commands.Add(new GameplayInputCommand.Pause());
+                }
             }
             return commands;
         }
