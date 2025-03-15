@@ -57,6 +57,7 @@ namespace SpooninDrawer.Engine.Sound
             if (_soundBank.ContainsKey(gameEvent.GetType()))
             {
                 var sound = _soundBank[gameEvent.GetType()];
+                
                 sound.Sound.Play(sound.Attributes.Volume, sound.Attributes.Pitch, sound.Attributes.Pan);
             }
         }

@@ -1027,11 +1027,23 @@
 /processorParam:Quality=Best
 /build:music/Warmth_of_the_Sunset.wav
 
+#begin sounds/434758__notarget__wood-step-sample-3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/434758__notarget__wood-step-sample-3.wav
+
 #begin sounds/478189__jonnyruss01__beep_soft_2.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sounds/478189__jonnyruss01__beep_soft_2.wav;sounds/beep.wav
+
+#begin sounds/87041__runnerpack__target.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/87041__runnerpack__target.wav
 
 #begin sounds/bullet.wav
 /importer:WavImporter

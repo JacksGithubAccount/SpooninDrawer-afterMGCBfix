@@ -61,6 +61,8 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
         private const string BulletSound = "Sounds/bullet";
         //private const string MissileSound = "Sounds/missileSound";
+        private const string DialogBeep = "Sounds/87041__runnerpack__target";
+        private const string FootStepSound1 = "Sounds/434758__notarget__wood-step-sample-3";
 
         private const string Soundtrack1 = "Music/Moonlit_Café - Yosuke Matsuura";
         //private const string Soundtrack2 = "Music/FutureAmbient_2";
@@ -175,8 +177,12 @@ namespace SpooninDrawer.Engine.States.Gameplay
 
             // load sound effects and register in the sound manager
             var bulletSound = LoadSound(BulletSound);
+            var dialogBeep = LoadSound(DialogBeep);
+            var footStepSound1 = LoadSound(FootStepSound1);
             //var missileSound = LoadSound(MissileSound);
             _soundManager.RegisterSound(new GameplayEvents.PlayerTest(), bulletSound);
+            _soundManager.RegisterSound(new GameplayEvents.DialogNext(), dialogBeep);
+            _soundManager.RegisterSound(new GameplayEvents.FootSteps(), footStepSound1);
 
             // load soundtracks into sound manager
             var track1 = LoadSound(Soundtrack1).CreateInstance();
@@ -282,6 +288,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                         if (CurrentGameplayStateStates == GameplayStateStates.MainGameState)
                         {
                             _playerSprite.MoveLeft();
+                            NotifyEvent(new BaseGameStateEvent.FootSteps());
                             KeepPlayerInBounds();
                         }
 
@@ -402,6 +409,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                                     PopupManager.DeactivateDialogBox();
 
                                 }
+                                NotifyEvent(new BaseGameStateEvent.DialogNext());
                             }
                         }
 
