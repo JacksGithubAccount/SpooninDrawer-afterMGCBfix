@@ -152,7 +152,7 @@ namespace SpooninDrawer.Objects.Screens
             }
             hasButtons = true;
             ButtonWidth = 160;
-            ButtonHeight = 40;
+            ButtonHeight = 35;
             CreateRectangles(menuLocationArrayX, menuLocationArrayY, new int[10] { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 }, new int[4] { menuNavigatorYCap + 1, menuNavigatorYCap, menuNavigatorYCap, menuNavigatorYCap });
             for (int b = 0; b < menuNavigatorYCap; b++)
             {

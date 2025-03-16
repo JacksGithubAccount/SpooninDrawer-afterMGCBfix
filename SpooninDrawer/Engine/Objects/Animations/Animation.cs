@@ -41,7 +41,10 @@ namespace SpooninDrawer.Engine.Objects.Animations
                 return _lifespan;
             }
         }
-
+        public int AnimationAge()
+        {
+            return _animationAge;
+        }
         public AnimationFrame CurrentFrame
         {
             get

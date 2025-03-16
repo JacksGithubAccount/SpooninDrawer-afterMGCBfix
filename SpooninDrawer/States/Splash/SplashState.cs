@@ -70,6 +70,7 @@ namespace SpooninDrawer.States.Splash
         private bool VolumeBGMControl = false;
         private bool VolumeSEControl = false;
 
+        private bool mouseOveredButton = false;
         public SplashState(Resolution resolution)
         {
             _displayResolution = resolution;
@@ -649,11 +650,17 @@ namespace SpooninDrawer.States.Splash
         public override void UpdateGameState(GameTime gameTime)
         {
 
-            if (mousePositionHandler.IsMouseOverButton())
+            if (mousePositionHandler.IsMouseOverButton() && !mouseOveredButton)
             {
+                mouseOveredButton = true;
                 Vector2 holder = mousePositionHandler.GetButtonUnderMouse();
+                NotifyEvent(new SplashEvents.SplashMoveArrow()); 
                 menuNavigatorX = (int)holder.X;
                 menuNavigatorY = (int)holder.Y;
+            }
+            else if (!mousePositionHandler.IsMouseOverButton() && mouseOveredButton)
+            {
+                mouseOveredButton = false;
             }
             _menuArrow.Update(gameTime);
             HandleInput(gameTime);

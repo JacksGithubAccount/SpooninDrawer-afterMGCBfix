@@ -31,6 +31,7 @@ using SpooninDrawer.Objects.Gameplay;
 using SpooninDrawer.Statics;
 using System.Runtime.Serialization.Formatters;
 using System.Diagnostics;
+using static SpooninDrawer.Engine.States.BaseGameStateEvent;
 
 namespace SpooninDrawer.Engine.States.Gameplay
 {
@@ -63,6 +64,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
         //private const string MissileSound = "Sounds/missileSound";
         private const string DialogBeep = "Sounds/87041__runnerpack__target";
         private const string FootStepSound1 = "Sounds/434758__notarget__wood-step-sample-3";
+        private const string FootStepSound2 = "Sounds/620332__marb7e__footsteps_leather_wood_walk06";
+        private const string FootStepSound3 = "Sounds/340983__soundsaregr8__footstep-on-wood";
+        private const string SpoonDropSound = "Sounds/Metal20Pipes20Falling20Sound";
+        private const string DrawerSlideSound = "Sounds/drawerslide";
+        private const string DrawerCloseSound = "Sounds/drawerclose";
 
         private const string Soundtrack1 = "Music/Moonlit_Café - Yosuke Matsuura";
         //private const string Soundtrack2 = "Music/FutureAmbient_2";
@@ -179,10 +185,20 @@ namespace SpooninDrawer.Engine.States.Gameplay
             var bulletSound = LoadSound(BulletSound);
             var dialogBeep = LoadSound(DialogBeep);
             var footStepSound1 = LoadSound(FootStepSound1);
+            //var footStepSound2 = LoadSound(FootStepSound2);
+            //var footStepSound3 = LoadSound(FootStepSound3);
+            var spoonDropSound = LoadSound(SpoonDropSound);
+            var drawerSlideSound = LoadSound(DrawerSlideSound);
+            var drawerCloseSound = LoadSound(DrawerCloseSound);
             //var missileSound = LoadSound(MissileSound);
             _soundManager.RegisterSound(new GameplayEvents.PlayerTest(), bulletSound);
             _soundManager.RegisterSound(new GameplayEvents.DialogNext(), dialogBeep);
             _soundManager.RegisterSound(new GameplayEvents.FootSteps(), footStepSound1);
+            //_soundManager.RegisterSound(new GameplayEvents.FootSteps(), footStepSound2);
+            //_soundManager.RegisterSound(new GameplayEvents.FootSteps(), footStepSound3);
+            _soundManager.RegisterSound(new GameplayEvents.SpoonDrop(), spoonDropSound);
+            _soundManager.RegisterSound(new GameplayEvents.DrawerSlide(), drawerSlideSound);
+            _soundManager.RegisterSound(new GameplayEvents.DrawerClose(), drawerCloseSound);
 
             // load soundtracks into sound manager
             var track1 = LoadSound(Soundtrack1).CreateInstance();
@@ -287,8 +303,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     {
                         if (CurrentGameplayStateStates == GameplayStateStates.MainGameState)
                         {
-                            _playerSprite.MoveLeft();
-                            NotifyEvent(new BaseGameStateEvent.FootSteps());
+                            bool footstep = _playerSprite.MoveLeft();
+                            if (footstep)
+                            {
+                                NotifyEvent(new BaseGameStateEvent.FootSteps());
+                            }
                             KeepPlayerInBounds();
                         }
 
@@ -298,7 +317,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     {
                         if (CurrentGameplayStateStates == GameplayStateStates.MainGameState)
                         {
-                            _playerSprite.MoveRight();
+                            bool footstep = _playerSprite.MoveRight();
+                            if (footstep)
+                            {
+                                NotifyEvent(new BaseGameStateEvent.FootSteps());
+                            }
                             KeepPlayerInBounds();
                         }
 
@@ -308,7 +331,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     {
                         if (CurrentGameplayStateStates == GameplayStateStates.MainGameState)
                         {
-                            _playerSprite.MoveUp();
+                            bool footstep = _playerSprite.MoveUp();
+                            if (footstep && !_playerSprite.IsMovingLeft()  && !_playerSprite.IsMovingRight())
+                            {
+                                NotifyEvent(new BaseGameStateEvent.FootSteps());
+                            }
                             KeepPlayerInBounds();
                         }
 
@@ -318,7 +345,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     {
                         if (CurrentGameplayStateStates == GameplayStateStates.MainGameState)
                         {
-                            _playerSprite.MoveDown();
+                            bool footstep = _playerSprite.MoveDown();
+                            if (footstep && !_playerSprite.IsMovingLeft() && !_playerSprite.IsMovingRight())
+                            {
+                                NotifyEvent(new BaseGameStateEvent.FootSteps());
+                            }
                             KeepPlayerInBounds();
                         }
 
@@ -338,9 +369,6 @@ namespace SpooninDrawer.Engine.States.Gameplay
                         if (CurrentGameplayStateStates == GameplayStateStates.MainGameState)
                         {
                             //mc action
-                            NotifyEvent(new GameplayEvents.PlayerTest());
-
-
                             if (!interactableManager.IsInteractableEmpty())
                             {
                                 if (interactableManager.GetInteractable().GetType() == typeof(Item))
@@ -505,6 +533,14 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 case MinigameState.Normal:
                     textdisplay = StoredDialog.MinigameStrings[rngesus.Next(0, StoredDialog.MinigameStrings.Count)];
                     break;
+                case MinigameState.DrawerSlide:
+                    textdisplay = StoredDialog.MinigameStrings[rngesus.Next(0, StoredDialog.MinigameStrings.Count)];
+                    NotifyEvent(new BaseGameStateEvent.DrawerSlide());
+                    break;
+                case MinigameState.DrawerClose:
+                    textdisplay = StoredDialog.MinigameStrings[rngesus.Next(0, StoredDialog.MinigameStrings.Count)];
+                    NotifyEvent(new BaseGameStateEvent.DrawerClose());
+                    break;
                 case MinigameState.DrawerTooIn:
                     textdisplay = StoredDialog.DrawerTooIn;
                     break;
@@ -521,6 +557,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     textdisplay = StoredDialog.SpooninDrawer;
                     PopupManager.ActivateDialogBox(StoredDialog.SpooninDrawerDialog);
                     ChangeGameStateState(GameplayStateStates.DialogState);
+                    NotifyEvent(new BaseGameStateEvent.SpoonDrop());
                     break;
             }
             PopupManager.ActivateMinigameBox(textdisplay, new Vector2(rngesus.Next((int)_camera.Position.X, (int)(_camera.Center.X + (_camera.Center.X - _camera.Position.X) - PopupManager.MinigamePopupBox.Width)), rngesus.Next((int)_camera.Position.Y, (int)_camera.Center.Y)));

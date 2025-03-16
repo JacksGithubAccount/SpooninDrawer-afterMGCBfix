@@ -18,7 +18,9 @@ namespace SpooninDrawer.Objects.Gameplay
         DrawerTooOut,
         ArmInWay,
         DrawerInWay,
-        SpoonInDrawer
+        SpoonInDrawer,
+        DrawerSlide,
+        DrawerClose
     }
     public class MinigameManager
     {
@@ -343,12 +345,12 @@ namespace SpooninDrawer.Objects.Gameplay
             else if (currentDrawerFrame < DrawerFrames.Count - 1)
             {
                 currentDrawerFrame++;
-                currentState = MinigameState.Normal;
+                currentState = MinigameState.DrawerSlide;
             }
             if(currentDrawerFrame == 4)
                 currentState = MinigameState.DrawerTooOut;
             else if(currentState == MinigameState.DrawerTooIn)
-                currentState = MinigameState.Normal;
+                currentState = MinigameState.DrawerSlide;
             foreach (var frame in DrawerFrames[currentDrawerFrame])
                 RefreshFrame(frame);
             if (currentDrawerFrame == 2 || currentDrawerFrame == 4)
@@ -391,15 +393,19 @@ namespace SpooninDrawer.Objects.Gameplay
             DeactivateDrawer();
             if (currentDrawerFrame == 3 && currentRightHandFrame == 4 || currentDrawerFrame == 3 && currentRightHandFrame == 3)
                 currentState = MinigameState.DrawerInWay;
-            else if (currentDrawerFrame > 0)
+            else if (currentDrawerFrame > 0 && currentDrawerFrame != 1)
             {
                 currentDrawerFrame--;
-                currentState = MinigameState.Normal;
+                currentState = MinigameState.DrawerSlide;
+            }else if (currentDrawerFrame == 1)
+            {
+                currentDrawerFrame--;
+                currentState = MinigameState.DrawerClose;
             }
             if (currentDrawerFrame == 0)
                 currentState = MinigameState.DrawerTooIn;
             else if (currentState == MinigameState.DrawerTooOut)
-                currentState = MinigameState.Normal;
+                currentState = MinigameState.DrawerSlide;
             foreach (var frame in DrawerFrames[currentDrawerFrame])
                 RefreshFrame(frame);
             if(currentDrawerFrame == 2 || currentDrawerFrame == 4)

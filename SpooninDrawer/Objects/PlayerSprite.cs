@@ -118,7 +118,22 @@ namespace SpooninDrawer.Objects
             _leftToCenterAnimation = _turnLeftAnimation.ReverseAnimation;
             _rightToCenterAnimation = _turnRightAnimation.ReverseAnimation;
         }*/
-
+        public bool IsMovingLeft()
+        {
+            return _movingLeft;
+        }
+        public bool IsMovingRight()
+        {
+            return _movingRight;
+        }
+        public bool IsMovingUp()
+        {
+            return _movingUp;
+        }
+        public bool IsMovingDown()
+        {
+            return _movingDown;
+        }
         public void StopMoving()
         {
             if (_movingLeft)
@@ -141,7 +156,7 @@ namespace SpooninDrawer.Objects
             //mapCollided = false;
         }
 
-        public void MoveLeft()
+        public bool MoveLeft()
         {
             _movingLeft = true;
             _movingRight = false;
@@ -154,9 +169,11 @@ namespace SpooninDrawer.Objects
             {
                 _MoveDirection.X -= PlayerSpeed;
             }
+            //used to play footstep sound effect
+            return frameAsBool(3);
         }
 
-        public void MoveRight()
+        public bool MoveRight()
         {
             _movingRight = true;
             _movingLeft = false;
@@ -169,9 +186,10 @@ namespace SpooninDrawer.Objects
             {
                 _MoveDirection.X += PlayerSpeed;
             }
+            return frameAsBool(3);
         }
 
-        public void MoveUp()
+        public bool MoveUp()
         {
             _movingUp = true;
             _movingDown = false;
@@ -186,9 +204,10 @@ namespace SpooninDrawer.Objects
             {
                 _MoveDirection.Y -= PlayerSpeed;
             }
+            return frameAsBool(3);
         }
 
-        public void MoveDown()
+        public bool MoveDown()
         {
             _movingUp = false;
             _movingDown = true;
@@ -203,6 +222,16 @@ namespace SpooninDrawer.Objects
             {
                 _MoveDirection.Y += PlayerSpeed;
             }
+            return frameAsBool(3);
+        }
+        public bool frameAsBool(int framenumber)
+        {
+            if (_currentAnimation.AnimationAge() == framenumber)
+            {
+                return true;
+            }
+            else
+                return false;
         }
         public void HandleMapCollision(CollidableGameObject MapTile)
         {

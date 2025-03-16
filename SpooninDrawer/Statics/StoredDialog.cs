@@ -37,7 +37,7 @@ namespace SpooninDrawer.Statics
             "Programming: " + "\n" +
             "Art: " + "\n" +
             "Music: \n Warmth of the Sunset by https://kazinchu.com/" + "\n" +
-            "Sound Effects: \n Target by RunnerPack \n beep soft 2 by JonnyRuss01 \n wood step sample 3 by Notarget" + "\n\n" +
+            "Sound Effects: \n Target by RunnerPack \n beep soft 2 by JonnyRuss01 \n wood step sample 3 by Notarget \n Cabinet_sliding_Drawers_Close_wooden_kitchen_01 by MattRuthSound" + "\n\n" +
             "Third Party: \n\n Made with: Monogame Framework \n Monogame Extended library \n Tiled Map Editor " + "\n\n\n\n\n\n\n" + "Thank you for playing!";
         public static string ControlDisplayText;
 

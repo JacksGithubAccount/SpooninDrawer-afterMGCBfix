@@ -30,10 +30,6 @@ namespace SpooninDrawer.States.Gameplay
 
             var commands = new List<GameplayInputCommand>();
 
-            if (keyState.IsKeyDown(Keys.Escape))
-            {
-                commands.Add(new GameplayInputCommand.GameExit());
-            }
 
             if (inputDetector.IsActioninputtedbyTypeforKey(Actions.Confirm, InputType.Press))
             {

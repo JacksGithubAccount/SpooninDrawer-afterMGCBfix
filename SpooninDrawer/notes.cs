@@ -657,6 +657,10 @@ namespace SpooninDrawer
          *-moving animation broke, gamepad and keyboard were or when detecting non movement. Added checks for gamepad connected and made is and if connected
          *3/14/2025
          *-adding sound effects, currently working on footsteps
+         *3/15/2025
+         *-fixed footsteps by adding bool for when a certain frame is going to play the sound
+         *-removed esc to quit, removed test sound effect
+         *-added sound to button move with mouse on splash state, also added drawer sliding sound effect
          *
          */
     }

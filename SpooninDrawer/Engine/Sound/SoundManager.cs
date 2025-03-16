@@ -22,6 +22,9 @@ namespace SpooninDrawer.Engine.Sound
         private float volumeBGM;
         private float volumeSE;
 
+        private float SEtimeRecorder;
+        private bool SEtimeRecorded = false;
+
         public void SetSoundtrack(List<SoundEffectInstance> tracks)
         {
             _soundtracks = tracks;
@@ -57,7 +60,6 @@ namespace SpooninDrawer.Engine.Sound
             if (_soundBank.ContainsKey(gameEvent.GetType()))
             {
                 var sound = _soundBank[gameEvent.GetType()];
-                
                 sound.Sound.Play(sound.Attributes.Volume, sound.Attributes.Pitch, sound.Attributes.Pan);
             }
         }
