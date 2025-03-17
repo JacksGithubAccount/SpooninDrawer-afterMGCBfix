@@ -18,7 +18,7 @@ namespace SpooninDrawer.Objects.Screens
         enum titleCommands
         {
             GameSelect,
-            LoadSelect,
+            //LoadSelect,
             SettingsSelect,
             ExitSelect
         }
@@ -40,16 +40,16 @@ namespace SpooninDrawer.Objects.Screens
             Position = new Vector2(0, 0);
             if (DisplayResolution == Resolution.x1080)
             {
-                screenTexture = "Menu/TitleScreen1080";
+                screenTexture = "Menu/TitleScreen1080";                
                 menuLocationArrayX = new int[1] { 750 };
-                menuLocationArrayY = new int[4] { 480, 580, 660, 760 };
+                menuLocationArrayY = new int[3] { 480, 660, 760 };
 
             }
             else if (DisplayResolution == Resolution.x720)
             {
                 screenTexture = "Menu/TitleScreen720";
                 menuLocationArrayX = new int[1] { 445 };
-                menuLocationArrayY = new int[4] { 310, 410, 490, 590 };
+                menuLocationArrayY = new int[3] { 310, 490, 590 };
             }
             menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1; ;

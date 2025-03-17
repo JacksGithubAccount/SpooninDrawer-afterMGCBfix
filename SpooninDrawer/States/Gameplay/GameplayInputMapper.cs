@@ -88,9 +88,13 @@ namespace SpooninDrawer.States.Gameplay
             currentMouseState = state;
             var commands = new List<GameplayInputCommand>();
 
-            if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Confirm, InputType.Release))
+            if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Confirm, InputType.Press))
             {
                 commands.Add(new GameplayInputCommand.PlayerAction());
+            }
+            if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Confirm, InputType.Release))
+            {
+                commands.Add(new GameplayInputCommand.PlayerReturnToTitle());
             }
             if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Cancel, InputType.Release))
             {

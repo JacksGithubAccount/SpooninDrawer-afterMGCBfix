@@ -661,6 +661,10 @@ namespace SpooninDrawer
          *-fixed footsteps by adding bool for when a certain frame is going to play the sound
          *-removed esc to quit, removed test sound effect
          *-added sound to button move with mouse on splash state, also added drawer sliding sound effect
+         *3/16/2025
+         *-fixed click not working on return to title from credit
+         *-Changed title screen to open a drawer based on selection. Need to update boxes to match
+         *
          *
          */
     }

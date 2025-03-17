@@ -59,6 +59,14 @@ namespace SpooninDrawer.States.Splash
 
         private const string Soundtrack1 = "Music/Warmth_of_the_Sunset";
         //private const string Soundtrack2 = "Music/FutureAmbient_4";
+        private string screenStartTexture;
+        private string screenSettingsTexture;
+        private string screenExitTexture;
+            
+        private SplashImage ScreenStart;
+        private SplashImage ScreenExit;
+        private SplashImage ScreenSet;
+
 
         SettingsManager settingsManager;
         SettingsDataManager settingsDataManager;
@@ -80,6 +88,8 @@ namespace SpooninDrawer.States.Splash
         {
             _displayResolution = resolution;
             currentScreen = Screen;
+
+            
         }
         public SplashState(iBaseScreen Screen, BaseGameState BeforeState, Resolution resolution, SoundManager soundManager) : this(Screen, resolution)
         {
@@ -104,6 +114,27 @@ namespace SpooninDrawer.States.Splash
             _testText = new TestText(LoadFont(TestFont));
             _testText.Position = new Vector2(10.0f, 10.0f);
             _testText.zIndex = 3;
+
+            screenStartTexture = "Menu/titleScreenStart1080";
+            screenSettingsTexture = "Menu/titleScreenSettings1080";
+            screenExitTexture = "Menu/titleScreenExit1080";
+
+            ScreenStart = new SplashImage(LoadTexture(screenStartTexture));
+            ScreenStart.Deactivate();
+            ScreenStart.zIndex = 1;
+            ScreenStart.Position = new Vector2(0, 0);
+            ScreenSet = new SplashImage(LoadTexture(screenSettingsTexture));
+            ScreenSet.Deactivate();
+            ScreenSet.zIndex = 1;
+            ScreenSet.Position = new Vector2(0, 0);
+            ScreenExit = new SplashImage(LoadTexture(screenExitTexture));
+            ScreenExit.Deactivate();
+            ScreenExit.zIndex = 1;
+            ScreenExit.Position = new Vector2(0, 0);
+            AddGameObject(ScreenStart);
+            AddGameObject(ScreenSet);
+            AddGameObject(ScreenExit);
+
             ChangeScreen(currentScreen);
             AddGameObject(_testText);
             _menuArrow = new MenuArrowSprite(LoadTexture(titleScreenArrow));
@@ -135,7 +166,7 @@ namespace SpooninDrawer.States.Splash
             _soundManager.ChangeVolumeBGM(data.VolumeBGMValue);
             _soundManager.ChangeVolumeSE(data.VolumeSEValue);
             InputManager.GetInputDetector().SetMouseControls(data.MouseControls);
-            InputManager.GetInputDetector().SetKeyboardControls(data.KeyboardControls);
+            InputManager.GetInputDetector().SetKeyboardControls(data.KeyboardControls);            
         }
         public void ChangeScreen(iBaseScreen screen)
         {
@@ -187,6 +218,7 @@ namespace SpooninDrawer.States.Splash
                 AddGameObject(currentSplash);
                 currentSplash.Activate();
             }
+            DisableTitleScreens();
         }
         public void RemoveScreen()
         {
@@ -416,7 +448,10 @@ namespace SpooninDrawer.States.Splash
                     {
                         NotifyEvent(new SplashEvents.SplashMoveArrow());
                         menuNavigatorY = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(0, 1));
+                        if (menuNavigatorY > menuNavigatorYCap)
+                            menuNavigatorY = 0;
                     }
+                    TitlescreenDrawerMoveByCursor();
                     if (cmd is SplashInputCommand.MenuMoveLeft)
                     {
                         NotifyEvent(new SplashEvents.SplashMoveArrow());
@@ -640,6 +675,48 @@ namespace SpooninDrawer.States.Splash
                 KeepArrowinBound(ref currentArrowPositionX, maxArrowPositionX[0]);
             }
         }
+        private void TitlescreenDrawerMoveByCursor()
+        {
+            if (currentScreen.GetType() == typeof(TitleScreen))
+            {
+                if (currentScreen.GetMenuCommand(menuNavigatorX, menuNavigatorY) == "GameSelect")
+                {
+                    ScreenStart.Activate();
+                    ScreenStart.zIndex = 1;
+                    ScreenSet.Deactivate();
+                    ScreenSet.zIndex = 0;
+                    ScreenExit.Deactivate();
+                    ScreenExit.zIndex = 0;
+                }
+                else if (currentScreen.GetMenuCommand(menuNavigatorX, menuNavigatorY) == "SettingsSelect")
+                {
+                    ScreenSet.Activate();
+                    ScreenSet.zIndex = 1;
+                    ScreenStart.Deactivate();
+                    ScreenStart.zIndex = 0;
+                    ScreenExit.Deactivate();
+                    ScreenExit.zIndex = 0;
+                }
+                else if (currentScreen.GetMenuCommand(menuNavigatorX, menuNavigatorY) == "ExitSelect")
+                {
+                    ScreenExit.Activate();
+                    ScreenExit.zIndex = 1;
+                    ScreenStart.Deactivate();
+                    ScreenStart.zIndex = 0;
+                    ScreenSet.Deactivate();
+                    ScreenSet.zIndex = 0;
+                }
+            }
+        }
+        private void DisableTitleScreens()
+        {
+            ScreenStart.Deactivate();
+            ScreenStart.zIndex = 0;
+            ScreenSet.Deactivate();
+            ScreenSet.zIndex = 0;
+            ScreenExit.Deactivate();
+            ScreenExit.zIndex = 0;
+        }
         public void ReturnToTitle()
         {
             settingsDataManager.SaveSettingsData();
@@ -654,13 +731,19 @@ namespace SpooninDrawer.States.Splash
             {
                 mouseOveredButton = true;
                 Vector2 holder = mousePositionHandler.GetButtonUnderMouse();
+                
                 NotifyEvent(new SplashEvents.SplashMoveArrow()); 
                 menuNavigatorX = (int)holder.X;
                 menuNavigatorY = (int)holder.Y;
+                TitlescreenDrawerMoveByCursor();
             }
             else if (!mousePositionHandler.IsMouseOverButton() && mouseOveredButton)
             {
                 mouseOveredButton = false;
+            }
+            else if (!mousePositionHandler.IsMouseOverButton())
+            {
+                DisableTitleScreens();
             }
             _menuArrow.Update(gameTime);
             HandleInput(gameTime);
