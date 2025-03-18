@@ -664,7 +664,8 @@ namespace SpooninDrawer
          *3/16/2025
          *-fixed click not working on return to title from credit
          *-Changed title screen to open a drawer based on selection. Need to update boxes to match
-         *
+         *3/17/2025
+         *-updated settings and remap screen and boxes for title screen
          *
          */
     }
