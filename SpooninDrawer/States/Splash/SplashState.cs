@@ -115,25 +115,9 @@ namespace SpooninDrawer.States.Splash
             _testText.Position = new Vector2(10.0f, 10.0f);
             _testText.zIndex = 3;
 
-            screenStartTexture = "Menu/titleScreenStart1080";
-            screenSettingsTexture = "Menu/titleScreenSettings1080";
-            screenExitTexture = "Menu/titleScreenExit1080";
+            
 
-            ScreenStart = new SplashImage(LoadTexture(screenStartTexture));
-            ScreenStart.Deactivate();
-            ScreenStart.zIndex = 1;
-            ScreenStart.Position = new Vector2(0, 0);
-            ScreenSet = new SplashImage(LoadTexture(screenSettingsTexture));
-            ScreenSet.Deactivate();
-            ScreenSet.zIndex = 1;
-            ScreenSet.Position = new Vector2(0, 0);
-            ScreenExit = new SplashImage(LoadTexture(screenExitTexture));
-            ScreenExit.Deactivate();
-            ScreenExit.zIndex = 1;
-            ScreenExit.Position = new Vector2(0, 0);
-            AddGameObject(ScreenStart);
-            AddGameObject(ScreenSet);
-            AddGameObject(ScreenExit);
+            LoadTitleScreens();
 
             ChangeScreen(currentScreen);
             AddGameObject(_testText);
@@ -166,7 +150,8 @@ namespace SpooninDrawer.States.Splash
             _soundManager.ChangeVolumeBGM(data.VolumeBGMValue);
             _soundManager.ChangeVolumeSE(data.VolumeSEValue);
             InputManager.GetInputDetector().SetMouseControls(data.MouseControls);
-            InputManager.GetInputDetector().SetKeyboardControls(data.KeyboardControls);            
+            InputManager.GetInputDetector().SetKeyboardControls(data.KeyboardControls);
+            
         }
         public void ChangeScreen(iBaseScreen screen)
         {
@@ -270,6 +255,10 @@ namespace SpooninDrawer.States.Splash
             {
                 ChangeScreen(LoadStack.Pop().Initialize(_displayResolution));
             }
+            RemoveGameObject(ScreenStart);
+            RemoveGameObject(ScreenSet);
+            RemoveGameObject(ScreenExit);
+            LoadTitleScreens();
         }
         private void SetScreenPoints(iBaseScreen screen)
         {
@@ -707,6 +696,36 @@ namespace SpooninDrawer.States.Splash
                     ScreenSet.zIndex = 0;
                 }
             }
+        }
+        private void LoadTitleScreens()
+        {
+            if (_displayResolution == Resolution.x1080)
+            {
+                screenStartTexture = "Menu/titleScreenStart1080";
+                screenSettingsTexture = "Menu/titleScreenSettings1080";
+                screenExitTexture = "Menu/titleScreenExit1080";
+            }
+            else if (_displayResolution == Resolution.x720)
+            {
+                screenStartTexture = "Menu/titleScreenStart720";
+                screenSettingsTexture = "Menu/titleScreenSettings720";
+                screenExitTexture = "Menu/titleScreenExit720";
+            }
+            ScreenStart = new SplashImage(LoadTexture(screenStartTexture));
+            ScreenStart.Deactivate();
+            ScreenStart.zIndex = 1;
+            ScreenStart.Position = new Vector2(0, 0);
+            ScreenSet = new SplashImage(LoadTexture(screenSettingsTexture));
+            ScreenSet.Deactivate();
+            ScreenSet.zIndex = 1;
+            ScreenSet.Position = new Vector2(0, 0);
+            ScreenExit = new SplashImage(LoadTexture(screenExitTexture));
+            ScreenExit.Deactivate();
+            ScreenExit.zIndex = 1;
+            ScreenExit.Position = new Vector2(0, 0);
+            AddGameObject(ScreenStart);
+            AddGameObject(ScreenSet);
+            AddGameObject(ScreenExit);
         }
         private void DisableTitleScreens()
         {

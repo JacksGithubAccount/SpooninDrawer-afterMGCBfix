@@ -20,7 +20,8 @@ namespace SpooninDrawer.Objects.Gameplay
         DrawerInWay,
         SpoonInDrawer,
         DrawerSlide,
-        DrawerClose
+        DrawerClose,
+        SpoonDrop
     }
     public class MinigameManager
     {
@@ -386,6 +387,7 @@ namespace SpooninDrawer.Objects.Gameplay
             {
                 RefreshFrame(SpoonList);
                 SpoonDropped = true;
+                currentState = MinigameState.SpoonDrop;
             }
         }
         public void BackwardDrawerFrame()

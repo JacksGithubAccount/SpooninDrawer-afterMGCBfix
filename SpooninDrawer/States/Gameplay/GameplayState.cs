@@ -553,11 +553,13 @@ namespace SpooninDrawer.Engine.States.Gameplay
                 case MinigameState.DrawerInWay:
                     textdisplay = StoredDialog.DrawerStuck;
                     break;
+                case MinigameState.SpoonDrop:
+                    NotifyEvent(new BaseGameStateEvent.SpoonDrop());
+                    break;
                 case MinigameState.SpoonInDrawer:
                     textdisplay = StoredDialog.SpooninDrawer;
                     PopupManager.ActivateDialogBox(StoredDialog.SpooninDrawerDialog);
-                    ChangeGameStateState(GameplayStateStates.DialogState);
-                    NotifyEvent(new BaseGameStateEvent.SpoonDrop());
+                    ChangeGameStateState(GameplayStateStates.DialogState);                    
                     break;
             }
             PopupManager.ActivateMinigameBox(textdisplay, new Vector2(rngesus.Next((int)_camera.Position.X, (int)(_camera.Center.X + (_camera.Center.X - _camera.Position.X) - PopupManager.MinigamePopupBox.Width)), rngesus.Next((int)_camera.Position.Y, (int)_camera.Center.Y)));

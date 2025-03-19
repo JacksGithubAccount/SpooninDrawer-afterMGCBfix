@@ -499,6 +499,18 @@
 /processorParam:TextureFormat=Color
 /build:Menu/titleScreenExit1080.png
 
+#begin Menu/titleScreenExit720.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Menu/titleScreenExit720.png
+
 #begin Menu/titleScreenSettings1080.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -511,6 +523,18 @@
 /processorParam:TextureFormat=Color
 /build:Menu/titleScreenSettings1080.png
 
+#begin Menu/titleScreenSettings720.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Menu/titleScreenSettings720.png
+
 #begin Menu/titleScreenStart1080.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -522,6 +546,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Menu/titleScreenStart1080.png
+
+#begin Menu/titleScreenStart720.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Menu/titleScreenStart720.png
 
 #begin Menu/VolumeBar.png
 /importer:TextureImporter

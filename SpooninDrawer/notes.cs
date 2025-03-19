@@ -666,6 +666,8 @@ namespace SpooninDrawer
          *-Changed title screen to open a drawer based on selection. Need to update boxes to match
          *3/17/2025
          *-updated settings and remap screen and boxes for title screen
+         *3/18/2025
+         *-made new screens compatable with 720 and fixed spoon drop not play at the right state
          *
          */
     }
