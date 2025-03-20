@@ -33,6 +33,7 @@ namespace SpooninDrawer.Objects.Screens
         }
         enum thirdColumnCommands
         {
+            placeholder,
             RemapMouseSelectConfirm,
             RemapMouseSelectCancel,
             RemapMouseSelectUp,
@@ -41,6 +42,18 @@ namespace SpooninDrawer.Objects.Screens
             RemapMouseSelectRight,
             RemapMouseSelectOpenMenu,
             RemapMouseSelectPause,
+        }
+        enum fourthColumnCommands
+        {
+            placeholder,
+            RemapButtonSelectConfirm,
+            RemapButtonSelectCancel,
+            RemapButtonSelectUp,
+            RemapButtonSelectDown,
+            RemapButtonSelectLeft,
+            RemapButtonSelectRight,
+            RemapButtonSelectOpenMenu,
+            RemapButtonSelectPause,
         }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
@@ -111,11 +124,11 @@ namespace SpooninDrawer.Objects.Screens
                 }
                 else if (ScreenText[0, superi].Text.Replace(" ", String.Empty) == inputDetector.getActionforClick(Click.ScrollUp).ToString())
                 {
-                    ScreenText[2, superi] = new SettingsText(font, RStrings.ControlScrollUp);
+                    //ScreenText[2, superi] = new SettingsText(font, RStrings.ControlScrollUp);
                 }
                 else if (ScreenText[0, superi].Text.Replace(" ", String.Empty) == inputDetector.getActionforClick(Click.ScrollDown).ToString())
                 {
-                    ScreenText[2, superi] = new SettingsText(font, RStrings.ControlScrollDown);
+                    //ScreenText[2, superi] = new SettingsText(font, RStrings.ControlScrollDown);
                 }
                 else
                     ScreenText[2, superi] = new SettingsText(font, "");
@@ -160,7 +173,10 @@ namespace SpooninDrawer.Objects.Screens
             }
             for (int c = 0; c <= menuNavigatorXCap[0]; c++)
                 SetRectangletoReadOnly(ButtonRectangles[0][c]);
-
+            for(int d = 3; d <= 6; d++)
+            {
+                SetRectangletoReadOnly(ButtonRectangles[d][2]);
+            }                
         }
 
         public iBaseScreen Initialize(Resolution resolution)
@@ -183,6 +199,11 @@ namespace SpooninDrawer.Objects.Screens
             else if (x == 2)
             {
                 var holder = (thirdColumnCommands)y;
+                return holder.ToString();
+            }
+            else if (x == 3)
+            {
+                var holder = (fourthColumnCommands)y;
                 return holder.ToString();
             }
             else

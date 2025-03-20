@@ -445,6 +445,57 @@ namespace SpooninDrawer.States.Splash
                     RemapActionHolder = Actions.Pause;
                     commands.Add(new RemapControlConfirm());
                     break;
+                
+                case "RemapButtonSelectConfirm":
+
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Gamepad;
+                    RemapActionHolder = Actions.Confirm;
+                    commands.Add(new RemapControlConfirm());
+                    break;
+
+                case "RemapButtonSelectCancel":
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Gamepad;
+                    RemapActionHolder = Actions.Cancel;
+                    commands.Add(new RemapControlConfirm());
+                    break;
+                case "RemapButtonSelectUp":
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Gamepad;
+                    RemapActionHolder = Actions.MoveUp;
+                    commands.Add(new RemapControlConfirm());
+                    break;
+                case "RemapButtonSelectDown":
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Gamepad;
+                    RemapActionHolder = Actions.MoveDown;
+                    commands.Add(new RemapControlConfirm());
+                    break;
+                case "RemapButtonSelectLeft":
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Gamepad;
+                    RemapActionHolder = Actions.MoveLeft;
+                    commands.Add(new RemapControlConfirm());
+                    break;
+                case "RemapButtonSelectRight":
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Gamepad;
+                    RemapActionHolder = Actions.MoveRight;
+                    commands.Add(new RemapControlConfirm());
+                    break;
+                case "RemapButtonSelectOpenMenu":
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Gamepad;
+                    RemapActionHolder = Actions.OpenMenu;
+                    commands.Add(new RemapControlConfirm());
+                    break;
+                case "RemapButtonSelectPause":
+                    RemapChecker = true;
+                    remapDevice = InputDevice.Gamepad;
+                    RemapActionHolder = Actions.Pause;
+                    commands.Add(new RemapControlConfirm());
+                    break;
                 case "RemapAcceptDuplicateSwap":
                     remapDuplicatePopup = false;
                     inputDetector.ConfirmRemap();

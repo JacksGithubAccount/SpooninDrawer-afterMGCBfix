@@ -100,6 +100,30 @@ namespace SpooninDrawer.States.Gameplay
             {
                 commands.Add(new GameplayInputCommand.PlayerCancel());
             }
+            if (inputDetector.IsActioninputtedbyTypeforClick(Actions.MoveRight, InputType.Press))
+            {
+                commands.Add(new GameplayInputCommand.PlayerMoveRight());
+            }
+            else if (inputDetector.IsActioninputtedbyTypeforClick(Actions.MoveLeft, InputType.Press))
+            {
+                commands.Add(new GameplayInputCommand.PlayerMoveLeft());
+            }
+            if (inputDetector.IsActioninputtedbyTypeforClick(Actions.MoveUp, InputType.Press))
+            {
+                commands.Add(new GameplayInputCommand.PlayerMoveUp());
+            }
+            else if (inputDetector.IsActioninputtedbyTypeforClick(Actions.MoveDown, InputType.Press))
+            {
+                commands.Add(new GameplayInputCommand.PlayerMoveDown());
+            }
+            if (inputDetector.IsActioninputtedbyTypeforClick(Actions.OpenMenu, InputType.Press))
+            {
+                commands.Add(new GameplayInputCommand.PlayerOpenMenu());
+            }
+            if (inputDetector.IsActioninputtedbyTypeforClick(Actions.Pause, InputType.Press))
+            {
+                commands.Add(new GameplayInputCommand.Pause());
+            }
             return commands;
         }
         public override IEnumerable<BaseInputCommand> GetGamePadState(GamePadState state)

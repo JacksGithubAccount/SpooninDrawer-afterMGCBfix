@@ -668,7 +668,13 @@ namespace SpooninDrawer
          *-updated settings and remap screen and boxes for title screen
          *3/18/2025
          *-made new screens compatable with 720 and fixed spoon drop not play at the right state
+         *3/19/2025
+         *-adjusted more screens to work 720
+         *-removed borderless as that doesn't work
+         *-added button remapping for gamepad
+         *
+         *
          *
          */
-    }
 }
+    }

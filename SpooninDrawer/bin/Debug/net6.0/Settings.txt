@@ -1,7 +1,7 @@
 [ScreenSettings]:Window
-[Resolution]:x720
-[VolumeBGM]:0.5233333
-[VolumeSE]:0.54333335
+[Resolution]:x1080
+[VolumeBGM]:0.50333333
+[VolumeSE]:0.5
 [Controls]:
 Keyboard:MoveLeft:A
 Keyboard:MoveRight:D
@@ -16,9 +16,9 @@ Keyboard:Pause:P
 Mouse:Confirm:LeftClick
 Mouse:Cancel:RightClick
 Mouse:OpenMenu:None
-Mouse:MoveUp:ScrollUp
-Mouse:MoveDown:ScrollDown
-Mouse:MoveLeft:None
+Mouse:MoveUp:ScrollDown
+Mouse:MoveDown:None
+Mouse:MoveLeft:ScrollUp
 Mouse:MoveRight:None
 Mouse:Interact:None
 Mouse:Attack:None

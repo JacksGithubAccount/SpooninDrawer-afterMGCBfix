@@ -43,19 +43,22 @@ namespace SpooninDrawer.Objects.Screens
                 screenTexture = "Menu/TitleScreen1080";                
                 menuLocationArrayX = new int[1] { 750 };
                 menuLocationArrayY = new int[3] { 450, 590, 715 };
+                ButtonWidth = 300;
+                ButtonHeight = 90;
 
             }
             else if (DisplayResolution == Resolution.x720)
             {
                 screenTexture = "Menu/TitleScreen720";
-                menuLocationArrayX = new int[1] { 445 };
-                menuLocationArrayY = new int[3] { 330, 490, 590 };
+                menuLocationArrayX = new int[1] { 500 };
+                menuLocationArrayY = new int[3] { 300, 390, 470 };
+                ButtonWidth = 200;
+                ButtonHeight = 60;
             }
             menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1; ;
 
-            ButtonWidth = 300;
-            ButtonHeight = 90;
+
             hasButtons = true;
             CreateRectangles(menuLocationArrayX, menuLocationArrayY);
         }

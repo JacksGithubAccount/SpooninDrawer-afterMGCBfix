@@ -42,7 +42,7 @@ namespace SpooninDrawer.Objects.Screens
         }
         enum fourthColumnCommands
         {
-            Borderless
+            //Borderless
         }
         public string screenTexture { get; }
         public int[] menuLocationArrayX { get; }
@@ -111,7 +111,7 @@ namespace SpooninDrawer.Objects.Screens
             ScreenText[2, 0] = new SettingsText(font, RStrings.SettingsWindowScreen);
             ScreenText[2, 1] = new SettingsText(font, RStrings.SettingsResolution720);
 
-            ScreenText[3, 0] = new SettingsText(font, RStrings.SettingsBorderlessScreen);
+            //ScreenText[3, 0] = new SettingsText(font, RStrings.SettingsBorderlessScreen);
 
             volumeBGMBarPosition = new Vector2(menuLocationArrayX[2], menuLocationArrayY[3]) + positionOffset;
             volumeBGMBarArrowPosition = new Vector2(menuLocationArrayX[3], menuLocationArrayY[3]) + positionOffset;
@@ -146,6 +146,7 @@ namespace SpooninDrawer.Objects.Screens
             ButtonWidth = 175;
             ButtonHeight = 35;
             CreateRectangles(menuLocationArrayX, menuLocationArrayY, menuNavigatorXCap);
+            ButtonRectangles[0][3].ReadOnly = true;
             ButtonRectangles[3][2] = new SplashRectangle(new Rectangle(585, 410, 305, 20), false, true, false);
             ButtonRectangles[4][2] = new SplashRectangle(new Rectangle(585, 460, 305, 20), false, true, false);
         }

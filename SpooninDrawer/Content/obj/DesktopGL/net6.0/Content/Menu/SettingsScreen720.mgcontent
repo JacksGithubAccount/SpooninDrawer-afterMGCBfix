@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/Menu/SettingsScreen720.png</SourceFile>
-  <SourceTime>2025-03-18T21:51:52.4281161-04:00</SourceTime>
+  <SourceTime>2025-03-19T20:56:36.4187748-04:00</SourceTime>
   <DestFile>C:/Users/jckzh/source/repos/SpooninDrawer-afterMGCBfix/SpooninDrawer/Content/bin/DesktopGL/Content/Menu/SettingsScreen720.xnb</DestFile>
-  <DestTime>2025-03-18T21:56:28.015423-04:00</DestTime>
+  <DestTime>2025-03-19T20:58:07.3890513-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T07:44:56-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

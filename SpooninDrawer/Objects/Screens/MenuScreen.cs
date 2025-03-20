@@ -37,18 +37,21 @@ namespace SpooninDrawer.Objects.Screens
                 screenTexture = "Menu/MenuScreen1080";
                 menuLocationArrayX = new int[1] { 625 };
                 menuLocationArrayY = new int[3] { 430, 560, 690 };
+                ButtonWidth = 500;
+                ButtonHeight = 100;
             }
             else if (DisplayResolution == Resolution.x720)
             {
                 screenTexture = "Menu/MenuScreen720";
-                menuLocationArrayX = new int[1] { 390 };
-                menuLocationArrayY = new int[3] { 310, 440, 570 };
+                menuLocationArrayX = new int[1] { 420 };
+                menuLocationArrayY = new int[3] { 280, 380, 480 };
+                ButtonWidth = 500;
+                ButtonHeight = 80;
             }
             menuNavigatorXCap = new int[1] { menuLocationArrayX.Length - 1 };
             menuNavigatorYCap = menuLocationArrayY.Length - 1;
             hasButtons = true;
-            ButtonWidth = 400;
-            ButtonHeight = 100;
+            
             CreateRectangles(menuLocationArrayX, menuLocationArrayY);
         }
         public iBaseScreen Initialize(Resolution resolution)
