@@ -278,7 +278,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         public override void HandleInput(GameTime gameTime)
         {
             if (CurrentGameplayStateStates == GameplayStateStates.MainGameState || CurrentGameplayStateStates == GameplayStateStates.DialogState)
-            {
+            {                
                 InputManager.GetCommands(cmd =>
                 {
                     if (cmd is GameplayInputCommand.GameExit)

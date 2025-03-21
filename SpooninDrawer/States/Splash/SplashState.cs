@@ -56,6 +56,7 @@ namespace SpooninDrawer.States.Splash
         private const string MenuFontString = "Fonts/MenuFont";
 
         private const string BeepSound = "Sounds/beep";
+        private const string DrawerSlideSound = "Sounds/drawerslide";
 
         private const string Soundtrack1 = "Music/Warmth_of_the_Sunset";
         //private const string Soundtrack2 = "Music/FutureAmbient_4";
@@ -79,6 +80,7 @@ namespace SpooninDrawer.States.Splash
         private bool VolumeSEControl = false;
 
         private bool mouseOveredButton = false;
+        private bool mouseUnoveredButton = false;
         public SplashState(Resolution resolution)
         {
             _displayResolution = resolution;
@@ -131,8 +133,9 @@ namespace SpooninDrawer.States.Splash
             keyboardPositionHandler = new KeyboardPositionHandler();
 
             var beepSound = LoadSound(BeepSound);
-            //var missileSound = LoadSound(MissileSound);
+            var drawerSlideSound = LoadSound(DrawerSlideSound);
             _soundManager.RegisterSound(new SplashEvents.SplashMoveArrow(), beepSound);
+            _soundManager.RegisterSound(new SplashEvents.DrawerSlide(), drawerSlideSound);
 
             var track1 = LoadSound(Soundtrack1).CreateInstance();
             //var track2 = LoadSound(Soundtrack2).CreateInstance();
@@ -749,9 +752,10 @@ namespace SpooninDrawer.States.Splash
             if (mousePositionHandler.IsMouseOverButton() && !mouseOveredButton)
             {
                 mouseOveredButton = true;
+                mouseUnoveredButton = false;
                 Vector2 holder = mousePositionHandler.GetButtonUnderMouse();
                 
-                NotifyEvent(new SplashEvents.SplashMoveArrow()); 
+                NotifyEvent(new SplashEvents.DrawerSlide()); 
                 menuNavigatorX = (int)holder.X;
                 menuNavigatorY = (int)holder.Y;
                 TitlescreenDrawerMoveByCursor();
@@ -760,8 +764,9 @@ namespace SpooninDrawer.States.Splash
             {
                 mouseOveredButton = false;
             }
-            else if (!mousePositionHandler.IsMouseOverButton())
+            else if (!mousePositionHandler.IsMouseOverButton()&& !mouseUnoveredButton)
             {
+                mouseUnoveredButton = true;
                 DisableTitleScreens();
             }
             _menuArrow.Update(gameTime);

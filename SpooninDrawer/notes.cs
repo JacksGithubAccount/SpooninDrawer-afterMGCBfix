@@ -672,7 +672,8 @@ namespace SpooninDrawer
          *-adjusted more screens to work 720
          *-removed borderless as that doesn't work
          *-added button remapping for gamepad
-         *
+         *3/20/2025
+         *-fixed keyboard arrows not working properlt on title screen
          *
          *
          */
