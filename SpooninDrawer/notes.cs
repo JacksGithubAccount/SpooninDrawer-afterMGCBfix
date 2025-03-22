@@ -674,7 +674,9 @@ namespace SpooninDrawer
          *-added button remapping for gamepad
          *3/20/2025
          *-fixed keyboard arrows not working properlt on title screen
-         *
+         *3/21/2025
+         *-adjusted volume of several sound effects
+         *-made icon work and publish
          *
          */
 }

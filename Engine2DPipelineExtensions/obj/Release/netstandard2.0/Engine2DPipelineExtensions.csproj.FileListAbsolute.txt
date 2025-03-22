@@ -9,3 +9,14 @@ C:\Users\jckzh\source\repos\SpooninDrawer\Engine2DPipelineExtensions\obj\Release
 C:\Users\jckzh\source\repos\SpooninDrawer\Engine2DPipelineExtensions\obj\Release\netstandard2.0\Engine2DPipelineExtensions.dll
 C:\Users\jckzh\source\repos\SpooninDrawer\Engine2DPipelineExtensions\obj\Release\netstandard2.0\Engine2DPipelineExtensions.pdb
 C:\Users\jckzh\source\repos\SpooninDrawer\Engine2DPipelineExtensions\obj\Release\netstandard2.0\Engine2DPipelineExtensions.sourcelink.json
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\bin\Release\netstandard2.0\Engine2DPipelineExtensions.deps.json
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\bin\Release\netstandard2.0\Engine2DPipelineExtensions.dll
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\bin\Release\netstandard2.0\Engine2DPipelineExtensions.pdb
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Release\netstandard2.0\Engine2DPipelineExtensions.csproj.AssemblyReference.cache
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Release\netstandard2.0\Engine2DPipelineExtensions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Release\netstandard2.0\Engine2DPipelineExtensions.AssemblyInfoInputs.cache
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Release\netstandard2.0\Engine2DPipelineExtensions.AssemblyInfo.cs
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Release\netstandard2.0\Engine2DPipelineExtensions.csproj.CoreCompileInputs.cache
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Release\netstandard2.0\Engine2DPipelineExtensions.sourcelink.json
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Release\netstandard2.0\Engine2DPipelineExtensions.dll
+C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\Engine2DPipelineExtensions\obj\Release\netstandard2.0\Engine2DPipelineExtensions.pdb

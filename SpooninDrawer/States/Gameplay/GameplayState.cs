@@ -197,7 +197,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
             //_soundManager.RegisterSound(new GameplayEvents.FootSteps(), footStepSound2);
             //_soundManager.RegisterSound(new GameplayEvents.FootSteps(), footStepSound3);
             _soundManager.RegisterSound(new GameplayEvents.SpoonDrop(), spoonDropSound);
-            _soundManager.RegisterSound(new GameplayEvents.DrawerSlide(), drawerSlideSound);
+            //_soundManager.RegisterSound(new GameplayEvents.DrawerSlide(), drawerSlideSound);
             _soundManager.RegisterSound(new GameplayEvents.DrawerClose(), drawerCloseSound);
 
             // load soundtracks into sound manager
@@ -474,7 +474,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                     }
                     if (cmd is GameplayInputCommand.PlayerMoveUp && !_playerDead)
                     {
-                        DisplayMinigameDialog();
+                        //DisplayMinigameDialog();
                     }
                     if (cmd is GameplayInputCommand.PlayerMoveDown && !_playerDead)
                     {

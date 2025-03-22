@@ -433,12 +433,18 @@ namespace SpooninDrawer.States.Splash
                 {
                     if (cmd is SplashInputCommand.MenuMoveUp)
                     {
-                        NotifyEvent(new SplashEvents.SplashMoveArrow());
+                        if (currentScreen.GetType() == typeof(TitleScreen))
+                            NotifyEvent(new SplashEvents.DrawerSlide());
+                        else
+                            NotifyEvent(new SplashEvents.SplashMoveArrow());
                         menuNavigatorY = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(0, -1));
                     }
                     if (cmd is SplashInputCommand.MenuMoveDown)
                     {
-                        NotifyEvent(new SplashEvents.SplashMoveArrow());
+                        if (currentScreen.GetType() == typeof(TitleScreen))
+                            NotifyEvent(new SplashEvents.DrawerSlide());
+                        else
+                            NotifyEvent(new SplashEvents.SplashMoveArrow());
                         menuNavigatorY = keyboardPositionHandler.CheckKeyboardforMove(currentScreen, menuNavigatorX, menuNavigatorY, new Vector2(0, 1));
                         if (menuNavigatorY > menuNavigatorYCap)
                             menuNavigatorY = 0;
@@ -754,8 +760,10 @@ namespace SpooninDrawer.States.Splash
                 mouseOveredButton = true;
                 mouseUnoveredButton = false;
                 Vector2 holder = mousePositionHandler.GetButtonUnderMouse();
-                
-                NotifyEvent(new SplashEvents.DrawerSlide()); 
+                if(currentScreen.GetType() == typeof(TitleScreen))
+                    NotifyEvent(new SplashEvents.DrawerSlide()); 
+                else
+                    NotifyEvent(new SplashEvents.SplashMoveArrow());
                 menuNavigatorX = (int)holder.X;
                 menuNavigatorY = (int)holder.Y;
                 TitlescreenDrawerMoveByCursor();
@@ -780,7 +788,7 @@ namespace SpooninDrawer.States.Splash
         public override void Render(SpriteBatch spriteBatch)
         {
             base.Render(spriteBatch);
-            if (currentScreen.hasButtons)
+            /*if (currentScreen.hasButtons)
             {
                 BaseScreenwithButtons holder = (BaseScreenwithButtons)currentScreen;
                 foreach (SplashRectangle[] rect in holder.ButtonRectangles)
@@ -790,7 +798,7 @@ namespace SpooninDrawer.States.Splash
                         spriteBatch.Draw(blankTexture, new Vector2(rect2.Rectangle.X, rect2.Rectangle.Y), rect2.Rectangle, Color.Crimson * 0.5f);
                     }
                 }
-            }
+            }*/
         }
     }
 }

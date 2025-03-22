@@ -8,15 +8,28 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationIcon>MyGame.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Icon.ico" />
-    <None Remove="Icon.bmp" />
+    <None Remove="MyGame.ico" />
+    <None Remove="MyGame.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Icon.ico" />
-    <EmbeddedResource Include="Icon.bmp" />
+    <Content Include="MyGame.ico" />
+  </ItemGroup>
+  <ItemGroup>
+      <EmbeddedResource Include="MyGame.ico">
+
+        <LogicalName>MyGame.ico</LogicalName>
+	<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+
+      <EmbeddedResource Include="MyGame.bmp">
+
+        <LogicalName>MyGame.bmp</LogicalName>
+	<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+	
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />

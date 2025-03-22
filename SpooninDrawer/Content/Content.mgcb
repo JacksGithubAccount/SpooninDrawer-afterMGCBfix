@@ -1099,12 +1099,6 @@
 /processorParam:Quality=Best
 /build:music/Warmth_of_the_Sunset.wav
 
-#begin sounds/340983__soundsaregr8__footstep-on-wood.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sounds/340983__soundsaregr8__footstep-on-wood.wav
-
 #begin sounds/434758__notarget__wood-step-sample-3.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1116,12 +1110,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sounds/478189__jonnyruss01__beep_soft_2.wav;sounds/beep.wav
-
-#begin sounds/620332__marb7e__footsteps_leather_wood_walk06.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sounds/620332__marb7e__footsteps_leather_wood_walk06.wav
 
 #begin sounds/87041__runnerpack__target.wav
 /importer:WavImporter

@@ -387,8 +387,6 @@ C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\n
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\music\Warmth_of_the_Sunset.xnb
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\sounds\87041__runnerpack__target.xnb
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\sounds\434758__notarget__wood-step-sample-3.xnb
-C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\sounds\340983__soundsaregr8__footstep-on-wood.xnb
-C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\sounds\620332__marb7e__footsteps_leather_wood_walk06.xnb
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\sounds\Metal20Pipes20Falling20Sound.xnb
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\sounds\drawerclose.xnb
 C:\Users\jckzh\source\repos\SpooninDrawer-afterMGCBfix\SpooninDrawer\bin\Debug\net6.0\Content\sounds\drawerslide.xnb

@@ -7,28 +7,8 @@
       "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\notes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\states\\splash\\splashstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\states\\splash\\splashstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\states\\splash\\splashinputmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\states\\splash\\splashinputmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\statics\\storeddialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\statics\\storeddialog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\states\\gameplay\\gameplaystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\states\\gameplay\\gameplaystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\screens\\remapcontrolsscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\screens\\remapcontrolsscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\objects\\gameplay\\minigamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\objects\\gameplay\\minigamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|c:\\users\\jckzh\\source\\repos\\spoonindrawer-aftermgcbfix\\spoonindrawer\\spoonindrawer.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{2B300C57-8271-438E-B860-7F10DC370B20}|SpooninDrawer\\SpooninDrawer.csproj|solutionrelative:spoonindrawer\\spoonindrawer.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -48,86 +28,22 @@
               "RelativeDocumentMoniker": "SpooninDrawer\\notes.cs",
               "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\notes.cs",
               "RelativeToolTip": "SpooninDrawer\\notes.cs",
-              "ViewState": "AQIAAIMCAAAAAAAAAAAswKMCAABFAAAA",
+              "ViewState": "AQIAAJcCAAAAAAAAAAAAAKYCAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-09T00:39:30.306Z",
+              "WhenOpened": "2025-03-22T02:43:36.94Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SplashInputMapper.cs",
-              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\States\\Splash\\SplashInputMapper.cs",
-              "RelativeDocumentMoniker": "SpooninDrawer\\States\\Splash\\SplashInputMapper.cs",
-              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\States\\Splash\\SplashInputMapper.cs",
-              "RelativeToolTip": "SpooninDrawer\\States\\Splash\\SplashInputMapper.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAvwCsAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T02:36:34.818Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RemapControlsScreen.cs",
-              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Screens\\RemapControlsScreen.cs",
-              "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Screens\\RemapControlsScreen.cs",
-              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Screens\\RemapControlsScreen.cs",
-              "RelativeToolTip": "SpooninDrawer\\Objects\\Screens\\RemapControlsScreen.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAAAQwDAAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T01:55:27.969Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SplashState.cs",
-              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\States\\Splash\\SplashState.cs",
-              "RelativeDocumentMoniker": "SpooninDrawer\\States\\Splash\\SplashState.cs",
-              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\States\\Splash\\SplashState.cs",
-              "RelativeToolTip": "SpooninDrawer\\States\\Splash\\SplashState.cs",
-              "ViewState": "AQIAAOUCAAAAAAAAAAAAAPECAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T00:40:26.245Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MinigameManager.cs",
-              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\MinigameManager.cs",
-              "RelativeDocumentMoniker": "SpooninDrawer\\Objects\\Gameplay\\MinigameManager.cs",
-              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Objects\\Gameplay\\MinigameManager.cs",
-              "RelativeToolTip": "SpooninDrawer\\Objects\\Gameplay\\MinigameManager.cs",
-              "ViewState": "AQIAAG8BAAAAAAAAAAAAAIUBAAA3AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-16T02:42:43.148Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "StoredDialog.cs",
-              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Statics\\StoredDialog.cs",
-              "RelativeDocumentMoniker": "SpooninDrawer\\Statics\\StoredDialog.cs",
-              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\Statics\\StoredDialog.cs",
-              "RelativeToolTip": "SpooninDrawer\\Statics\\StoredDialog.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwCsAAAA5AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-11T00:34:17.326Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GameplayState.cs",
-              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\States\\Gameplay\\GameplayState.cs",
-              "RelativeDocumentMoniker": "SpooninDrawer\\States\\Gameplay\\GameplayState.cs",
-              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\States\\Gameplay\\GameplayState.cs",
-              "RelativeToolTip": "SpooninDrawer\\States\\Gameplay\\GameplayState.cs",
-              "ViewState": "AQIAAAQBAAAAAAAAAAAAABgBAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T02:20:43.339Z",
+              "Title": "SpooninDrawer",
+              "DocumentMoniker": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\SpooninDrawer.csproj",
+              "RelativeDocumentMoniker": "SpooninDrawer\\SpooninDrawer.csproj",
+              "ToolTip": "C:\\Users\\jckzh\\source\\repos\\SpooninDrawer-afterMGCBfix\\SpooninDrawer\\SpooninDrawer.csproj",
+              "RelativeToolTip": "SpooninDrawer\\SpooninDrawer.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-22T02:36:35.451Z",
               "EditorCaption": ""
             }
           ]

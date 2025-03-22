@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Engine2DPipelineExtensions")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85eba4873f61bf71ccad44821fa8fdb39ec46b2f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b712f6760798dcb13549ca07581c81645d0e5e3a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Engine2DPipelineExtensions")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Engine2DPipelineExtensions")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
