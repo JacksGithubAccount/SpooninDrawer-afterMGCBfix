@@ -54,14 +54,11 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private const string PlayerAnimationIdle = "Animations/Player/idle";
         private const string TiledMapTest = "TiledMaps/testain";
         private const string TilesetTest = "TiledMaps/background";
-        //rivate const string ExplosionTexture = "Sprites/explosion";
-
 
         private const string TextFont = "Fonts/TestText";
         private const string GameOverFont = "Fonts/GameOver";
 
         private const string BulletSound = "Sounds/bullet";
-        //private const string MissileSound = "Sounds/missileSound";
         private const string DialogBeep = "Sounds/87041__runnerpack__target";
         private const string FootStepSound1 = "Sounds/434758__notarget__wood-step-sample-3";
         private const string FootStepSound2 = "Sounds/620332__marb7e__footsteps_leather_wood_walk06";
@@ -71,7 +68,6 @@ namespace SpooninDrawer.Engine.States.Gameplay
         private const string DrawerCloseSound = "Sounds/drawerclose";
 
         private const string Soundtrack1 = "Music/Moonlit_Café - Yosuke Matsuura";
-        //private const string Soundtrack2 = "Music/FutureAmbient_2";
 
         private const int StartingPlayerLives = 3;
         private int _playerLives = StartingPlayerLives;
@@ -391,6 +387,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
                                     {
                                         MinigameManager.StartDrawerFrame();
                                         ChangeGameStateState(GameplayStateStates.SpooninDrawerState);
+                                        PopupManager.ControlDisplayBox.ChangeText(StoredDialog.WriteControlDisplayText2(InputManager.GetInputDetector().GetKeyboardControls()));
                                     }
                                     else if (holder == interactableManager.Drawer)
                                     {
@@ -528,6 +525,7 @@ namespace SpooninDrawer.Engine.States.Gameplay
         {
             MinigameManager.NextRandomFrame();
             string textdisplay = "";
+            PopupManager.ControlDisplayBox.ChangeText(StoredDialog.WriteControlDisplayText2(InputManager.GetInputDetector().GetKeyboardControls()));
             switch (MinigameManager.currentState)
             {
                 case MinigameState.Normal:

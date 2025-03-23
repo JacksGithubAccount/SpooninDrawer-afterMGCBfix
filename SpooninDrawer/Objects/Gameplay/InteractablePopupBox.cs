@@ -24,8 +24,8 @@ namespace SpooninDrawer.Objects.Gameplay
 
         private int NextDialogLineCount = 0;
         private bool IsNextDialogBox = false;
-        private const int LinesInDialogBox = 2;
-        private const int WordWrapLength = 23;
+        private int LinesInDialogBox = 2;
+        public int WordWrapLength = 23;
         public override Vector2 Position
         {
             get { return Position; }

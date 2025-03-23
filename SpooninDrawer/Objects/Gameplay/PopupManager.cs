@@ -93,8 +93,9 @@ namespace SpooninDrawer.Objects.Gameplay
         public void LoadControlDisplayBox(string text)
         {
             ControlDisplayBox = new InteractablePopupBox(new GameplayText(Font, text), PlayerPosition + new Vector2(0, 0), ControlDisplayTexture);
-            ControlDisplayBox.GameplayText.zIndex = 11;
-            ControlDisplayBox.zIndex = 10;
+            ControlDisplayBox.GameplayText.zIndex = 31;
+            ControlDisplayBox.zIndex = 30;
+            ControlDisplayBox.WordWrapLength = 1111;
             ControlDisplayBox.Activate();
         }
         private InteractablePopupBox CreatePopupBox(string ItemName)

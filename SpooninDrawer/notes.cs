@@ -677,7 +677,8 @@ namespace SpooninDrawer
          *3/21/2025
          *-adjusted volume of several sound effects
          *-made icon work and publish
-         *
+         *3/22/2025
+         *-added control display to spoon in drawer mode
          */
 }
     }
