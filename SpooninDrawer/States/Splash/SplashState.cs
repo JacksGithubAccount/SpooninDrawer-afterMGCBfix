@@ -59,7 +59,6 @@ namespace SpooninDrawer.States.Splash
         private const string DrawerSlideSound = "Sounds/drawerslide";
 
         private const string Soundtrack1 = "Music/Warmth_of_the_Sunset";
-        //private const string Soundtrack2 = "Music/FutureAmbient_4";
         private string screenStartTexture;
         private string screenSettingsTexture;
         private string screenExitTexture;

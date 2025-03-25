@@ -679,6 +679,11 @@ namespace SpooninDrawer
          *-made icon work and publish
          *3/22/2025
          *-added control display to spoon in drawer mode
+         *3/23/2025
+         *-published game wouldn't switch to gamestate, turns out the tmx and tsx need to be moved over
+         *-added Title words and blue background
+         *-adjusted sound for drawer slide
+         *-I think the game is ready to ship
          */
 }
     }

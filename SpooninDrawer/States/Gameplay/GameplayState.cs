@@ -32,6 +32,7 @@ using SpooninDrawer.Statics;
 using System.Runtime.Serialization.Formatters;
 using System.Diagnostics;
 using static SpooninDrawer.Engine.States.BaseGameStateEvent;
+using System.IO;
 
 namespace SpooninDrawer.Engine.States.Gameplay
 {
@@ -135,139 +136,147 @@ namespace SpooninDrawer.Engine.States.Gameplay
         }
         public override void LoadContent(ContentManager content)
         {
-            gameTime = new GameTime();
-            _soundManager.UnloadAllSound();
-            if (paused) { paused = false; }
-            _debug = false;
-            //_explosionTexture = LoadTexture(ExplosionTexture);
-
-            _map = new TmxMap("Content/TiledMaps/background.tmx");
-            _tileSet = content.Load<Texture2D>(TilesetTest + "_0");
-            int tileWidth = _map.Tilesets[0].TileWidth;
-            int tileHeight = _map.Tilesets[0].TileHeight;
-            int tileSetTilesWide = _tileSet.Width / tileWidth;
-            _tilemapManager = new TilemapManager(_map, _tileSet, tileSetTilesWide, tileWidth, tileHeight);
-            _tiledMap = LoadTiledMap(TiledMapTest);
-            _tiledMapRenderer = GetTiledMapRenderer(_tiledMap);
-            _tiledMapLayer = _tiledMap.GetLayer("Collision");
-            colliders = new List<CollidableGameObject>();
-            foreach (var o in _map.ObjectGroups["Collision"].Objects)
+            try
             {
-                colliders.Add(new CollidableGameObject(new Rectangle((int)o.X, (int)o.Y, (int)o.Width, (int)o.Height)));
-            }
+                gameTime = new GameTime();
+                _soundManager.UnloadAllSound();
+                if (paused) { paused = false; }
+                _debug = false;
 
-            var turnLeftAnimation = LoadAnimation(PlayerAnimationTurnLeft);
-            var turnRightAnimation = LoadAnimation(PlayerAnimationTurnRight);
-            var idelAnimation = LoadAnimation(PlayerAnimationIdle);
-            _playerSprite = new PlayerSprite(LoadTexture(PlayerFighter), turnLeftAnimation, turnRightAnimation, idelAnimation);
-            _playerSprite.blank = blankTexture;
-            _playerSprite.zIndex = 3;
-            AddGameObject(_playerSprite);
+                _map = new TmxMap("Content/TiledMaps/background.tmx");
+                _tileSet = content.Load<Texture2D>(TilesetTest + "_0");
+                int tileWidth = _map.Tilesets[0].TileWidth;
+                int tileHeight = _map.Tilesets[0].TileHeight;
+                int tileSetTilesWide = _tileSet.Width / tileWidth;
+                _tilemapManager = new TilemapManager(_map, _tileSet, tileSetTilesWide, tileWidth, tileHeight);
+                _tiledMap = LoadTiledMap(TiledMapTest);
+                _tiledMapRenderer = GetTiledMapRenderer(_tiledMap);
+                _tiledMapLayer = _tiledMap.GetLayer("Collision");
+                colliders = new List<CollidableGameObject>();
+                foreach (var o in _map.ObjectGroups["Collision"].Objects)
+                {
+                    colliders.Add(new CollidableGameObject(new Rectangle((int)o.X, (int)o.Y, (int)o.Width, (int)o.Height)));
+                }
 
-            var viewportAdapter = new DefaultViewportAdapter(_graphicsDevice);
-            _camera = new OrthographicCamera(viewportAdapter);
+                var turnLeftAnimation = LoadAnimation(PlayerAnimationTurnLeft);
+                var turnRightAnimation = LoadAnimation(PlayerAnimationTurnRight);
+                var idelAnimation = LoadAnimation(PlayerAnimationIdle);
+                _playerSprite = new PlayerSprite(LoadTexture(PlayerFighter), turnLeftAnimation, turnRightAnimation, idelAnimation);
+                _playerSprite.blank = blankTexture;
+                _playerSprite.zIndex = 3;
+                AddGameObject(_playerSprite);
 
-            _statsText = new StatsObject(LoadFont(StatsFont));
-            _statsText.Position = new Vector2(10, 10);
-            if (_debug)
-            {
-                AddGameObject(_statsText);
-            }
-            menuGameState = new SplashState(new MenuScreen(_displayResolution), this, _displayResolution, _soundManager);
-            menuGameState.Initialize(content, _window, _graphicsDevice, _graphics);
-            menuGameState.LoadContent(content);
+                var viewportAdapter = new DefaultViewportAdapter(_graphicsDevice);
+                _camera = new OrthographicCamera(viewportAdapter);
 
-            // load sound effects and register in the sound manager
-            var bulletSound = LoadSound(BulletSound);
-            var dialogBeep = LoadSound(DialogBeep);
-            var footStepSound1 = LoadSound(FootStepSound1);
-            //var footStepSound2 = LoadSound(FootStepSound2);
-            //var footStepSound3 = LoadSound(FootStepSound3);
-            var spoonDropSound = LoadSound(SpoonDropSound);
-            var drawerSlideSound = LoadSound(DrawerSlideSound);
-            var drawerCloseSound = LoadSound(DrawerCloseSound);
-            //var missileSound = LoadSound(MissileSound);
-            _soundManager.RegisterSound(new GameplayEvents.PlayerTest(), bulletSound);
-            _soundManager.RegisterSound(new GameplayEvents.DialogNext(), dialogBeep);
-            _soundManager.RegisterSound(new GameplayEvents.FootSteps(), footStepSound1);
-            //_soundManager.RegisterSound(new GameplayEvents.FootSteps(), footStepSound2);
-            //_soundManager.RegisterSound(new GameplayEvents.FootSteps(), footStepSound3);
-            _soundManager.RegisterSound(new GameplayEvents.SpoonDrop(), spoonDropSound);
-            //_soundManager.RegisterSound(new GameplayEvents.DrawerSlide(), drawerSlideSound);
-            _soundManager.RegisterSound(new GameplayEvents.DrawerClose(), drawerCloseSound);
+                _statsText = new StatsObject(LoadFont(StatsFont));
+                _statsText.Position = new Vector2(10, 10);
+                if (_debug)
+                {
+                    AddGameObject(_statsText);
+                }
+                menuGameState = new SplashState(new MenuScreen(_displayResolution), this, _displayResolution, _soundManager);
+                menuGameState.Initialize(content, _window, _graphicsDevice, _graphics);
+                menuGameState.LoadContent(content);
 
-            // load soundtracks into sound manager
-            var track1 = LoadSound(Soundtrack1).CreateInstance();
-            //var track2 = LoadSound(Soundtrack2).CreateInstance();
-            //_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
-            _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1 });
+                // load sound effects and register in the sound manager
+                var bulletSound = LoadSound(BulletSound);
+                var dialogBeep = LoadSound(DialogBeep);
+                var footStepSound1 = LoadSound(FootStepSound1);
 
-            interactableManager.LoadContent(content);
-            AddGameObject(interactableManager.GetItem());
-            colliders.Add(interactableManager.Drawer);
-            AddGameObject(interactableManager.Drawer);
-            colliders.Add(interactableManager.BlueGuyRoy);
-            AddGameObject(interactableManager.BlueGuyRoy);
-            colliders.Add(interactableManager.Table);
-            AddGameObject(interactableManager.Table);
-            colliders.Add(interactableManager.Chair1);
-            AddGameObject(interactableManager.Chair1);
-            colliders.Add(interactableManager.Chair2);
-            AddGameObject(interactableManager.Chair2);
+                var spoonDropSound = LoadSound(SpoonDropSound);
+                var drawerSlideSound = LoadSound(DrawerSlideSound);
+                var drawerCloseSound = LoadSound(DrawerCloseSound);
 
-            var font = LoadFont(TextFont);
-            PopupManager = new PopupManager(font, _playerSprite.Position, _camera, _displayResolution);
-            PopupManager.InteractableItemPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
-            PopupManager.AddInventoryPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
-            PopupManager.SetPopupBoxTextures(LoadTexture("Menu/InteractPopupBox"), LoadTexture("Menu/InteractPopupBox"), LoadTexture("Menu/MinigamePopupBox"), LoadTexture("Menu/ControlDisplay"), LoadTexture("Menu/EmptyScreen"));
-            PopupManager.LoadMinigameBox();
-            PopupManager.LoadRollCreditsBox();
-            PopupManager.LoadControlDisplayBox(StoredDialog.WriteControlDisplayText(InputManager.GetInputDetector().GetKeyboardControls()));
-            PopupManager.DialogBox.BoxTexture = LoadTexture(PopupManager.DialogBox.TexturePath);            
-            AddGameObject(PopupManager.ControlDisplayBox);
-            AddGameObject(PopupManager.InteractableItemPopupBox);
-            AddGameObject(PopupManager.AddInventoryPopupBox);
-            AddGameObject(PopupManager.DialogBox);
-            AddGameObject(PopupManager.MinigamePopupBox);
-            PopupManager.RollCreditsFinishEvent += ChangeGameStateState;
+                _soundManager.RegisterSound(new GameplayEvents.PlayerTest(), bulletSound);
+                _soundManager.RegisterSound(new GameplayEvents.DialogNext(), dialogBeep);
+                _soundManager.RegisterSound(new GameplayEvents.FootSteps(), footStepSound1);
 
-            MinigameManager = new MinigameManager(_playerSprite.Position, _camera, _displayResolution);
-            foreach (var frame in MinigameManager.DrawerFrames)
-            {
-                foreach (var item in frame)
+                _soundManager.RegisterSound(new GameplayEvents.SpoonDrop(), spoonDropSound);
+                //_soundManager.RegisterSound(new GameplayEvents.DrawerSlide(), drawerSlideSound);
+                _soundManager.RegisterSound(new GameplayEvents.DrawerClose(), drawerCloseSound);
+
+                // load soundtracks into sound manager
+                var track1 = LoadSound(Soundtrack1).CreateInstance();
+                //var track2 = LoadSound(Soundtrack2).CreateInstance();
+                //_soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1, track2 });
+                _soundManager.SetSoundtrack(new List<SoundEffectInstance>() { track1 });
+
+                interactableManager.LoadContent(content);
+                AddGameObject(interactableManager.GetItem());
+                colliders.Add(interactableManager.Drawer);
+                AddGameObject(interactableManager.Drawer);
+                colliders.Add(interactableManager.BlueGuyRoy);
+                AddGameObject(interactableManager.BlueGuyRoy);
+                colliders.Add(interactableManager.Table);
+                AddGameObject(interactableManager.Table);
+                colliders.Add(interactableManager.Chair1);
+                AddGameObject(interactableManager.Chair1);
+                colliders.Add(interactableManager.Chair2);
+                AddGameObject(interactableManager.Chair2);
+
+                var font = LoadFont(TextFont);
+                PopupManager = new PopupManager(font, _playerSprite.Position, _camera, _displayResolution);
+                PopupManager.InteractableItemPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
+                PopupManager.AddInventoryPopupBox.BoxTexture = LoadTexture("Menu/InteractPopupBox");
+                PopupManager.SetPopupBoxTextures(LoadTexture("Menu/InteractPopupBox"), LoadTexture("Menu/InteractPopupBox"), LoadTexture("Menu/MinigamePopupBox"), LoadTexture("Menu/ControlDisplay"), LoadTexture("Menu/EmptyScreen"));
+                PopupManager.LoadMinigameBox();
+                PopupManager.LoadRollCreditsBox();
+                PopupManager.LoadControlDisplayBox(StoredDialog.WriteControlDisplayText(InputManager.GetInputDetector().GetKeyboardControls()));
+                PopupManager.DialogBox.BoxTexture = LoadTexture(PopupManager.DialogBox.TexturePath);
+                AddGameObject(PopupManager.ControlDisplayBox);
+                AddGameObject(PopupManager.InteractableItemPopupBox);
+                AddGameObject(PopupManager.AddInventoryPopupBox);
+                AddGameObject(PopupManager.DialogBox);
+                AddGameObject(PopupManager.MinigamePopupBox);
+                PopupManager.RollCreditsFinishEvent += ChangeGameStateState;
+
+                MinigameManager = new MinigameManager(_playerSprite.Position, _camera, _displayResolution);
+                foreach (var frame in MinigameManager.DrawerFrames)
+                {
+                    foreach (var item in frame)
+                    {
+                        item.SetTexture(LoadTexture(item.TexturePath));
+                        AddGameObject(item);
+                    }
+                }
+                foreach (var item in MinigameManager.LeftHandFrames)
                 {
                     item.SetTexture(LoadTexture(item.TexturePath));
                     AddGameObject(item);
                 }
-            }
-            foreach (var item in MinigameManager.LeftHandFrames)
-            {
-                item.SetTexture(LoadTexture(item.TexturePath));
-                AddGameObject(item);
-            }
-            foreach (var item in MinigameManager.LeftHandonDrawerFrames)
-            {
-                item.SetTexture(LoadTexture(item.TexturePath));
-                AddGameObject(item);
-            }
-            foreach (var frame in MinigameManager.RightHandFrames)
-            {
-                foreach (var item in frame)
+                foreach (var item in MinigameManager.LeftHandonDrawerFrames)
                 {
                     item.SetTexture(LoadTexture(item.TexturePath));
                     AddGameObject(item);
                 }
-            }
-            foreach (var item in MinigameManager.SpoonList)
-            {
+                foreach (var frame in MinigameManager.RightHandFrames)
+                {
+                    foreach (var item in frame)
+                    {
+                        item.SetTexture(LoadTexture(item.TexturePath));
+                        AddGameObject(item);
+                    }
+                }
+                foreach (var item in MinigameManager.SpoonList)
+                {
                     item.SetTexture(LoadTexture(item.TexturePath));
                     AddGameObject(item);
+                }
+
+
+                ResetGame();
+                PopupManager.ActivateDialogBox(StoredDialog.startingDialog);
+                ChangeGameStateState(GameplayStateStates.DialogState);
             }
-
-
-            ResetGame();
-            PopupManager.ActivateDialogBox(StoredDialog.startingDialog);
-            ChangeGameStateState(GameplayStateStates.DialogState);
+            catch (Exception e) 
+            {
+                FileStream fs = File.Open("log.txt", FileMode.Create);
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.WriteLine(e);
+                }
+            }
         }
         //it's handleinput method but specifically for pause so this doesn't pause when you pause the game
 
