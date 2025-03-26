@@ -684,6 +684,7 @@ namespace SpooninDrawer
          *-added Title words and blue background
          *-adjusted sound for drawer slide
          *-I think the game is ready to ship
+         *-need to figure out git lfs
          */
 }
     }
